@@ -1,0 +1,765 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Projects</title>
+    <link href="~/Content/Main/css/icons.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/main.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrapal.css" rel="stylesheet" />
+    @*CSS样式(包含默认皮肤样式)*@
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    @*CSS皮肤(需引用于bsgrid.all.min.css之后)*@
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_gray.min.css" rel="stylesheet" />
+
+
+    <link href="~/Content/Main/css/icons.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/main.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrapal.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+
+    <style>
+        
+        .modTows {
+               width: 640px;
+               height: 45%;
+               float: left;
+               padding: 10px;
+        }
+        label {
+            width: 100%;
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .btn-groud {
+            margin: 20px;
+        }
+
+        .Tree {
+            height: 485px;
+            margin: 0px 20px;
+            padding: 5px;
+            border: 3px solid #f5f5f5;
+            border-top: none;
+            box-shadow: 0 0 20px 1px #eee;
+            width: 15%;
+        }
+
+        .List {
+            height: 485px;
+            float: left;
+            overflow: auto;
+            border: 3px solid #f5f5f5;
+            border-top: none;
+            box-shadow: 0 0 20px 1px #eee;
+            width: 80%;
+            position: absolute;
+            right: 40px;
+            top: 152px;
+        }
+
+        .panel-body-bow {
+            width: 250%;
+            padding: 5px;
+        }
+
+        h3 {
+            text-align: center;
+            border-bottom: 3px solid #f5f5f5;
+            padding-bottom: 7px;
+        }
+
+        .modal-header {
+            margin-bottom: 10px;
+        }
+
+        .layui-elem-fielded legend {
+            font-size: 20px;
+        }
+
+        .layui-elem-fielded {
+            width: 98%;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        #RepairItemName {
+            padding: 0px;
+        }
+
+            #RepairItemName li {
+                text-align: left;
+                list-style-type: none;
+            }
+
+                #RepairItemName li:hover {
+                    background: #eee;
+                    cursor: alias;
+                }
+
+                #RepairItemName li i {
+                    display: inline-block;
+                    background: url('../../../../Content/Main/images/smiley_evil.png') no-repeat 0px 5px;
+                    width: 20px;
+                    height: 20px;
+                }
+
+                #RepairItemName li .diai {
+                    margin-left: 23px;
+                }
+
+        .active {
+            background: #f5f5f5;
+        }
+        .btn1{
+            padding:20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+        @*导航栏*@
+        <ol class="breadcrumb">
+            <li>首页</li>
+            <li>基础数据</li>
+            <li><a href="#">维修项目设置</a></li>
+        </ol>
+        @*按钮组*@
+        <div class="btn-groud">
+            <button class="btn btn-warning cancel " type="button" id="Insert"><i class="en-plus3"></i>增加分类</button>
+            <button class="btn btn-primary cancel" type="button" id="Update"><i class="en-tools"></i>修改分类</button>
+            <button class="btn btn-primary " type="button" ><i class="en-trash"></i>删除分类</button>
+            <button class="btn btn-warning cancel " type="button" id="InsertProject"><i class="en-plus3"></i>增加修理项目</button>
+            <button class="btn btn-primary cancel" type="button" id="UpdateProject"><i class="en-tools"></i>修改修理项目</button>
+            <button class="btn btn-primary " type="button" id="Delect"><i class="en-trash"></i>删除修理项目</button>
+            <button class="btn btn-primary start"><i class="en-upload"></i>导出</button>
+            <button class="btn btn-danger delete"><i class="br-switch"></i> 关闭</button>
+        </div>@*layui-elem-field*@
+        <fieldset class="layui-elem-fielded">
+            <legend>修理项目设置</legend>
+            <div>
+                <div class="Tree" id="RepairItemName" style="text-align:left;">
+                    <ul style="padding-left:0px;">
+                        <li onclick="Chose()">
+                            <i style="background:url('../../../../Content/Main/images/smiley_evil.png')no-repeat 0px 5px;">
+
+                            </i>修理大类 &nbsp;共有<span></span>个大类
+                        </li>
+                    </ul>
+                </div>
+                <div class="List ">
+                    <div class="panel-body-bow">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="tbProjects">
+                                <thead>
+                                    <tr>
+                                        <th w_num="total_line">序号</th>
+                                        <th w_index="RepairItemID" w_check="true">选择</th>
+                                        <th w_index="RepairClassNum">类别</th>
+                                        <th w_index="RepairItemNum">项目编号</th>
+                                        <th w_index="RepairItemName">修理项目名称</th>
+                                        <th w_index="Maintenance">维修工艺</th>
+                                        <th w_index="RepairCharge">修理费</th>
+                                        <th w_index="Money">派工总金额</th>
+                                        <th w_index="TimeUnit">工时单价</th>
+                                        <th w_index="WorkTime">派工总工时</th>
+                                        <th w_render="SetState">停用标志</th>
+                                        <th w_index="ToDeactivate" w_hidden="true"></th>
+                                        <th w_index="PinYinCode">简拼码</th>
+                                        <th w_index="Remark">备注</th>
+
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        @*新增/修改类别模态框*@
+        <div id="layerType" style="display: none;overflow:hidden;">
+            <div class="col-md-12" style="margin-top: 14px">
+                <form id="formType" class="form-horizontal" action="" autocomplete="off">
+                    <!--重置表单-->
+                    <input type="reset" class="hidden" />
+                    <!--隐藏域-->
+                    <input type="text" class="hidden" id="RepairClassID" name="RepairClassID" />
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">编号</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="RepairClassNum" name="RepairClassNum" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">工时单价</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="TimeUnit" name="TimeUnit" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">名称</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="RepairClassName" name="RepairClassName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <button type="button" class="btn btn-primary" id="Save">保存</button>
+                            <button type="button" class="btn btn-danger layui-layer-close">关闭</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        @*新增修理项目模态框*@
+        @*新增模态框*@
+        <div class="modal fade col-lg-12" id="modInsert">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="Coloca" type="button" data-dismiss="modal" aria-hidden="true"><i class="en-cross"></i></button>
+                        <span class="Gonyin">&nbsp;<i class="en-user"></i> 新增修理项目</span>
+                    </div>
+                    <div class="modal-footer" style="border-top:none;">
+                        <div class="modTows col-lg-12 col-md-12 col-sm-12">
+                            <form class="form-horizontal" role="form" id="formInsert" action="InsertProject" method="post" autocomplete="off">
+                                <div class="form-group">
+                                    <input type="text" hidden id="FRepairItemID" name="RepairItemID" />
+                                    <label class="control-label col-sm-2">修理大类:</label>
+                                    <div class="col-sm-3">
+                                        <select type="text" class="form-control" id="FRepairClassID" name="RepairClassID"></select>
+                                    </div>
+                                    <label class="control-label col-sm-2">项目编号:</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" id="FRepairItemNum" name="RepairItemNum" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">维修工艺:</label>
+                                    <div class="col-sm-3">
+                                        <select type="text" class="form-control" id="FMaintenanceID" name="MaintenanceID"></select>
+                                    </div>
+                                    <label class="control-label col-sm-2">修理费:</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" id="FRepairCharge" name="RepairCharge" onkeyup="clearNoNum(this)" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">项目名称:</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" id="FRepairItemName" name="RepairItemName" onKeyUp="query()" />
+                                    </div>
+
+                                    <label class="control-label col-sm-2">拼音码:</label>
+                                    <div class="col-sm-3">
+                                        <select type="text" class="form-control" id="FPinYinCode" name="PinYinCode"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">工时单价:</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" id="FTimeUnit" name="TimeUnit" onkeyup="clearNoNum(this)" />
+                                    </div>
+
+                                    <label class="control-label col-sm-2">派工总金额:</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" id="FMoney" name="Money" onkeyup="clearNoNum(this)" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">派工总工时:</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" id="FWorkTime" name="WorkTime" />
+                                    </div>
+                                    <label class="control-label col-sm-2">停用标记:</label>
+                                    <div class="col-sm-3">
+                                        <select id="FToDeactivate" name="FToDeactivate" class="form-control">
+                                            <option>--请选择--</option>
+                                            <option value="true">是</option>
+                                            <option value="false">否</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">备注:</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="FRemark" name="Remark" />
+                                    </div>
+                                </div>
+                                <div class="form-group btn1">
+                                    <button class="btn btn-warning cancel" type="button" id="save"><i class="en-upload"></i>保存</button>
+                                    <button class="btn btn-danger delete" data-dismiss="modal"><i class="br-switch"></i>退出</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+        @*修改模态框*@
+        <div class="modal fade col-lg-12" id="modUpdate">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="Coloca" type="button" data-dismiss="modal" aria-hidden="true"><i class="en-cross"></i></button>
+                        <span class="Gonyin">&nbsp;<i class="en-user"></i> 修理项目</span>
+                    </div>
+                    <div class="modal-footer" style="border-top:none;">
+                        <div class="modTows col-lg-12 col-md-12 col-sm-12">
+                            <form class="form-horizontal" role="form" id="formUpdate" action="UpdateProject" method="post" autocomplete="off">
+                                <div class="form-group">
+                                    <input type="text" hidden id="ERepairItemID" name="RepairItemID" />
+                                    <label class="control-label col-sm-2">修理大类:</label>
+                                    <div class="col-sm-3">
+                                        <select type="text" class="form-control" id="ERepairClassID" name="RepairClassID"></select>
+                                    </div>
+                                    <label class="control-label col-sm-2">项目编号:</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" id="ERepairItemNum" name="RepairItemNum" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">维修工艺:</label>
+                                    <div class="col-sm-3">
+                                        <select type="text" class="form-control" id="EMaintenanceID" name="MaintenanceID"></select>
+                                    </div>
+                                    <label class="control-label col-sm-2">修理费:</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" id="ERepairCharge" name="RepairCharge" onkeyup="clearNoNum(this)" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">项目名称:</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" id="ERepairItemName" name="RepairItemName" onKeyUp="Query()" />
+                                    </div>
+
+                                    <label class="control-label col-sm-2">拼音码:</label>
+                                    <div class="col-sm-3">
+                                        <select type="text" class="form-control" id="EPinYinCode" name="PinYinCode"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">工时单价:</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" id="ETimeUnit" name="TimeUnit" onkeyup="clearNoNum(this)" />
+                                    </div>
+
+                                    <label class="control-label col-sm-2">派工总金额:</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" id="EMoney" name="Money" onkeyup="clearNoNum(this)" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">派工总工时:</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" id="EWorkTime" name="WorkTime" />
+                                    </div>
+                                    <label class="control-label col-sm-2">停用标记:</label>
+                                    <div class="col-sm-3">
+                                        <select id="EToDeactivate" name="ToDeactivate" class="form-control">
+                                            <option>--请选择--</option>
+                                            <option value="true">是</option>
+                                            <option value="false">否</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">备注:</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="ERemark" name="Remark" />
+                                    </div>
+                                </div>
+                                <div class="form-group btn1">
+                                    <button class="btn btn-warning cancel" type="button" id="SaveUpdate"><i class="en-upload"></i>保存</button>
+                                    <button class="btn btn-danger delete" data-dismiss="modal"><i class="br-switch"></i>退出</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+
+    <script src="~/Content/js/combobox.js"></script>
+    <script src="~/Content/js/jquery.form.js"></script>
+ 
+    
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/js/customfunction.js"></script> @*绑定下拉框*@
+    <script src="~/Content/js/pinying.js"></script>@*拼音码*@
+
+
+    <script>
+        //input输入数字金额
+        //<input type="text" name="packprice"  onkeyup="clearNoNum(this)"  maxlength="5" size="35"/>
+        function clearNoNum(obj) {
+            obj.value = obj.value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
+            obj.value = obj.value.replace(/^\./g, "");  //验证第一个字符是数字而不是.
+            obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的.
+            obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+
+        }
+
+        //手机验证
+        //function checkMobile(str) {
+        //  if(str==""){
+        //      alert("手机号不能为空！");
+        //  }
+        //  else{
+        //      var re = /^1\d{10}$/      //以1开始后面加10位数字
+        //      if (re.test(str)) {
+        //      alert("正确");
+        //      } else {
+        //          alert("手机号格式错误！");
+        //      }
+        //  }
+        //}
+
+        //初始化表格
+        var tbProjects
+        $(function () {
+            //tbProjects = $.fn.bsgrid.init("tbProjects", {
+            tbProjects = $.fn.bsgrid.init("tbProjects", {
+                url: "SelectProjects",
+                autoLoad: true,
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left",//分页工具条的显示位置
+                //行点击事件
+                event: {
+                    customRowEvents: {
+                        click: function (record, rowIndex, trObj, options) {
+                            Check("#tbProjects tr", rowIndex + 1);
+                        }
+                    }
+                }
+            })
+            Chose();
+        })
+
+        //新增按钮的点击事件
+        $("#Insert").click(function () {
+            //重置表单
+            $('#formType input[type="reset"]').click();
+            //弹出layer窗体
+            layerIndex = layer.open({
+                type: 1,//页面层
+                area: ["500px", "280px"],
+                title: "新增分类",
+                content: $("#layerType")
+            });
+        });
+        //修改按钮点击事件
+        $("#Update").click(function (id) {//修改点击事件
+            function Chose(id) {
+                $("#formType").attr("action", "/BasicdataManagment/Maintenance/UpdateRepairClass");//修改时表单提交的地址
+                $.getJSON("/BasicdataManagment/Maintenance/SelectRepairClassByID?RepairClassID=" + id, function (data) {
+                    if (data != null) {
+                        console.log(data);
+                        $("#RepairClassID").val(data[0].RepairClassID);
+                        $("#RepairClassNum").val(data[0].RepairClassNum);
+                        $("#TimeUnit ").val(data[0].TimeUnit);
+                        $("#RepairClassName ").val(data[0].RepairClassName);
+                        //弹出layer窗体
+                        layerIndex = layer.open({
+                            type: 1,//页面层
+                            area: ["500px", "280px"],
+                            title: "修改分类",
+                            content: $("#layerType")
+                        });
+                    } else {
+                        layer.alert("未查找到数据！", { icon: 2 });
+                    }
+                });
+            }
+        })
+
+        $("#Save").click(function () {
+            var Url = "";
+            if ($('#formType [name="RepairClassID"]').val() == "") {
+                //无大类ID表单为新增
+                Url = "/BasicdataManagment/Maintenance/InsertRepairClass"
+            } else {
+                //有大类ID表单为修改
+                Url = "/BasicdataManagment/Maintenance/UpdateRepairClass";
+            }
+            var formData = $("#formType").serializeArray();
+            $.post(Url, formData, function (msg) {
+                if (msg == "success") {
+                    layer.alert("保存成功", { icon: 1 });
+                    //刷新页面
+                    location.reload();
+                } else if (msg == "exist") {
+                    layer.alert("大类已存在", { icon: 2 });
+                } else if (msg == "nofull") {
+                    layer.alert("请填写完整", { icon: 0 });
+                } else {
+                    layer.alert('保存失败', { icon: 2 });
+                }
+            });
+
+        })
+   
+
+        //自定义事件
+        function SetState(record) {
+            var ToDeactivate = record.ToDeactivate;
+            if (ToDeactivate == true || ToDeactivate == "true") {
+                return "<span style='color:red;'>是</span>";
+            } else {
+                return "<span style='color:blue;'>否</span>";
+            }
+        }
+        //弹出新增修理项目模态框
+        $("#InsertProject").click(function () {
+            $("#modInsert").modal("show"); //弹出模态框
+            $.ajax({
+                type: "post",
+                url: "Num",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#FCustomerCode").val(data);
+                }
+            });
+            //编号
+            $.ajax({
+                type: "post",
+                url: "Num",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#RepairItemNum").val(data);
+                }
+            });
+        });
+        //拼音码
+        function query() {
+            var str = document.getElementById("FRepairItemName").value.trim();
+            if (str == "") return;
+            var arrRslt = makePy(str);
+            //循环将值到下拉框
+            var option = null;
+            document.getElementById("FPinYinCode").innerHTML = "";//清空下拉框
+            var first = document.getElementById("FPinYinCode");
+            for (var j = 0; j < arrRslt.length; j++) {
+                var obj = document.getElementById("FPinYinCode");
+                obj.add(new Option(arrRslt[j]));
+            }
+        }
+        function Query() {
+            var str = document.getElementById("ERepairItemName").value.trim();
+            if (str == "") return;
+            var arrRslt = makePy(str);
+            //循环将值到下拉框
+            var option = null;
+            document.getElementById("EPinYinCode").innerHTML = "";//清空下拉框
+            var first = document.getElementById("EPinYinCode");
+            for (var j = 0; j < arrRslt.length; j++) {
+                var obj = document.getElementById("EPinYinCode");
+                obj.add(new Option(arrRslt[j]));
+            }
+        }
+        //保存新增
+        $("#save").click(function () {
+            var RepairClassID = $("#FRepairClassID").val();//修理大类
+            var RepairItemNum = $("#FRepairItemNum").val();//修理编号
+            var MaintenanceID = $("#FMaintenanceID").val();//维修工艺
+            var RepairCharge = $("#FRepairCharge").val();//修理费
+            var RepairItemName = $("#FRepairItemName").val();//项目名称
+            var PinYinCode = $("#FPinYinCode").val();//拼音码
+            var TimeUnit = $("#FTimeUnit").val();//工时单价
+            var Money = $("#FMoney").val();//派工总金额
+            var WorkTime = $("#FWorkTime").val(); //派工总工时
+            var ToDeactivate = $("#FToDeactivate").val();//停用标记
+            var Remark = $("#FRemark").val();//备注
+         
+
+            if (RepairClassID > 0 && MaintenanceID > 0 && RepairItemNum != "" && RepairItemName != "" ) {
+                //显示加载层
+                var layerIndex = layer.load(0);
+                //提交表单
+                $("#formInsert").ajaxSubmit(function (msg) {
+                    $("#FToDeactivate").is(":checked");//停用
+                    //关闭加载层
+                    layer.close(layerIndex);
+
+                    if (msg == "success") {
+                        //提示信息
+                        layer.msg("新增成功！");
+                        //刷新页面
+                        location.reload();
+                    } else {
+                        layer.alert(msg, { icon: 0, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.msg("请填写完整信息！");
+
+            }
+        });
+
+        //选择修改弹出模态框
+        $("#UpdateProject").click(function () {
+            var checkboxs = $("#modUpdate input[type=checkbox]");
+            var check = $("#tbProjects input[type=checkbox]:checked");
+            if (check.length == 0) {
+                layer.alert("请选择你需要修改的数据！");
+            } else if (check.length > 1) {
+                layer.alert("不能修改多条数据！");
+            } else {
+                $("#modUpdate").modal("show");
+                $.post("SelectProject?RepairItemID=" + check[0].value, function (data) {
+                    $("#ERepairItemID").val(data[0].RepairItemID);
+                    $("#ERepairClassID").val(data[0].RepairClassID);
+                    $("#ERepairItemNum").val(data[0].RepairItemNum);
+                    $("#EMaintenanceID").val(data[0].MaintenanceID);
+                    $("#ERepairCharge").val(data[0].RepairCharge);
+                    $("#ERepairItemName").val(data[0].RepairItemName);
+                    $("#EPinYinCode").val(data[0].PinYinCode);
+                    $("#ETimeUnit").val(data[0].TimeUnit);
+                    $("#EMoney").val(data[0].Money);
+                    $("#EWorkTime").val(data[0].WorkTime);
+                    $("#EToDeactivate").val(data[0].ToDeactivate);
+                    $("#ERemark").val(data[0].Remark);
+                    YN();
+                   
+                })
+            }
+        })
+        function YN() {
+            var ss = $("#EToDeactivate").val();
+            if (ss == false) {
+                $("#EToDeactivate").val("false");
+            } else {
+                $("#EToDeactivate").val("true");
+            }
+        }
+        //保存修改
+        $("#SaveUpdate").click(function () {
+            var RepairClassID = $("#ERepairClassID").val();//修理大类
+            var RepairItemNum = $("#ERepairItemNum").val();//修理编号
+            var MaintenanceID = $("#EMaintenanceID").val();//维修工艺
+            var RepairCharge = $("#ERepairCharge").val();//修理费
+            var RepairItemName = $("#ERepairItemName").val();//项目名称
+            var PinYinCode = $("#EPinYinCode").val();//拼音码
+            var TimeUnit = $("#ETimeUnit").val();//工时单价
+            var Money = $("#EMoney").val();//派工总金额
+            var WorkTime = $("#EWorkTime").val(); //派工总工时
+            var ToDeactivate = $("#EToDeactivate").val();//停用标记
+            var Remark = $("#ERemark").val();//备注
+
+          
+           
+            if (RepairClassID > 0 && MaintenanceID > 0 && RepairItemNum != "" && RepairItemName != "") {
+                //显示加载层
+                var layerIndex = layer.load(0);
+                //提交表单
+                $("#formUpdate").ajaxSubmit(function (msg) {
+                    //关闭加载层
+                    layer.close(layerIndex);
+                    if (msg == "success") {
+                        //提示信息
+                        layer.msg("新增成功！");
+                        //刷新页面
+                        location.reload();
+                    } else {
+                        layer.alert(msg, { icon: 0, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.msg("请将信息填写完整！");
+
+            }
+        });
+
+        //删除
+        $("#Delect").click(function () {
+            var num = 0;
+            var check = $("#tbProjects input[type=checkbox]:checked");
+            if (check.length > 0) {
+                layer.confirm("确认需要删除当前选中的数据?", {
+                    icon: 3,
+                    btn: ['确认', '取消']
+                }, function (layerIndex) {//关闭提示框
+                    for (var i = 0; i < check.length; i++) {
+                        $.ajax({
+                            type: "get",//请求方式
+                            async: false,//是否异步
+                            url: "DeleteProject?RepairItemID=" + check[i].value,
+                            success: function (data) {//成功回调函数
+                                if (data) {
+                                    num++
+                                }
+                            }
+                        });
+                    }
+                    Chose();//表格刷新
+                   // tbProjects.search();//表格刷新
+                    layer.alert(num + "条数据删除成功，"
+                        + (check.length - num) + "条数据删除失败",
+                    { icon: 1, skin: "layui-layer-molv" });
+                });
+            } else {//未选择需要删除的数据
+                layer.alert('请选择需要删除的数据！', { icon: 0, title: '提示' });
+
+            }
+        });
+//   
+        //根据数据库信息生成li标签
+        $(function () {
+            var RepairClassID = 0;
+            $.post("/BasicdataManagment/Maintenance/SelectRepairClass", function (data) {
+                $("#RepairItemName span").html(data.length);//获取数据长度
+                $("#RepairItemName ul.listshow").html("");
+                $.each(data, function (i) {//生成li标签
+                    $("#RepairItemName ul").append('<li onclick="Chose(' + data[i].RepairClassID + ')" id='+data[i].RepairClassID + ' class="lishow"><i class="diai"></i>' +
+                            data[i].RepairClassName + ' (' + data[i].RepairClassNum + ')</li>');
+                    RepairClassID = data[i].RepairClassID;
+                    $("#" + RepairClassID).click(function () {
+                        $("#RepairItemName li").removeClass("active");
+                        $(this).addClass("active");
+                        tbProjects.search({//点击商品类别刷新表格
+                            RepairClassID: this.id
+                        });
+                    })
+                })
+            })
+            tbProjects.refreshPage();
+        })
+        //条件查询修理项目客户
+        function Chose() {
+            var RepairClassID = 0;
+            tbProjects.search({
+                RepairClassID: RepairClassID
+            });
+        }
+        //绑定下拉框
+        createSelect("FRepairClassID", "/PublicManagment/CreateSelect/SelectRepairClass");//修理大类
+        createSelect("FMaintenanceID", "/PublicManagment/CreateSelect/SelectMaintenance");//维修工艺
+        createSelect("ERepairClassID", "/PublicManagment/CreateSelect/SelectRepairClass");//修理大类
+        createSelect("EMaintenanceID", "/PublicManagment/CreateSelect/SelectMaintenance");//维修工艺
+
+    </script>
+</body>
+</html>

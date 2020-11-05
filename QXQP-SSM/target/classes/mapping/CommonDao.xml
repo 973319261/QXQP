@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koi.mapper.CommonDao">
+<!-- 生成单号 -->
+  <select id="customerNum" parameterType="java.lang.String" resultType="int" >
+  select 
+	case when exists( SELECT * FROM SYS_MaintenanceCus WHERE 
+	    CustomerNum LIKE CONCAT('%',CONCAT(#{d},'%'))) 
+	then (SELECT TOP 1 SUBSTRING(CustomerNum,15,4) from SYS_MaintenanceCus WHERE 
+	    CustomerNum LIKE CONCAT('%',CONCAT(#{d},'%'))  ORDER BY  CustomerNum DESC)
+	else 0
+  end
+</select>
+<!-- 绑定下拉框 -->
+<select id="selectAppendOption" parameterType="Map" resultType="com.koi.vo.AppendOptionVo">
+  select ${params.id} as id,${params.name} as name from ${params.type}
+</select>
+<!-- 查询维修客户总数 -->
+<select id="seleceMaintenanceCusCount" resultType="long">
+	SELECT count(*) as num FROM SYS_MaintenanceCus m,SYS_InsuranceCom,SYS_InsuranceSpe,SYS_Department,SYS_Carder,SYS_CustomerType,SYS_CustomerLevel,
+	SYS_Region,SYS_CustomerSou WHERE m.InsuranceComID=SYS_InsuranceCom.InsuranceComID and m.InsuranceSpeID=SYS_InsuranceSpe.InsuranceSpeID and 
+	m.DepartmentID=SYS_Department.DepartmentID and m.CarderID=SYS_Carder.CarderID and m.CustomerTypeID=SYS_CustomerType.CustomerTypeID and 
+	m.CustomerLevelID=SYS_CustomerLevel.CustomerLevelID and m.RegionID =SYS_Region.RegionID and m.CustomerSouID=SYS_CustomerSou.CustomerSouID 
+	<if test="licenseCode != null and licenseCode !='' ">
+	 AND LicenseCode like CONCAT(CONCAT('%',#{licenseCode}),'%') 
+	</if>
+</select>
+<!-- 查询维修客户表-->
+<select id="seleceMaintenanceCus" resultType="com.koi.po.SysMaintenanceCus">
+	SELECT * FROM(select MaintenanceCusID,m.InsuranceComID,m.InsuranceSpeID,m.CustomerLevelID,m.RegionID,
+	m.DepartmentID,m.CustomerSouID,m.CustomerTypeID,m.CarderID,m.Birthday,m.InitialStartDate,m.InitialEndDate,m.DriveDate,m.DrivingDate,m.Owner,m.IdNumber,
+	m.MobilePhone,m.LicenseCode,m.VehicleType,m.EngineNum,m.FrameNum,m.RepairMan,m.RepairTele,m.Address,m.CustomerNum,m.InputPerson,ROW_NUMBER()OVER(ORDER BY 
+	m.MaintenanceCusID)Num FROM SYS_MaintenanceCus m,SYS_InsuranceCom,SYS_InsuranceSpe,SYS_Department,SYS_Carder,SYS_CustomerType,SYS_CustomerLevel,
+	SYS_Region,SYS_CustomerSou WHERE m.InsuranceComID=SYS_InsuranceCom.InsuranceComID and m.InsuranceSpeID=SYS_InsuranceSpe.InsuranceSpeID and 
+	 m.DepartmentID=SYS_Department.DepartmentID and m.CarderID=SYS_Carder.CarderID and m.CustomerTypeID=SYS_CustomerType.CustomerTypeID and 
+	m.CustomerLevelID=SYS_CustomerLevel.CustomerLevelID and m.RegionID =SYS_Region.RegionID and m.CustomerSouID=SYS_CustomerSou.CustomerSouID ) 
+	AS tmp WHERE tmp.Num BETWEEN #{startIndex} AND #{pageSize} 
+	<if test="licenseCode != null and licenseCode !='' ">
+	 AND tmp.LicenseCode like CONCAT(CONCAT('%',#{licenseCode}),'%') 
+	</if>
+</select>
+<!-- 新增维修客户 -->
+<insert id="insertMaintenanceCus" parameterType="com.koi.po.SysMaintenanceCus"
+    keyProperty="maintenanceCusId" useGeneratedKeys="true">
+    insert into SYS_MaintenanceCus (VehicleType, InsuranceComID, 
+      InsuranceSpeID, DepartmentID, CarderID, 
+      CustomerTypeID, CustomerLevelID, RegionID, 
+      CustomerSouID, "Owner", Birthday, 
+      MobilePhone, IdNumber, LicenseCode, 
+      EngineNum, FrameNum, RepairMan, 
+      RepairTele, InitialStartDate, InitialEndDate, 
+      Address, CustomerNum, DriveDate, 
+      DrivingDate, InputPerson)
+    values (#{vehicleType,jdbcType=NVARCHAR}, #{insuranceComId,jdbcType=INTEGER}, 
+      #{insuranceSpeId,jdbcType=INTEGER}, #{departmentId,jdbcType=INTEGER}, #{carderId,jdbcType=INTEGER}, 
+      #{customerTypeId,jdbcType=INTEGER}, #{customerLevelId,jdbcType=INTEGER}, #{regionId,jdbcType=INTEGER}, 
+      #{customerSouId,jdbcType=INTEGER}, #{owner,jdbcType=NVARCHAR}, #{birthday,jdbcType=DATE}, 
+      #{mobilePhone,jdbcType=VARCHAR}, #{idNumber,jdbcType=CHAR}, #{licenseCode,jdbcType=NVARCHAR}, 
+      #{engineNum,jdbcType=VARCHAR}, #{frameNum,jdbcType=VARCHAR}, #{repairMan,jdbcType=NVARCHAR}, 
+      #{repairTele,jdbcType=VARCHAR}, #{initialStartDate,jdbcType=DATE}, #{initialEndDate,jdbcType=DATE}, 
+      #{address,jdbcType=NVARCHAR}, #{customerNum,jdbcType=VARCHAR}, #{driveDate,jdbcType=DATE}, 
+      #{drivingDate,jdbcType=DATE}, #{inputPerson,jdbcType=NCHAR})
+  </insert>
+ <!--  修改维修客户 -->
+<update id="updateMaintenanceCus" parameterType="com.koi.po.SysMaintenanceCus">
+    update SYS_MaintenanceCus
+    set VehicleType = #{vehicleType,jdbcType=NVARCHAR},
+      InsuranceComID = #{insuranceComId,jdbcType=INTEGER},
+      InsuranceSpeID = #{insuranceSpeId,jdbcType=INTEGER},
+      DepartmentID = #{departmentId,jdbcType=INTEGER},
+      CarderID = #{carderId,jdbcType=INTEGER},
+      CustomerTypeID = #{customerTypeId,jdbcType=INTEGER},
+      CustomerLevelID = #{customerLevelId,jdbcType=INTEGER},
+      RegionID = #{regionId,jdbcType=INTEGER},
+      CustomerSouID = #{customerSouId,jdbcType=INTEGER},
+      Owner = #{owner,jdbcType=NVARCHAR},
+      Birthday = #{birthday,jdbcType=DATE},
+      MobilePhone = #{mobilePhone,jdbcType=VARCHAR},
+      IdNumber = #{idNumber,jdbcType=CHAR},
+      LicenseCode = #{licenseCode,jdbcType=NVARCHAR},
+      EngineNum = #{engineNum,jdbcType=VARCHAR},
+      FrameNum = #{frameNum,jdbcType=VARCHAR},
+      RepairMan = #{repairMan,jdbcType=NVARCHAR},
+      RepairTele = #{repairTele,jdbcType=VARCHAR},
+      InitialStartDate = #{initialStartDate,jdbcType=DATE},
+      InitialEndDate = #{initialEndDate,jdbcType=DATE},
+      Address = #{address,jdbcType=NVARCHAR},
+      CustomerNum = #{customerNum,jdbcType=VARCHAR},
+      DriveDate = #{driveDate,jdbcType=DATE},
+      DrivingDate = #{drivingDate,jdbcType=DATE},
+      InputPerson = #{inputPerson,jdbcType=NCHAR}
+    where MaintenanceCusID = #{maintenanceCusId,jdbcType=INTEGER}
+  </update>
+  <!-- 表格修理项目下拉框改变查询 -->
+<select id="selectRepairItemChange" resultType="com.koi.po.SysRepairItem">
+  SELECT SYS_RepairItem.* FROM SYS_Maintenance m,SYS_RepairItem WHERE m.MaintenanceID = SYS_RepairItem.MaintenanceID AND RepairItemID=#{repairItemID}
+</select>
+<!-- 表格其他费用下拉框改变查询 -->
+<select id="selectExpensesChange" resultType="com.koi.po.SysExpenses">
+  SELECT * FROM SYS_Expenses WHERE ExpensesID=#{expensesID}
+</select>
+<!-- 查询修理大类 -->
+<select id="selectFittingsType" resultType="com.koi.po.SysFittingsType">
+  SELECT * FROM SYS_FittingsType
+</select>
+<!-- 查询配件信息 -->
+  <select id="seleceFittingsInfo" resultType="com.koi.vo.FittingsInfoVo">
+    SELECT * FROM(SELECT FittingsInfoID,f.FittingsTypeID,FittingsTypeName,FittingsCode,FittingsName,
+	Specification,f.VehicleTypeID,VehicleType,f.SystemUnitID,SystemUnit,WholesalePrice,Intake,SalesPrice,f.SuppliersID,SuppliersName,
+	f.Remark,ROW_NUMBER()OVER(ORDER BY f.FittingsInfoID)Num FROM SYS_FittingsInfo f,SYS_FittingsType,SYS_SystemUnit ,
+	SYS_VehicleType,dbo.SYS_Suppliers WHERE f.FittingsTypeID=SYS_FittingsType.FittingsTypeID AND f.SystemUnitID= 
+	SYS_SystemUnit.SystemUnitID AND f.VehicleTypeID = SYS_VehicleType.VehicleTypeID AND f.SuppliersID=SYS_Suppliers. 
+	SuppliersID) AS tmp WHERE Num BETWEEN #{startIndex} AND #{pageSize} 
+	<if test="fittingsTypeID != null and fittingsTypeID > 0 ">
+	 AND FittingsTypeID = #{fittingsTypeID} 
+	</if>
+	<if test="infoOne != null and infoOne !='' ">
+	  AND FittingsTypeName like CONCAT(CONCAT('%',#{infoOne}),'%')  
+	</if>
+	<if test="infoTow != null and infoTow !='' ">
+	  AND FittingsCode like CONCAT(CONCAT('%',#{infoTow}),'%') 
+	</if>
+	<if test="infoThree != null and infoThree !='' ">
+	  AND FittingsName like CONCAT(CONCAT('%',#{infoThree}),'%') 
+	</if>
+	<if test="infoFour != null and infoFour !='' ">
+	  AND VehicleType like CONCAT(CONCAT('%',#{infoFour}),'%') 
+	</if>
+ </select>
+ <!-- 查询配件条数 -->
+ <select id="seleceFittingsInfoCount" resultType="long">
+ SELECT count(*) as num FROM SYS_FittingsInfo f,SYS_FittingsType,SYS_SystemUnit,
+SYS_VehicleType,dbo.SYS_Suppliers WHERE f.FittingsTypeID=SYS_FittingsType.FittingsTypeID AND f.SystemUnitID=
+SYS_SystemUnit.SystemUnitID AND f.VehicleTypeID = SYS_VehicleType.VehicleTypeID AND f.SuppliersID=SYS_Suppliers.
+SuppliersID 
+	<if test="fittingsTypeID != null and fittingsTypeID > 0 ">
+	 AND FittingsTypeID = #{fittingsTypeID}
+	</if>
+	<if test="infoOne != null and infoOne !='' ">
+	  AND FittingsTypeName like CONCAT(CONCAT('%',#{infoOne}),'%') 
+	</if>
+	<if test="infoTow != null and infoTow !='' ">
+	  AND FittingsCode like CONCAT(CONCAT('%',#{infoTow}),'%') 
+	</if>
+	<if test="infoThree != null and infoThree !='' ">
+	  AND FittingsName like CONCAT(CONCAT('%',#{infoThree}),'%') 
+	</if>
+	<if test="infoFour != null and infoFour !='' ">
+	  AND VehicleType like CONCAT(CONCAT('%',#{infoFour}),'%') 
+	</if>
+ </select>
+ <!-- 判断是否存在配件编码 -->
+ <select id="selectFittingsInfo" resultType="com.koi.po.SysFittingsInfo">
+    SELECT * FROM SYS_FittingsInfo WHERE FittingsCode=#{fittingsCode}
+ </select>
+<!-- 新增配件信息 -->
+<insert id="insertFittingsInfo" parameterType="com.koi.po.SysFittingsInfo"
+useGeneratedKeys="true" keyProperty="fittingsInfoId">
+  insert into SYS_FittingsInfo (FittingsTypeID, SystemUnitID, 
+    VehicleTypeID, SuppliersID, FittingsName, 
+    FittingsCode, Barcode, Specification, 
+    Brand, Intake, SalesPrice, 
+    WholesalePrice, InventoryMax, InventoryMin, 
+    OpenPrice, Remark, InvenQuan, 
+    Picture)
+  values (#{fittingsTypeId,jdbcType=INTEGER}, #{systemUnitId,jdbcType=INTEGER}, 
+    #{vehicleTypeId,jdbcType=INTEGER}, #{suppliersId,jdbcType=INTEGER}, #{fittingsName,jdbcType=NVARCHAR}, 
+    #{fittingsCode,jdbcType=CHAR}, #{barcode,jdbcType=VARCHAR}, #{specification,jdbcType=NVARCHAR}, 
+    #{brand,jdbcType=NVARCHAR}, #{intake,jdbcType=DECIMAL}, #{salesPrice,jdbcType=DECIMAL}, 
+    #{wholesalePrice,jdbcType=DECIMAL}, #{inventoryMax,jdbcType=INTEGER}, #{inventoryMin,jdbcType=INTEGER}, 
+    #{openPrice,jdbcType=DECIMAL}, #{remark,jdbcType=NVARCHAR}, #{invenQuan,jdbcType=DECIMAL}, null)
+</insert>
+<!-- 修改配件信息 -->
+ <update id="updateFittingsInfo" parameterType="com.koi.po.SysFittingsInfo">
+    update SYS_FittingsInfo
+    set FittingsTypeID = #{fittingsTypeId,jdbcType=INTEGER},
+      SystemUnitID = #{systemUnitId,jdbcType=INTEGER},
+      VehicleTypeID = #{vehicleTypeId,jdbcType=INTEGER},
+      SuppliersID = #{suppliersId,jdbcType=INTEGER},
+      FittingsName = #{fittingsName,jdbcType=NVARCHAR},
+      FittingsCode = #{fittingsCode,jdbcType=CHAR},
+      Barcode = #{barcode,jdbcType=VARCHAR},
+      Specification = #{specification,jdbcType=NVARCHAR},
+      Brand = #{brand,jdbcType=NVARCHAR},
+      Intake = #{intake,jdbcType=DECIMAL},
+      SalesPrice = #{salesPrice,jdbcType=DECIMAL},
+      WholesalePrice = #{wholesalePrice,jdbcType=DECIMAL},
+      InventoryMax = #{inventoryMax,jdbcType=INTEGER},
+      InventoryMin = #{inventoryMin,jdbcType=INTEGER},
+      OpenPrice = #{openPrice,jdbcType=DECIMAL},
+      Remark = #{remark,jdbcType=NVARCHAR},
+      InvenQuan = #{invenQuan,jdbcType=DECIMAL}
+    where FittingsInfoID = #{fittingsInfoId,jdbcType=INTEGER}
+  </update>
+<!-- 查询订单 -->
+<select id="selectReceptionById" resultType="com.koi.po.PwReception">
+	select * from PW_Reception where ReceptionID = #{receptionID,jdbcType=INTEGER}
+</select>
+<!-- 新增订单 -->
+<insert id="insertReception" parameterType="com.koi.po.PwReception"
+useGeneratedKeys="true" keyProperty="receptionId">
+    insert into PW_Reception (DocumentStateID, BalanceStateID, 
+      VehicleType, Carder, RepairID, 
+      CustomerSouID, CarNum, Mileage, 
+      Owner, Address, OilQuantity, 
+      OwnerTele, EngineNum, Repairman, 
+      SelfCoding, FrameNum, RepairmanTele, 
+      FactoryDate, BalanceDate, Amount, 
+      AmountPaid, ToAudit, CompletionDate, 
+      Describe, MaintenanceNum, CollageState, 
+      ToSendWork, OpenDate, MaintenAmount, 
+      ToCompletion, CustomerNum)
+    values ( #{documentStateId,jdbcType=INTEGER}, #{balanceStateId,jdbcType=INTEGER}, 
+      #{vehicleType,jdbcType=NVARCHAR}, #{carder,jdbcType=NVARCHAR}, #{repairId,jdbcType=INTEGER}, 
+      #{customerSouId,jdbcType=INTEGER}, #{carNum,jdbcType=NVARCHAR}, #{mileage,jdbcType=VARCHAR}, 
+      #{owner,jdbcType=NVARCHAR}, #{address,jdbcType=NVARCHAR}, #{oilQuantity,jdbcType=VARCHAR}, 
+      #{ownerTele,jdbcType=VARCHAR}, #{engineNum,jdbcType=VARCHAR}, #{repairman,jdbcType=NVARCHAR}, 
+      #{selfCoding,jdbcType=VARCHAR}, #{frameNum,jdbcType=VARCHAR}, #{repairmanTele,jdbcType=VARCHAR}, 
+      #{factoryDate,jdbcType=TIMESTAMP}, #{balanceDate,jdbcType=TIMESTAMP}, #{amount,jdbcType=DECIMAL}, 
+      #{amountPaid,jdbcType=DECIMAL}, #{toAudit,jdbcType=BIT}, #{completionDate,jdbcType=DATE}, 
+      #{describe,jdbcType=NVARCHAR}, #{maintenanceNum,jdbcType=CHAR}, #{collageState,jdbcType=NVARCHAR}, 
+      #{toSendWork,jdbcType=BIT}, #{openDate,jdbcType=TIMESTAMP}, #{maintenAmount,jdbcType=DECIMAL}, 
+      #{toCompletion,jdbcType=BIT}, #{customerNum,jdbcType=VARCHAR})
+  </insert>
+<!-- 修改订单 -->
+<update id="updateReception" parameterType="com.koi.po.PwReception">
+   update PW_Reception
+   set DocumentStateID = #{documentStateId,jdbcType=INTEGER},
+     BalanceStateID = #{balanceStateId,jdbcType=INTEGER},
+     VehicleType = #{vehicleType,jdbcType=NVARCHAR},
+     Carder = #{carder,jdbcType=NVARCHAR},
+     RepairID = #{repairId,jdbcType=INTEGER},
+     CustomerSouID = #{customerSouId,jdbcType=INTEGER},
+     CarNum = #{carNum,jdbcType=NVARCHAR},
+     Mileage = #{mileage,jdbcType=VARCHAR},
+     Owner = #{owner,jdbcType=NVARCHAR},
+     Address = #{address,jdbcType=NVARCHAR},
+     OilQuantity = #{oilQuantity,jdbcType=VARCHAR},
+     OwnerTele = #{ownerTele,jdbcType=VARCHAR},
+     EngineNum = #{engineNum,jdbcType=VARCHAR},
+     Repairman = #{repairman,jdbcType=NVARCHAR},
+     SelfCoding = #{selfCoding,jdbcType=VARCHAR},
+     FrameNum = #{frameNum,jdbcType=VARCHAR},
+     RepairmanTele = #{repairmanTele,jdbcType=VARCHAR},
+     FactoryDate = #{factoryDate,jdbcType=TIMESTAMP},
+     BalanceDate = #{balanceDate,jdbcType=TIMESTAMP},
+     Amount = #{amount,jdbcType=DECIMAL},
+     AmountPaid = #{amountPaid,jdbcType=DECIMAL},
+     ToAudit = #{toAudit,jdbcType=BIT},
+     CompletionDate = #{completionDate,jdbcType=DATE},
+     Describe = #{describe,jdbcType=NVARCHAR},
+     MaintenanceNum = #{maintenanceNum,jdbcType=CHAR},
+     CollageState = #{collageState,jdbcType=NVARCHAR},
+     ToSendWork = #{toSendWork,jdbcType=BIT},
+     OpenDate = #{openDate,jdbcType=TIMESTAMP},
+     MaintenAmount = #{maintenAmount,jdbcType=DECIMAL},
+     ToCompletion = #{toCompletion,jdbcType=BIT},
+     CustomerNum = #{customerNum,jdbcType=VARCHAR}
+   where ReceptionID = #{receptionId,jdbcType=INTEGER}
+ </update>
+ <!--  删除订单 -->
+<delete id="deleteReception" parameterType="java.lang.Integer">
+  delete from PW_Reception where ReceptionID = #{receptionID,jdbcType=INTEGER}
+</delete>
+<!-- 修理项目明细表操作-->
+<select id="selectRecRepairItemDetail" resultType="com.koi.po.SysRecRepairItemDetail">
+  select * from SYS_RecRepairItemDetail where ReceptionID = #{receptionID,jdbcType=INTEGER}
+</select>
+<select id="selectRecRepairItemDetailById" resultType="com.koi.po.SysRecRepairItemDetail">
+  select * from SYS_RecRepairItemDetail where RecRepairItemDetailID = #{recRepairItemDetailID,jdbcType=INTEGER}
+</select>
+
+ <insert id="insertRecRepairItemDetail" parameterType="com.koi.po.SysRecRepairItemDetail"
+ useGeneratedKeys="true" keyProperty="recRepairItemDetailId">
+    insert into SYS_RecRepairItemDetail (RepairItemID, 
+      MaintainabilityID, ReceptionID, MaintenanceCrewID, 
+      RepairManID, RepairCharge, Discount, 
+      AmountPaid, Remark, JobHours, 
+      JobAmount, CompletionDate)
+    values (#{repairItemId,jdbcType=INTEGER}, 
+      #{maintainabilityId,jdbcType=INTEGER}, #{receptionId,jdbcType=INTEGER}, #{maintenanceCrewId,jdbcType=INTEGER}, 
+      #{repairManId,jdbcType=INTEGER}, #{repairCharge,jdbcType=DECIMAL}, #{discount,jdbcType=DECIMAL}, 
+      #{amountPaid,jdbcType=DECIMAL}, #{remark,jdbcType=NVARCHAR}, #{jobHours,jdbcType=DECIMAL}, 
+      #{jobAmount,jdbcType=DECIMAL}, #{completionDate,jdbcType=TIMESTAMP})
+  </insert>
+   <update id="updateRecRepairItemDetail" parameterType="com.koi.po.SysRecRepairItemDetail">
+    update SYS_RecRepairItemDetail
+    set RepairItemID = #{repairItemId,jdbcType=INTEGER},
+      MaintainabilityID = #{maintainabilityId,jdbcType=INTEGER},
+      ReceptionID = #{receptionId,jdbcType=INTEGER},
+      MaintenanceCrewID = #{maintenanceCrewId,jdbcType=INTEGER},
+      RepairManID = #{repairManId,jdbcType=INTEGER},
+      RepairCharge = #{repairCharge,jdbcType=DECIMAL},
+      Discount = #{discount,jdbcType=DECIMAL},
+      AmountPaid = #{amountPaid,jdbcType=DECIMAL},
+      Remark = #{remark,jdbcType=NVARCHAR},
+      JobHours = #{jobHours,jdbcType=DECIMAL},
+      JobAmount = #{jobAmount,jdbcType=DECIMAL},
+      CompletionDate = #{completionDate,jdbcType=TIMESTAMP}
+    where RecRepairItemDetailID = #{recRepairItemDetailId,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteRecRepairItemDetailById" parameterType="java.lang.Integer">
+    delete from SYS_RecRepairItemDetail
+    where ReceptionID = #{recRepairItemDetailID,jdbcType=INTEGER}
+  </delete>
+   <delete id="deleteRecRepairItemDetail" parameterType="java.lang.Integer">
+    delete from SYS_RecRepairItemDetail
+    where ReceptionID = #{receptionID,jdbcType=INTEGER}
+  </delete>
+  <!--配件明细表操作-->
+<select id="selectRecProductDetail" resultType="com.koi.po.SysRecProductDetail">
+  select * from SYS_RecProductDetail where ReceptionID = #{receptionID,jdbcType=INTEGER}
+</select>
+ <insert id="insertRecProductDetail" parameterType="com.koi.po.SysRecProductDetail"
+ useGeneratedKeys="true" keyProperty="recProductDetailId">
+    insert into SYS_RecProductDetail (MaintainabilityID, 
+      ReceptionID, Quantity, UnitPrice, 
+      Discount, Amount, FittingsCode, 
+      FittingsName, VehicleType, Remark, 
+      FittingsSpec, SystemUnit)
+    values (#{maintainabilityId,jdbcType=INTEGER}, 
+      #{receptionId,jdbcType=INTEGER}, #{quantity,jdbcType=DECIMAL}, #{unitPrice,jdbcType=DECIMAL}, 
+      #{discount,jdbcType=DECIMAL}, #{amount,jdbcType=DECIMAL}, #{fittingsCode,jdbcType=CHAR}, 
+      #{fittingsName,jdbcType=NVARCHAR}, #{vehicleType,jdbcType=NVARCHAR}, #{remark,jdbcType=NVARCHAR}, 
+      #{fittingsSpec,jdbcType=NVARCHAR}, #{systemUnit,jdbcType=NVARCHAR})
+  </insert>
+   <update id="updateRecProductDetail" parameterType="com.koi.po.SysRecProductDetail">
+    update SYS_RecProductDetail
+    set MaintainabilityID = #{maintainabilityId,jdbcType=INTEGER},
+      ReceptionID = #{receptionId,jdbcType=INTEGER},
+      Quantity = #{quantity,jdbcType=DECIMAL},
+      UnitPrice = #{unitPrice,jdbcType=DECIMAL},
+      Discount = #{discount,jdbcType=DECIMAL},
+      Amount = #{amount,jdbcType=DECIMAL},
+      FittingsCode = #{fittingsCode,jdbcType=CHAR},
+      FittingsName = #{fittingsName,jdbcType=NVARCHAR},
+      VehicleType = #{vehicleType,jdbcType=NVARCHAR},
+      Remark = #{remark,jdbcType=NVARCHAR},
+      FittingsSpec = #{fittingsSpec,jdbcType=NVARCHAR},
+      SystemUnit = #{systemUnit,jdbcType=NVARCHAR}
+    where RecProductDetailID = #{recProductDetailId,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteRecProductDetailById" parameterType="java.lang.Integer">
+    delete from SYS_RecProductDetail
+    where RecProductDetailID = #{recProductDetailID,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteRecProductDetail" parameterType="java.lang.Integer">
+    delete from SYS_RecProductDetail
+    where ReceptionID = #{receptionID,jdbcType=INTEGER}
+   </delete>
+<!--费用明细表操作-->
+<select id="selectRecOtherCostDetail" resultType="com.koi.po.SysRecOtherCostDetail">
+  select * from SYS_RecOtherCostDetail where ReceptionID = #{receptionID,jdbcType=INTEGER}
+</select>
+ <insert id="insertRecOtherCostDetail" parameterType="com.koi.po.SysRecOtherCostDetail"
+ useGeneratedKeys="true" keyProperty="recOtherCostDetailId">
+     insert into SYS_RecOtherCostDetail (ReceptionID, 
+      ExpensesID, Amount, Discount, 
+      AmountPaid, Remark)
+    values (#{receptionId,jdbcType=INTEGER}, 
+      #{expensesId,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, #{discount,jdbcType=DECIMAL}, 
+      #{amountPaid,jdbcType=DECIMAL}, #{remark,jdbcType=NVARCHAR})
+  </insert>
+   <update id="updateRecOtherCostDetail" parameterType="com.koi.po.SysRecOtherCostDetail">
+     update QXQP..SYS_RecOtherCostDetail
+    set ReceptionID = #{receptionId,jdbcType=INTEGER},
+      ExpensesID = #{expensesId,jdbcType=INTEGER},
+      Amount = #{amount,jdbcType=DECIMAL},
+      Discount = #{discount,jdbcType=DECIMAL},
+      AmountPaid = #{amountPaid,jdbcType=DECIMAL},
+      Remark = #{remark,jdbcType=NVARCHAR}
+    where RecOtherCostDetailID = #{recOtherCostDetailId,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteRecOtherCostDetailById" parameterType="java.lang.Integer">
+    delete from SYS_RecOtherCostDetail
+    where RecOtherCostDetailID = #{recOtherCostDetailID,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteRecOtherCostDetail" parameterType="java.lang.Integer">
+    delete from SYS_RecOtherCostDetail
+    where ReceptionID = #{receptionID,jdbcType=INTEGER}
+  </delete>
+<!-- 保险索赔明细表操作 -->
+<select id="selectInsuranceDetailById" resultType="com.koi.po.SysInsuranceDetail">
+   select * from SYS_InsuranceDetail where InsuranceDetailID=#{insuranceDetailID}
+</select>
+<select id="selectInsuranceDetail" resultType="com.koi.po.SysInsuranceDetail">
+   select * from SYS_InsuranceDetail where ReceptionID=#{receptionID}
+</select>
+<insert id="insertInsuranceDetail" parameterType="com.koi.po.SysInsuranceDetail"
+useGeneratedKeys="true" keyProperty="insuranceDetailId">
+  insert into SYS_InsuranceDetail (ReceptionID, InsuranceComID, 
+    ReportNum, PolicyNum, PolicyMoney, 
+    InsuranceMoney)
+  values (#{receptionId,jdbcType=INTEGER}, #{insuranceComId,jdbcType=INTEGER}, 
+    #{reportNum,jdbcType=VARCHAR}, #{policyNum,jdbcType=VARCHAR}, #{policyMoney,jdbcType=DECIMAL}, 
+    #{insuranceMoney,jdbcType=DECIMAL})
+</insert>
+<update id="updateInsuranceDetail" parameterType="com.koi.po.SysInsuranceDetail">
+  update SYS_InsuranceDetail
+  set ReceptionID = #{receptionId,jdbcType=INTEGER},
+    InsuranceComID = #{insuranceComId,jdbcType=INTEGER},
+    ReportNum = #{reportNum,jdbcType=VARCHAR},
+    PolicyNum = #{policyNum,jdbcType=VARCHAR},
+    PolicyMoney = #{policyMoney,jdbcType=DECIMAL},
+    InsuranceMoney = #{insuranceMoney,jdbcType=DECIMAL}
+  where InsuranceDetailID = #{insuranceDetailId,jdbcType=INTEGER}
+</update>
+<delete id="deleteInsuranceDetail">
+   delete from SYS_InsuranceDetail
+   where ReceptionID = #{receptionID,jdbcType=INTEGER}
+</delete>
+<!-- 三包索赔明细表操作 -->
+<select id="selectThreePacksDetailById" resultType="com.koi.po.SysThreePacksDetail">
+   select * from SYS_ThreePacksDetail where ThreePacksDetailID=#{threePacksDetailID}
+</select>
+<select id="selectThreePacksDetail" resultType="com.koi.po.SysThreePacksDetail">
+   select * from SYS_ThreePacksDetail where ReceptionID=#{receptionID}
+</select>
+<insert id="insertThreePacksDetail" parameterType="com.koi.po.SysThreePacksDetail" 
+useGeneratedKeys="true" keyProperty="threePacksDetailId">
+    insert into SYS_ThreePacksDetail (ReceptionID, 
+      ClaimComID, ClaimMoney)
+    values (#{receptionId,jdbcType=INTEGER}, 
+      #{claimComId,jdbcType=INTEGER}, #{claimMoney,jdbcType=DECIMAL})
+  </insert>
+ <update id="updateThreePacksDetail" parameterType="com.koi.po.SysThreePacksDetail">
+  update SYS_ThreePacksDetail
+  set ReceptionID = #{receptionId,jdbcType=INTEGER},
+    ClaimComID = #{claimComId,jdbcType=INTEGER},
+    ClaimMoney = #{claimMoney,jdbcType=DECIMAL}
+  where ThreePacksDetailID = #{threePacksDetailId,jdbcType=INTEGER}
+</update>
+<delete id="deleteThreePacksDetail">
+   delete from SYS_ThreePacksDetail
+   where ReceptionID = #{receptionID,jdbcType=INTEGER}
+</delete>
+<!-- 查询领料明细 -->
+<select id="selectCollageDetaiById" resultType="com.koi.po.SysCollageDetai">
+  select * from SYS_CollageDetai where CollageDetaiID = #{collageDetaiID,jdbcType=INTEGER}
+</select>
+<!-- 新增领料明细 -->
+<insert id="insertCollageDetai" parameterType="com.koi.po.SysCollageDetai"
+useGeneratedKeys="true" keyProperty="collageDetaiId">
+    insert into QXQP..SYS_CollageDetai (MaintainabilityID, 
+      WarehouseID, CollageID, Quantity, 
+      UnitPrice, Amount, "Position", 
+      VehicleType, FittingsName, FittingsCode, 
+      FittingsSpec, SystemUnit)
+    values (#{maintainabilityId,jdbcType=INTEGER}, 
+      #{warehouseId,jdbcType=INTEGER}, #{collageId,jdbcType=INTEGER}, #{quantity,jdbcType=DECIMAL}, 
+      #{unitPrice,jdbcType=DECIMAL}, #{amount,jdbcType=DECIMAL}, #{position,jdbcType=NVARCHAR}, 
+      #{vehicleType,jdbcType=NVARCHAR}, #{fittingsName,jdbcType=NVARCHAR}, #{fittingsCode,jdbcType=CHAR}, 
+      #{fittingsSpec,jdbcType=NVARCHAR}, #{systemUnit,jdbcType=NVARCHAR})
+  </insert>
+<!-- 修改领料明细 -->
+<update id="updateCollageDetai" parameterType="com.koi.po.SysCollageDetai">
+  update SYS_CollageDetai
+  set MaintainabilityID = #{maintainabilityId,jdbcType=INTEGER},
+    WarehouseID = #{warehouseId,jdbcType=INTEGER},
+    CollageID = #{collageId,jdbcType=INTEGER},
+    Quantity = #{quantity,jdbcType=DECIMAL},
+    UnitPrice = #{unitPrice,jdbcType=DECIMAL},
+    Amount = #{amount,jdbcType=DECIMAL},
+    "Position" = #{position,jdbcType=NVARCHAR},
+    VehicleType = #{vehicleType,jdbcType=NVARCHAR},
+    FittingsName = #{fittingsName,jdbcType=NVARCHAR},
+    FittingsCode = #{fittingsCode,jdbcType=CHAR},
+    FittingsSpec = #{fittingsSpec,jdbcType=NVARCHAR},
+    SystemUnit = #{systemUnit,jdbcType=NVARCHAR}
+  where CollageDetaiID = #{collageDetaiId,jdbcType=INTEGER}
+</update>
+<!-- 删除领料明细 -->
+<delete id="deleteCollageDetaiById">
+   delete from SYS_CollageDetai 
+   where CollageDetaiID = #{collageDetaiID,jdbcType=INTEGER}
+</delete>
+<delete id="deleteCollageDetai">
+   delete from SYS_CollageDetai 
+   where CollageID = #{collageID,jdbcType=INTEGER}
+</delete>
+<!-- 查询付款单据-->
+<select id="selectBalance" resultType="com.koi.po.PwBalance">
+  select * from PW_Balance where BusinessNum=#{businessNum}
+</select>
+<select id="selectBalanceById" resultType="com.koi.po.PwBalance">
+  select * from PW_Balance where BalanceID=#{balanceID}
+</select>
+ <!-- 新增结算单 -->
+<insert id="insertBalance" parameterType="com.koi.po.PwBalance" 
+  keyProperty="balanceId" useGeneratedKeys="true">
+  insert into PW_Balance (PaymentID, ReceptionID, 
+    DocumentsTypeID, ShouldAmount, OptimalAmount, 
+    CollectionAmount, Remark, BalanceStateID, 
+    BusinessNum)
+  values (#{paymentId,jdbcType=INTEGER}, #{receptionId,jdbcType=INTEGER}, 
+    #{documentsTypeId,jdbcType=INTEGER}, #{shouldAmount,jdbcType=DECIMAL}, #{optimalAmount,jdbcType=DECIMAL}, 
+    #{collectionAmount,jdbcType=DECIMAL}, #{remark,jdbcType=NVARCHAR}, #{balanceStateId,jdbcType=INTEGER}, 
+    #{businessNum,jdbcType=VARCHAR})
+</insert>
+<!-- 修改结算单 -->
+ <update id="updateBalance" parameterType="com.koi.po.PwBalance">
+   update PW_Balance
+   set PaymentID = #{paymentId,jdbcType=INTEGER},
+     ReceptionID = #{receptionId,jdbcType=INTEGER},
+     DocumentsTypeID = #{documentsTypeId,jdbcType=INTEGER},
+     ShouldAmount = #{shouldAmount,jdbcType=DECIMAL},
+     OptimalAmount = #{optimalAmount,jdbcType=DECIMAL},
+     CollectionAmount = #{collectionAmount,jdbcType=DECIMAL},
+     Remark = #{remark,jdbcType=NVARCHAR},
+     BalanceStateID = #{balanceStateId,jdbcType=INTEGER},
+     BusinessNum = #{businessNum,jdbcType=VARCHAR}
+   where BalanceID = #{balanceId,jdbcType=INTEGER}
+ </update>
+</mapper>

@@ -1,0 +1,327 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Operatorage</title>
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/Content/Main/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/main.css" rel="stylesheet" />
+    <link href="~/Content/Main/static/h-ui.admin/css/H-ui.admin.css"  rel="stylesheet" />
+    <link href="~/Content/Main/tabnav/css/element.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrapal.css" rel="stylesheet" />
+    <style>
+        a {
+            color: #808080;
+        }
+
+            a:hover {
+                text-decoration: none;
+                color: burlywood;
+            }
+
+        .modal .control-label {
+            width: 100px;
+            padding-top: 0px;
+        }
+
+        .form-group {
+            margin-bottom: 0px;
+        }
+
+
+        table tr th, table tr td {
+            padding: 5px;
+            width: 300px;
+            text-align: center;
+            border: 1px solid #e2e2e2;
+            border-collapse: collapse;
+        }
+
+        table {
+            border: 1px;
+            width: 99.5%;
+        }
+
+            table tr th {
+                background-color: #f5f5f5;
+            }
+
+            table input, table select {
+                width: 100px;
+                margin: 0px;
+                border: none;
+            }
+
+            table select {
+                width: 100%;
+            }
+    </style>
+</head>
+<body>
+    @*导航栏*@
+    <nav class="breadcrumb" style="margin:0px">
+        <i class="Hui-iconfont"></i> <a href=""> 首 页 </a> <span class="c-gray en">&gt;</span> <a href=""> 系 统 设 置 </a>
+        <span class="c-gray en">&gt;</span><a href="">操 作 员 管 理</a>
+        <a class="btn btn-success radius r" style="line-height:1.6em;top:0px;position:absolute;right:20px" href="javascript:location.replace(location.href);" title="刷新">
+            <i class="Hui-iconfont"></i>
+        </a>
+    </nav>
+    @*按钮栏*@
+    <div class="cl pd-5 bg-1 bk-gray mt-20" style="padding:10px;margin:0px">
+         <button class="btn btn-primary"onclick="addUser()"><i class="Hui-iconfont"id="btnInsert">&#xe604;</i> 新 增 </button>
+        <button class="btn btn-danger "onclick="deleteUser()"id="btnDelect"><i class="Hui-iconfont">&#xe609;</i> 删 除</button>
+        <button class="btn btn-info "onclick="btnMainSava()"id="btnBave"><i class="Hui-iconfont">&#xe632;</i> 保 存</button>
+        <button class="btn btn-pink"><i class="Hui-iconfont">&#xe652;</i> 打印</button>
+    </div>
+    @*控件栏*@
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <table id="tbUser">
+                <thead>
+                    <tr>
+                        <th width='25%' height='20px'>选择</th>
+                        <th width='25%' height='20px'>序号</th>
+                        <th width='10%' height='20px'>用户号</th>
+                        <th width='10%' height='20px'>操作员姓名</th>
+                        <th width='10%' height='20px'>密码</th>
+                        <th width='25%' height='20px'>部门</th>
+                        <th width='10%' height='20px'>类型</th>
+                        <th width='10%' height='20px'>使用电脑</th>
+                        <th width='10%' height='20px'>备注</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <div id="layerUser" style="display: none;overflow:hidden;">
+        <div class="col-lg-12" style="margin:16px 0 0 20px">
+            <form id="formUser" class="form-horizontal" action="/SystemInstallManagment/Operatorage/InsertUser" autocomplete="off">
+                <!--重置表单-->
+                <input type="reset" class="hidden" />
+                <div class="form-group">
+                    <label class="control-label col-lg-2">用户编码</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" id="UserNum" name="UserNum" />
+                    </div>
+                    <label class="control-label col-lg-2">用户名称</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" id="UserName" name="UserName" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-2">所在部门</label>
+                    <div class="col-lg-4">
+                        <select id="DepartmentID" name="DepartmentID" class="form-control"></select>
+                    </div>
+                    <label class="control-label col-lg-2">用户类型</label>
+                    <div class="col-lg-4">
+                        <select id="UserTypeID" name="UserTypeID" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-2">操作密码</label>
+                    <div class="col-lg-4">
+                        <input type="password" class="form-control" id="Password" name="Password" />
+                    </div>
+                    <label class="control-label col-lg-2">使用系统</label>
+                    <div class="col-lg-4">
+                        <select id="StrToUse" name="ToUse" class="form-control">
+                            <option value="true">是</option>
+                            <option value="false">否</option>
+                        </select>
+                    </div>
+                 </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-2">备注</label>
+                    <div class="col-lg-9">
+                        <input type="text" class="form-control" id="Remark" name="Remark" style="width:515px" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-8 col-sm-offset-8">
+                        <button type="button" onclick="InsertUser()" class="btn btn-primary" style="margin-left:33px">保存</button>
+                        <button type="button" class="btn btn-danger layui-layer-close">关闭</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/Main/lib/layer/2.4/layer.js"></script>
+    <script src="~/Content/js/combobox.js"></script>
+    <script src="~/Content/js/customfunction.js"></script>
+    <script src="~/Content/js/jquery.form.js"></script>
+    <script>
+        var ArrUserTypeData = [], ArrDepartmentData = [];
+        $(function () {
+            SelectUser(), create();
+        })
+        function create()
+        {
+            $.ajaxSettings.async = false;
+            createSelect("UserTypeID", "/PublicManagment/CreateSelect/SelectUserType");
+            createSelect("DepartmentID", "/PublicManagment/CreateSelect/SelectDepartment");
+            $.post("/PublicManagment/CreateSelect/SelectUserType", function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    ArrUserTypeData.push(data[i]);
+                }
+            })
+            $.post("/PublicManagment/CreateSelect/SelectDepartment", function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    ArrDepartmentData.push(data[i]);
+                }
+            })
+        }
+        //新增按钮的点击事件
+        function addUser()
+        {
+            //重置表单
+            $('#formUser input[type="reset"]').click();
+            //弹出layer窗体
+            layerIndex = layer.open({
+                type: 1,//页面层
+                area: ["650px", "280px"],
+                title: "操作员资料管理",
+                content: $("#layerUser")
+            });
+        };
+        //新增保存按钮
+        function InsertUser()
+        {
+            
+            var UserNum = $("#UserNum").val();
+            var UserName = $("#UserName").val();
+            var Password = $("#Password").val();
+            if (UserNum=="") {
+                layer.tips('请填写用户编码!', '#UserNum');
+            } else if (UserName == "") {
+                layer.tips('请填写用户名称!', '#UserName');
+            } else if (Password == "") {
+                layer.tips('请填写用户密码!', '#Password');
+            } else {
+                $.post("JudgingUser?UserNum=" + UserNum, function (data) {
+                    if (data) {
+                        layer.tips('该用户编码已存在!', '#UserNum');
+                    } else {
+                        $("#formUser").ajaxSubmit(function (data) {
+                            if (data) {
+                                SelectUser();
+                                $('#formUser input[type="reset"]').click();
+                                layer.msg("新增用户成功！");
+                            } else {
+                                layer.msg("新增用户失败！")
+                            }
+                        })
+                    }
+                })
+            }
+        }
+        //查询
+        function SelectUser()
+        {
+            $("#tbUser tbody tr").remove();
+            $.post("SelectUser", function (data) {
+                $.each(data, function (i) {
+                    var tbUser = $("#tbUser");
+                    var length = $("#tbUser tr").last().prevObject.length;
+                    var tr = $("<tr><td><input type='checkbox' value=" + data[i].UserID+ "></td><td>" + length + "</td><td id=UA" + length + ">" + data[i].UserNum + "</td><td onclick='tdclick(this)' id=UB" + length + " class='yhm' >" + data[i].UserName + "</td>"
+                        + "<td><input id=UC" + length + "  value=" + data[i].Password + " type=Password class='mm'  ></td><td><select id=UD" + length + " class='bm' ></select></td><td><select id=UE" + length + " ></select></td>"
+                        + "<td><select id=UF" + length + " ><option value='true'>使用</option><option value='false'>禁用</option></select></td><td onclick='tdclick(this)' id=UG" + length + " >" + data[i].Remark + "</td>"
+                        + "<td id=UH" + length + " hidden >" + data[i].UserID + "</td></tr>")
+                    tbUser.append(tr);
+                    selectcreate("UD" + length, ArrDepartmentData);
+                    selectcreate("UE" + length, ArrUserTypeData);
+                    $("#UD" + length).val(data[i].DepartmentID);
+                    $("#UE" + length).val(data[i].UserTypeID);
+                    $("#UF" + length).val(data[i].StrToUse);
+                })
+            })
+        }
+        //删除
+        function deleteUser ()
+        {
+            var check = $("#tbUser tr input[type='checkbox']:checked");
+            var ArrUserID = [];
+            for (var i = 0; i < check.length; i++) {
+                var e = new UserID();
+                e.UserId = check[i].value;
+                ArrUserID.push(e);
+            }
+            $.post("DelectUser", { UserID: ArrUserID }, function (data) {
+                if (data) {
+                    SelectUser();
+                    layer.msg("成功删除 " + check.length + " 条数据");
+                }
+            })
+        }
+        //保存
+        function btnMainSava()
+        {
+            var ArrUser = [];
+            var UserLength = $("#tbUser tr").last().prevObject.length;
+            for (var i = 1; i < UserLength; i++) {
+                var e = new User();
+                e.UserNum = $("#UA" + i).text();
+                e.UserName = $("#UB" + i).text();
+                e.Password = $("#UC" + i).val();
+                e.DepartmentID = $("#UD" + i).val();
+                e.UserTypeID = $("#UE" + i).val();
+                e.ToUse = $("#UF" + i).val();
+                e.Remark = $("#UG" + i).text();
+                e.UserID = $("#UH" + i).text();
+                ArrUser.push(e);
+            }
+            
+            $.each($("#tbUser tbody tr"), (function () { //这里的n可有可无
+                //开始遍历每一行的每一列
+                //这里就拿到了第n行第i列的文字，你可以赋值给其他变量
+                if ($(this).find("td").eq(1).text()=="") {
+                    layer.alert("用户号不能为空！");
+                }
+                else if ($(this).find("td").eq(3).children("input").val() == "")
+                {
+                    layer.alert("密码不能为空！");
+                }
+                else {
+                    layer.confirm("是否保存当前用户信息？",{
+                        btn:['是','否']
+                    }, function (layerIndex) {
+                        layer.close(layerIndex);
+                        $.post("BaveUser", { listUser: ArrUser }, function (data) {
+                            if (data) {
+                                layer.msg("保存用户信息成功！");
+                            } else {
+                                layer.msg("保存用户信息失败！");
+                            }
+                        })
+                    })
+                }
+            }))
+        }
+        //构造函数
+        function User(UserID, UserTypeID, DepartmentID, UserNum, UserName, Password, Remark, ToUse)
+        {
+            this.UserID = UserID;//用户ID
+            this.UserTypeID = UserTypeID;//用户类型ID
+            this.DepartmentID = DepartmentID;//部门ID
+            this.UserNum = UserNum;//用户名
+            this.UserName = UserName;//用户名
+            this.Password = Password;//用户密码
+            this.Remark = Remark;//备注
+            this.ToUse = ToUse;//是否使用电脑
+        }
+        function UserID(UserId)
+        {
+            this.UserId = UserId;//用户ID
+        }
+    </script>
+</body>
+</html>

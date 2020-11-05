@@ -1,0 +1,974 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Maintenance</title>
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/icons.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/main.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrapal.css" rel="stylesheet" />
+    @*时间控件样式*@
+    <link href="~/Content/layui/css/modules/laydate/default/laydate.css" rel="stylesheet" />
+    @*CSS样式(包含默认皮肤样式)*@
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    @*CSS皮肤(需引用于bsgrid.all.min.css之后)*@
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_gray.min.css" rel="stylesheet" />
+    @* 树形插件 *@
+    <link href="~/Content/zTree_v3/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+    <style>
+        .breadcrumb > li + li:before {
+            color: #CCCCCC;
+            content: "> ";
+            padding: 0 5px;
+        }
+
+        .layui-elem-fielded legend {
+            font-size: 23px;
+        }
+
+        .layui-elem-fielded {
+            width: 99%;
+            margin: 20px 10px 0px 10px;
+            padding: 20px 10px;
+        }
+
+        .Tree {
+            height: 485px;
+            margin: 0px 20px;
+            padding: 5px;
+            border: 3px solid #f5f5f5;
+            border-top: none;
+            box-shadow: 0 0 20px 1px #eee;
+            width: 15%;
+        }
+
+        .List {
+            height: 485px;
+            float: left;
+            overflow: auto;
+            border: 3px solid #f5f5f5;
+            border-top: none;
+            box-shadow: 0 0 20px 1px #eee;
+            width: 80%;
+            position: absolute;
+            right: 40px;
+            top: 165px;
+        }
+
+        .col-lg-4 {
+            width: 30.333333%;
+        }
+
+        .modTow-body {
+            width: 800px;
+        }
+
+        .modal input, .modal select {
+            height: 26px;
+            padding: 2px;
+        }
+
+        .modal .control-label {
+            width: 100px;
+            padding-top: 0px;
+        }
+
+        .modal .form-group {
+            margin-bottom: 5px;
+            margin-right: 20px;
+        }
+
+        .modal .col-lg-3 {
+            width: 19%;
+        }
+
+        .modal-body {
+            padding-bottom: 0;
+        }
+
+        .modal .navsearch {
+            height: 50px;
+            width: 950px;
+            background: #f5f5f5;
+            padding: 5px 0;
+            border-radius: 3px;
+        }
+
+        .modal button i {
+            margin-right: 5px;
+        }
+
+        .modal label {
+            width: 100%;
+            margin-top: 8px;
+            text-align: right;
+        }
+
+        .modTows {
+            width: 590px;
+            height: 50%;
+            float: left;
+            padding: 10px;
+        }
+
+        .Coloca {
+            float: right;
+            background: none;
+            border: none;
+        }
+
+        .Gonyin {
+            line-height: 35px;
+            margin-left: 5px;
+        }
+
+        .panel-body-bow {
+            width: 250%;
+            padding: 5px;
+        }
+
+        .modal-footer {
+            margin-left: 10px;
+        }
+
+        .modal-bottom {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        #RegionName {
+            padding: 0px;
+        }
+
+            #RegionName li {
+                text-align: left;
+                /*font-size:14px;*/
+                list-style-type: none;
+            }
+
+                #RegionName li:hover {
+                    background: #eee;
+                    cursor: alias;
+                }
+
+                #RegionName li i {
+                    display: inline-block;
+                    background: url('../../../../Content/Main/images/smiley_evil.png') no-repeat 0px 5px;
+                    width: 20px;
+                    height: 20px;
+                }
+
+                #RegionName li .diai {
+                    margin-left: 23px;
+                }
+
+        .active {
+            background: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    @*导航栏*@
+    <ol class="breadcrumb">
+        <li>首页</li>
+        <li>基础数据</li>
+        <li><a href="#">维修客户基本资料</a></li>
+    </ol>
+    @*按钮组*@
+    <div class="btn-groud">
+        <button class="btn btn-warning" type="button" id="Insert"><i class="en-plus3"></i>增加</button>
+        <button class="btn btn-primary" type="button" id="Update"><i class="en-tools"></i>修改</button>
+        <button class="btn btn-primary" type="button" id="Delect"><i class="en-trash"></i>删除</button>
+        <button class="btn btn-warning" type="button" id="Export"><i class="en-upload"></i>导出</button>
+        <button class="btn btn-danger" data-dismiss="modal"><i class="br-switch"></i> 关闭</button>
+    </div>
+    @*维修客户设置内容*@
+    <fieldset class="layui-elem-fielded">
+        <legend class=".layui-elem-fielded legend">维修客户基本资料</legend>
+        <div>
+            @*树形图*@
+            <div class="Tree" id="RegionName" style="text-align:left;">
+                <ul>
+                    <li onclick="Chose()">
+                        <i style="background:url('../../../../Content/Main/images/smiley_evil.png')no-repeat 0px 5px;">
+
+                        </i>客户区域 &nbsp;共有<span></span>个区域
+                    </li>
+                </ul>
+            </div>
+            @*维修客户设置*@
+            <div class="List">
+                <div class="panel-body-bow">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="tbMaintenance">
+                            <thead>
+                                <tr>
+                                    <th w_num="total_line"> 序号</th>
+                                    <th w_index="MaintenanceCusID" w_check="true"><input type="checkbox" /></th>
+                                    <th w_index="CustomerNum">客户编号</th>
+                                    <th w_index="Owner">车主</th>
+                                    <th w_index="LicenseCode">车牌号码</th>
+                                    <th w_index="VehicleType">车型</th>
+                                    <th w_index="EngineNum">发动机号</th>
+                                    <th w_index="FrameNum"> 车架号</th>
+                                    <th w_index="RepairMan">送修人</th>
+                                    <th w_index="RepairTele"> 送修人电话</th>
+                                    <th w_index="MobilePhone">车主手机</th>
+                                    <th w_index="InsuranceSpeName">保险种类</th>
+                                    <th w_index="InitialStartDates">保险起始日</th>
+                                    <th w_index="InitialEndDates">保险终止日</th>
+                                    <th w_index="Address">车主地址</th>
+                                    <th w_index="DriveDates">行驶证年审</th>
+                                    <th w_index="DepartmentName">所属部门</th>
+                                    <th w_index="Carder">所属员工</th>
+                                    <th w_index="CustomerLevel">客户等级</th>
+                                    <th w_index="CustomerSou"> 客户来源</th>
+                                    <th w_index="CustomerType">客户类别</th>
+                                    <th w_index="Region"> 所属区域</th>
+                                    <th w_index="InputPerson">录入人</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*新增模态框*@
+        <div class="modal fade col-lg-12" id="modInsert">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="Coloca" type="button" data-dismiss="modal" aria-hidden="true"><i class="en-cross"></i></button>
+                        <span class="Gonyin">&nbsp;<i class="en-user"></i> 维修客户基本资料</span>
+                    </div>
+                    <div class="modal-footer" style="border-top:none;">
+                        <div class="modTows col-lg-12 col-md-12 col-sm-12">
+                            <form class="form-horizontal" role="form" id="formInsert" action="InsertMaintenance" method="post" autocomplete="off">
+                                <div class="form-group">
+                                    <input type="text" hidden id="FMaintenanceCusID" name="MaintenanceCusID" />
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">车主:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FOwner" name="Owner">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">生日:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control Date" id="FBirthday" name="Birthday">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">身份证号:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FIdNumber" name="IdNumber">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">车主手机:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FMobilePhone" name="MobilePhone">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">车牌号码:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FLicenseCode" name="LicenseCode">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">车型:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input class="form-control" id="FVehicleType" name="VehicleType">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">发动机号:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FEngineNum" name="EngineNum">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">车架号:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FFrameNum" name="FrameNum">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">送修人:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FRepairMan" name="RepairMan">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">送修人电话:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FRepairTele" name="RepairTele">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">保险公司:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select class="form-control" id="FInsuranceComID" name="InsuranceComID"></select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">保险种类:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select class="form-control" id="FInsuranceSpeID" name="InsuranceSpeID"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">保险起始日:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control Date" id="FInitialStartDate" name="InitialStartDate">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">保险终止日:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control Date" id="FInitialEndDate" name="InitialEndDate">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">地址:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FAddress" name="Address">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">客户编号:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" readonly id="FCustomerNum" name="CustomerNum">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">行驶证年审:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control Date" id="FDriveDate" name="DriveDate">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">所属区域:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select class="form-control" id="FRegionID" name="RegionID"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">所属部门:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select class="form-control" id="FDepartmentID" name="DepartmentID"></select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">所属员工:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select class="form-control" id="FCarderID" name="CarderID"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">客户等级:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select class="form-control" id="FCustomerLevelID" name="CustomerLevelID"></select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">客户来源:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select class="form-control" id="FCustomerSouID" name="CustomerSouID"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">客户类别:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select class="form-control" id="FCustomerTypeID" name="CustomerTypeID"></select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">驾驶证年审:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control Date" id="FDrivingDate" name="DrivingDate">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">录入人:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FInputPerson" name="InputPerson">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-warning cancel" type="button" id="SaveInsert"><i class="en-upload"></i>保存</button>
+                                    <button class="btn btn-danger delete" data-dismiss="modal"><i class="br-switch"></i> 关闭</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+
+        @* 修改模态框 *@
+        <div class="modal fade col-lg-12" id="modUpdate">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="Coloca" type="button" data-dismiss="modal" aria-hidden="true"><i class="en-cross"></i></button>
+                        <span class="Gonyin">&nbsp;<i class="en-user"></i> 维修客户基本资料</span>
+                    </div>
+                    <div class="modal-footer" style="border-top:none;">
+                        <div class="modTows col-lg-12 col-md-12 col-sm-12">
+                            <form class="form-horizontal" role="form" id="formUpdate" action="UpdateMaintenance" method="post" autocomplete="off">
+                                <div class="form-group">
+                                    <input type="text" hidden id="EMaintenanceCusID" name="MaintenanceCusID" />
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">车主:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EOwner" name="Owner">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">生日:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control Date" id="EBirthday" name="Birthday">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">身份证号:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EIdNumber" name="IdNumber">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">车主手机:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EMobilePhone" name="MobilePhone">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">车牌号码:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="ELicenseCode" name="LicenseCode">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">车型:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input class="form-control" id="EVehicleType" name="VehicleType">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">发动机号:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EEngineNum" name="EngineNum">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">车架号:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EFrameNum" name="FrameNum">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">送修人:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="ERepairMan" name="RepairMan">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">送修人电话:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="ERepairTele" name="RepairTele">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">保险公司:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select class="form-control" id="EInsuranceComID" name="InsuranceComID"></select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">保险种类:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select class="form-control" id="EInsuranceSpeID" name="InsuranceSpeID"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">保险起始日:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control Date" id="EInitialStartDate" name="InitialStartDate">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">保险终止日:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control Date" id="EInitialEndDate" name="InitialEndDate">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">地址:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EAddress" name="Address">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">客户编号:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" readonly id="ECustomerNum" name="CustomerNum">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">行驶证年审:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control Date" id="EDriveDate" name="DriveDate">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">所属区域:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select class="form-control" id="ERegionID" name="RegionID"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">所属部门:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select class="form-control" id="EDepartmentID" name="DepartmentID"></select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">所属员工:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select class="form-control" id="ECarderID" name="CarderID"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">客户等级:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select class="form-control" id="ECustomerLevelID" name="CustomerLevelID"></select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">客户来源:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select class="form-control" id="ECustomerSouID" name="CustomerSouID"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">客户类别:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select class="form-control" id="ECustomerTypeID" name="CustomerTypeID"></select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">驾驶证年审:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control Date" id="EDrivingDate" name="DrivingDate">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">录入人:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EInputPerson" name="InputPerson">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-warning cancel" type="button" id="SaveUpdate"><i class="en-upload"></i>保存</button>
+                                    <button class="btn btn-danger delete" data-dismiss="modal"><i class="br-switch"></i> 关闭</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+    </fieldset>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/js/combobox.js"></script>
+    <script src="~/Content/js/jquery.form.js"></script>
+    <script src="~/Content/layer/mobile/layer.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/js/customfunction.js"></script> @*绑定下拉框*@
+    <script src="~/Content/layui/lay/modules/laydate.js"></script>@*时间控件*@
+    @*树形插件*@
+    <script src="~/Content/zTree_v3/js/jquery.ztree.core-3.5.js"></script>
+    <script src="~/Content/zTree_v3/js/jquery.ztree.excheck-3.5.js"></script>
+    <script>
+        //初始化表格
+       var tbMaintenance;
+       $(function () {
+            Datetime();
+            tbMaintenance = $.fn.bsgrid.init("tbMaintenance", {
+                url: 'SelectMaintenance',
+                autoLoad: true,//自动加载
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//当前页行数
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                paddingToolbarAlign: "left",//分页工具条的显示位置
+                //行点击事件
+                event: {
+                    customRowEvents: {
+                        click: function (record, rowIndex, trObj, options) {
+                            Check("#tbMaintenance tr", rowIndex + 1);
+                        }
+                    }
+                }
+            })
+            Chose();
+        })
+
+        //同时绑定多个时间插件
+        function Datetime() {
+            lay('.Datetime').each(function () {
+                laydate.render({
+                    elem: this
+                  , trigger: 'click',
+                    type: 'datetime'
+                });
+            });
+            lay('.Date').each(function () {
+                laydate.render({
+                    elem: this
+                  , trigger: 'click',
+                    type: 'date'
+                });
+            });
+        }
+
+        //选择增加弹出模态框
+        $("#Insert").click(function () {
+            //客户编号
+            $.ajax({
+                type: "post",
+                url: "Num",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#FCustomerNum").val(data);
+                }
+            });
+            $("#modInsert").modal("show");//弹出模态框
+        });
+
+        //保存新增
+        $("#SaveInsert").click(function () {
+            //获取页面数据
+            var FOwner = $("#FOwner").val();
+            var FBirthday = $("#FBirthday").val();
+            var FIdNumber = $("#FIdNumber").val();
+            var FMobilePhone = $("#FMobilePhone").val();
+            var FLicenseCode = $("#FLicenseCode").val();
+            var FVehicleType = $("#FVehicleType").val();
+            var FEngineNum = $("#FEngineNum").val();
+            var FFrameNum = $("#FFrameNum").val();
+            var FRepairMan = $("#FRepairMan").val();
+            var FRepairTele = $("#FRepairTele").val();
+            var FInsuranceComID = $("#FInsuranceComID").val();
+            var FInsuranceSpeID = $("#FInsuranceSpeID").val();
+            var FInitialStartDate = $("#FInitialStartDate").val();
+            var FInitialEndDate = $("#FInitialEndDate").val();
+            var FAddress = $("#FAddress").val();
+            var FCustomerNum = $("#FCustomerNum").val();
+            var FDriveDate = $("#FDriveDate").val();
+            var FRegionID = $("#FRegionID").val();
+            var FDepartmentID = $("#FDepartmentID").val();
+            var FCarderID = $("#FCarderID").val();
+            var FCustomerLevelID = $("#FCustomerLevelID").val();
+            var FCustomerSouID = $("#FCustomerSouID").val();
+            var FCustomerTypeID = $("#FCustomerTypeID").val();
+            var FDrivingDate = $("#FDrivingDate").val();
+            var FInputPerson = $("#FInputPerson").val();
+            if (FOwner == "") {
+                layer.alert("车主不能为空！", { icon: 0, title: "【提示】" });
+            } else if (FIdNumber == "") {
+                layer.alert("身份证不能为空！", { icon: 0, title: "【提示】" });
+            } else if (FLicenseCode == "") {
+                layer.alert("车牌号不能为空！", { icon: 0, title: "【提示】" });
+            } else if (FVehicleType == "") {
+                layer.alert("车辆类型不能为空！", { icon: 0, title: "【提示】" });
+            } else if (FInsuranceComID == 0) {
+                layer.alert("保险公司不能为空！", { icon: 0, title: "【提示】" });
+            } else if (FInsuranceSpeID == 0) {
+                layer.alert("保险种类不能为空！", { icon: 0, title: "【提示】" });
+            } else if (FDepartmentID == 0) {
+                layer.alert("部门不能为空！", { icon: 0, title: "【提示】" });
+            } else if (FCarderID == 0) {
+                layer.alert("所属员工不能为空！", { icon: 0, title: "【提示】" });
+            } else if (FCustomerTypeID == 0) {
+                layer.alert("客户类别不能为空！", { icon: 0, title: "【提示】" });
+            } else if (FCustomerLevelID == 0) {
+                layer.alert("客户等级不能为空！", { icon: 0, title: "【提示】" });
+            } else if (FRegionID == 0) {
+                layer.alert("区域不能为空！", { icon: 0, title: "【提示】" });
+            } else if (FCustomerSouID == 0) {
+                layer.alert("客户来源不能为空！", { icon: 0, title: "【提示】" });
+            }
+            else {
+                $("#formInsert").ajaxSubmit(function (msg) {
+                    layer.msg("操作成功", { icon: 1, skin: "layui-layer-molv" });
+
+                    location.reload();
+                });
+            }
+
+
+        });
+
+        //修改
+        $("#Update").click(function () {//修改点击事件
+            $("#formUpdate").attr("action", "/BasicdataManagment/Customerbasic/UpdateMaintenance");//修改时表单的提交地址
+            var check = $("#tbMaintenance input:checked");//获取表格中checkbox被选中的个数
+            if (check.length == 0) {
+                layer.alert("请选择一条信息！", { icon: 6 });
+            } else if (check.length > 1) {
+                layer.alert("只能选择一条信息！", { icon: 2 });
+            } else if (check.length == 1) {
+                $.getJSON("/BasicdataManagment/Customerbasic/SelectMaintenanceByID?MaintenanceCusID=" + check[0].value, function (data) {
+                    if (data != null) {
+                        console.log(data);
+                        $("#EMaintenanceCusID").val(data[0].MaintenanceCusID);//维修客户ID
+                        $("#EOwner").val(data[0].Owner);//车主
+                        $("#EBirthday").val(data[0].Birthday);//生日
+                        $("#EMobilePhone").val(data[0].MobilePhone);//车主手机
+                        $("#EIdNumber").val(data[0].IdNumber);//身份证
+                        $("#ELicenseCode").val(data[0].LicenseCode);//车牌号码
+                        $("#EEngineNum").val(data[0].EngineNum);//发动机号
+                        $("#EFrameNum").val(data[0].FrameNum);//车架号
+                        $("#ERepairMan").val(data[0].RepairMan);//送修人
+                        $("#ERepairTele").val(data[0].RepairTele);//送修人电话
+                        $("#EInitialStartDate ").val(data[0].InitialStartDate);//保险起始日
+                        $("#EInitialEndDate").val(data[0].InitialEndDate);//保险终止日
+                        $("#EAddress").val(data[0].Address);//地址
+                        $("#ECustomerNum ").val(data[0].CustomerNum);//客户编号
+                        $("#EDriveDate").val(data[0].DriveDate);//行驶证年审日期
+                        $("#EDrivingDate").val(data[0].DrivingDate).toString();//驾驶证年审日期
+                        $("#EInputPerson").val(data[0].InputPerson);//录入人
+                        $("#EVehicleType").val(data[0].VehicleType);//车辆类型
+                        $("#EInsuranceComID").val(data[0].InsuranceComID);//保险公司ID
+                        $("#EInsuranceSpeID").val(data[0].InsuranceSpeID);//保险种类ID
+                        $("#EDepartmentID ").val(data[0].DepartmentID);//部门ID
+                        $("#ECarderID").val(data[0].CarderID);//接车人ID
+                        $("#ECustomerTypeID").val(data[0].CustomerTypeID);//客户类型ID
+                        $("#ECustomerLevelID").val(data[0].CustomerLevelID);//客户等级ID
+                        $("#ERegionID").val(data[0].RegionID);//区域ID
+                        $("#ECustomerSouID").val(data[0].CustomerSouID);//客户来源ID
+                        $("#modUpdate").modal("show");//弹出模态窗体
+
+                    } else {
+                        layer.alert("未查找到数据！", { icon: 2 });
+                    }
+                });
+            }
+        });
+
+        //保存修改
+        $("#SaveUpdate").click(function () {
+            var Owner = $('#formUpdate [name="Owner"]').val();//车主
+            var Birthday = $('#formUpdate [name="Birthday"]').val();//生日
+            var IdNumber = $('#formUpdate [name="IdNumber"]').val();//身份证
+            var LicenseCode = $('#formUpdate [name="LicenseCode"]').val();//车牌号码
+            var EngineNum = $('#formUpdate [name="EngineNum"]').val();//发动机号
+            var FrameNum = $('#formUpdate [name="FrameNum"]').val();//车架号
+            var RepairMan = $('#formUpdate [name="RepairMan"]').val();//送修人
+            var RepairTele = $('#formUpdate [name="RepairTele"]').val();//送修人电话
+            var InitialStartDate = $('#formUpdate [name="InitialStartDate"]').val();//保险起始日
+            var InitialEndDate = $('#formUpdate [name="InitialEndDate"]').val();//保险终止日
+            var Address = $('#formUpdate [name="Address"]').val();//地址
+            var CustomerNum = $('#formUpdate [name="CustomerNum"]').val();//客户编号
+            var DriveDate = $('#formUpdate [name="DriveDate"]').val();//行驶证年审日期
+            var DrivingDate = $('#formUpdate [name="DrivingDate"]').val();//驾驶证年审日期
+            var InputPerson = $('#formUpdate [name="InputPerson"]').val();//录入人
+            var VehicleType = $('#formUpdate [name="VehicleType"]').val();//车辆类型ID
+            var InsuranceComID = $('#formUpdate [name="InsuranceComID"]').val();//保险公司ID
+            var InsuranceSpeID = $('#formUpdate [name="InsuranceSpeID"]').val();//保险种类ID
+            var DepartmentID = $('#formUpdate [name="DepartmentID"]').val();//部门ID
+            var CarderID = $('#formUpdate [name="CarderID"]').val();//接车人ID
+            var CustomerTypeID = $('#formUpdate [name="CustomerTypeID"]').val();//客户类型ID
+            var CustomerLevelID = $('#formUpdate [name="CustomerLevelID"]').val();//客户等级ID
+            var RegionID = $('#formUpdate [name="RegionID"]').val();//区域ID
+            var CustomerSouID = $('#formUpdate [name="CustomerSouID"]').val();//客户来源ID
+
+            if (Owner == "") {
+                layer.alert("车主不能为空！", { icon: 0, title: "【提示】" });
+            } else if (IdNumber == "") {
+                layer.alert("身份证不能为空！", { icon: 0, title: "【提示】" });
+            } else if (LicenseCode == "") {
+                layer.alert("车牌号不能为空！", { icon: 0, title: "【提示】" });
+            } else if (VehicleType == "") {
+                layer.alert("车辆类型不能为空！", { icon: 0, title: "【提示】" });
+            } else if (InsuranceComID == 0) {
+                layer.alert("保险公司不能为空！", { icon: 0, title: "【提示】" });
+            } else if (InsuranceSpeID == 0) {
+                layer.alert("保险种类不能为空！", { icon: 0, title: "【提示】" });
+            } else if (DepartmentID == 0) {
+                layer.alert("部门不能为空！", { icon: 0, title: "【提示】" });
+            } else if (CarderID == 0) {
+                layer.alert("接车人不能为空！", { icon: 0, title: "【提示】" });
+            } else if (CustomerTypeID == 0) {
+                layer.alert("客户类型不能为空！", { icon: 0, title: "【提示】" });
+            } else if (CustomerLevelID == 0) {
+                layer.alert("客户等级不能为空！", { icon: 0, title: "【提示】" });
+            } else if (RegionID == 0) {
+                layer.alert("区域不能为空！", { icon: 0, title: "【提示】" });
+            } else if (CustomerSouID == 0) {
+                layer.alert("客户来源不能为空！", { icon: 0, title: "【提示】" });
+            }
+            else {
+                $("#formUpdate").ajaxSubmit(function (msg) {
+                    layer.msg("操作成功", { icon: 1, skin: "layui-layer-molv" });
+                    //刷新页面
+                    location.reload();
+                });
+            }
+        })
+
+        //删除
+        $("#Delect").click(function () {
+            var num = 0;
+            var check = $("#tbMaintenance input[type=checkbox]:checked");
+            if (check.length > 0) {
+                layer.confirm("确认需要删除当前选中的数据?", {
+                    icon: 3,
+                    btn: ['确定', '取消']
+                }, function (layerIndex) {
+                    layer.close(layerIndex);//关闭提示框
+                    for (var i = 0; i < check.length; i++) {
+                        $.ajax({
+                            type: "get",//请求方式
+                            async: false,//对否异步
+                            url: "DelectMaintenance?MaintenanceCusID=" + check[i].value,
+                            success: function (data) {
+                                //成功回调函数
+                                if (data) {
+                                    num++
+                                }
+                            }
+                        });
+                    }
+                    Chose();
+                    layer.alert(num + "条数据删除成功，"
+                        + (check.length - num) + "条数据删除失败",
+                        { icon: 1, skin: "layui-layer-molv" });
+                })
+            } else {//未选择需要删除的数据
+                layer.alert('请选择需要删除的数据！', { icon: 0, title: '提示' });
+
+            }
+        });
+
+        //根据数据库信息生成li标签
+        $(function () {
+            var RegionID = 0;
+            $.post("/BasicdataManagment/Customerbasic/SelectRegion", function (data) {
+                $("#RegionName span").html(data.length);//获取数据长度
+                $("#RegionName ul.listshow").html("");
+                $.each(data, function (i) {//生成li标签
+                    $("#RegionName ul").append('<li id=' + data[i].RegionID + ' class="lishow"><i class="diai"></i>' +
+                            data[i].RegionName + ' (' + data[i].RegionNum + ')</li>');
+                    RegionID = data[i].RegionID;
+                    $("#" + RegionID).click(function () {
+                        $("#RegionName li").removeClass("active");
+                        $(this).addClass("active");
+                        tbMaintenance.search({//点击商品类别刷新表格
+                            RegionID: this.id
+                        });
+                    })
+                })
+            })
+            tbMaintenance.refreshPage();
+        })
+
+        //条件查询销售客户
+        function Chose() {
+            var RegionID = 0;
+            tbMaintenance.search({
+                RegionID: RegionID
+            });
+        }
+        //新增下拉框绑定
+        //createSelect("FVehicleTypeID ", "/PublicManagment/CreateSelect/SelectVehicleType ");//车型下拉框
+        createSelect("FInsuranceComID", "/PublicManagment/CreateSelect/SelectInsuranceCom");//保险公司
+        createSelect("FInsuranceSpeID", "/PublicManagment/CreateSelect/SelectInsuranceSpe ");//保险种类
+        createSelect("FDepartmentID", "/PublicManagment/CreateSelect/SelectDepartment ");//部门
+        createSelect("FCarderID", "/PublicManagment/CreateSelect/SelectCarder ");//接车人
+        createSelect("FCustomerTypeID", "/PublicManagment/CreateSelect/SelectCustomerType ");//客户类型
+        createSelect("FCustomerLevelID", "/PublicManagment/CreateSelect/SelectCustomerLevel ");//客户等级
+        createSelect("FRegionID", "/PublicManagment/CreateSelect/SelectRegion ");//客户区域
+        createSelect("FCustomerSouID", "/PublicManagment/CreateSelect/SelectCustomerSou ");//客户来源
+
+        //修改下拉框绑定
+        //createSelect("EVehicleTypeID ", "/PublicManagment/CreateSelect/SelectVehicleType ");//车型下拉框
+        createSelect("EInsuranceComID", "/PublicManagment/CreateSelect/SelectInsuranceCom");//保险公司
+        createSelect("EInsuranceSpeID", "/PublicManagment/CreateSelect/SelectInsuranceSpe ");//保险种类
+        createSelect("EDepartmentID", "/PublicManagment/CreateSelect/SelectDepartment ");//部门
+        createSelect("ECarderID", "/PublicManagment/CreateSelect/SelectCarder ");//接车人
+        createSelect("ECustomerTypeID", "/PublicManagment/CreateSelect/SelectCustomerType ");//客户类型
+        createSelect("ECustomerLevelID", "/PublicManagment/CreateSelect/SelectCustomerLevel ");//客户等级
+        createSelect("ERegionID", "/PublicManagment/CreateSelect/SelectRegion ");//客户区域
+        createSelect("ECustomerSouID", "/PublicManagment/CreateSelect/SelectCustomerSou ");//客户来源
+
+
+    </script>
+</body>
+</html>

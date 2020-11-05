@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koi.mapper.AppointmentDao">
+<!-- 生成预约单号 -->
+<select id="predateNum" parameterType="java.lang.String" resultType="int" >
+  select 
+	case when exists( SELECT * FROM PW_Predate WHERE 
+	    PredateNum LIKE CONCAT('%',CONCAT(#{d},'%'))) 
+	then (SELECT TOP 1 SUBSTRING(PredateNum,17,4) from PW_Predate WHERE 
+	    PredateNum LIKE CONCAT('%',CONCAT(#{d},'%'))  ORDER BY  PredateNum DESC)
+	else 0
+  end
+</select>
+<!-- 查询预约单据信息总数 -->
+<select id="selectPredateCount" resultType="long">
+	SELECT COUNT(*) as num FROM  PW_Predate p,SYS_Carder,SYS_Repair where p.CarderID = SYS_Carder.CarderID 
+			and p.RepairID = SYS_Repair.RepairID 
+	<if test="predateNum != null and predateNum!='' ">
+	 AND PredateNum like CONCAT(CONCAT('%',#{predateNum}),'%') 
+	</if>
+	<if test="toAudit != null and toAudit!='' ">
+	 AND ToAudit = #{toAudit}
+	</if>
+</select>
+
+<!-- 查询预约单据信息 -->
+<select id="selectPredate" resultType="com.koi.po.PwPredate">
+	SELECT * FROM(SELECT *,ROW_NUMBER()OVER(ORDER BY PredateID)Num FROM(SELECT p.PredateID,p.CarderID,
+	p.RepairID,CarderName,DeserveMoney,VehicleType,CustomerNum,RepairName,PredateNum,OpenDate,MaintenanceNum,
+	MaintainData,CarNum,Owner,CarMasterPhone,Contacts,Telephone,p.Remark,ToAudit,Amount,Receivable,Describe,
+	ToTransferOrder FROM  PW_Predate p,SYS_Carder,SYS_Repair where p.CarderID = SYS_Carder.CarderID 
+	AND p.RepairID = SYS_Repair.RepairID)AS tmp 
+	<where>
+	<if test="predateNum != null and predateNum!='' ">
+	 AND PredateNum like CONCAT(CONCAT('%',#{predateNum}),'%') 
+	</if>
+	<if test="toAudit != null and toAudit!='' ">
+	 AND ToAudit = #{toAudit}
+	</if>
+	</where>
+	)AS db WHERE db.Num BETWEEN #{startIndex} AND #{pageSize}
+</select>
+<!-- 查询预约明细信息 -->
+<select id="selectPreRepairItemDetail" resultType="com.koi.po.SysPreRepairItemDetail" >
+    select * from SYS_PreRepairItemDetail WHERE PredateID=#{predateID}
+</select>
+<select id="selectPreProductDetail" resultType="com.koi.po.SysPreProductDetail" >
+    select * from SYS_PreProductDetail WHERE PredateID=#{predateID}
+</select>
+<select id="selectPreOtherCostDetail" resultType="com.koi.po.SysPreOtherCostDetail" >
+    select * from SYS_PreOtherCostDetail WHERE PredateID=#{predateID}
+</select>
+
+<!-- 预约单操作 -->
+<insert id="insertPredate" parameterType="com.koi.po.PwPredate" 
+    keyProperty="predateId" useGeneratedKeys="true">
+   insert into PW_Predate (CarderID, VehicleType, 
+     RepairID, PredateNum, OpenDate, 
+     MaintenanceNum, CarNum, Owner, 
+     Telephone, Contacts, CarMasterPhone, 
+     Remark, ToAudit, Amount, 
+     Receivable, Describe, ToTransferOrder, 
+     MaintainData, DeserveMoney, CustomerNum
+     )
+   values ( #{carderId,jdbcType=INTEGER}, #{vehicleType,jdbcType=NVARCHAR}, 
+     #{repairId,jdbcType=INTEGER}, #{predateNum,jdbcType=NCHAR}, #{openDate,jdbcType=TIMESTAMP}, 
+     #{maintenanceNum,jdbcType=NCHAR}, #{carNum,jdbcType=NVARCHAR}, #{owner,jdbcType=NVARCHAR}, 
+     #{telephone,jdbcType=VARCHAR}, #{contacts,jdbcType=NVARCHAR}, #{carMasterPhone,jdbcType=VARCHAR}, 
+     #{remark,jdbcType=NVARCHAR}, #{toAudit,jdbcType=BIT}, #{amount,jdbcType=DECIMAL}, 
+     #{receivable,jdbcType=DECIMAL}, #{describe,jdbcType=NVARCHAR}, #{toTransferOrder,jdbcType=BIT}, 
+     #{maintainData,jdbcType=TIMESTAMP}, #{deserveMoney,jdbcType=DECIMAL}, #{customerNum,jdbcType=VARCHAR}
+     )
+</insert>
+<update id="updatePredate" parameterType="com.koi.po.PwPredate">
+   update PW_Predate
+   set CarderID = #{carderId,jdbcType=INTEGER},
+     VehicleType = #{vehicleType,jdbcType=NVARCHAR},
+     RepairID = #{repairId,jdbcType=INTEGER},
+     PredateNum = #{predateNum,jdbcType=NCHAR},
+     OpenDate = #{openDate,jdbcType=TIMESTAMP},
+     MaintenanceNum = #{maintenanceNum,jdbcType=NCHAR},
+     CarNum = #{carNum,jdbcType=NVARCHAR},
+     "Owner" = #{owner,jdbcType=NVARCHAR},
+     Telephone = #{telephone,jdbcType=VARCHAR},
+     Contacts = #{contacts,jdbcType=NVARCHAR},
+     CarMasterPhone = #{carMasterPhone,jdbcType=VARCHAR},
+     Remark = #{remark,jdbcType=NVARCHAR},
+     ToAudit = #{toAudit,jdbcType=BIT},
+     Amount = #{amount,jdbcType=DECIMAL},
+     Receivable = #{receivable,jdbcType=DECIMAL},
+     "Describe" = #{describe,jdbcType=NVARCHAR},
+     ToTransferOrder = #{toTransferOrder,jdbcType=BIT},
+     MaintainData = #{maintainData,jdbcType=TIMESTAMP},
+     DeserveMoney = #{deserveMoney,jdbcType=DECIMAL},
+     CustomerNum = #{customerNum,jdbcType=VARCHAR}
+   where PredateID = #{predateId,jdbcType=INTEGER}
+ </update>
+ <delete id="deletePredate">
+	DELETE FROM PW_Predate WHERE PredateID=#{predateId};
+</delete>
+ <!-- 修理项目明细表 操作-->
+ <insert id="insertPreRepairItem" parameterType="com.koi.po.SysPreRepairItemDetail">
+  insert into SYS_PreRepairItemDetail (RepairItemID, 
+    PredateID, MaintainabilityID, RepairCharge, 
+    Discount, AmountPaid, Remark
+    )values 
+  (#{repairItemId,jdbcType=INTEGER}, 
+    #{predateId,jdbcType=INTEGER}, #{maintainabilityId,jdbcType=INTEGER}, #{repairCharge,jdbcType=DECIMAL}, 
+    #{discount,jdbcType=DECIMAL}, #{amountPaid,jdbcType=DECIMAL}, #{remark,jdbcType=NVARCHAR}
+  )
+</insert>
+ <update id="updatePreRepairItem" parameterType="com.koi.po.SysPreRepairItemDetail">
+  update SYS_PreRepairItemDetail
+  set RepairItemID = #{repairItemId,jdbcType=INTEGER},
+    PredateID = #{predateId,jdbcType=INTEGER},
+    MaintainabilityID = #{maintainabilityId,jdbcType=INTEGER},
+    RepairCharge = #{repairCharge,jdbcType=DECIMAL},
+    Discount = #{discount,jdbcType=DECIMAL},
+    AmountPaid = #{amountPaid,jdbcType=DECIMAL},
+    Remark = #{remark,jdbcType=NVARCHAR}
+  where PreRepairItemDetailID = #{preRepairItemDetailId,jdbcType=INTEGER}
+</update>
+<delete id="deletePreRepairItem">
+	DELETE FROM SYS_PreRepairItemDetail WHERE PredateID=#{predateId};
+</delete>
+
+<!-- 配件明细表 -->
+<insert id="insertPreProduct" parameterType="com.koi.po.SysPreProductDetail">
+  insert into SYS_PreProductDetail (PredateID, MaintainabilityID, 
+      Quantity, UnitPrice, Discount, 
+      Amount, Remark, FittingsCode, 
+      FittingsName, SystemUnit, VehicleType
+      )values 
+  (#{predateId,jdbcType=INTEGER}, #{maintainabilityId,jdbcType=INTEGER}, 
+      #{quantity,jdbcType=DECIMAL}, #{unitPrice,jdbcType=DECIMAL}, #{discount,jdbcType=DECIMAL}, 
+      #{amount,jdbcType=DECIMAL}, #{remark,jdbcType=NVARCHAR}, #{fittingsCode,jdbcType=NVARCHAR}, 
+      #{fittingsName,jdbcType=NVARCHAR}, #{systemUnit,jdbcType=NVARCHAR}, #{vehicleType,jdbcType=NVARCHAR})
+</insert>
+ <update id="updatePreProduct" parameterType="com.koi.po.SysPreProductDetail">
+  update SYS_PreProductDetail
+    set PredateID = #{predateId,jdbcType=INTEGER},
+      MaintainabilityID = #{maintainabilityId,jdbcType=INTEGER},
+      Quantity = #{quantity,jdbcType=DECIMAL},
+      UnitPrice = #{unitPrice,jdbcType=DECIMAL},
+      Discount = #{discount,jdbcType=DECIMAL},
+      Amount = #{amount,jdbcType=DECIMAL},
+      Remark = #{remark,jdbcType=NVARCHAR},
+      FittingsCode = #{fittingsCode,jdbcType=NVARCHAR},
+      FittingsName = #{fittingsName,jdbcType=NVARCHAR},
+      SystemUnit = #{systemUnit,jdbcType=NVARCHAR},
+      VehicleType = #{vehicleType,jdbcType=NVARCHAR}
+    where PreProductDetailID = #{preProductDetailId,jdbcType=INTEGER}
+</update>
+<delete id="deletePreProduct">
+	DELETE FROM SYS_PreProductDetail WHERE PredateID=#{predateId};
+</delete>
+
+<!-- 费用明细表 -->
+<insert id="insertPreOtherCost" parameterType="com.koi.po.SysPreOtherCostDetail">
+  insert into SYS_PreOtherCostDetail (PredateID, 
+      ExpensesID, Amount, Discount, 
+      AmountPaid, Remark)
+    values 
+  (#{predateId,jdbcType=INTEGER}, 
+      #{expensesId,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, #{discount,jdbcType=DECIMAL}, 
+      #{amountPaid,jdbcType=DECIMAL}, #{remark,jdbcType=NVARCHAR})
+</insert>
+ <update id="updatePreOtherCost" parameterType="com.koi.po.SysPreOtherCostDetail">
+    update SYS_PreOtherCostDetail
+    set PredateID = #{predateId,jdbcType=INTEGER},
+      ExpensesID = #{expensesId,jdbcType=INTEGER},
+      Amount = #{amount,jdbcType=DECIMAL},
+      Discount = #{discount,jdbcType=DECIMAL},
+      AmountPaid = #{amountPaid,jdbcType=DECIMAL},
+      Remark = #{remark,jdbcType=NVARCHAR}
+    where PreOtherCostDetailID = #{preOtherCostDetailId,jdbcType=INTEGER}
+</update>
+<delete id="deletePreOtherCost">
+	DELETE FROM SYS_PreOtherCostDetail WHERE PredateID=#{predateId};
+</delete>
+
+<!-- 审核或者反审核预约单 -->
+<update id="toAudit" >
+	UPDATE PW_Predate SET ToAudit=#{toAudit} WHERE PredateID=#{predateID}
+</update>
+<!-- 转单 -->
+<update id="selectToMainten">
+	UPDATE PW_Predate SET ToTransferOrder=1,MaintenanceNum=#{maintenanceNum} WHERE PredateID=#{predateID}
+</update>
+</mapper>

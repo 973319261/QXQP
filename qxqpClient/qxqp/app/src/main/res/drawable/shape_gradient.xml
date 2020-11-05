@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--线性渐变
+    angle 渐变方向 角度
+    startColor 渐变开始颜色
+    endColor 渐变结束颜色
+    -->
+    <gradient
+        android:angle="0"
+        android:startColor="@color/colorPrimary"
+        android:endColor="#B2FB7299"/>
+</shape>

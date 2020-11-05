@@ -1,0 +1,1208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9E6BE52E-5E38-4DAB-B2F7-FAF138A7925E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QXQPS</RootNamespace>
+    <AssemblyName>QXQPS</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-3.3.7-dist\css\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-3.3.7-dist\css\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-3.3.7-dist\css\bootstrap-treeview.css" />
+    <Content Include="Content\bootstrap-3.3.7-dist\css\bootstrap.css" />
+    <Content Include="Content\bootstrap-3.3.7-dist\css\bootstrap.min.css" />
+    <Content Include="Content\bootstrap-3.3.7-dist\css\bootstrapal.css" />
+    <Content Include="Content\bootstrap-3.3.7-dist\css\jquery.treegrid.css" />
+    <Content Include="Content\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\bootstrap-3.3.7-dist\iconfont\fonts\icomoon.svg" />
+    <Content Include="Content\bootstrap-3.3.7-dist\iconfont\style.css" />
+    <Content Include="Content\bootstrap-3.3.7-dist\js\bootstrap-combotree.js" />
+    <Content Include="Content\bootstrap-3.3.7-dist\js\bootstrap-table.js" />
+    <Content Include="Content\bootstrap-3.3.7-dist\js\bootstrap-treeview.js" />
+    <Content Include="Content\bootstrap-3.3.7-dist\js\bootstrap.js" />
+    <Content Include="Content\bootstrap-3.3.7-dist\js\bootstrap.min.js" />
+    <Content Include="Content\bootstrap-3.3.7-dist\js\html2canvas.js" />
+    <Content Include="Content\bootstrap-3.3.7-dist\js\jquery-1.11.2.min.js" />
+    <Content Include="Content\bootstrap-3.3.7-dist\js\jquery-2.0.3.min.js" />
+    <Content Include="Content\bootstrap-3.3.7-dist\js\jquery-3.3.1.js" />
+    <Content Include="Content\bootstrap-3.3.7-dist\js\jquery.js" />
+    <Content Include="Content\bootstrap-3.3.7-dist\js\jquery.treegrid.bootstrap3.js" />
+    <Content Include="Content\bootstrap-3.3.7-dist\js\jquery.treegrid.js" />
+    <Content Include="Content\bootstrap-3.3.7-dist\js\npm.js" />
+    <Content Include="Content\bootstrap-3.3.7-dist\js\pinying.js" />
+    <Content Include="Content\jquery.bsgrid-1.37\css\form.min.css" />
+    <Content Include="Content\jquery.bsgrid-1.37\css\grid.extend.min.css" />
+    <Content Include="Content\jquery.bsgrid-1.37\css\grid.min.css" />
+    <Content Include="Content\jquery.bsgrid-1.37\css\grid.paging.min.css" />
+    <Content Include="Content\jquery.bsgrid-1.37\css\icon.min.css" />
+    <Content Include="Content\jquery.bsgrid-1.37\css\skins\grid_access.min.css" />
+    <Content Include="Content\jquery.bsgrid-1.37\css\skins\grid_blue.min.css" />
+    <Content Include="Content\jquery.bsgrid-1.37\css\skins\grid_bootstrap.min.css" />
+    <Content Include="Content\jquery.bsgrid-1.37\css\skins\grid_easyui.min.css" />
+    <Content Include="Content\jquery.bsgrid-1.37\css\skins\grid_flexigrid.min.css" />
+    <Content Include="Content\jquery.bsgrid-1.37\css\skins\grid_gray.min.css" />
+    <Content Include="Content\jquery.bsgrid-1.37\css\skins\grid_jqgrid.min.css" />
+    <Content Include="Content\jquery.bsgrid-1.37\css\skins\grid_pure_gray.min.css" />
+    <Content Include="Content\jquery.bsgrid-1.37\css\skins\grid_sky_blue.min.css" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\arrow-refresh.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\configure-2.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\dialog-accept-2.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\document-print-2.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\document-save-6.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\documentation.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\download.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\edit-copy-7.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\edit-cut-7.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\edit-delete-6.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\edit-delete-7.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\edit-find-8.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\edit-paste-7.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\flag.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\help-about-3.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\help.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\list-add-6.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\mail-generic.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\mimetypes\silk_style\page-white_acrobat.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\mimetypes\silk_style\page-white_excel.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\mimetypes\silk_style\page-white_text.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\mimetypes\silk_style\page-white_word.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\page-edit.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\paging\go-first-view.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\paging\go-jump-2.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\paging\go-last-view.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\paging\go-next-view.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\paging\go-previous-view.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\paging\view-refresh-3.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\sort-view.gif" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\system-config-boot.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\system-search-6.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\view-list-details-5.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\view-sort-ascending-2.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\view-sort-descending-2.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\window-close-4.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\window-close.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\loading.gif" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\access\bg.gif" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\blue\bg.gif" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\bootstrap\glyphicons-halflings.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\default\bg.gif" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\easyui\bg.gif" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\easyui\layout_button_right.gif" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\easyui\pagination_first.gif" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\easyui\pagination_last.gif" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\easyui\pagination_load.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\easyui\pagination_next.gif" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\easyui\pagination_prev.gif" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\flexigrid\bg.gif" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\gray\bg.gif" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\jqgrid\ui-bg_glass_1x400.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\jqgrid\ui-icons_256x240.png" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\sky_blue\bg.gif" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\sort-asc.gif" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\sort-desc.gif" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\sort-view.gif" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\white.gif" />
+    <Content Include="Content\jquery.bsgrid-1.37\js\common.min.js" />
+    <Content Include="Content\jquery.bsgrid-1.37\js\export.min.js" />
+    <Content Include="Content\jquery.bsgrid-1.37\js\form.min.js" />
+    <Content Include="Content\jquery.bsgrid-1.37\js\grid.extend.min.js" />
+    <Content Include="Content\jquery.bsgrid-1.37\js\grid.min.js" />
+    <Content Include="Content\jquery.bsgrid-1.37\js\grid.paging.min.js" />
+    <Content Include="Content\jquery.bsgrid-1.37\js\lang\grid.en.min.js" />
+    <Content Include="Content\jquery.bsgrid-1.37\js\lang\grid.zh-CN.min.js" />
+    <Content Include="Content\jquery.bsgrid-1.37\js\lang\grid.zh-TW.min.js" />
+    <Content Include="Content\jquery.bsgrid-1.37\js\util.min.js" />
+    <Content Include="Content\jquery.bsgrid-1.37\merged\bsgrid.all.min.css" />
+    <Content Include="Content\jquery.bsgrid-1.37\merged\bsgrid.all.min.js" />
+    <Content Include="Content\jquery.bsgrid-1.37\merged\form.all.min.css" />
+    <Content Include="Content\jquery.bsgrid-1.37\merged\form.all.min.js" />
+    <Content Include="Content\jquery.bsgrid-1.37\merged\grid.all.min.css" />
+    <Content Include="Content\jquery.bsgrid-1.37\merged\grid.all.min.js" />
+    <Content Include="Content\jquery.bsgrid-1.37\merged\grid.simple.min.css" />
+    <Content Include="Content\jquery.bsgrid-1.37\merged\grid.simple.min.js" />
+    <Content Include="Content\jquery.bsgrid-1.37\merged\jquery-3.2.1.min.js" />
+    <Content Include="Content\js\combobox.js" />
+    <Content Include="Content\js\customfunction.js" />
+    <Content Include="Content\js\jquery.form.js" />
+    <Content Include="Content\js\pinying.js" />
+    <Content Include="Content\layer\layer.js" />
+    <Content Include="Content\layer\mobile\layer.js" />
+    <Content Include="Content\layer\mobile\need\layer.css" />
+    <Content Include="Content\layer\skin\default\icon-ext.png" />
+    <Content Include="Content\layer\skin\default\icon.png" />
+    <Content Include="Content\layer\skin\default\layer.css" />
+    <Content Include="Content\layer\skin\default\loading-0.gif" />
+    <Content Include="Content\layer\skin\default\loading-1.gif" />
+    <Content Include="Content\layer\skin\default\loading-2.gif" />
+    <Content Include="Content\layui\css\layui.css" />
+    <Content Include="Content\layui\css\layui.mobile.css" />
+    <Content Include="Content\layui\css\modules\code.css" />
+    <Content Include="Content\layui\css\modules\laydate\default\font\iconfont.svg" />
+    <Content Include="Content\layui\css\modules\laydate\default\laydate.css" />
+    <Content Include="Content\layui\css\modules\layer\default\icon-ext.png" />
+    <Content Include="Content\layui\css\modules\layer\default\icon.png" />
+    <Content Include="Content\layui\css\modules\layer\default\layer.css" />
+    <Content Include="Content\layui\css\modules\layer\default\loading-0.gif" />
+    <Content Include="Content\layui\css\modules\layer\default\loading-1.gif" />
+    <Content Include="Content\layui\css\modules\layer\default\loading-2.gif" />
+    <Content Include="Content\layui\font\iconfont.svg" />
+    <Content Include="Content\layui\images\face\0.gif" />
+    <Content Include="Content\layui\images\face\1.gif" />
+    <Content Include="Content\layui\images\face\10.gif" />
+    <Content Include="Content\layui\images\face\11.gif" />
+    <Content Include="Content\layui\images\face\12.gif" />
+    <Content Include="Content\layui\images\face\13.gif" />
+    <Content Include="Content\layui\images\face\14.gif" />
+    <Content Include="Content\layui\images\face\15.gif" />
+    <Content Include="Content\layui\images\face\16.gif" />
+    <Content Include="Content\layui\images\face\17.gif" />
+    <Content Include="Content\layui\images\face\18.gif" />
+    <Content Include="Content\layui\images\face\19.gif" />
+    <Content Include="Content\layui\images\face\2.gif" />
+    <Content Include="Content\layui\images\face\20.gif" />
+    <Content Include="Content\layui\images\face\21.gif" />
+    <Content Include="Content\layui\images\face\22.gif" />
+    <Content Include="Content\layui\images\face\23.gif" />
+    <Content Include="Content\layui\images\face\24.gif" />
+    <Content Include="Content\layui\images\face\25.gif" />
+    <Content Include="Content\layui\images\face\26.gif" />
+    <Content Include="Content\layui\images\face\27.gif" />
+    <Content Include="Content\layui\images\face\28.gif" />
+    <Content Include="Content\layui\images\face\29.gif" />
+    <Content Include="Content\layui\images\face\3.gif" />
+    <Content Include="Content\layui\images\face\30.gif" />
+    <Content Include="Content\layui\images\face\31.gif" />
+    <Content Include="Content\layui\images\face\32.gif" />
+    <Content Include="Content\layui\images\face\33.gif" />
+    <Content Include="Content\layui\images\face\34.gif" />
+    <Content Include="Content\layui\images\face\35.gif" />
+    <Content Include="Content\layui\images\face\36.gif" />
+    <Content Include="Content\layui\images\face\37.gif" />
+    <Content Include="Content\layui\images\face\38.gif" />
+    <Content Include="Content\layui\images\face\39.gif" />
+    <Content Include="Content\layui\images\face\4.gif" />
+    <Content Include="Content\layui\images\face\40.gif" />
+    <Content Include="Content\layui\images\face\41.gif" />
+    <Content Include="Content\layui\images\face\42.gif" />
+    <Content Include="Content\layui\images\face\43.gif" />
+    <Content Include="Content\layui\images\face\44.gif" />
+    <Content Include="Content\layui\images\face\45.gif" />
+    <Content Include="Content\layui\images\face\46.gif" />
+    <Content Include="Content\layui\images\face\47.gif" />
+    <Content Include="Content\layui\images\face\48.gif" />
+    <Content Include="Content\layui\images\face\49.gif" />
+    <Content Include="Content\layui\images\face\5.gif" />
+    <Content Include="Content\layui\images\face\50.gif" />
+    <Content Include="Content\layui\images\face\51.gif" />
+    <Content Include="Content\layui\images\face\52.gif" />
+    <Content Include="Content\layui\images\face\53.gif" />
+    <Content Include="Content\layui\images\face\54.gif" />
+    <Content Include="Content\layui\images\face\55.gif" />
+    <Content Include="Content\layui\images\face\56.gif" />
+    <Content Include="Content\layui\images\face\57.gif" />
+    <Content Include="Content\layui\images\face\58.gif" />
+    <Content Include="Content\layui\images\face\59.gif" />
+    <Content Include="Content\layui\images\face\6.gif" />
+    <Content Include="Content\layui\images\face\60.gif" />
+    <Content Include="Content\layui\images\face\61.gif" />
+    <Content Include="Content\layui\images\face\62.gif" />
+    <Content Include="Content\layui\images\face\63.gif" />
+    <Content Include="Content\layui\images\face\64.gif" />
+    <Content Include="Content\layui\images\face\65.gif" />
+    <Content Include="Content\layui\images\face\66.gif" />
+    <Content Include="Content\layui\images\face\67.gif" />
+    <Content Include="Content\layui\images\face\68.gif" />
+    <Content Include="Content\layui\images\face\69.gif" />
+    <Content Include="Content\layui\images\face\7.gif" />
+    <Content Include="Content\layui\images\face\70.gif" />
+    <Content Include="Content\layui\images\face\71.gif" />
+    <Content Include="Content\layui\images\face\8.gif" />
+    <Content Include="Content\layui\images\face\9.gif" />
+    <Content Include="Content\layui\laydate\laydate.js" />
+    <Content Include="Content\layui\laydate\theme\default\font\iconfont.svg" />
+    <Content Include="Content\layui\laydate\theme\default\laydate.css" />
+    <Content Include="Content\layui\layui.all.js" />
+    <Content Include="Content\layui\layui.js" />
+    <Content Include="Content\layui\lay\modules\carousel.js" />
+    <Content Include="Content\layui\lay\modules\code.js" />
+    <Content Include="Content\layui\lay\modules\element.js" />
+    <Content Include="Content\layui\lay\modules\flow.js" />
+    <Content Include="Content\layui\lay\modules\form.js" />
+    <Content Include="Content\layui\lay\modules\jquery.js" />
+    <Content Include="Content\layui\lay\modules\laydate.js" />
+    <Content Include="Content\layui\lay\modules\layedit.js" />
+    <Content Include="Content\layui\lay\modules\layer.js" />
+    <Content Include="Content\layui\lay\modules\laypage.js" />
+    <Content Include="Content\layui\lay\modules\laytpl.js" />
+    <Content Include="Content\layui\lay\modules\mobile.js" />
+    <Content Include="Content\layui\lay\modules\rate.js" />
+    <Content Include="Content\layui\lay\modules\table.js" />
+    <Content Include="Content\layui\lay\modules\tree.js" />
+    <Content Include="Content\layui\lay\modules\upload.js" />
+    <Content Include="Content\layui\lay\modules\util.js" />
+    <Content Include="Content\Main\css\icons.css" />
+    <Content Include="Content\Main\css\main.css" />
+    <Content Include="Content\Main\css\materialize.css" />
+    <Content Include="Content\Main\css\style.css" />
+    <Content Include="Content\Main\fonts\brocolidry.svg" />
+    <Content Include="Content\Main\fonts\ecoico.svg" />
+    <Content Include="Content\Main\fonts\entypo.svg" />
+    <Content Include="Content\Main\fonts\fontawesome.svg" />
+    <Content Include="Content\Main\fonts\icomoon.svg" />
+    <Content Include="Content\Main\fonts\meteo.svg" />
+    <Content Include="Content\Main\fonts\steadysets.svg" />
+    <Content Include="Content\Main\fonts\vjs.svg" />
+    <Content Include="Content\Main\images\1baa42452320f5d4eb2f5e1f22cacebb.png" />
+    <Content Include="Content\Main\images\body.jpg" />
+    <Content Include="Content\Main\images\ChMkJlaPiQGIHsdwAAv1ftPZIzIAAHHGQBWGeQAC_WW909.jpg" />
+    <Content Include="Content\Main\images\main_bg.png" />
+    <Content Include="Content\Main\images\midground.png" />
+    <Content Include="Content\Main\images\preview-1.jpg" />
+    <Content Include="Content\Main\images\qiche1.jpg" />
+    <Content Include="Content\Main\images\smiley_evil.png" />
+    <Content Include="Content\Main\images\smiley_sleep.png" />
+    <Content Include="Content\Main\images\sprite.png" />
+    <Content Include="Content\Main\js\pinying.js" />
+    <Content Include="Content\Main\lib\datatables\1.10.0\jquery.dataTables.min.js" />
+    <Content Include="Content\Main\lib\Hui-iconfont\1.0.8\demo.html" />
+    <Content Include="Content\Main\lib\Hui-iconfont\1.0.8\iconfont.css" />
+    <Content Include="Content\Main\lib\Hui-iconfont\1.0.8\iconfont.min.css" />
+    <Content Include="Content\Main\lib\Hui-iconfont\1.0.8\iconfont.svg" />
+    <Content Include="Content\Main\lib\jquery.contextmenu\jquery.contextmenu.r2.js" />
+    <Content Include="Content\Main\lib\jquery.SuperSlide\2.1.1\jquery.SuperSlide.min.js" />
+    <Content Include="Content\Main\lib\jquery.validation\1.14.0\additional-methods.js" />
+    <Content Include="Content\Main\lib\jquery.validation\1.14.0\jquery.validate.js" />
+    <Content Include="Content\Main\lib\jquery.validation\1.14.0\messages_zh.js" />
+    <Content Include="Content\Main\lib\jquery.validation\1.14.0\validate-methods.js" />
+    <Content Include="Content\Main\lib\jquery\1.9.1\jquery.js" />
+    <Content Include="Content\Main\lib\jquery\1.9.1\jquery.min.js" />
+    <Content Include="Content\Main\lib\layer\2.4\layer.js" />
+    <Content Include="Content\Main\lib\layer\2.4\skin\default\icon-ext.png" />
+    <Content Include="Content\Main\lib\layer\2.4\skin\default\icon.png" />
+    <Content Include="Content\Main\lib\layer\2.4\skin\default\loading-0.gif" />
+    <Content Include="Content\Main\lib\layer\2.4\skin\default\loading-1.gif" />
+    <Content Include="Content\Main\lib\layer\2.4\skin\default\loading-2.gif" />
+    <Content Include="Content\Main\lib\layer\2.4\skin\layer.css" />
+    <Content Include="Content\Main\lib\laypage\1.2\laypage.js" />
+    <Content Include="Content\Main\lib\laypage\1.2\skin\laypage.css" />
+    <Content Include="Content\Main\lib\My97DatePicker\4.8\calendar.js" />
+    <Content Include="Content\Main\lib\My97DatePicker\4.8\lang\en.js" />
+    <Content Include="Content\Main\lib\My97DatePicker\4.8\lang\zh-cn.js" />
+    <Content Include="Content\Main\lib\My97DatePicker\4.8\lang\zh-tw.js" />
+    <Content Include="Content\Main\lib\My97DatePicker\4.8\skin\datePicker.gif" />
+    <Content Include="Content\Main\lib\My97DatePicker\4.8\skin\default\datepicker.css" />
+    <Content Include="Content\Main\lib\My97DatePicker\4.8\skin\default\img.gif" />
+    <Content Include="Content\Main\lib\My97DatePicker\4.8\skin\twoer\datepicker-dev.css" />
+    <Content Include="Content\Main\lib\My97DatePicker\4.8\skin\twoer\datepicker.css" />
+    <Content Include="Content\Main\lib\My97DatePicker\4.8\skin\twoer\img.gif" />
+    <Content Include="Content\Main\lib\My97DatePicker\4.8\skin\twoer\img.png" />
+    <Content Include="Content\Main\lib\My97DatePicker\4.8\skin\WdatePicker.css" />
+    <Content Include="Content\Main\lib\My97DatePicker\4.8\skin\whyGreen\bg.jpg" />
+    <Content Include="Content\Main\lib\My97DatePicker\4.8\skin\whyGreen\datepicker.css" />
+    <Content Include="Content\Main\lib\My97DatePicker\4.8\skin\whyGreen\img.gif" />
+    <Content Include="Content\Main\lib\My97DatePicker\4.8\WdatePicker.js" />
+    <Content Include="Content\Main\static\h-ui.admin\css\H-ui.admin.css" />
+    <Content Include="Content\Main\static\h-ui.admin\css\H-ui.login.css" />
+    <Content Include="Content\Main\static\h-ui.admin\css\style.css" />
+    <Content Include="Content\Main\static\h-ui.admin\images\acrossTab\acrossTab-2.png" />
+    <Content Include="Content\Main\static\h-ui.admin\images\admin-login-bg.jpg" />
+    <Content Include="Content\Main\static\h-ui.admin\images\admin-loginform-bg.png" />
+    <Content Include="Content\Main\static\h-ui.admin\images\cn.gif" />
+    <Content Include="Content\Main\static\h-ui.admin\images\loading.gif" />
+    <Content Include="Content\Main\static\h-ui.admin\images\logo.png" />
+    <Content Include="Content\Main\static\h-ui.admin\images\um.gif" />
+    <Content Include="Content\Main\static\h-ui.admin\js\de_DE.txt" />
+    <Content Include="Content\Main\static\h-ui.admin\js\H-ui.admin.js" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\blue\acrossTab-bg.png" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\blue\acrossTab.png" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\blue\icon_arrow.png" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\blue\skin.css" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\default\acrossTab-bg.png" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\default\acrossTab.png" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\default\icon_arrow.png" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\default\skin.css" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\green\acrossTab-bg.png" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\green\acrossTab.png" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\green\icon_arrow.png" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\green\skin.css" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\orange\acrossTab-bg.png" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\orange\acrossTab.png" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\orange\icon_arrow.png" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\orange\skin.css" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\red\acrossTab-bg.png" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\red\acrossTab.png" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\red\icon_arrow.png" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\red\skin.css" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\yellow\acrossTab-bg.png" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\yellow\acrossTab.png" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\yellow\icon_arrow.png" />
+    <Content Include="Content\Main\static\h-ui.admin\skin\yellow\skin.css" />
+    <Content Include="Content\Main\static\h-ui\css\H-ui.css" />
+    <Content Include="Content\Main\static\h-ui\css\H-ui.ie.css" />
+    <Content Include="Content\Main\static\h-ui\css\H-ui.min.css" />
+    <Content Include="Content\Main\static\h-ui\css\H-ui.reset.css" />
+    <Content Include="Content\Main\static\h-ui\images\acrossTab\acrossTab-bg.png" />
+    <Content Include="Content\Main\static\h-ui\images\acrossTab\acrossTab-close.png" />
+    <Content Include="Content\Main\static\h-ui\images\acrossTab\acrossTab.png" />
+    <Content Include="Content\Main\static\h-ui\images\dataTable\sort_asc.png" />
+    <Content Include="Content\Main\static\h-ui\images\dataTable\sort_both.png" />
+    <Content Include="Content\Main\static\h-ui\images\dataTable\sort_desc.png" />
+    <Content Include="Content\Main\static\h-ui\images\dropDown\icon-jt.png" />
+    <Content Include="Content\Main\static\h-ui\images\face\201.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\202.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\203.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\204.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\205.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\206.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\207.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\208.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\209.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\210.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\0.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\1.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\10.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\100.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\101.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\102.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\103.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\104.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\105.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\106.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\11.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\12.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\13.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\14.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\15.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\16.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\18.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\19.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\2.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\20.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\21.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\22.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\23.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\24.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\25.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\26.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\27.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\28.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\29.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\3.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\30.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\31.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\32.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\33.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\34.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\35.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\36.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\37.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\38.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\39.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\4.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\40.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\41.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\42.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\43.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\44.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\45.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\46.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\47.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\48.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\49.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\5.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\50.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\51.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\52.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\53.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\54.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\55.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\56.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\57.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\58.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\59.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\6.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\60.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\61.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\62.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\63.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\64.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\65.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\66.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\67.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\68.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\69.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\7.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\70.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\71.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\72.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\73.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\74.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\75.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\76.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\77.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\78.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\79.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\8.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\80.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\81.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\82.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\83.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\84.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\85.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\86.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\87.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\88.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\89.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\9.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\90.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\91.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\92.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\93.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\94.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\95.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\96.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\97.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\98.gif" />
+    <Content Include="Content\Main\static\h-ui\images\face\QQ\99.gif" />
+    <Content Include="Content\Main\static\h-ui\images\Hui-tags\empty.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\aero%402x.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\aero.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\blue%402x.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\blue.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\green%402x.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\green.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\grey%402x.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\grey.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\minimal%402x.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\minimal.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\orange%402x.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\orange.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\pink%402x.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\pink.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\purple%402x.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\purple.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\red%402x.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\red.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\yellow%402x.png" />
+    <Content Include="Content\Main\static\h-ui\images\iCheck\yellow.png" />
+    <Content Include="Content\Main\static\h-ui\images\iconpic-arrow.png" />
+    <Content Include="Content\Main\static\h-ui\images\jselect\iconpic-arrow-down2.png" />
+    <Content Include="Content\Main\static\h-ui\images\loading\loading-b.gif" />
+    <Content Include="Content\Main\static\h-ui\images\loading\loading-s.gif" />
+    <Content Include="Content\Main\static\h-ui\images\rollpic\unslider-arrow.png" />
+    <Content Include="Content\Main\static\h-ui\images\star\iconpic-star-S-default.png" />
+    <Content Include="Content\Main\static\h-ui\images\star\iconpic-star-S.png" />
+    <Content Include="Content\Main\static\h-ui\images\steps\step_arrow-active.png" />
+    <Content Include="Content\Main\static\h-ui\images\steps\step_arrow.png" />
+    <Content Include="Content\Main\static\h-ui\images\steps\step_bg-active.png" />
+    <Content Include="Content\Main\static\h-ui\images\steps\step_bg.png" />
+    <Content Include="Content\Main\static\h-ui\images\ucnter\avatar-default-S.gif" />
+    <Content Include="Content\Main\static\h-ui\images\ucnter\avatar-default.jpg" />
+    <Content Include="Content\Main\static\h-ui\images\ucnter\avatar.png" />
+    <Content Include="Content\Main\static\h-ui\images\ucnter\noavatar_small.gif" />
+    <Content Include="Content\Main\static\h-ui\images\validform\iconpic-error.png" />
+    <Content Include="Content\Main\static\h-ui\images\validform\iconpic-right.png" />
+    <Content Include="Content\Main\static\h-ui\images\validform\iconpic-warning.png" />
+    <Content Include="Content\Main\static\h-ui\images\verticalTab\tabNav-active.png" />
+    <Content Include="Content\Main\static\h-ui\images\verticalTab\tabNav-hover.png" />
+    <Content Include="Content\Main\static\h-ui\images\verticalTab\tabNav.png" />
+    <Content Include="Content\Main\static\h-ui\images\verticalTab\tabNav_right-active.png" />
+    <Content Include="Content\Main\static\h-ui\images\verticalTab\tabNav_right-hover.png" />
+    <Content Include="Content\Main\static\h-ui\images\verticalTab\tabNav_right.png" />
+    <Content Include="Content\Main\static\h-ui\images\verticalTab\tab_bg.png" />
+    <Content Include="Content\Main\static\h-ui\js\H-ui.js" />
+    <Content Include="Content\Main\static\h-ui\js\H-ui.min.js" />
+    <Content Include="Content\Main\tabnav\css\element.min.css" />
+    <Content Include="Content\Main\tabnav\js\element.min.js" />
+    <Content Include="Content\Main\tabnav\js\vue.min.js" />
+    <Content Include="Content\zTree_v3\css\demo.css" />
+    <Content Include="Content\zTree_v3\css\zTreeStyle\img\diy\1_close.png" />
+    <Content Include="Content\zTree_v3\css\zTreeStyle\img\diy\1_open.png" />
+    <Content Include="Content\zTree_v3\css\zTreeStyle\img\diy\2.png" />
+    <Content Include="Content\zTree_v3\css\zTreeStyle\img\diy\3.png" />
+    <Content Include="Content\zTree_v3\css\zTreeStyle\img\diy\4.png" />
+    <Content Include="Content\zTree_v3\css\zTreeStyle\img\diy\5.png" />
+    <Content Include="Content\zTree_v3\css\zTreeStyle\img\diy\6.png" />
+    <Content Include="Content\zTree_v3\css\zTreeStyle\img\diy\7.png" />
+    <Content Include="Content\zTree_v3\css\zTreeStyle\img\diy\8.png" />
+    <Content Include="Content\zTree_v3\css\zTreeStyle\img\diy\9.png" />
+    <Content Include="Content\zTree_v3\css\zTreeStyle\img\line_conn.gif" />
+    <Content Include="Content\zTree_v3\css\zTreeStyle\img\loading.gif" />
+    <Content Include="Content\zTree_v3\css\zTreeStyle\img\zTreeStandard.gif" />
+    <Content Include="Content\zTree_v3\css\zTreeStyle\img\zTreeStandard.png" />
+    <Content Include="Content\zTree_v3\css\zTreeStyle\zTreeStyle.css" />
+    <Content Include="Content\zTree_v3\js\jquery-1.4.4.min.js" />
+    <Content Include="Content\zTree_v3\js\jquery.ztree.all-3.5.js" />
+    <Content Include="Content\zTree_v3\js\jquery.ztree.all-3.5.min.js" />
+    <Content Include="Content\zTree_v3\js\jquery.ztree.core-3.5.js" />
+    <Content Include="Content\zTree_v3\js\jquery.ztree.core-3.5.min.js" />
+    <Content Include="Content\zTree_v3\js\jquery.ztree.excheck-3.5.js" />
+    <Content Include="Content\zTree_v3\js\jquery.ztree.excheck-3.5.min.js" />
+    <Content Include="Content\zTree_v3\js\jquery.ztree.exedit-3.5.js" />
+    <Content Include="Content\zTree_v3\js\jquery.ztree.exedit-3.5.min.js" />
+    <Content Include="Content\zTree_v3\js\jquery.ztree.exedit.js" />
+    <Content Include="Content\zTree_v3\js\jquery.ztree.exhide-3.5.js" />
+    <Content Include="Content\zTree_v3\js\jquery.ztree.exhide-3.5.min.js" />
+    <Content Include="Global.asax" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\AccessoriessalesManagment\AccessoriessalesManagmentAreaRegistration.cs" />
+    <Compile Include="Areas\AccessoriessalesManagment\Controllers\CargosettlementController.cs" />
+    <Compile Include="Areas\AccessoriessalesManagment\Controllers\PurchaseorderController.cs" />
+    <Compile Include="Areas\AccessoriessalesManagment\Controllers\PurchasereturnController.cs" />
+    <Compile Include="Areas\AccessoriessalesManagment\Controllers\WarehousingController.cs" />
+    <Compile Include="Areas\AccInventManagment\AccInventManagmentAreaRegistration.cs" />
+    <Compile Include="Areas\AccInventManagment\Controllers\InventQueryController.cs" />
+    <Compile Include="Areas\BasicdataManagment\BasicdataManagmentAreaRegistration.cs" />
+    <Compile Include="Areas\BasicdataManagment\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\BasicdataManagment\Controllers\ClientlocaleController.cs" />
+    <Compile Include="Areas\BasicdataManagment\Controllers\CustomerbasicController.cs" />
+    <Compile Include="Areas\BasicdataManagment\Controllers\InformationController.cs" />
+    <Compile Include="Areas\BasicdataManagment\Controllers\MaintenanceController.cs" />
+    <Compile Include="Areas\BasicdataManagment\Controllers\SalescustomerController.cs" />
+    <Compile Include="Areas\BasicdataManagment\Controllers\SupplierbasicController.cs" />
+    <Compile Include="Areas\BasicdataManagment\Controllers\WarehouseController.cs" />
+    <Compile Include="Areas\InventoryManagment\Controllers\AccessoriesqueryController.cs" />
+    <Compile Include="Areas\InventoryManagment\InventoryManagmentAreaRegistration.cs" />
+    <Compile Include="Areas\MechanicsManagment\Controllers\AleserviceController.cs" />
+    <Compile Include="Areas\MechanicsManagment\Controllers\AppointmentController.cs" />
+    <Compile Include="Areas\MechanicsManagment\Controllers\ClaimsettlementController.cs" />
+    <Compile Include="Areas\MechanicsManagment\Controllers\CollageController.cs" />
+    <Compile Include="Areas\MechanicsManagment\Controllers\CompletionController.cs" />
+    <Compile Include="Areas\MechanicsManagment\Controllers\CustomerreceptionController.cs" />
+    <Compile Include="Areas\MechanicsManagment\Controllers\DispatchingController.cs" />
+    <Compile Include="Areas\MechanicsManagment\Controllers\InsuranceclaimsController.cs" />
+    <Compile Include="Areas\MechanicsManagment\Controllers\RapidrepairController.cs" />
+    <Compile Include="Areas\MechanicsManagment\Controllers\SettlementfactoryController.cs" />
+    <Compile Include="Areas\MechanicsManagment\MechanicsManagmentAreaRegistration.cs" />
+    <Compile Include="Areas\OtherfeaturesManagment\Controllers\ArchivesController.cs" />
+    <Compile Include="Areas\OtherfeaturesManagment\Controllers\IncomeprofitsController.cs" />
+    <Compile Include="Areas\OtherfeaturesManagment\Controllers\InsuranceController.cs" />
+    <Compile Include="Areas\OtherfeaturesManagment\Controllers\MaintenanceController.cs" />
+    <Compile Include="Areas\OtherfeaturesManagment\Controllers\MainteprojectsController.cs" />
+    <Compile Include="Areas\OtherfeaturesManagment\Controllers\PickingController.cs" />
+    <Compile Include="Areas\OtherfeaturesManagment\Controllers\PickoneController.cs" />
+    <Compile Include="Areas\OtherfeaturesManagment\Controllers\ReservationController.cs" />
+    <Compile Include="Areas\OtherfeaturesManagment\Controllers\WorkersController.cs" />
+    <Compile Include="Areas\OtherfeaturesManagment\OtherfeaturesManagmentAreaRegistration.cs" />
+    <Compile Include="Areas\ProcurementManagment\Controllers\CustomersettleController.cs" />
+    <Compile Include="Areas\ProcurementManagment\Controllers\SalesorderController.cs" />
+    <Compile Include="Areas\ProcurementManagment\Controllers\SalesreturnController.cs" />
+    <Compile Include="Areas\ProcurementManagment\Controllers\warehousingController.cs" />
+    <Compile Include="Areas\ProcurementManagment\ProcurementManagmentAreaRegistration.cs" />
+    <Compile Include="Areas\PublicManagment\Controllers\CreateSelectController.cs" />
+    <Compile Include="Areas\PublicManagment\Controllers\MaintenanceCusController.cs" />
+    <Compile Include="Areas\PublicManagment\Controllers\RepairItemController.cs" />
+    <Compile Include="Areas\PublicManagment\PublicManagmentAreaRegistration.cs" />
+    <Compile Include="Areas\SystemInstallManagment\Controllers\OperatingController.cs" />
+    <Compile Include="Areas\SystemInstallManagment\Controllers\OperatorageController.cs" />
+    <Compile Include="Areas\SystemInstallManagment\Controllers\PasswordController.cs" />
+    <Compile Include="Areas\SystemInstallManagment\SystemInstallManagmentAreaRegistration.cs" />
+    <Compile Include="Common\AESEncryptHelper.cs" />
+    <Compile Include="Common\Tools.cs" />
+    <Compile Include="Common\ValidCodeUtils.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PW_Balance.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PW_Collage.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PW_Incoming.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PW_Insurance.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PW_Jurisdiction.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PW_Outbound.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PW_Predate.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PW_ProBalance.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PW_Procurement.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PW_Reception.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PW_Restock.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PW_ReturnForm.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PW_SalBalance.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PW_Salesorder.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PW_SalesReturnl.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PW_ThreePacks.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PW_User.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QXQP.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QXQP.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QXQP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QXQP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QXQP.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_BalanceState.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Carder.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ClaimCom.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_CollageDetai.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_CustomerLevel.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_CustomerSou.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_CustomerType.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Department.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Dispatch.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_DocumentState.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_DocumentsType.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Expenses.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_FittingsInfo.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_FittingsType.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ForeMan.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_InsuranceCom.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_InsuranceDetail.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_InsuranceSpe.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Inventory.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Maintainability.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Maintenance.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_MaintenanceCrew.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_MaintenanceCus.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Modular.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ModularType.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_OutboundDetails.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Payment.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_PreOtherCostDetail.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_PreProductDetail.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_PreRepairItemDetail.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ProBalancetDetail.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ProcurementDetail.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_RecOtherCostDetail.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_RecProductDetail.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_RecRepairItemDetail.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Region.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Repair.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_RepairClass.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_RepairItem.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_RepairMan.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_RestockDetail.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ReturnFormDetail.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_SalBalancetDetail.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_SalesCustomer.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_SalesorderDetail.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_SalesReturnDetails.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Subject.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Suppliers.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_SystemUnit.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ThreePacksDetail.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_UserType.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_VehicleType.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Warehouse.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_WarehousingDetail.cs">
+      <DependentUpon>QXQP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vo\BingVo.cs" />
+    <Compile Include="Vo\Bsgrid.cs" />
+    <Compile Include="Vo\BsgridPage.cs" />
+    <Compile Include="Vo\CollageDetaiVo.cs" />
+    <Compile Include="Vo\CollageVo.cs" />
+    <Compile Include="Vo\FittingsInfoVo.cs" />
+    <Compile Include="Vo\GppVo.cs" />
+    <Compile Include="Vo\IncomeVo.cs" />
+    <Compile Include="Vo\MaintenanceCusVo.cs" />
+    <Compile Include="Vo\MaintenanceVo.cs" />
+    <Compile Include="Vo\OutboundDetailsVo.cs" />
+    <Compile Include="Vo\OutboundVo.cs" />
+    <Compile Include="Vo\PredateVo.cs" />
+    <Compile Include="Vo\ProBalanceVo.cs" />
+    <Compile Include="Vo\ProBalatDetailVo.cs" />
+    <Compile Include="Vo\ProcurementVo.cs" />
+    <Compile Include="Vo\ProDetailVo.cs" />
+    <Compile Include="Vo\ProductVo.cs" />
+    <Compile Include="Vo\ProjectsVo.cs" />
+    <Compile Include="Vo\QueryVo.cs" />
+    <Compile Include="Vo\ReceptionVo.cs" />
+    <Compile Include="Vo\RepairItemVo.cs" />
+    <Compile Include="Vo\ReturnDetailVo.cs" />
+    <Compile Include="Vo\ReturnFormVo.cs" />
+    <Compile Include="Vo\ReturnJson.cs" />
+    <Compile Include="Vo\SalBalanceVo.cs" />
+    <Compile Include="Vo\SalesCustomerVo.cs" />
+    <Compile Include="Vo\SalesorderDetailVo.cs" />
+    <Compile Include="Vo\SalesorderVo.cs" />
+    <Compile Include="Vo\SalesReturnDetailsVo.cs" />
+    <Compile Include="Vo\SalesReturnlVo.cs" />
+    <Compile Include="Vo\SalesVo.cs" />
+    <Compile Include="Vo\SelectVo.cs" />
+    <Compile Include="Vo\SpareVo.cs" />
+    <Compile Include="Vo\SupliersVo.cs" />
+    <Compile Include="Vo\TreeVo.cs" />
+    <Compile Include="Vo\UserVo.cs" />
+    <Compile Include="Vo\WarehousinglVo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\QXQP.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QXQP.edmx</DependentUpon>
+      <LastGenOutput>QXQP.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\QXQP.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QXQP.edmx</DependentUpon>
+      <LastGenOutput>QXQP.cs</LastGenOutput>
+    </Content>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Views\Home\Main.cshtml" />
+    <Content Include="Areas\InventoryManagment\Views\web.config" />
+    <Content Include="Areas\MechanicsManagment\Views\web.config" />
+    <Content Include="Areas\SystemInstallManagment\Views\web.config" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Areas\SystemInstallManagment\Views\Password\Password.cshtml" />
+    <Content Include="Areas\MechanicsManagment\Views\Appointment\Appointment.cshtml" />
+    <Content Include="Content\bootstrap-3.3.7-dist\css\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-3.3.7-dist\css\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-3.3.7-dist\css\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-3.3.7-dist\css\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\mimetypes\silk_style\readme" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\paging\readme" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\icons\readme" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\access\readme" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\blue\readme" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\bootstrap\readme" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\easyui\readme" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\flexigrid\readme" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\gray\readme" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\jqgrid\readme" />
+    <Content Include="Content\jquery.bsgrid-1.37\images\skins\sky_blue\readme" />
+    <Content Include="Content\jquery.bsgrid-1.37\readme" />
+    <Content Include="Content\Main\fonts\brocolidry.eot" />
+    <Content Include="Content\Main\fonts\brocolidry.ttf" />
+    <Content Include="Content\Main\fonts\brocolidry.woff" />
+    <Content Include="Content\Main\fonts\ecoico.eot" />
+    <Content Include="Content\Main\fonts\ecoico.ttf" />
+    <Content Include="Content\Main\fonts\ecoico.woff" />
+    <Content Include="Content\Main\fonts\entypo.eot" />
+    <Content Include="Content\Main\fonts\entypo.ttf" />
+    <Content Include="Content\Main\fonts\entypo.woff" />
+    <Content Include="Content\Main\fonts\fontawesome.eot" />
+    <Content Include="Content\Main\fonts\fontawesome.ttf" />
+    <Content Include="Content\Main\fonts\fontawesome.woff" />
+    <Content Include="Content\Main\fonts\icomoon.eot" />
+    <Content Include="Content\Main\fonts\icomoon.ttf" />
+    <Content Include="Content\Main\fonts\icomoon.woff" />
+    <Content Include="Content\Main\fonts\meteo.eot" />
+    <Content Include="Content\Main\fonts\meteo.ttf" />
+    <Content Include="Content\Main\fonts\meteo.woff" />
+    <Content Include="Content\Main\fonts\steadysets.eot" />
+    <Content Include="Content\Main\fonts\steadysets.ttf" />
+    <Content Include="Content\Main\fonts\steadysets.woff" />
+    <Content Include="Content\Main\fonts\vjs.eot" />
+    <Content Include="Content\Main\fonts\vjs.ttf" />
+    <Content Include="Content\Main\fonts\vjs.woff" />
+    <Content Include="Content\Main\lib\Hui-iconfont\1.0.8\iconfont.eot" />
+    <Content Include="Content\Main\lib\Hui-iconfont\1.0.8\iconfont.ttf" />
+    <Content Include="Content\Main\lib\Hui-iconfont\1.0.8\iconfont.woff" />
+    <Content Include="Content\layui\font\iconfont.eot" />
+    <Content Include="Content\layui\font\iconfont.ttf" />
+    <Content Include="Content\layui\font\iconfont.woff" />
+    <Content Include="Content\Main\tabnav\css\fonts\element-icons.ttf" />
+    <Content Include="Content\Main\tabnav\css\fonts\element-icons.woff" />
+    <Content Include="Areas\MechanicsManagment\Views\Customerreception\Customer.cshtml" />
+    <Content Include="Areas\MechanicsManagment\Views\Dispatching\Dispatching.cshtml" />
+    <Content Include="Areas\MechanicsManagment\Views\Collage\Collage.cshtml" />
+    <Content Include="Areas\MechanicsManagment\Views\Collage\DraftBack.cshtml" />
+    <Content Include="Areas\MechanicsManagment\Views\Collage\Restock.cshtml" />
+    <Content Include="Areas\MechanicsManagment\Views\Completion\Completion.cshtml" />
+    <Content Include="Areas\MechanicsManagment\Views\Settlementfactory\Settlement.cshtml" />
+    <Content Include="Areas\MechanicsManagment\Views\Claimsettlement\Claimset.cshtml" />
+    <Content Include="Areas\MechanicsManagment\Views\Insuranceclaims\Insurance.cshtml" />
+    <Content Include="Areas\MechanicsManagment\Views\Rapidrepair\Rapidrepair.cshtml" />
+    <Content Include="Areas\MechanicsManagment\Views\Rapidrepair\Collage.cshtml" />
+    <Content Include="Areas\OtherfeaturesManagment\Views\Archives\Archives.cshtml" />
+    <Content Include="Areas\OtherfeaturesManagment\Views\Incomeprofits\Incomeprofit.cshtml" />
+    <Content Include="Areas\OtherfeaturesManagment\Views\Insurance\Insurance.cshtml" />
+    <Content Include="Areas\OtherfeaturesManagment\Views\Maintenance\Maintenance.cshtml" />
+    <Content Include="Areas\OtherfeaturesManagment\Views\Mainteprojects\Mainteper.cshtml" />
+    <Content Include="Areas\OtherfeaturesManagment\Views\Picking\Picking.cshtml" />
+    <Content Include="Areas\OtherfeaturesManagment\Views\Pickone\Pickone.cshtml" />
+    <Content Include="Areas\OtherfeaturesManagment\Views\Reservation\Reservation.cshtml" />
+    <Content Include="Areas\OtherfeaturesManagment\Views\web.config" />
+    <Content Include="Areas\OtherfeaturesManagment\Views\Workers\Workers.cshtml" />
+    <Content Include="Areas\MechanicsManagment\Views\Aleservice\Aleservice.cshtml" />
+    <Content Include="Content\bootstrap-3.3.7-dist\iconfont\fonts\icomoon.eot" />
+    <Content Include="Content\bootstrap-3.3.7-dist\iconfont\fonts\icomoon.ttf" />
+    <Content Include="Content\bootstrap-3.3.7-dist\iconfont\fonts\icomoon.woff" />
+    <Content Include="Areas\PublicManagment\Views\web.config" />
+    <Content Include="Content\layui\laydate\theme\default\font\iconfont.eot" />
+    <Content Include="Content\layui\laydate\theme\default\font\iconfont.ttf" />
+    <Content Include="Content\layui\laydate\theme\default\font\iconfont.woff" />
+    <Content Include="Content\layui\css\modules\laydate\default\font\iconfont.eot" />
+    <Content Include="Content\layui\css\modules\laydate\default\font\iconfont.ttf" />
+    <Content Include="Content\layui\css\modules\laydate\default\font\iconfont.woff" />
+    <Content Include="Areas\SystemInstallManagment\Views\Operating\Operating.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\AccessoriessalesManagment\Models\" />
+    <Folder Include="Areas\AccessoriessalesManagment\Views\Shared\" />
+    <Folder Include="Areas\AccInventManagment\Models\" />
+    <Folder Include="Areas\AccInventManagment\Views\Shared\" />
+    <Folder Include="Areas\BasicdataManagment\Models\" />
+    <Folder Include="Areas\BasicdataManagment\Views\CategoriesManagment\" />
+    <Folder Include="Areas\BasicdataManagment\Views\ClientlocaleManagment\" />
+    <Folder Include="Areas\BasicdataManagment\Views\CustomerbasicManagment\" />
+    <Folder Include="Areas\BasicdataManagment\Views\InformationManagment\" />
+    <Folder Include="Areas\BasicdataManagment\Views\MaintenanceManagment\" />
+    <Folder Include="Areas\BasicdataManagment\Views\SalescustomerManagment\" />
+    <Folder Include="Areas\BasicdataManagment\Views\Shared\" />
+    <Folder Include="Areas\BasicdataManagment\Views\SupplierbasicManagment\" />
+    <Folder Include="Areas\BasicdataManagment\Views\WarehouseManagment\" />
+    <Folder Include="Areas\InventoryManagment\Models\" />
+    <Folder Include="Areas\InventoryManagment\Views\Operatoragement\" />
+    <Folder Include="Areas\InventoryManagment\Views\Shared\" />
+    <Folder Include="Areas\MechanicsManagment\Models\" />
+    <Folder Include="Areas\MechanicsManagment\Views\AppointmentManagment\" />
+    <Folder Include="Areas\MechanicsManagment\Views\CollageDefault\" />
+    <Folder Include="Areas\MechanicsManagment\Views\CustomerreceptionManagment\" />
+    <Folder Include="Areas\MechanicsManagment\Views\DispatchingManagment\" />
+    <Folder Include="Areas\MechanicsManagment\Views\Shared\" />
+    <Folder Include="Areas\OtherfeaturesManagment\Models\" />
+    <Folder Include="Areas\OtherfeaturesManagment\Views\ArchivesManagment\" />
+    <Folder Include="Areas\OtherfeaturesManagment\Views\IncomeprofitsManagment\" />
+    <Folder Include="Areas\OtherfeaturesManagment\Views\InsuranceManagment\" />
+    <Folder Include="Areas\OtherfeaturesManagment\Views\MaintenanceManagment\" />
+    <Folder Include="Areas\OtherfeaturesManagment\Views\MainteprojectsManagment\" />
+    <Folder Include="Areas\OtherfeaturesManagment\Views\PickingManagment\" />
+    <Folder Include="Areas\OtherfeaturesManagment\Views\PickoneManagmment\" />
+    <Folder Include="Areas\OtherfeaturesManagment\Views\ReservationManagment\" />
+    <Folder Include="Areas\OtherfeaturesManagment\Views\Shared\" />
+    <Folder Include="Areas\OtherfeaturesManagment\Views\WorkersManagment\" />
+    <Folder Include="Areas\ProcurementManagment\Models\" />
+    <Folder Include="Areas\ProcurementManagment\Views\Saleswarehousing\" />
+    <Folder Include="Areas\ProcurementManagment\Views\Shared\" />
+    <Folder Include="Areas\PublicManagment\Models\" />
+    <Folder Include="Areas\PublicManagment\Views\CreateSelect\" />
+    <Folder Include="Areas\PublicManagment\Views\MaintenanceCus\" />
+    <Folder Include="Areas\PublicManagment\Views\RepairItem\" />
+    <Folder Include="Areas\PublicManagment\Views\Shared\" />
+    <Folder Include="Areas\SystemInstallManagment\Models\" />
+    <Folder Include="Areas\SystemInstallManagment\Views\Operatoragement\" />
+    <Folder Include="Areas\SystemInstallManagment\Views\PasswordManagment\" />
+    <Folder Include="Areas\SystemInstallManagment\Views\Shared\" />
+    <Folder Include="Views\CreateSelect\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.Config" />
+    <Content Include="Areas\SystemInstallManagment\Views\Operatorage\Operatorage.cshtml" />
+    <Content Include="Areas\AccInventManagment\Views\web.config" />
+    <Content Include="Areas\AccInventManagment\Views\InventQuery\InventQuery.cshtml" />
+    <Content Include="Views\Home\Welcome.cshtml" />
+    <Content Include="Areas\BasicdataManagment\Views\Categories\Accessories.cshtml" />
+    <Content Include="Areas\BasicdataManagment\Views\Clientlocale\Client.cshtml" />
+    <Content Include="Areas\BasicdataManagment\Views\Customerbasic\Maintenance.cshtml" />
+    <Content Include="Areas\BasicdataManagment\Views\Information\Spare.cshtml" />
+    <Content Include="Areas\BasicdataManagment\Views\Maintenance\Projects.cshtml" />
+    <Content Include="Areas\BasicdataManagment\Views\Salescustomer\Sales.cshtml" />
+    <Content Include="Areas\BasicdataManagment\Views\Supplierbasic\Supplierbasic.cshtml" />
+    <Content Include="Areas\BasicdataManagment\Views\Warehouse\Warehouse.cshtml" />
+    <Content Include="Areas\BasicdataManagment\Views\web.config" />
+    <Content Include="Areas\InventoryManagment\Views\Accessoriesquery\query.cshtml" />
+    <Content Include="Areas\ProcurementManagment\Views\Customersettle\Customersettle.cshtml" />
+    <Content Include="Areas\ProcurementManagment\Views\Salesorder\Salesorder.cshtml" />
+    <Content Include="Areas\ProcurementManagment\Views\Salesreturn\Salesreturn.cshtml" />
+    <Content Include="Areas\ProcurementManagment\Views\warehousing\warehousing.cshtml" />
+    <Content Include="Areas\ProcurementManagment\Views\web.config" />
+    <EntityDeploy Include="Models\QXQP.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QXQP.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\QXQP.edmx.diagram">
+      <DependentUpon>QXQP.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\AccessoriessalesManagment\Views\Cargosettlement\Cargosettlement.cshtml" />
+    <Content Include="Areas\AccessoriessalesManagment\Views\Purchaseorder\Purchaseorder.cshtml" />
+    <Content Include="Areas\AccessoriessalesManagment\Views\Purchasereturn\Purchasereturn.cshtml" />
+    <Content Include="Areas\AccessoriessalesManagment\Views\Warehousing\Warehousing.cshtml" />
+    <Content Include="Areas\AccessoriessalesManagment\Views\web.config" />
+    <None Include="Web.Debug.Config">
+      <DependentUpon>Web.Config</DependentUpon>
+    </None>
+    <None Include="Web.Release.Config">
+      <DependentUpon>Web.Config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>61350</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:61350/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>此项目引用这台计算机上缺少的 NuGet 程序包。使用 NuGet 程序包还原可下载这些程序包。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

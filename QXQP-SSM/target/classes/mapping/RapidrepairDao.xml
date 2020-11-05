@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koi.mapper.RapidrepairDao">
+<!-- 生成单号 -->
+  <select id="maintenanceNum" parameterType="java.lang.String" resultType="int" >
+  select 
+	case when exists( SELECT * FROM PW_Reception WHERE 
+	    MaintenanceNum LIKE CONCAT('%',CONCAT(#{d},'%'))) 
+	then (SELECT TOP 1 SUBSTRING(MaintenanceNum,10,4) from PW_Reception WHERE 
+	    MaintenanceNum LIKE CONCAT('%',CONCAT(#{d},'%'))  ORDER BY  MaintenanceNum DESC)
+	else 0
+  end
+</select>
+</mapper>

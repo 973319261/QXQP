@@ -1,0 +1,1037 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QXQPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="PW_Balance">
+    <Key>
+      <PropertyRef Name="BalanceID" />
+    </Key>
+    <Property Name="BalanceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaymentID" Type="int" Nullable="false" />
+    <Property Name="ReceptionID" Type="int" Nullable="false" />
+    <Property Name="DocumentsTypeID" Type="int" Nullable="false" />
+    <Property Name="ShouldAmount" Type="money" Nullable="false" />
+    <Property Name="OptimalAmount" Type="money" Nullable="false" />
+    <Property Name="CollectionAmount" Type="money" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+    <Property Name="BalanceStateID" Type="int" Nullable="false" />
+    <Property Name="BusinessNum" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PW_Collage">
+    <Key>
+      <PropertyRef Name="CollageID" />
+    </Key>
+    <Property Name="CollageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ForeMan" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="ReceptionID" Type="int" Nullable="false" />
+    <Property Name="CollageDate" Type="date" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="ToAudit" Type="bit" />
+    <Property Name="AuditDate" Type="datetime" />
+    <Property Name="Auditor" Type="nvarchar" MaxLength="5" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+    <Property Name="Operator" Type="nvarchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="PW_Incoming">
+    <Key>
+      <PropertyRef Name="IncomingID" />
+    </Key>
+    <Property Name="IncomingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="WarehouseID" Type="int" Nullable="false" />
+    <Property Name="SuppliersID" Type="int" Nullable="false" />
+    <Property Name="DocumentsTypeID" Type="int" />
+    <Property Name="BalanceStateID" Type="int" Nullable="false" />
+    <Property Name="IncomingNumber" Type="char" MaxLength="15" Nullable="false" />
+    <Property Name="ToAudit" Type="bit" />
+    <Property Name="BilDate" Type="datetime" />
+    <Property Name="PaymentDate" Type="datetime" />
+    <Property Name="Operator" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="Auditor" Type="nvarchar" MaxLength="5" />
+    <Property Name="AuditDate" Type="datetime" />
+    <Property Name="Aamount" Type="money" />
+    <Property Name="Rmark" Type="nvarchar" MaxLength="20" />
+    <Property Name="IndentNumber" Type="char" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="PW_Insurance">
+    <Key>
+      <PropertyRef Name="InsuranceID" />
+    </Key>
+    <Property Name="InsuranceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InsuranceDetailID" Type="int" />
+    <Property Name="InsuranceNum" Type="varchar" MaxLength="15" />
+    <Property Name="OpenDate" Type="datetime" />
+    <Property Name="BalanceDate" Type="date" />
+    <Property Name="ClaimsStaff" Type="nvarchar" MaxLength="5" />
+    <Property Name="ToTicket" Type="bit" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="ToAudit" Type="bit" />
+  </EntityType>
+  <EntityType Name="PW_Jurisdiction">
+    <Key>
+      <PropertyRef Name="JdtionID" />
+    </Key>
+    <Property Name="JdtionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="ModularID" Type="int" Nullable="false" />
+    <Property Name="ToJdtion" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PW_Outbound">
+    <Key>
+      <PropertyRef Name="OutboundID" />
+    </Key>
+    <Property Name="OutboundID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DocumentsTypeID" Type="int" />
+    <Property Name="SalesCustomerID" Type="int" Nullable="false" />
+    <Property Name="Stockremoval" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="OpenDate" Type="date" />
+    <Property Name="Tradeprice" Type="money" />
+    <Property Name="Processingman" Type="nvarchar" MaxLength="5" />
+    <Property Name="Reviewwhet" Type="bit" />
+    <Property Name="Therevie" Type="nvarchar" MaxLength="5" />
+    <Property Name="Auditdates" Type="datetime" />
+    <Property Name="SalesorderNum" Type="nvarchar" MaxLength="20" />
+    <Property Name="Theamount" Type="money" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+    <Property Name="DocuState" Type="nvarchar" MaxLength="10" />
+    <Property Name="BalanceStateID" Type="int" />
+  </EntityType>
+  <EntityType Name="PW_Predate">
+    <Key>
+      <PropertyRef Name="PredateID" />
+    </Key>
+    <Property Name="PredateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CarderID" Type="int" Nullable="false" />
+    <Property Name="VehicleType" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="RepairID" Type="int" Nullable="false" />
+    <Property Name="PredateNum" Type="nchar" MaxLength="25" Nullable="false" />
+    <Property Name="OpenDate" Type="datetime" Nullable="false" />
+    <Property Name="MaintenanceNum" Type="nchar" MaxLength="25" />
+    <Property Name="CarNum" Type="nvarchar" MaxLength="10" />
+    <Property Name="Owner" Type="nvarchar" MaxLength="5" />
+    <Property Name="Telephone" Type="varchar" MaxLength="15" />
+    <Property Name="Contacts" Type="nvarchar" MaxLength="5" />
+    <Property Name="CarMasterPhone" Type="varchar" MaxLength="15" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+    <Property Name="ToAudit" Type="bit" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="Receivable" Type="money" />
+    <Property Name="Describe" Type="nvarchar" MaxLength="50" />
+    <Property Name="ToTransferOrder" Type="bit" />
+    <Property Name="MaintainData" Type="datetime" Nullable="false" />
+    <Property Name="DeserveMoney" Type="money" />
+    <Property Name="CustomerNum" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="PW_ProBalance">
+    <Key>
+      <PropertyRef Name="ProBalanceID" />
+    </Key>
+    <Property Name="ProBalanceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SuppliersID" Type="int" Nullable="false" />
+    <Property Name="Receipt" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="AccountNumber" Type="varchar" MaxLength="18" />
+    <Property Name="CurrentMany" Type="money" />
+    <Property Name="Auditor" Type="nvarchar" MaxLength="5" />
+    <Property Name="ReceiptDate" Type="datetime" />
+    <Property Name="Operator" Type="nvarchar" MaxLength="5" />
+    <Property Name="ToAudit" Type="bit" Nullable="false" />
+    <Property Name="AuditDate" Type="datetime" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+    <Property Name="PaymentID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PW_Procurement">
+    <Key>
+      <PropertyRef Name="ProcurementID" />
+    </Key>
+    <Property Name="ProcurementID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SuppliersID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="WarehouseID" Type="int" Nullable="false" />
+    <Property Name="IndentNumber" Type="char" MaxLength="15" Nullable="false" />
+    <Property Name="Maker" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="MakerDate" Type="date" Nullable="false" />
+    <Property Name="DeliveryDeadline" Type="datetime" />
+    <Property Name="Handsel" Type="money" />
+    <Property Name="ToAudit" Type="bit" />
+    <Property Name="Auditer" Type="nvarchar" MaxLength="5" />
+    <Property Name="AuditerDate" Type="date" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="30" />
+    <Property Name="Documents" Type="nvarchar" MaxLength="5" />
+    <Property Name="Aamount" Type="money" />
+  </EntityType>
+  <EntityType Name="PW_Reception">
+    <Key>
+      <PropertyRef Name="ReceptionID" />
+    </Key>
+    <Property Name="ReceptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DocumentStateID" Type="int" />
+    <Property Name="BalanceStateID" Type="int" />
+    <Property Name="VehicleType" Type="nvarchar" MaxLength="10" />
+    <Property Name="Carder" Type="nvarchar" MaxLength="5" />
+    <Property Name="RepairID" Type="int" Nullable="false" />
+    <Property Name="CustomerSouID" Type="int" />
+    <Property Name="CarNum" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Mileage" Type="varchar" MaxLength="10" />
+    <Property Name="Owner" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="15" />
+    <Property Name="OilQuantity" Type="varchar" MaxLength="5" />
+    <Property Name="OwnerTele" Type="varchar" MaxLength="15" />
+    <Property Name="EngineNum" Type="varchar" MaxLength="15" />
+    <Property Name="Repairman" Type="nvarchar" MaxLength="5" />
+    <Property Name="SelfCoding" Type="varchar" MaxLength="15" />
+    <Property Name="FrameNum" Type="varchar" MaxLength="15" />
+    <Property Name="RepairmanTele" Type="varchar" MaxLength="15" />
+    <Property Name="FactoryDate" Type="datetime" />
+    <Property Name="BalanceDate" Type="datetime" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="AmountPaid" Type="money" />
+    <Property Name="ToAudit" Type="bit" />
+    <Property Name="CompletionDate" Type="date" />
+    <Property Name="Describe" Type="nvarchar" MaxLength="50" />
+    <Property Name="MaintenanceNum" Type="char" MaxLength="13" />
+    <Property Name="CollageState" Type="nvarchar" MaxLength="5" />
+    <Property Name="ToSendWork" Type="bit" />
+    <Property Name="OpenDate" Type="datetime" />
+    <Property Name="MaintenAmount" Type="money" />
+    <Property Name="ToCompletion" Type="bit" />
+    <Property Name="CustomerNum" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="PW_Restock">
+    <Key>
+      <PropertyRef Name="RestockID" />
+    </Key>
+    <Property Name="RestockID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReceptionID" Type="int" />
+    <Property Name="RestockDate" Type="date" />
+    <Property Name="Operator" Type="nvarchar" MaxLength="5" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+    <Property Name="RestockMan" Type="nvarchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="PW_ReturnForm">
+    <Key>
+      <PropertyRef Name="ReturnFormID" />
+    </Key>
+    <Property Name="ReturnFormID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SuppliersID" Type="int" Nullable="false" />
+    <Property Name="WarehouseID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="DocumentsTypeID" Type="int" />
+    <Property Name="BalanceStateID" Type="int" />
+    <Property Name="ReturnNumber" Type="varchar" MaxLength="15" />
+    <Property Name="Maker" Type="nchar" MaxLength="6" />
+    <Property Name="SingleDate" Type="date" />
+    <Property Name="Auditor" Type="nvarchar" MaxLength="5" />
+    <Property Name="AuditDate" Type="datetime" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="ToAudit" Type="bit" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+    <Property Name="PaymentDate" Type="datetime" />
+    <Property Name="SheetDate" Type="date" />
+    <Property Name="IncomingNumber" Type="char" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="PW_SalBalance">
+    <Key>
+      <PropertyRef Name="SalBalanceID" />
+    </Key>
+    <Property Name="SalBalanceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SalesCustomerID" Type="int" Nullable="false" />
+    <Property Name="PaymentID" Type="int" Nullable="false" />
+    <Property Name="Receipt" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="AccountNumber" Type="varchar" MaxLength="18" />
+    <Property Name="CurrentMany" Type="money" />
+    <Property Name="Auditor" Type="nvarchar" MaxLength="5" />
+    <Property Name="ReceiptDate" Type="datetime" />
+    <Property Name="Operator" Type="nvarchar" MaxLength="5" />
+    <Property Name="ToAudit" Type="bit" />
+    <Property Name="AuditDate" Type="datetime" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="PW_Salesorder">
+    <Key>
+      <PropertyRef Name="SalesordeID" />
+    </Key>
+    <Property Name="SalesordeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SalesCustomerID" Type="int" Nullable="false" />
+    <Property Name="SalesorderNum" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Invoicedatek" Type="date" />
+    <Property Name="Invoicno" Type="nvarchar" MaxLength="15" />
+    <Property Name="Deliverydate" Type="datetime" />
+    <Property Name="Operatorf" Type="nvarchar" MaxLength="5" />
+    <Property Name="Reviewwhether" Type="bit" />
+    <Property Name="Thereviewer" Type="nvarchar" MaxLength="5" />
+    <Property Name="Auditdate" Type="datetime" />
+    <Property Name="Theamount" Type="money" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="30" />
+    <Property Name="Documents" Type="nvarchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="PW_SalesReturnl">
+    <Key>
+      <PropertyRef Name="SalesReturnlID" />
+    </Key>
+    <Property Name="SalesReturnlID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DocumentsTypeID" Type="int" />
+    <Property Name="BalanceStateID" Type="int" />
+    <Property Name="SalesCustomerID" Type="int" Nullable="false" />
+    <Property Name="Oddseats" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="OpenDate" Type="date" />
+    <Property Name="Returnmode" Type="nvarchar" MaxLength="10" />
+    <Property Name="Operator" Type="nvarchar" MaxLength="5" />
+    <Property Name="ToAudit" Type="bit" />
+    <Property Name="Auditor" Type="nvarchar" MaxLength="5" />
+    <Property Name="Theamount" Type="money" />
+    <Property Name="Stockremoval" Type="nvarchar" MaxLength="25" />
+    <Property Name="AuditDate" Type="datetime" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="PW_ThreePacks">
+    <Key>
+      <PropertyRef Name="ThreePacksID" />
+    </Key>
+    <Property Name="ThreePacksID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ThreePacksDetailID" Type="int" Nullable="false" />
+    <Property Name="InsuranceNum" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="OpenDate" Type="datetime" Nullable="false" />
+    <Property Name="BalanceDate" Type="date" />
+    <Property Name="ClaimsStaff" Type="nvarchar" MaxLength="5" />
+    <Property Name="ToTicket" Type="bit" Nullable="false" />
+    <Property Name="SelfCoding" Type="varchar" MaxLength="15" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="ToAudit" Type="bit" />
+    <Property Name="Operator" Type="nvarchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="PW_User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserTypeID" Type="int" />
+    <Property Name="DepartmentID" Type="int" />
+    <Property Name="UserNum" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar(max)" Nullable="false" />
+    <Property Name="Remark" Type="nchar" MaxLength="20" />
+    <Property Name="ToUse" Type="bit" />
+  </EntityType>
+  <EntityType Name="SYS_BalanceState">
+    <Key>
+      <PropertyRef Name="BalanceStateID" />
+    </Key>
+    <Property Name="BalanceStateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BalanceState" Type="nvarchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="SYS_Carder">
+    <Key>
+      <PropertyRef Name="CarderID" />
+    </Key>
+    <Property Name="CarderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CarderName" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="ToDeactivate" Type="bit" />
+  </EntityType>
+  <EntityType Name="SYS_ClaimCom">
+    <Key>
+      <PropertyRef Name="ClaimComID" />
+    </Key>
+    <Property Name="ClaimComID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClaimComName" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="ToDeactivate" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_CollageDetai">
+    <Key>
+      <PropertyRef Name="CollageDetaiID" />
+    </Key>
+    <Property Name="CollageDetaiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaintainabilityID" Type="int" Nullable="false" />
+    <Property Name="WarehouseID" Type="int" Nullable="false" />
+    <Property Name="CollageID" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UnitPrice" Type="money" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+    <Property Name="Position" Type="nvarchar" MaxLength="10" />
+    <Property Name="VehicleType" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="FittingsName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="FittingsCode" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="FittingsSpec" Type="nvarchar" MaxLength="10" />
+    <Property Name="SystemUnit" Type="nvarchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="SYS_CustomerLevel">
+    <Key>
+      <PropertyRef Name="CustomerLevelID" />
+    </Key>
+    <Property Name="CustomerLevelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerLevel" Type="char" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="SYS_CustomerSou">
+    <Key>
+      <PropertyRef Name="CustomerSouID" />
+    </Key>
+    <Property Name="CustomerSouID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerSou" Type="nvarchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_CustomerType">
+    <Key>
+      <PropertyRef Name="CustomerTypeID" />
+    </Key>
+    <Property Name="CustomerTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerType" Type="nvarchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="SYS_Department">
+    <Key>
+      <PropertyRef Name="DepartmentID" />
+    </Key>
+    <Property Name="DepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentName" Type="nvarchar" MaxLength="5" />
+    <Property Name="DepartmentNun" Type="varchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="SYS_Dispatch">
+    <Key>
+      <PropertyRef Name="DispatchID" />
+    </Key>
+    <Property Name="DispatchID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DispatchName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Price" Type="money" />
+  </EntityType>
+  <EntityType Name="SYS_DocumentState">
+    <Key>
+      <PropertyRef Name="DocumentStateID" />
+    </Key>
+    <Property Name="DocumentStateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DocumentState" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="SYS_DocumentsType">
+    <Key>
+      <PropertyRef Name="DocumentsTypeID" />
+    </Key>
+    <Property Name="DocumentsTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DocumentsType" Type="nvarchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="SYS_Expenses">
+    <Key>
+      <PropertyRef Name="ExpensesID" />
+    </Key>
+    <Property Name="ExpensesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExpensesName" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="Cost" Type="money" />
+    <Property Name="Price" Type="money" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+    <Property Name="ToDeactivate" Type="bit" />
+  </EntityType>
+  <EntityType Name="SYS_FittingsInfo">
+    <Key>
+      <PropertyRef Name="FittingsInfoID" />
+    </Key>
+    <Property Name="FittingsInfoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FittingsTypeID" Type="int" Nullable="false" />
+    <Property Name="SystemUnitID" Type="int" Nullable="false" />
+    <Property Name="VehicleTypeID" Type="int" Nullable="false" />
+    <Property Name="SuppliersID" Type="int" Nullable="false" />
+    <Property Name="FittingsName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="FittingsCode" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="Barcode" Type="varchar" MaxLength="10" />
+    <Property Name="Specification" Type="nvarchar" MaxLength="10" />
+    <Property Name="Brand" Type="nvarchar" MaxLength="5" />
+    <Property Name="Intake" Type="money" Nullable="false" />
+    <Property Name="SalesPrice" Type="money" Nullable="false" />
+    <Property Name="WholesalePrice" Type="money" Nullable="false" />
+    <Property Name="InventoryMax" Type="int" />
+    <Property Name="InventoryMin" Type="int" />
+    <Property Name="OpenPrice" Type="money" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+    <Property Name="Picture" Type="image" />
+    <Property Name="InvenQuan" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="SYS_FittingsType">
+    <Key>
+      <PropertyRef Name="FittingsTypeID" />
+    </Key>
+    <Property Name="FittingsTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FittingsTypeName" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="FittingsTypeNum" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="SYS_ForeMan">
+    <Key>
+      <PropertyRef Name="ForeManID" />
+    </Key>
+    <Property Name="ForeManID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ForeManName" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="ToDeactivate" Type="bit" />
+  </EntityType>
+  <EntityType Name="SYS_InsuranceCom">
+    <Key>
+      <PropertyRef Name="InsuranceComID" />
+    </Key>
+    <Property Name="InsuranceComID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InsuranceComName" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="ToDeactivate" Type="bit" />
+    <Property Name="InsuranceComNum" Type="varchar" MaxLength="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_InsuranceDetail">
+    <Key>
+      <PropertyRef Name="InsuranceDetailID" />
+    </Key>
+    <Property Name="InsuranceDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReceptionID" Type="int" Nullable="false" />
+    <Property Name="InsuranceComID" Type="int" />
+    <Property Name="ReportNum" Type="varchar" MaxLength="15" />
+    <Property Name="PolicyNum" Type="varchar" MaxLength="15" />
+    <Property Name="PolicyMoney" Type="money" />
+    <Property Name="InsuranceMoney" Type="money" />
+  </EntityType>
+  <EntityType Name="SYS_InsuranceSpe">
+    <Key>
+      <PropertyRef Name="InsuranceSpeID" />
+    </Key>
+    <Property Name="InsuranceSpeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InsuranceSpeName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="InsuranceSpeNum" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="ToDeactivate" Type="bit" />
+  </EntityType>
+  <EntityType Name="SYS_Inventory">
+    <Key>
+      <PropertyRef Name="InventoryID" />
+    </Key>
+    <Property Name="InventoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WarehouseID" Type="int" Nullable="false" />
+    <Property Name="FittingsCode" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="FittingsName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="VehicleType" Type="nvarchar" MaxLength="10" />
+    <Property Name="SystemUnit" Type="nvarchar" MaxLength="5" />
+    <Property Name="InvenQuan" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="NewIntake" Type="money" />
+    <Property Name="WholePrice" Type="money" />
+    <Property Name="SalePrice" Type="money" />
+    <Property Name="MinInventory" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Position" Type="nvarchar" MaxLength="10" />
+    <Property Name="FittingsType" Type="nvarchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_Maintainability">
+    <Key>
+      <PropertyRef Name="MaintainabilityID" />
+    </Key>
+    <Property Name="MaintainabilityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaintainabilityName" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="MaintainabilityNum" Type="varchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_Maintenance">
+    <Key>
+      <PropertyRef Name="MaintenanceID" />
+    </Key>
+    <Property Name="MaintenanceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaintenanceName" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="ToDeactivate" Type="bit" />
+  </EntityType>
+  <EntityType Name="SYS_MaintenanceCrew">
+    <Key>
+      <PropertyRef Name="MaintenanceCrewID" />
+    </Key>
+    <Property Name="MaintenanceCrewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaintenanceCrewName" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="MaintenanceCrewNum" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="ToDeactivate" Type="bit" />
+  </EntityType>
+  <EntityType Name="SYS_MaintenanceCus">
+    <Key>
+      <PropertyRef Name="MaintenanceCusID" />
+    </Key>
+    <Property Name="MaintenanceCusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VehicleType" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="InsuranceComID" Type="int" Nullable="false" />
+    <Property Name="InsuranceSpeID" Type="int" Nullable="false" />
+    <Property Name="DepartmentID" Type="int" Nullable="false" />
+    <Property Name="CarderID" Type="int" Nullable="false" />
+    <Property Name="CustomerTypeID" Type="int" Nullable="false" />
+    <Property Name="CustomerLevelID" Type="int" Nullable="false" />
+    <Property Name="RegionID" Type="int" Nullable="false" />
+    <Property Name="CustomerSouID" Type="int" Nullable="false" />
+    <Property Name="Owner" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="Birthday" Type="date" />
+    <Property Name="MobilePhone" Type="varchar" MaxLength="15" />
+    <Property Name="IdNumber" Type="char" MaxLength="19" />
+    <Property Name="LicenseCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="EngineNum" Type="varchar" MaxLength="15" />
+    <Property Name="FrameNum" Type="varchar" MaxLength="15" />
+    <Property Name="RepairMan" Type="nvarchar" MaxLength="5" />
+    <Property Name="RepairTele" Type="varchar" MaxLength="15" />
+    <Property Name="InitialStartDate" Type="date" />
+    <Property Name="InitialEndDate" Type="date" />
+    <Property Name="Address" Type="nvarchar" MaxLength="15" />
+    <Property Name="CustomerNum" Type="varchar" MaxLength="25" />
+    <Property Name="DriveDate" Type="date" />
+    <Property Name="DrivingDate" Type="date" />
+    <Property Name="InputPerson" Type="nchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="SYS_Modular">
+    <Key>
+      <PropertyRef Name="ModularID" />
+    </Key>
+    <Property Name="ModularID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModularTypeID" Type="int" Nullable="false" />
+    <Property Name="ModularName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ModularCode" Type="nchar" MaxLength="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_ModularType">
+    <Key>
+      <PropertyRef Name="ModularTypeID" />
+    </Key>
+    <Property Name="ModularTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModularTypeName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ModularTypeCode" Type="nchar" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="SYS_OutboundDetails">
+    <Key>
+      <PropertyRef Name="OutboundDetailsID" />
+    </Key>
+    <Property Name="OutboundDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OutboundID" Type="int" Nullable="false" />
+    <Property Name="FittingsInfoID" Type="int" />
+    <Property Name="WarehouseID" Type="int" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Unitcosts" Type="money" />
+    <Property Name="Discount" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Figure" Type="money" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="SYS_Payment">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+    </Key>
+    <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaymentName" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="ToDeactivate" Type="bit" />
+  </EntityType>
+  <EntityType Name="SYS_PreOtherCostDetail">
+    <Key>
+      <PropertyRef Name="PreOtherCostDetailID" />
+    </Key>
+    <Property Name="PreOtherCostDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PredateID" Type="int" Nullable="false" />
+    <Property Name="ExpensesID" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+    <Property Name="Discount" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="AmountPaid" Type="money" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="SYS_PreProductDetail">
+    <Key>
+      <PropertyRef Name="PreProductDetailID" />
+    </Key>
+    <Property Name="PreProductDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PredateID" Type="int" Nullable="false" />
+    <Property Name="MaintainabilityID" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="UnitPrice" Type="money" Nullable="false" />
+    <Property Name="Discount" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+    <Property Name="FittingsCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="FittingsName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="SystemUnit" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="VehicleType" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_PreRepairItemDetail">
+    <Key>
+      <PropertyRef Name="PreRepairItemDetailID" />
+    </Key>
+    <Property Name="PreRepairItemDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RepairItemID" Type="int" Nullable="false" />
+    <Property Name="PredateID" Type="int" Nullable="false" />
+    <Property Name="MaintainabilityID" Type="int" Nullable="false" />
+    <Property Name="RepairCharge" Type="money" Nullable="false" />
+    <Property Name="Discount" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="AmountPaid" Type="money" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="SYS_ProBalancetDetail">
+    <Key>
+      <PropertyRef Name="ProBalancetDetailID" />
+    </Key>
+    <Property Name="ProBalancetDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BalanceStateID" Type="int" />
+    <Property Name="DocumentsTypeID" Type="int" />
+    <Property Name="ProBalanceID" Type="int" Nullable="false" />
+    <Property Name="ToCleared" Type="bit" />
+    <Property Name="SingleNumber" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="DocumentsDate" Type="datetime" />
+    <Property Name="ShouldAmount" Type="money" />
+    <Property Name="PaidAmount" Type="money" />
+    <Property Name="SuperioAmountr" Type="money" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+    <Property Name="ThisSuperioAmountr" Type="money" />
+    <Property Name="ThisShouldAmount" Type="money" />
+    <Property Name="PaymentID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_ProcurementDetail">
+    <Key>
+      <PropertyRef Name="ProcurementDetailID" />
+    </Key>
+    <Property Name="ProcurementDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProcurementID" Type="int" Nullable="false" />
+    <Property Name="FittingsInfoID" Type="int" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UnitPrice" Type="money" />
+    <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="FirmQuantity" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="FittingsType" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="SYS_RecOtherCostDetail">
+    <Key>
+      <PropertyRef Name="RecOtherCostDetailID" />
+    </Key>
+    <Property Name="ReceptionID" Type="int" Nullable="false" />
+    <Property Name="ExpensesID" Type="int" Nullable="false" />
+    <Property Name="RecOtherCostDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+    <Property Name="Discount" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="AmountPaid" Type="money" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="SYS_RecProductDetail">
+    <Key>
+      <PropertyRef Name="RecProductDetailID" />
+    </Key>
+    <Property Name="RecProductDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaintainabilityID" Type="int" Nullable="false" />
+    <Property Name="ReceptionID" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="UnitPrice" Type="money" Nullable="false" />
+    <Property Name="Discount" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+    <Property Name="FittingsCode" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="FittingsName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="VehicleType" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+    <Property Name="FittingsSpec" Type="nvarchar" MaxLength="10" />
+    <Property Name="SystemUnit" Type="nvarchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_RecRepairItemDetail">
+    <Key>
+      <PropertyRef Name="RecRepairItemDetailID" />
+    </Key>
+    <Property Name="RepairItemID" Type="int" Nullable="false" />
+    <Property Name="MaintainabilityID" Type="int" Nullable="false" />
+    <Property Name="ReceptionID" Type="int" Nullable="false" />
+    <Property Name="MaintenanceCrewID" Type="int" />
+    <Property Name="RepairManID" Type="int" />
+    <Property Name="RecRepairItemDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RepairCharge" Type="money" Nullable="false" />
+    <Property Name="Discount" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="AmountPaid" Type="money" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+    <Property Name="JobHours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="JobAmount" Type="money" />
+    <Property Name="CompletionDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SYS_Region">
+    <Key>
+      <PropertyRef Name="RegionID" />
+    </Key>
+    <Property Name="RegionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SireID" Type="int" Nullable="false" />
+    <Property Name="ViscountID" Type="int" Nullable="false" />
+    <Property Name="RegionName" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="RegionNum" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="ToDeactivate" Type="bit" />
+  </EntityType>
+  <EntityType Name="SYS_Repair">
+    <Key>
+      <PropertyRef Name="RepairID" />
+    </Key>
+    <Property Name="RepairID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RepairName" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="TrackingDays" Type="varchar" MaxLength="3" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="SYS_RepairClass">
+    <Key>
+      <PropertyRef Name="RepairClassID" />
+    </Key>
+    <Property Name="RepairClassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RepairClassNum" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="RepairClassName" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="TimeUnit" Type="money" />
+  </EntityType>
+  <EntityType Name="SYS_RepairItem">
+    <Key>
+      <PropertyRef Name="RepairItemID" />
+    </Key>
+    <Property Name="RepairItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaintenanceID" Type="int" Nullable="false" />
+    <Property Name="RepairClassID" Type="int" Nullable="false" />
+    <Property Name="RepairItemNum" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="RepairItemName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="PinYinCode" Type="varchar" MaxLength="10" />
+    <Property Name="RepairCharge" Type="money" />
+    <Property Name="TimeUnit" Type="money" />
+    <Property Name="WorkTime" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Remark" Type="nchar" MaxLength="20" />
+    <Property Name="ToDeactivate" Type="bit" />
+    <Property Name="Money" Type="money" />
+  </EntityType>
+  <EntityType Name="SYS_RepairMan">
+    <Key>
+      <PropertyRef Name="RepairManID" />
+    </Key>
+    <Property Name="RepairManID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RepairManName" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="RepairManNum" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="SYS_RestockDetail">
+    <Key>
+      <PropertyRef Name="RestockDetaiID" />
+    </Key>
+    <Property Name="RestockDetaiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CollageDetaiID" Type="int" />
+    <Property Name="RestockID" Type="int" />
+  </EntityType>
+  <EntityType Name="SYS_ReturnFormDetail">
+    <Key>
+      <PropertyRef Name="ReturnFormDetailID" />
+    </Key>
+    <Property Name="ReturnFormDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReturnFormID" Type="int" Nullable="false" />
+    <Property Name="FittingsInfoID" Type="int" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UnitPrice" Type="money" />
+    <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="SYS_SalBalancetDetail">
+    <Key>
+      <PropertyRef Name="SalBalancetDetailID" />
+    </Key>
+    <Property Name="SalBalancetDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SalBalanceID" Type="int" />
+    <Property Name="DocumentsTypeID" Type="int" />
+    <Property Name="BalanceStateID" Type="int" />
+    <Property Name="ToCleared" Type="bit" />
+    <Property Name="SingleNumber" Type="nvarchar" MaxLength="25" />
+    <Property Name="DocumentsDate" Type="datetime" />
+    <Property Name="ShouldAmount" Type="money" />
+    <Property Name="PaidAmount" Type="money" />
+    <Property Name="SuperioAmountr" Type="money" />
+    <Property Name="ThisSuperioAmountr" Type="money" />
+    <Property Name="ThisShouldAmount" Type="money" />
+  </EntityType>
+  <EntityType Name="SYS_SalesCustomer">
+    <Key>
+      <PropertyRef Name="SalesCustomerID" />
+    </Key>
+    <Property Name="SalesCustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerLevelID" Type="int" Nullable="false" />
+    <Property Name="CustomerTypeID" Type="int" Nullable="false" />
+    <Property Name="PaymentID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="RegionID" Type="int" Nullable="false" />
+    <Property Name="CustomerSouID" Type="int" Nullable="false" />
+    <Property Name="CustomerCode" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="20" />
+    <Property Name="ZipCode" Type="varchar" MaxLength="12" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="15" />
+    <Property Name="PinYinCode" Type="varchar" MaxLength="15" />
+    <Property Name="IdNumber" Type="varchar" MaxLength="20" />
+    <Property Name="Contacts" Type="nvarchar" MaxLength="5" />
+    <Property Name="Facsimile" Type="varchar" MaxLength="20" />
+    <Property Name="TelePhone" Type="varchar" MaxLength="15" />
+    <Property Name="MobilePhone" Type="varchar" MaxLength="15" />
+    <Property Name="Emai" Type="varchar" MaxLength="20" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+    <Property Name="InputPerson" Type="nvarchar" MaxLength="5" />
+    <Property Name="ToDeactivate" Type="bit" />
+  </EntityType>
+  <EntityType Name="SYS_SalesorderDetail">
+    <Key>
+      <PropertyRef Name="SalesorderDetailID" />
+    </Key>
+    <Property Name="SalesorderDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SalesordeID" Type="int" Nullable="false" />
+    <Property Name="WarehouseID" Type="int" Nullable="false" />
+    <Property Name="FittingsInfoID" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Discount" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Money" Type="money" />
+    <Property Name="Atretail" Type="varchar" MaxLength="15" />
+    <Property Name="Unitcost" Type="money" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+    <Property Name="FittingsType" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="SYS_SalesReturnDetails">
+    <Key>
+      <PropertyRef Name="SalesReturnDetailsID" />
+    </Key>
+    <Property Name="SalesReturnDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FittingsInfoID" Type="int" Nullable="false" />
+    <Property Name="WarehouseID" Type="int" Nullable="false" />
+    <Property Name="SalesReturnlID" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Unitcoster" Type="money" />
+    <Property Name="Discounts" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="Userdefined" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="SYS_Subject">
+    <Key>
+      <PropertyRef Name="SubjectID" />
+    </Key>
+    <Property Name="SubjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubjectName" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="SubjectNum" Type="varchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_Suppliers">
+    <Key>
+      <PropertyRef Name="SuppliersID" />
+    </Key>
+    <Property Name="SuppliersID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SuppliersFirm" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="SuppliersName" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="PinYinCode" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="MainBusiness" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="15" />
+    <Property Name="Contacts" Type="nvarchar" MaxLength="3" />
+    <Property Name="TelePhone" Type="varchar" MaxLength="15" />
+    <Property Name="MobilePhone" Type="varchar" MaxLength="15" />
+    <Property Name="Facsimile" Type="char" MaxLength="15" />
+    <Property Name="Mailbox" Type="char" MaxLength="15" />
+    <Property Name="Url" Type="char" MaxLength="15" />
+    <Property Name="OpenBank" Type="nvarchar" MaxLength="10" />
+    <Property Name="TaxNumber" Type="varchar" MaxLength="15" />
+    <Property Name="InputPerson" Type="nvarchar" MaxLength="5" />
+    <Property Name="StorageAdd" Type="nvarchar" MaxLength="15" />
+    <Property Name="StorageTele" Type="varchar" MaxLength="15" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+    <Property Name="ToDeactivate" Type="bit" />
+    <Property Name="BalanceMode" Type="nvarchar" MaxLength="5" />
+    <Property Name="DeserveMoney" Type="money" />
+  </EntityType>
+  <EntityType Name="SYS_SystemUnit">
+    <Key>
+      <PropertyRef Name="SystemUnitID" />
+    </Key>
+    <Property Name="SystemUnitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SystemUnit" Type="nvarchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_ThreePacksDetail">
+    <Key>
+      <PropertyRef Name="ThreePacksDetailID" />
+    </Key>
+    <Property Name="ThreePacksDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReceptionID" Type="int" Nullable="false" />
+    <Property Name="ClaimComID" Type="int" />
+    <Property Name="ClaimMoney" Type="money" />
+  </EntityType>
+  <EntityType Name="SYS_UserType">
+    <Key>
+      <PropertyRef Name="UserTypeID" />
+    </Key>
+    <Property Name="UserTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_VehicleType">
+    <Key>
+      <PropertyRef Name="VehicleTypeID" />
+    </Key>
+    <Property Name="VehicleTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VehicleType" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="ToDeactivate" Type="bit" />
+  </EntityType>
+  <EntityType Name="SYS_Warehouse">
+    <Key>
+      <PropertyRef Name="WarehouseID" />
+    </Key>
+    <Property Name="WarehouseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WarehouseName" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="WarehouseNum" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="ToDeactivate" Type="bit" />
+  </EntityType>
+  <EntityType Name="SYS_WarehousingDetail">
+    <Key>
+      <PropertyRef Name="WarehousingDetailID" />
+    </Key>
+    <Property Name="WarehousingDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IncomingID" Type="int" Nullable="false" />
+    <Property Name="FittingsInfoID" Type="int" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UnitPrice" Type="money" />
+    <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="20" />
+    <Property Name="Position" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityContainer Name="QXQPModelStoreContainer">
+    <EntitySet Name="PW_Balance" EntityType="Self.PW_Balance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PW_Collage" EntityType="Self.PW_Collage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PW_Incoming" EntityType="Self.PW_Incoming" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PW_Insurance" EntityType="Self.PW_Insurance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PW_Jurisdiction" EntityType="Self.PW_Jurisdiction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PW_Outbound" EntityType="Self.PW_Outbound" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PW_Predate" EntityType="Self.PW_Predate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PW_ProBalance" EntityType="Self.PW_ProBalance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PW_Procurement" EntityType="Self.PW_Procurement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PW_Reception" EntityType="Self.PW_Reception" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PW_Restock" EntityType="Self.PW_Restock" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PW_ReturnForm" EntityType="Self.PW_ReturnForm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PW_SalBalance" EntityType="Self.PW_SalBalance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PW_Salesorder" EntityType="Self.PW_Salesorder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PW_SalesReturnl" EntityType="Self.PW_SalesReturnl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PW_ThreePacks" EntityType="Self.PW_ThreePacks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PW_User" EntityType="Self.PW_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_BalanceState" EntityType="Self.SYS_BalanceState" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_Carder" EntityType="Self.SYS_Carder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_ClaimCom" EntityType="Self.SYS_ClaimCom" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_CollageDetai" EntityType="Self.SYS_CollageDetai" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_CustomerLevel" EntityType="Self.SYS_CustomerLevel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_CustomerSou" EntityType="Self.SYS_CustomerSou" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_CustomerType" EntityType="Self.SYS_CustomerType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_Department" EntityType="Self.SYS_Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_Dispatch" EntityType="Self.SYS_Dispatch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_DocumentState" EntityType="Self.SYS_DocumentState" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_DocumentsType" EntityType="Self.SYS_DocumentsType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_Expenses" EntityType="Self.SYS_Expenses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_FittingsInfo" EntityType="Self.SYS_FittingsInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_FittingsType" EntityType="Self.SYS_FittingsType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_ForeMan" EntityType="Self.SYS_ForeMan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_InsuranceCom" EntityType="Self.SYS_InsuranceCom" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_InsuranceDetail" EntityType="Self.SYS_InsuranceDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_InsuranceSpe" EntityType="Self.SYS_InsuranceSpe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_Inventory" EntityType="Self.SYS_Inventory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_Maintainability" EntityType="Self.SYS_Maintainability" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_Maintenance" EntityType="Self.SYS_Maintenance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_MaintenanceCrew" EntityType="Self.SYS_MaintenanceCrew" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_MaintenanceCus" EntityType="Self.SYS_MaintenanceCus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_Modular" EntityType="Self.SYS_Modular" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_ModularType" EntityType="Self.SYS_ModularType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_OutboundDetails" EntityType="Self.SYS_OutboundDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_Payment" EntityType="Self.SYS_Payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_PreOtherCostDetail" EntityType="Self.SYS_PreOtherCostDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_PreProductDetail" EntityType="Self.SYS_PreProductDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_PreRepairItemDetail" EntityType="Self.SYS_PreRepairItemDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_ProBalancetDetail" EntityType="Self.SYS_ProBalancetDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_ProcurementDetail" EntityType="Self.SYS_ProcurementDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_RecOtherCostDetail" EntityType="Self.SYS_RecOtherCostDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_RecProductDetail" EntityType="Self.SYS_RecProductDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_RecRepairItemDetail" EntityType="Self.SYS_RecRepairItemDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_Region" EntityType="Self.SYS_Region" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_Repair" EntityType="Self.SYS_Repair" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_RepairClass" EntityType="Self.SYS_RepairClass" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_RepairItem" EntityType="Self.SYS_RepairItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_RepairMan" EntityType="Self.SYS_RepairMan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_RestockDetail" EntityType="Self.SYS_RestockDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_ReturnFormDetail" EntityType="Self.SYS_ReturnFormDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_SalBalancetDetail" EntityType="Self.SYS_SalBalancetDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_SalesCustomer" EntityType="Self.SYS_SalesCustomer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_SalesorderDetail" EntityType="Self.SYS_SalesorderDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_SalesReturnDetails" EntityType="Self.SYS_SalesReturnDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_Subject" EntityType="Self.SYS_Subject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_Suppliers" EntityType="Self.SYS_Suppliers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_SystemUnit" EntityType="Self.SYS_SystemUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_ThreePacksDetail" EntityType="Self.SYS_ThreePacksDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_UserType" EntityType="Self.SYS_UserType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_VehicleType" EntityType="Self.SYS_VehicleType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_Warehouse" EntityType="Self.SYS_Warehouse" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SYS_WarehousingDetail" EntityType="Self.SYS_WarehousingDetail" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

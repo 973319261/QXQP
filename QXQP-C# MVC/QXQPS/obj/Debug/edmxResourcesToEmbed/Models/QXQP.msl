@@ -1,0 +1,1037 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QXQPModelStoreContainer" CdmEntityContainer="QXQPEntities">
+    <EntitySetMapping Name="PW_Balance">
+      <EntityTypeMapping TypeName="QXQPModel.PW_Balance">
+        <MappingFragment StoreEntitySet="PW_Balance">
+          <ScalarProperty Name="BalanceID" ColumnName="BalanceID" />
+          <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+          <ScalarProperty Name="ReceptionID" ColumnName="ReceptionID" />
+          <ScalarProperty Name="DocumentsTypeID" ColumnName="DocumentsTypeID" />
+          <ScalarProperty Name="ShouldAmount" ColumnName="ShouldAmount" />
+          <ScalarProperty Name="OptimalAmount" ColumnName="OptimalAmount" />
+          <ScalarProperty Name="CollectionAmount" ColumnName="CollectionAmount" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="BalanceStateID" ColumnName="BalanceStateID" />
+          <ScalarProperty Name="BusinessNum" ColumnName="BusinessNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PW_Collage">
+      <EntityTypeMapping TypeName="QXQPModel.PW_Collage">
+        <MappingFragment StoreEntitySet="PW_Collage">
+          <ScalarProperty Name="CollageID" ColumnName="CollageID" />
+          <ScalarProperty Name="ForeMan" ColumnName="ForeMan" />
+          <ScalarProperty Name="ReceptionID" ColumnName="ReceptionID" />
+          <ScalarProperty Name="CollageDate" ColumnName="CollageDate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="ToAudit" ColumnName="ToAudit" />
+          <ScalarProperty Name="AuditDate" ColumnName="AuditDate" />
+          <ScalarProperty Name="Auditor" ColumnName="Auditor" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Operator" ColumnName="Operator" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PW_Incoming">
+      <EntityTypeMapping TypeName="QXQPModel.PW_Incoming">
+        <MappingFragment StoreEntitySet="PW_Incoming">
+          <ScalarProperty Name="IncomingID" ColumnName="IncomingID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+          <ScalarProperty Name="SuppliersID" ColumnName="SuppliersID" />
+          <ScalarProperty Name="DocumentsTypeID" ColumnName="DocumentsTypeID" />
+          <ScalarProperty Name="BalanceStateID" ColumnName="BalanceStateID" />
+          <ScalarProperty Name="IncomingNumber" ColumnName="IncomingNumber" />
+          <ScalarProperty Name="ToAudit" ColumnName="ToAudit" />
+          <ScalarProperty Name="BilDate" ColumnName="BilDate" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <ScalarProperty Name="Operator" ColumnName="Operator" />
+          <ScalarProperty Name="Auditor" ColumnName="Auditor" />
+          <ScalarProperty Name="AuditDate" ColumnName="AuditDate" />
+          <ScalarProperty Name="Aamount" ColumnName="Aamount" />
+          <ScalarProperty Name="Rmark" ColumnName="Rmark" />
+          <ScalarProperty Name="IndentNumber" ColumnName="IndentNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PW_Insurance">
+      <EntityTypeMapping TypeName="QXQPModel.PW_Insurance">
+        <MappingFragment StoreEntitySet="PW_Insurance">
+          <ScalarProperty Name="InsuranceID" ColumnName="InsuranceID" />
+          <ScalarProperty Name="InsuranceDetailID" ColumnName="InsuranceDetailID" />
+          <ScalarProperty Name="InsuranceNum" ColumnName="InsuranceNum" />
+          <ScalarProperty Name="OpenDate" ColumnName="OpenDate" />
+          <ScalarProperty Name="BalanceDate" ColumnName="BalanceDate" />
+          <ScalarProperty Name="ClaimsStaff" ColumnName="ClaimsStaff" />
+          <ScalarProperty Name="ToTicket" ColumnName="ToTicket" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="ToAudit" ColumnName="ToAudit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PW_Jurisdiction">
+      <EntityTypeMapping TypeName="QXQPModel.PW_Jurisdiction">
+        <MappingFragment StoreEntitySet="PW_Jurisdiction">
+          <ScalarProperty Name="JdtionID" ColumnName="JdtionID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ModularID" ColumnName="ModularID" />
+          <ScalarProperty Name="ToJdtion" ColumnName="ToJdtion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PW_Outbound">
+      <EntityTypeMapping TypeName="QXQPModel.PW_Outbound">
+        <MappingFragment StoreEntitySet="PW_Outbound">
+          <ScalarProperty Name="OutboundID" ColumnName="OutboundID" />
+          <ScalarProperty Name="DocumentsTypeID" ColumnName="DocumentsTypeID" />
+          <ScalarProperty Name="SalesCustomerID" ColumnName="SalesCustomerID" />
+          <ScalarProperty Name="Stockremoval" ColumnName="Stockremoval" />
+          <ScalarProperty Name="OpenDate" ColumnName="OpenDate" />
+          <ScalarProperty Name="Tradeprice" ColumnName="Tradeprice" />
+          <ScalarProperty Name="Processingman" ColumnName="Processingman" />
+          <ScalarProperty Name="Reviewwhet" ColumnName="Reviewwhet" />
+          <ScalarProperty Name="Therevie" ColumnName="Therevie" />
+          <ScalarProperty Name="Auditdates" ColumnName="Auditdates" />
+          <ScalarProperty Name="SalesorderNum" ColumnName="SalesorderNum" />
+          <ScalarProperty Name="Theamount" ColumnName="Theamount" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="DocuState" ColumnName="DocuState" />
+          <ScalarProperty Name="BalanceStateID" ColumnName="BalanceStateID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PW_Predate">
+      <EntityTypeMapping TypeName="QXQPModel.PW_Predate">
+        <MappingFragment StoreEntitySet="PW_Predate">
+          <ScalarProperty Name="PredateID" ColumnName="PredateID" />
+          <ScalarProperty Name="CarderID" ColumnName="CarderID" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="RepairID" ColumnName="RepairID" />
+          <ScalarProperty Name="PredateNum" ColumnName="PredateNum" />
+          <ScalarProperty Name="OpenDate" ColumnName="OpenDate" />
+          <ScalarProperty Name="MaintenanceNum" ColumnName="MaintenanceNum" />
+          <ScalarProperty Name="CarNum" ColumnName="CarNum" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Contacts" ColumnName="Contacts" />
+          <ScalarProperty Name="CarMasterPhone" ColumnName="CarMasterPhone" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="ToAudit" ColumnName="ToAudit" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Receivable" ColumnName="Receivable" />
+          <ScalarProperty Name="Describe" ColumnName="Describe" />
+          <ScalarProperty Name="ToTransferOrder" ColumnName="ToTransferOrder" />
+          <ScalarProperty Name="MaintainData" ColumnName="MaintainData" />
+          <ScalarProperty Name="DeserveMoney" ColumnName="DeserveMoney" />
+          <ScalarProperty Name="CustomerNum" ColumnName="CustomerNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PW_ProBalance">
+      <EntityTypeMapping TypeName="QXQPModel.PW_ProBalance">
+        <MappingFragment StoreEntitySet="PW_ProBalance">
+          <ScalarProperty Name="ProBalanceID" ColumnName="ProBalanceID" />
+          <ScalarProperty Name="SuppliersID" ColumnName="SuppliersID" />
+          <ScalarProperty Name="Receipt" ColumnName="Receipt" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="CurrentMany" ColumnName="CurrentMany" />
+          <ScalarProperty Name="Auditor" ColumnName="Auditor" />
+          <ScalarProperty Name="ReceiptDate" ColumnName="ReceiptDate" />
+          <ScalarProperty Name="Operator" ColumnName="Operator" />
+          <ScalarProperty Name="ToAudit" ColumnName="ToAudit" />
+          <ScalarProperty Name="AuditDate" ColumnName="AuditDate" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PW_Procurement">
+      <EntityTypeMapping TypeName="QXQPModel.PW_Procurement">
+        <MappingFragment StoreEntitySet="PW_Procurement">
+          <ScalarProperty Name="ProcurementID" ColumnName="ProcurementID" />
+          <ScalarProperty Name="SuppliersID" ColumnName="SuppliersID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+          <ScalarProperty Name="IndentNumber" ColumnName="IndentNumber" />
+          <ScalarProperty Name="Maker" ColumnName="Maker" />
+          <ScalarProperty Name="MakerDate" ColumnName="MakerDate" />
+          <ScalarProperty Name="DeliveryDeadline" ColumnName="DeliveryDeadline" />
+          <ScalarProperty Name="Handsel" ColumnName="Handsel" />
+          <ScalarProperty Name="ToAudit" ColumnName="ToAudit" />
+          <ScalarProperty Name="Auditer" ColumnName="Auditer" />
+          <ScalarProperty Name="AuditerDate" ColumnName="AuditerDate" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Documents" ColumnName="Documents" />
+          <ScalarProperty Name="Aamount" ColumnName="Aamount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PW_Reception">
+      <EntityTypeMapping TypeName="QXQPModel.PW_Reception">
+        <MappingFragment StoreEntitySet="PW_Reception">
+          <ScalarProperty Name="ReceptionID" ColumnName="ReceptionID" />
+          <ScalarProperty Name="DocumentStateID" ColumnName="DocumentStateID" />
+          <ScalarProperty Name="BalanceStateID" ColumnName="BalanceStateID" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="Carder" ColumnName="Carder" />
+          <ScalarProperty Name="RepairID" ColumnName="RepairID" />
+          <ScalarProperty Name="CustomerSouID" ColumnName="CustomerSouID" />
+          <ScalarProperty Name="CarNum" ColumnName="CarNum" />
+          <ScalarProperty Name="Mileage" ColumnName="Mileage" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="OilQuantity" ColumnName="OilQuantity" />
+          <ScalarProperty Name="OwnerTele" ColumnName="OwnerTele" />
+          <ScalarProperty Name="EngineNum" ColumnName="EngineNum" />
+          <ScalarProperty Name="Repairman" ColumnName="Repairman" />
+          <ScalarProperty Name="SelfCoding" ColumnName="SelfCoding" />
+          <ScalarProperty Name="FrameNum" ColumnName="FrameNum" />
+          <ScalarProperty Name="RepairmanTele" ColumnName="RepairmanTele" />
+          <ScalarProperty Name="FactoryDate" ColumnName="FactoryDate" />
+          <ScalarProperty Name="BalanceDate" ColumnName="BalanceDate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+          <ScalarProperty Name="ToAudit" ColumnName="ToAudit" />
+          <ScalarProperty Name="CompletionDate" ColumnName="CompletionDate" />
+          <ScalarProperty Name="Describe" ColumnName="Describe" />
+          <ScalarProperty Name="MaintenanceNum" ColumnName="MaintenanceNum" />
+          <ScalarProperty Name="CollageState" ColumnName="CollageState" />
+          <ScalarProperty Name="ToSendWork" ColumnName="ToSendWork" />
+          <ScalarProperty Name="OpenDate" ColumnName="OpenDate" />
+          <ScalarProperty Name="MaintenAmount" ColumnName="MaintenAmount" />
+          <ScalarProperty Name="ToCompletion" ColumnName="ToCompletion" />
+          <ScalarProperty Name="CustomerNum" ColumnName="CustomerNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PW_Restock">
+      <EntityTypeMapping TypeName="QXQPModel.PW_Restock">
+        <MappingFragment StoreEntitySet="PW_Restock">
+          <ScalarProperty Name="RestockID" ColumnName="RestockID" />
+          <ScalarProperty Name="ReceptionID" ColumnName="ReceptionID" />
+          <ScalarProperty Name="RestockDate" ColumnName="RestockDate" />
+          <ScalarProperty Name="Operator" ColumnName="Operator" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="RestockMan" ColumnName="RestockMan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PW_ReturnForm">
+      <EntityTypeMapping TypeName="QXQPModel.PW_ReturnForm">
+        <MappingFragment StoreEntitySet="PW_ReturnForm">
+          <ScalarProperty Name="ReturnFormID" ColumnName="ReturnFormID" />
+          <ScalarProperty Name="SuppliersID" ColumnName="SuppliersID" />
+          <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="DocumentsTypeID" ColumnName="DocumentsTypeID" />
+          <ScalarProperty Name="BalanceStateID" ColumnName="BalanceStateID" />
+          <ScalarProperty Name="ReturnNumber" ColumnName="ReturnNumber" />
+          <ScalarProperty Name="Maker" ColumnName="Maker" />
+          <ScalarProperty Name="SingleDate" ColumnName="SingleDate" />
+          <ScalarProperty Name="Auditor" ColumnName="Auditor" />
+          <ScalarProperty Name="AuditDate" ColumnName="AuditDate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="ToAudit" ColumnName="ToAudit" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <ScalarProperty Name="SheetDate" ColumnName="SheetDate" />
+          <ScalarProperty Name="IncomingNumber" ColumnName="IncomingNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PW_SalBalance">
+      <EntityTypeMapping TypeName="QXQPModel.PW_SalBalance">
+        <MappingFragment StoreEntitySet="PW_SalBalance">
+          <ScalarProperty Name="SalBalanceID" ColumnName="SalBalanceID" />
+          <ScalarProperty Name="SalesCustomerID" ColumnName="SalesCustomerID" />
+          <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+          <ScalarProperty Name="Receipt" ColumnName="Receipt" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="CurrentMany" ColumnName="CurrentMany" />
+          <ScalarProperty Name="Auditor" ColumnName="Auditor" />
+          <ScalarProperty Name="ReceiptDate" ColumnName="ReceiptDate" />
+          <ScalarProperty Name="Operator" ColumnName="Operator" />
+          <ScalarProperty Name="ToAudit" ColumnName="ToAudit" />
+          <ScalarProperty Name="AuditDate" ColumnName="AuditDate" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PW_Salesorder">
+      <EntityTypeMapping TypeName="QXQPModel.PW_Salesorder">
+        <MappingFragment StoreEntitySet="PW_Salesorder">
+          <ScalarProperty Name="SalesordeID" ColumnName="SalesordeID" />
+          <ScalarProperty Name="SalesCustomerID" ColumnName="SalesCustomerID" />
+          <ScalarProperty Name="SalesorderNum" ColumnName="SalesorderNum" />
+          <ScalarProperty Name="Invoicedatek" ColumnName="Invoicedatek" />
+          <ScalarProperty Name="Invoicno" ColumnName="Invoicno" />
+          <ScalarProperty Name="Deliverydate" ColumnName="Deliverydate" />
+          <ScalarProperty Name="Operatorf" ColumnName="Operatorf" />
+          <ScalarProperty Name="Reviewwhether" ColumnName="Reviewwhether" />
+          <ScalarProperty Name="Thereviewer" ColumnName="Thereviewer" />
+          <ScalarProperty Name="Auditdate" ColumnName="Auditdate" />
+          <ScalarProperty Name="Theamount" ColumnName="Theamount" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Documents" ColumnName="Documents" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PW_SalesReturnl">
+      <EntityTypeMapping TypeName="QXQPModel.PW_SalesReturnl">
+        <MappingFragment StoreEntitySet="PW_SalesReturnl">
+          <ScalarProperty Name="SalesReturnlID" ColumnName="SalesReturnlID" />
+          <ScalarProperty Name="DocumentsTypeID" ColumnName="DocumentsTypeID" />
+          <ScalarProperty Name="BalanceStateID" ColumnName="BalanceStateID" />
+          <ScalarProperty Name="SalesCustomerID" ColumnName="SalesCustomerID" />
+          <ScalarProperty Name="Oddseats" ColumnName="Oddseats" />
+          <ScalarProperty Name="OpenDate" ColumnName="OpenDate" />
+          <ScalarProperty Name="Returnmode" ColumnName="Returnmode" />
+          <ScalarProperty Name="Operator" ColumnName="Operator" />
+          <ScalarProperty Name="ToAudit" ColumnName="ToAudit" />
+          <ScalarProperty Name="Auditor" ColumnName="Auditor" />
+          <ScalarProperty Name="Theamount" ColumnName="Theamount" />
+          <ScalarProperty Name="Stockremoval" ColumnName="Stockremoval" />
+          <ScalarProperty Name="AuditDate" ColumnName="AuditDate" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PW_ThreePacks">
+      <EntityTypeMapping TypeName="QXQPModel.PW_ThreePacks">
+        <MappingFragment StoreEntitySet="PW_ThreePacks">
+          <ScalarProperty Name="ThreePacksID" ColumnName="ThreePacksID" />
+          <ScalarProperty Name="ThreePacksDetailID" ColumnName="ThreePacksDetailID" />
+          <ScalarProperty Name="InsuranceNum" ColumnName="InsuranceNum" />
+          <ScalarProperty Name="OpenDate" ColumnName="OpenDate" />
+          <ScalarProperty Name="BalanceDate" ColumnName="BalanceDate" />
+          <ScalarProperty Name="ClaimsStaff" ColumnName="ClaimsStaff" />
+          <ScalarProperty Name="ToTicket" ColumnName="ToTicket" />
+          <ScalarProperty Name="SelfCoding" ColumnName="SelfCoding" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="ToAudit" ColumnName="ToAudit" />
+          <ScalarProperty Name="Operator" ColumnName="Operator" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PW_User">
+      <EntityTypeMapping TypeName="QXQPModel.PW_User">
+        <MappingFragment StoreEntitySet="PW_User">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="UserNum" ColumnName="UserNum" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="ToUse" ColumnName="ToUse" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_BalanceState">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_BalanceState">
+        <MappingFragment StoreEntitySet="SYS_BalanceState">
+          <ScalarProperty Name="BalanceStateID" ColumnName="BalanceStateID" />
+          <ScalarProperty Name="BalanceState" ColumnName="BalanceState" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_Carder">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_Carder">
+        <MappingFragment StoreEntitySet="SYS_Carder">
+          <ScalarProperty Name="CarderID" ColumnName="CarderID" />
+          <ScalarProperty Name="CarderName" ColumnName="CarderName" />
+          <ScalarProperty Name="ToDeactivate" ColumnName="ToDeactivate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_ClaimCom">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_ClaimCom">
+        <MappingFragment StoreEntitySet="SYS_ClaimCom">
+          <ScalarProperty Name="ClaimComID" ColumnName="ClaimComID" />
+          <ScalarProperty Name="ClaimComName" ColumnName="ClaimComName" />
+          <ScalarProperty Name="ToDeactivate" ColumnName="ToDeactivate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_CollageDetai">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_CollageDetai">
+        <MappingFragment StoreEntitySet="SYS_CollageDetai">
+          <ScalarProperty Name="CollageDetaiID" ColumnName="CollageDetaiID" />
+          <ScalarProperty Name="MaintainabilityID" ColumnName="MaintainabilityID" />
+          <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+          <ScalarProperty Name="CollageID" ColumnName="CollageID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="FittingsName" ColumnName="FittingsName" />
+          <ScalarProperty Name="FittingsCode" ColumnName="FittingsCode" />
+          <ScalarProperty Name="FittingsSpec" ColumnName="FittingsSpec" />
+          <ScalarProperty Name="SystemUnit" ColumnName="SystemUnit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_CustomerLevel">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_CustomerLevel">
+        <MappingFragment StoreEntitySet="SYS_CustomerLevel">
+          <ScalarProperty Name="CustomerLevelID" ColumnName="CustomerLevelID" />
+          <ScalarProperty Name="CustomerLevel" ColumnName="CustomerLevel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_CustomerSou">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_CustomerSou">
+        <MappingFragment StoreEntitySet="SYS_CustomerSou">
+          <ScalarProperty Name="CustomerSouID" ColumnName="CustomerSouID" />
+          <ScalarProperty Name="CustomerSou" ColumnName="CustomerSou" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_CustomerType">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_CustomerType">
+        <MappingFragment StoreEntitySet="SYS_CustomerType">
+          <ScalarProperty Name="CustomerTypeID" ColumnName="CustomerTypeID" />
+          <ScalarProperty Name="CustomerType" ColumnName="CustomerType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_Department">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_Department">
+        <MappingFragment StoreEntitySet="SYS_Department">
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="DepartmentNun" ColumnName="DepartmentNun" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_Dispatch">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_Dispatch">
+        <MappingFragment StoreEntitySet="SYS_Dispatch">
+          <ScalarProperty Name="DispatchID" ColumnName="DispatchID" />
+          <ScalarProperty Name="DispatchName" ColumnName="DispatchName" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_DocumentState">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_DocumentState">
+        <MappingFragment StoreEntitySet="SYS_DocumentState">
+          <ScalarProperty Name="DocumentStateID" ColumnName="DocumentStateID" />
+          <ScalarProperty Name="DocumentState" ColumnName="DocumentState" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_DocumentsType">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_DocumentsType">
+        <MappingFragment StoreEntitySet="SYS_DocumentsType">
+          <ScalarProperty Name="DocumentsTypeID" ColumnName="DocumentsTypeID" />
+          <ScalarProperty Name="DocumentsType" ColumnName="DocumentsType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_Expenses">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_Expenses">
+        <MappingFragment StoreEntitySet="SYS_Expenses">
+          <ScalarProperty Name="ExpensesID" ColumnName="ExpensesID" />
+          <ScalarProperty Name="ExpensesName" ColumnName="ExpensesName" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="ToDeactivate" ColumnName="ToDeactivate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_FittingsInfo">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_FittingsInfo">
+        <MappingFragment StoreEntitySet="SYS_FittingsInfo">
+          <ScalarProperty Name="FittingsInfoID" ColumnName="FittingsInfoID" />
+          <ScalarProperty Name="FittingsTypeID" ColumnName="FittingsTypeID" />
+          <ScalarProperty Name="SystemUnitID" ColumnName="SystemUnitID" />
+          <ScalarProperty Name="VehicleTypeID" ColumnName="VehicleTypeID" />
+          <ScalarProperty Name="SuppliersID" ColumnName="SuppliersID" />
+          <ScalarProperty Name="FittingsName" ColumnName="FittingsName" />
+          <ScalarProperty Name="FittingsCode" ColumnName="FittingsCode" />
+          <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+          <ScalarProperty Name="Specification" ColumnName="Specification" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Intake" ColumnName="Intake" />
+          <ScalarProperty Name="SalesPrice" ColumnName="SalesPrice" />
+          <ScalarProperty Name="WholesalePrice" ColumnName="WholesalePrice" />
+          <ScalarProperty Name="InventoryMax" ColumnName="InventoryMax" />
+          <ScalarProperty Name="InventoryMin" ColumnName="InventoryMin" />
+          <ScalarProperty Name="OpenPrice" ColumnName="OpenPrice" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="InvenQuan" ColumnName="InvenQuan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_FittingsType">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_FittingsType">
+        <MappingFragment StoreEntitySet="SYS_FittingsType">
+          <ScalarProperty Name="FittingsTypeID" ColumnName="FittingsTypeID" />
+          <ScalarProperty Name="FittingsTypeName" ColumnName="FittingsTypeName" />
+          <ScalarProperty Name="FittingsTypeNum" ColumnName="FittingsTypeNum" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_ForeMan">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_ForeMan">
+        <MappingFragment StoreEntitySet="SYS_ForeMan">
+          <ScalarProperty Name="ForeManID" ColumnName="ForeManID" />
+          <ScalarProperty Name="ForeManName" ColumnName="ForeManName" />
+          <ScalarProperty Name="ToDeactivate" ColumnName="ToDeactivate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_InsuranceCom">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_InsuranceCom">
+        <MappingFragment StoreEntitySet="SYS_InsuranceCom">
+          <ScalarProperty Name="InsuranceComID" ColumnName="InsuranceComID" />
+          <ScalarProperty Name="InsuranceComName" ColumnName="InsuranceComName" />
+          <ScalarProperty Name="ToDeactivate" ColumnName="ToDeactivate" />
+          <ScalarProperty Name="InsuranceComNum" ColumnName="InsuranceComNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_InsuranceDetail">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_InsuranceDetail">
+        <MappingFragment StoreEntitySet="SYS_InsuranceDetail">
+          <ScalarProperty Name="InsuranceDetailID" ColumnName="InsuranceDetailID" />
+          <ScalarProperty Name="ReceptionID" ColumnName="ReceptionID" />
+          <ScalarProperty Name="InsuranceComID" ColumnName="InsuranceComID" />
+          <ScalarProperty Name="ReportNum" ColumnName="ReportNum" />
+          <ScalarProperty Name="PolicyNum" ColumnName="PolicyNum" />
+          <ScalarProperty Name="PolicyMoney" ColumnName="PolicyMoney" />
+          <ScalarProperty Name="InsuranceMoney" ColumnName="InsuranceMoney" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_InsuranceSpe">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_InsuranceSpe">
+        <MappingFragment StoreEntitySet="SYS_InsuranceSpe">
+          <ScalarProperty Name="InsuranceSpeID" ColumnName="InsuranceSpeID" />
+          <ScalarProperty Name="InsuranceSpeName" ColumnName="InsuranceSpeName" />
+          <ScalarProperty Name="InsuranceSpeNum" ColumnName="InsuranceSpeNum" />
+          <ScalarProperty Name="ToDeactivate" ColumnName="ToDeactivate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_Inventory">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_Inventory">
+        <MappingFragment StoreEntitySet="SYS_Inventory">
+          <ScalarProperty Name="InventoryID" ColumnName="InventoryID" />
+          <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+          <ScalarProperty Name="FittingsCode" ColumnName="FittingsCode" />
+          <ScalarProperty Name="FittingsName" ColumnName="FittingsName" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="SystemUnit" ColumnName="SystemUnit" />
+          <ScalarProperty Name="InvenQuan" ColumnName="InvenQuan" />
+          <ScalarProperty Name="NewIntake" ColumnName="NewIntake" />
+          <ScalarProperty Name="WholePrice" ColumnName="WholePrice" />
+          <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+          <ScalarProperty Name="MinInventory" ColumnName="MinInventory" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="FittingsType" ColumnName="FittingsType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_Maintainability">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_Maintainability">
+        <MappingFragment StoreEntitySet="SYS_Maintainability">
+          <ScalarProperty Name="MaintainabilityID" ColumnName="MaintainabilityID" />
+          <ScalarProperty Name="MaintainabilityName" ColumnName="MaintainabilityName" />
+          <ScalarProperty Name="MaintainabilityNum" ColumnName="MaintainabilityNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_Maintenance">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_Maintenance">
+        <MappingFragment StoreEntitySet="SYS_Maintenance">
+          <ScalarProperty Name="MaintenanceID" ColumnName="MaintenanceID" />
+          <ScalarProperty Name="MaintenanceName" ColumnName="MaintenanceName" />
+          <ScalarProperty Name="ToDeactivate" ColumnName="ToDeactivate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_MaintenanceCrew">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_MaintenanceCrew">
+        <MappingFragment StoreEntitySet="SYS_MaintenanceCrew">
+          <ScalarProperty Name="MaintenanceCrewID" ColumnName="MaintenanceCrewID" />
+          <ScalarProperty Name="MaintenanceCrewName" ColumnName="MaintenanceCrewName" />
+          <ScalarProperty Name="MaintenanceCrewNum" ColumnName="MaintenanceCrewNum" />
+          <ScalarProperty Name="ToDeactivate" ColumnName="ToDeactivate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_MaintenanceCus">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_MaintenanceCus">
+        <MappingFragment StoreEntitySet="SYS_MaintenanceCus">
+          <ScalarProperty Name="MaintenanceCusID" ColumnName="MaintenanceCusID" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="InsuranceComID" ColumnName="InsuranceComID" />
+          <ScalarProperty Name="InsuranceSpeID" ColumnName="InsuranceSpeID" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="CarderID" ColumnName="CarderID" />
+          <ScalarProperty Name="CustomerTypeID" ColumnName="CustomerTypeID" />
+          <ScalarProperty Name="CustomerLevelID" ColumnName="CustomerLevelID" />
+          <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+          <ScalarProperty Name="CustomerSouID" ColumnName="CustomerSouID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
+          <ScalarProperty Name="LicenseCode" ColumnName="LicenseCode" />
+          <ScalarProperty Name="EngineNum" ColumnName="EngineNum" />
+          <ScalarProperty Name="FrameNum" ColumnName="FrameNum" />
+          <ScalarProperty Name="RepairMan" ColumnName="RepairMan" />
+          <ScalarProperty Name="RepairTele" ColumnName="RepairTele" />
+          <ScalarProperty Name="InitialStartDate" ColumnName="InitialStartDate" />
+          <ScalarProperty Name="InitialEndDate" ColumnName="InitialEndDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="CustomerNum" ColumnName="CustomerNum" />
+          <ScalarProperty Name="DriveDate" ColumnName="DriveDate" />
+          <ScalarProperty Name="DrivingDate" ColumnName="DrivingDate" />
+          <ScalarProperty Name="InputPerson" ColumnName="InputPerson" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_Modular">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_Modular">
+        <MappingFragment StoreEntitySet="SYS_Modular">
+          <ScalarProperty Name="ModularID" ColumnName="ModularID" />
+          <ScalarProperty Name="ModularTypeID" ColumnName="ModularTypeID" />
+          <ScalarProperty Name="ModularName" ColumnName="ModularName" />
+          <ScalarProperty Name="ModularCode" ColumnName="ModularCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_ModularType">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_ModularType">
+        <MappingFragment StoreEntitySet="SYS_ModularType">
+          <ScalarProperty Name="ModularTypeID" ColumnName="ModularTypeID" />
+          <ScalarProperty Name="ModularTypeName" ColumnName="ModularTypeName" />
+          <ScalarProperty Name="ModularTypeCode" ColumnName="ModularTypeCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_OutboundDetails">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_OutboundDetails">
+        <MappingFragment StoreEntitySet="SYS_OutboundDetails">
+          <ScalarProperty Name="OutboundDetailsID" ColumnName="OutboundDetailsID" />
+          <ScalarProperty Name="OutboundID" ColumnName="OutboundID" />
+          <ScalarProperty Name="FittingsInfoID" ColumnName="FittingsInfoID" />
+          <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Unitcosts" ColumnName="Unitcosts" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Figure" ColumnName="Figure" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_Payment">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_Payment">
+        <MappingFragment StoreEntitySet="SYS_Payment">
+          <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+          <ScalarProperty Name="PaymentName" ColumnName="PaymentName" />
+          <ScalarProperty Name="ToDeactivate" ColumnName="ToDeactivate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_PreOtherCostDetail">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_PreOtherCostDetail">
+        <MappingFragment StoreEntitySet="SYS_PreOtherCostDetail">
+          <ScalarProperty Name="PreOtherCostDetailID" ColumnName="PreOtherCostDetailID" />
+          <ScalarProperty Name="PredateID" ColumnName="PredateID" />
+          <ScalarProperty Name="ExpensesID" ColumnName="ExpensesID" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_PreProductDetail">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_PreProductDetail">
+        <MappingFragment StoreEntitySet="SYS_PreProductDetail">
+          <ScalarProperty Name="PreProductDetailID" ColumnName="PreProductDetailID" />
+          <ScalarProperty Name="PredateID" ColumnName="PredateID" />
+          <ScalarProperty Name="MaintainabilityID" ColumnName="MaintainabilityID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="FittingsCode" ColumnName="FittingsCode" />
+          <ScalarProperty Name="FittingsName" ColumnName="FittingsName" />
+          <ScalarProperty Name="SystemUnit" ColumnName="SystemUnit" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_PreRepairItemDetail">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_PreRepairItemDetail">
+        <MappingFragment StoreEntitySet="SYS_PreRepairItemDetail">
+          <ScalarProperty Name="PreRepairItemDetailID" ColumnName="PreRepairItemDetailID" />
+          <ScalarProperty Name="RepairItemID" ColumnName="RepairItemID" />
+          <ScalarProperty Name="PredateID" ColumnName="PredateID" />
+          <ScalarProperty Name="MaintainabilityID" ColumnName="MaintainabilityID" />
+          <ScalarProperty Name="RepairCharge" ColumnName="RepairCharge" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_ProBalancetDetail">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_ProBalancetDetail">
+        <MappingFragment StoreEntitySet="SYS_ProBalancetDetail">
+          <ScalarProperty Name="ProBalancetDetailID" ColumnName="ProBalancetDetailID" />
+          <ScalarProperty Name="BalanceStateID" ColumnName="BalanceStateID" />
+          <ScalarProperty Name="DocumentsTypeID" ColumnName="DocumentsTypeID" />
+          <ScalarProperty Name="ProBalanceID" ColumnName="ProBalanceID" />
+          <ScalarProperty Name="ToCleared" ColumnName="ToCleared" />
+          <ScalarProperty Name="SingleNumber" ColumnName="SingleNumber" />
+          <ScalarProperty Name="DocumentsDate" ColumnName="DocumentsDate" />
+          <ScalarProperty Name="ShouldAmount" ColumnName="ShouldAmount" />
+          <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+          <ScalarProperty Name="SuperioAmountr" ColumnName="SuperioAmountr" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="ThisSuperioAmountr" ColumnName="ThisSuperioAmountr" />
+          <ScalarProperty Name="ThisShouldAmount" ColumnName="ThisShouldAmount" />
+          <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_ProcurementDetail">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_ProcurementDetail">
+        <MappingFragment StoreEntitySet="SYS_ProcurementDetail">
+          <ScalarProperty Name="ProcurementDetailID" ColumnName="ProcurementDetailID" />
+          <ScalarProperty Name="ProcurementID" ColumnName="ProcurementID" />
+          <ScalarProperty Name="FittingsInfoID" ColumnName="FittingsInfoID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="FirmQuantity" ColumnName="FirmQuantity" />
+          <ScalarProperty Name="FittingsType" ColumnName="FittingsType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_RecOtherCostDetail">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_RecOtherCostDetail">
+        <MappingFragment StoreEntitySet="SYS_RecOtherCostDetail">
+          <ScalarProperty Name="ReceptionID" ColumnName="ReceptionID" />
+          <ScalarProperty Name="ExpensesID" ColumnName="ExpensesID" />
+          <ScalarProperty Name="RecOtherCostDetailID" ColumnName="RecOtherCostDetailID" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_RecProductDetail">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_RecProductDetail">
+        <MappingFragment StoreEntitySet="SYS_RecProductDetail">
+          <ScalarProperty Name="RecProductDetailID" ColumnName="RecProductDetailID" />
+          <ScalarProperty Name="MaintainabilityID" ColumnName="MaintainabilityID" />
+          <ScalarProperty Name="ReceptionID" ColumnName="ReceptionID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="FittingsCode" ColumnName="FittingsCode" />
+          <ScalarProperty Name="FittingsName" ColumnName="FittingsName" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="FittingsSpec" ColumnName="FittingsSpec" />
+          <ScalarProperty Name="SystemUnit" ColumnName="SystemUnit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_RecRepairItemDetail">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_RecRepairItemDetail">
+        <MappingFragment StoreEntitySet="SYS_RecRepairItemDetail">
+          <ScalarProperty Name="RepairItemID" ColumnName="RepairItemID" />
+          <ScalarProperty Name="MaintainabilityID" ColumnName="MaintainabilityID" />
+          <ScalarProperty Name="ReceptionID" ColumnName="ReceptionID" />
+          <ScalarProperty Name="MaintenanceCrewID" ColumnName="MaintenanceCrewID" />
+          <ScalarProperty Name="RepairManID" ColumnName="RepairManID" />
+          <ScalarProperty Name="RecRepairItemDetailID" ColumnName="RecRepairItemDetailID" />
+          <ScalarProperty Name="RepairCharge" ColumnName="RepairCharge" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="JobHours" ColumnName="JobHours" />
+          <ScalarProperty Name="JobAmount" ColumnName="JobAmount" />
+          <ScalarProperty Name="CompletionDate" ColumnName="CompletionDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_Region">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_Region">
+        <MappingFragment StoreEntitySet="SYS_Region">
+          <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+          <ScalarProperty Name="SireID" ColumnName="SireID" />
+          <ScalarProperty Name="ViscountID" ColumnName="ViscountID" />
+          <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+          <ScalarProperty Name="RegionNum" ColumnName="RegionNum" />
+          <ScalarProperty Name="ToDeactivate" ColumnName="ToDeactivate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_Repair">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_Repair">
+        <MappingFragment StoreEntitySet="SYS_Repair">
+          <ScalarProperty Name="RepairID" ColumnName="RepairID" />
+          <ScalarProperty Name="RepairName" ColumnName="RepairName" />
+          <ScalarProperty Name="TrackingDays" ColumnName="TrackingDays" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_RepairClass">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_RepairClass">
+        <MappingFragment StoreEntitySet="SYS_RepairClass">
+          <ScalarProperty Name="RepairClassID" ColumnName="RepairClassID" />
+          <ScalarProperty Name="RepairClassNum" ColumnName="RepairClassNum" />
+          <ScalarProperty Name="RepairClassName" ColumnName="RepairClassName" />
+          <ScalarProperty Name="TimeUnit" ColumnName="TimeUnit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_RepairItem">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_RepairItem">
+        <MappingFragment StoreEntitySet="SYS_RepairItem">
+          <ScalarProperty Name="RepairItemID" ColumnName="RepairItemID" />
+          <ScalarProperty Name="MaintenanceID" ColumnName="MaintenanceID" />
+          <ScalarProperty Name="RepairClassID" ColumnName="RepairClassID" />
+          <ScalarProperty Name="RepairItemNum" ColumnName="RepairItemNum" />
+          <ScalarProperty Name="RepairItemName" ColumnName="RepairItemName" />
+          <ScalarProperty Name="PinYinCode" ColumnName="PinYinCode" />
+          <ScalarProperty Name="RepairCharge" ColumnName="RepairCharge" />
+          <ScalarProperty Name="TimeUnit" ColumnName="TimeUnit" />
+          <ScalarProperty Name="WorkTime" ColumnName="WorkTime" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="ToDeactivate" ColumnName="ToDeactivate" />
+          <ScalarProperty Name="Money" ColumnName="Money" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_RepairMan">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_RepairMan">
+        <MappingFragment StoreEntitySet="SYS_RepairMan">
+          <ScalarProperty Name="RepairManID" ColumnName="RepairManID" />
+          <ScalarProperty Name="RepairManName" ColumnName="RepairManName" />
+          <ScalarProperty Name="RepairManNum" ColumnName="RepairManNum" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_RestockDetail">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_RestockDetail">
+        <MappingFragment StoreEntitySet="SYS_RestockDetail">
+          <ScalarProperty Name="RestockDetaiID" ColumnName="RestockDetaiID" />
+          <ScalarProperty Name="CollageDetaiID" ColumnName="CollageDetaiID" />
+          <ScalarProperty Name="RestockID" ColumnName="RestockID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_ReturnFormDetail">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_ReturnFormDetail">
+        <MappingFragment StoreEntitySet="SYS_ReturnFormDetail">
+          <ScalarProperty Name="ReturnFormDetailID" ColumnName="ReturnFormDetailID" />
+          <ScalarProperty Name="ReturnFormID" ColumnName="ReturnFormID" />
+          <ScalarProperty Name="FittingsInfoID" ColumnName="FittingsInfoID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_SalBalancetDetail">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_SalBalancetDetail">
+        <MappingFragment StoreEntitySet="SYS_SalBalancetDetail">
+          <ScalarProperty Name="SalBalancetDetailID" ColumnName="SalBalancetDetailID" />
+          <ScalarProperty Name="SalBalanceID" ColumnName="SalBalanceID" />
+          <ScalarProperty Name="DocumentsTypeID" ColumnName="DocumentsTypeID" />
+          <ScalarProperty Name="BalanceStateID" ColumnName="BalanceStateID" />
+          <ScalarProperty Name="ToCleared" ColumnName="ToCleared" />
+          <ScalarProperty Name="SingleNumber" ColumnName="SingleNumber" />
+          <ScalarProperty Name="DocumentsDate" ColumnName="DocumentsDate" />
+          <ScalarProperty Name="ShouldAmount" ColumnName="ShouldAmount" />
+          <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+          <ScalarProperty Name="SuperioAmountr" ColumnName="SuperioAmountr" />
+          <ScalarProperty Name="ThisSuperioAmountr" ColumnName="ThisSuperioAmountr" />
+          <ScalarProperty Name="ThisShouldAmount" ColumnName="ThisShouldAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_SalesCustomer">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_SalesCustomer">
+        <MappingFragment StoreEntitySet="SYS_SalesCustomer">
+          <ScalarProperty Name="SalesCustomerID" ColumnName="SalesCustomerID" />
+          <ScalarProperty Name="CustomerLevelID" ColumnName="CustomerLevelID" />
+          <ScalarProperty Name="CustomerTypeID" ColumnName="CustomerTypeID" />
+          <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+          <ScalarProperty Name="CustomerSouID" ColumnName="CustomerSouID" />
+          <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="PinYinCode" ColumnName="PinYinCode" />
+          <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
+          <ScalarProperty Name="Contacts" ColumnName="Contacts" />
+          <ScalarProperty Name="Facsimile" ColumnName="Facsimile" />
+          <ScalarProperty Name="TelePhone" ColumnName="TelePhone" />
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="Emai" ColumnName="Emai" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="InputPerson" ColumnName="InputPerson" />
+          <ScalarProperty Name="ToDeactivate" ColumnName="ToDeactivate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_SalesorderDetail">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_SalesorderDetail">
+        <MappingFragment StoreEntitySet="SYS_SalesorderDetail">
+          <ScalarProperty Name="SalesorderDetailID" ColumnName="SalesorderDetailID" />
+          <ScalarProperty Name="SalesordeID" ColumnName="SalesordeID" />
+          <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+          <ScalarProperty Name="FittingsInfoID" ColumnName="FittingsInfoID" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Money" ColumnName="Money" />
+          <ScalarProperty Name="Atretail" ColumnName="Atretail" />
+          <ScalarProperty Name="Unitcost" ColumnName="Unitcost" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="FittingsType" ColumnName="FittingsType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_SalesReturnDetails">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_SalesReturnDetails">
+        <MappingFragment StoreEntitySet="SYS_SalesReturnDetails">
+          <ScalarProperty Name="SalesReturnDetailsID" ColumnName="SalesReturnDetailsID" />
+          <ScalarProperty Name="FittingsInfoID" ColumnName="FittingsInfoID" />
+          <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+          <ScalarProperty Name="SalesReturnlID" ColumnName="SalesReturnlID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Unitcoster" ColumnName="Unitcoster" />
+          <ScalarProperty Name="Discounts" ColumnName="Discounts" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Userdefined" ColumnName="Userdefined" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_Subject">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_Subject">
+        <MappingFragment StoreEntitySet="SYS_Subject">
+          <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+          <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+          <ScalarProperty Name="SubjectNum" ColumnName="SubjectNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_Suppliers">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_Suppliers">
+        <MappingFragment StoreEntitySet="SYS_Suppliers">
+          <ScalarProperty Name="SuppliersID" ColumnName="SuppliersID" />
+          <ScalarProperty Name="SuppliersFirm" ColumnName="SuppliersFirm" />
+          <ScalarProperty Name="SuppliersName" ColumnName="SuppliersName" />
+          <ScalarProperty Name="PinYinCode" ColumnName="PinYinCode" />
+          <ScalarProperty Name="MainBusiness" ColumnName="MainBusiness" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Contacts" ColumnName="Contacts" />
+          <ScalarProperty Name="TelePhone" ColumnName="TelePhone" />
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="Facsimile" ColumnName="Facsimile" />
+          <ScalarProperty Name="Mailbox" ColumnName="Mailbox" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="OpenBank" ColumnName="OpenBank" />
+          <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
+          <ScalarProperty Name="InputPerson" ColumnName="InputPerson" />
+          <ScalarProperty Name="StorageAdd" ColumnName="StorageAdd" />
+          <ScalarProperty Name="StorageTele" ColumnName="StorageTele" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="ToDeactivate" ColumnName="ToDeactivate" />
+          <ScalarProperty Name="BalanceMode" ColumnName="BalanceMode" />
+          <ScalarProperty Name="DeserveMoney" ColumnName="DeserveMoney" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_SystemUnit">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_SystemUnit">
+        <MappingFragment StoreEntitySet="SYS_SystemUnit">
+          <ScalarProperty Name="SystemUnitID" ColumnName="SystemUnitID" />
+          <ScalarProperty Name="SystemUnit" ColumnName="SystemUnit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_ThreePacksDetail">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_ThreePacksDetail">
+        <MappingFragment StoreEntitySet="SYS_ThreePacksDetail">
+          <ScalarProperty Name="ThreePacksDetailID" ColumnName="ThreePacksDetailID" />
+          <ScalarProperty Name="ReceptionID" ColumnName="ReceptionID" />
+          <ScalarProperty Name="ClaimComID" ColumnName="ClaimComID" />
+          <ScalarProperty Name="ClaimMoney" ColumnName="ClaimMoney" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_UserType">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_UserType">
+        <MappingFragment StoreEntitySet="SYS_UserType">
+          <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+          <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_VehicleType">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_VehicleType">
+        <MappingFragment StoreEntitySet="SYS_VehicleType">
+          <ScalarProperty Name="VehicleTypeID" ColumnName="VehicleTypeID" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="ToDeactivate" ColumnName="ToDeactivate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_Warehouse">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_Warehouse">
+        <MappingFragment StoreEntitySet="SYS_Warehouse">
+          <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+          <ScalarProperty Name="WarehouseName" ColumnName="WarehouseName" />
+          <ScalarProperty Name="WarehouseNum" ColumnName="WarehouseNum" />
+          <ScalarProperty Name="ToDeactivate" ColumnName="ToDeactivate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_WarehousingDetail">
+      <EntityTypeMapping TypeName="QXQPModel.SYS_WarehousingDetail">
+        <MappingFragment StoreEntitySet="SYS_WarehousingDetail">
+          <ScalarProperty Name="WarehousingDetailID" ColumnName="WarehousingDetailID" />
+          <ScalarProperty Name="IncomingID" ColumnName="IncomingID" />
+          <ScalarProperty Name="FittingsInfoID" ColumnName="FittingsInfoID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

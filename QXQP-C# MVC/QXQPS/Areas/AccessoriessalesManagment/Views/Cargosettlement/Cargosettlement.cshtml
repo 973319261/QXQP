@@ -1,0 +1,1498 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>货商结算</title>
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/icons.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/main.css" rel="stylesheet" />
+    <link href="~/Content/Main/lib/layer/2.4/skin/layer.css" rel="stylesheet" />
+    <link href="~/Content/Main/static/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" />
+    <link href="~/Content/Main/tabnav/css/element.min.css" rel="stylesheet" />
+    <link href="~/Content/Main/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_gray.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrapal.css" rel="stylesheet" />
+    <link href="~/Content/layui/css/modules/laydate/default/laydate.css" rel="stylesheet" />
+    <style>
+        .modal input, .modal select {
+            height: 34px;
+        }
+
+        .modal .control-label {
+            width: 100px;
+            padding-top: 0px;
+        }
+
+        .modal .form-group {
+            margin: 1px;
+        }
+
+        .modal .col-lg-3 {
+            width: 16%;
+        }
+
+        .modal-body {
+            padding-bottom: 0;
+            padding: 0px 8px;
+        }
+
+        .modal .navsearch {
+            height: 56px;
+            width: 961px;
+            background: #f5f5f5;
+            padding: 5px 0;
+            border-radius: 3px;
+        }
+        .modal-header{
+            padding:0px;
+            font-size:18px;
+            border-bottom:none;
+        }
+        .layui-elem-fielded{
+            border-color: #e6e6e6;
+        }
+       .layui-elem-fielded legend{
+           margin-left:18px;
+           font-size:15px;
+       }
+        .col-lg-10 {
+            width: 82.563333333%;
+        }
+
+        label {
+            width: 100%;
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .breadcrumb > li + li:before {
+            color: #CCCCCC;
+            content: "> ";
+            padding: 0 5px;
+        }
+
+        .Box {
+            height: 350px;
+            overflow: auto;
+        }
+
+        .box {
+            border: solid 1px gray;
+            width: 100px;
+            display: none;
+            position: absolute;
+            background-color: ghostwhite;
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            box-shadow: #808080 2px 2px;
+        }
+
+            .box > li {
+                border-bottom: dashed 1px gray;
+                cursor: pointer;
+                text-align: center;
+                padding: 3px;
+            }
+
+                .box > li:hover {
+                    background-color: #eee;
+                }
+
+        .el-tabs__content {
+            height: 350px;
+        }
+
+        table tr th, table tr td:hover {
+            /*background: #ffffff;*/
+        }
+
+        table tr th, table tr td {
+            padding: 5px;
+            /*width: 300px;*/
+            text-align: center;
+            border: 1px solid #e2e2e2;
+            border-collapse: collapse;
+        }
+
+        table {
+            border: 1px;
+            width: 99.5%;
+        }
+
+            table tr th {
+                background-color: #f5f5f5;
+                border-bottom:1px solid #CCCCCC;
+                background-image: url(../../images/skins/gray/bg.gif);
+                /*border-bottom: 1px solid gray;*/
+            }
+
+            table input, table select {
+                width: 100px;
+                margin: 0px;
+                border: none;
+            }
+
+            table select {
+                width: 100%;
+            }
+
+        .Box {
+            height: 350px;
+            overflow: auto;
+        }
+
+        .box {
+            border: solid 1px gray;
+            width: 100px;
+            display: none;
+            position: absolute;
+            background-color: ghostwhite;
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            box-shadow: #808080 2px 2px;
+        }
+
+            .box > li {
+                border-bottom: dashed 1px gray;
+                cursor: pointer;
+                text-align: center;
+                padding: 3px;
+            }
+
+                .box > li:hover {
+                    background-color: #eee;
+                }
+
+        .el-tabs__content {
+            height: 350px;
+        }
+
+        .Coloca {
+            float: right;
+            background: none;
+            border: none;
+        }
+
+        .Gonyin {
+            line-height: 35px;
+            margin-left: 5px;
+        }
+
+        .GongNenQu {
+            text-align: right;
+        }
+
+        .panel-body-bow {
+            width: 1200px;
+        }
+
+        .modal {
+        
+        }
+
+        .modal-content {
+            width: 985px;
+            height: 50%;
+            padding-bottom: 10px;
+                left: -200px;
+        }
+
+        .modOne {
+            width: 320px;
+            height: 485px;
+            float: left;
+            overflow: auto;
+            margin: 0px 20px;
+            padding: 5px;
+            border: 3px solid #f5f5f5;
+            box-shadow: 0 0 20px 1px #eee;
+        }
+
+        .modTow {
+            width: 580px;
+            height: 50%;
+            float: left;
+            padding: 5px;
+            border: 3px solid #f5f5f5;
+            box-shadow: 0 0 20px 1px #eee;
+        }
+
+        .CEPER {
+            position: relative;
+            top: 1px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .control-labels {
+            width: 100px;
+            padding-top: 0px;
+            text-align: center;
+        }
+
+        .Shujuxuanzhe {
+            height: 500px;
+            width: 959px;
+            overflow: auto;
+            margin-left: 10px;
+            box-shadow: 0 0 20px 5px #ddd;
+        }
+
+        .Peijianmc {
+            width: 99%;
+            height: 450px;
+            overflow: auto;
+            padding: 5px;
+            border: 3px solid #f5f5f5;
+            box-shadow: 0 0 20px 1px #eee;
+        }
+        .footing{
+            font-size:16px;
+        }
+    </style>
+</head>
+<body>
+    @*导航栏*@
+    <ol class="breadcrumb">
+        <li>首页</li>
+        <li>配件采购</li>
+        <li><a href="#">货商结算</a></li>
+    </ol>
+    @*按钮栏*@
+    <div class="layui-field-box">
+        <button class="btn btn-warning cancel" onclick="ProcurInsert(0)"><i class="en-plus3"></i>新增单</button>
+        <button class="btn btn-danger delete" onclick="ProcurDelete()"><i class="en-trash"></i>删除单</button>
+        <button class="btn btn-primary start" onclick="SaveProcur(1)"><i class="en-upload"></i>保存</button>
+        <button class="btn btn-warning cancel"><i class="en-archive"></i>打印</button>
+        <button class="btn btn-primary start" onclick="ShowDanJu()"><i class="en-googleplus"></i>选择单据</button>
+        <button class="btn btn-primary start" id="AuditDan"><i class="en-checkmark"></i> 审核</button>
+        <button class="btn btn-danger delete"><i class="br-switch"></i>关闭</button>
+    </div>
+    @*结算单内容*@
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top:0px;">
+        <legend style="margin-left:50px;text-shadow: 5px 5px 5px gray;font-weight:inherit">供 应 商 结 算 单</legend>
+        <div class="layui-field-box">
+            <form class="form-horizontal" role="form" id="IntoExaminee" action="" method="post">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <input type="text" id="ProBalanceID" hidden />@*结算单ID*@
+                        <input type="text" id="PSuppliersID" hidden />@*供应商ID*@
+                        <div class="col-lg-1 col-md-1 col-xs-12">
+                            <label>单据号:</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12">
+                            <input type="text" id="ReceiptId" name="Receipt" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-xs-12">
+                            <label>供应商编码:</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12">
+                            <div class="input-group" style="width:104%">
+                                <input type="text" id="SuppliFirmId" name="SuppliersFirm" class="form-control" disabled="disabled" style="padding:3px;">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button" id="Supplier"><i class="en-list2"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-xs-12">
+                            <label>供应商名称:</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12">
+                            <input type="text" id="SuppliNameId" name="SuppliersName" class="form-control">
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-xs-12">
+                            <label>供应商地址:</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12">
+                            <input type="text" id="AddressId" name="Address" class="form-control">
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-xs-12">
+                            <label>单据日期:</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12">
+                            <input type="text" id="ReceiptDateId" name="ReceiptDate" class="form-control Datetime">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-xs-12">
+                            <label>供应商税号:</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12">
+                            <input type="text" id="TaxNumberId" name="TaxNumber" class="form-control">
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-xs-12">
+                            <label>开行户:</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12">
+                            <input type="text" id="OpenBankId" name="OpenBank" class="form-control" />
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-xs-12">
+                            <label>账号:</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12">
+                            <input type="text" id="AccountNumberId" name="AccountNumber" class="form-control">
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-xs-12">
+                            <label>操作人:</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12">
+                            <input type="text" id="OperatorId" name="Operator" value="@ViewBag.UserName" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-xs-12">
+                            <label>付款方式:</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12">
+                            <select type="text" id="PaymentId" name="PaymentID" class="form-control"></select>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-xs-12">
+                            <label>本次金额:</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12">
+                            <input type="text" id="CurrentManyId" name="CurrentMany" class="form-control">
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-xs-12">
+                            <label>审核人:</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12">
+                            <input type="text" id="AuditorId" name="Auditor" class="form-control">
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-xs-12">
+                            <label>审核日期:</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12">
+                            <input type="text" id="AuditDateId" name="AuditDate" class="form-control">
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-xs-12" style="text-align:right;">
+                            <button class="btn btn-primary start" type="button" id="CheckId"><i class="im-checkbox-checked"></i>&nbsp;全选</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-xs-12">
+                            <label>备注:</label>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-xs-12">
+                            <input type="text" id="RemarkId" name="Remark" class="form-control">
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-xs-12">
+                            <label>审核:</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12">
+                            <label class="checkbox" style="text-align:left;">
+                                <input type="checkbox" id="PToAudits" name="ToAudit" value="option1" style="height: 20px;width:20px;" disabled="disabled" />
+                                <input type="checkbox" class="Disabled" style="height: 20px;width:20px;" id="PToAudit" value="false" name="ToAudit" hidden />
+                            </label>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-xs-12" style="text-align:right;">
+                            <button class="btn btn-danger delete" type="button" id="NoCheckId"><i class="im-checkbox-unchecked"></i>&nbsp;反选</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        @*表格*@
+        <div class="col-lg-12" id="myVue" style="margin:15px 5px;">
+            <el-tabs type="border-card">
+                <el-tab-pane label="配件明细">
+                    <div id="DingHuoBox" class="Peijianmc">
+                        <table id="tbDingHuo" style="border:1px; width:99.5%">
+                            <tbody>
+                                <tr>
+                                    <th width='3%' height='20px'>行号</th>
+                                    <th width='4%' height='20px'>已清</th>
+                                    <th width='8%' height='20px'>单据类型</th>
+                                    <th width='8%' height='20px'>单号</th>
+                                    <th width='15%' height='20px'>单据日期</th>
+                                    <th width='7%' height='20px'>应付金额</th>
+                                    <th width='8%' height='20px'>已付金额</th>
+                                    <th width='8%' height='20px'>已优惠总金额</th>
+                                    <th width='8%' height='20px'>未付金额</th>
+                                    <th width='8%' height='20px'>本次优惠金额</th>
+                                    <th width='8%' height='20px'>本次付款金额</th>
+                                    <th width='8%' height='20px'>备注</th>
+                                    <th width='20%' height='20px'>付款状况</th>
+                                </tr>
+                            </tbody>
+                            <tfoot class="footing">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><i class="en-feather"></i>合计：</td>
+                                    <td id="CShuLiang">0.00</td>
+                                    <td id="CDanJia">0.00</td>
+                                    <td id="CYouHui">0.00</td>
+                                    <td id="CJinE">0.00</td>
+                                    <td id="BYouHui">0.00</td>
+                                    <td id="BJinE">0.00</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </el-tab-pane>
+            </el-tabs>
+        </div>
+    </fieldset>
+    @*供应商模态框*@
+    <div class="modal fade col-lg-12" id="Suppliermodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="Coloca" type="button" data-dismiss="modal" aria-hidden="true"><i class="en-cross"></i></button>
+                    <span class="Gonyin">&nbsp;<i class="en-users"></i> 供应商</span>
+                </div>
+                <div class="modal-body">
+                    <fieldset class="layui-elem-fielded col-lg-12" style="padding-bottom:3px;">
+                        <legend class=".layui-elem-fielded legend">功能区</legend>
+                        <div class="layui-fielded-box">
+                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="SuppliersNameId" name="SuppliersName" placeholder="请输入供应商名称...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button" onclick="searchTitles()"><i class="en-search"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="GongNenQu col-lg-8 col-md-8 col-xs-12">
+                                <button class="btn btn-warning cancel" type="button" onclick="SuppliReach()"><i class="en-cycle"></i> 刷新</button>
+                                <button class="btn btn-primary start" type="button" onclick="ClearValue()"><i class="en-user-add"></i> 新增</button>
+                                <button class="btn btn-primary start" type="button" onclick="SuppliSave()"><i class="en-upload"></i> 保存</button>
+                                <button class="btn btn-danger delete" data-dismiss="modal" aria-hidden="true"><i class="br-switch"></i> 关闭</button>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                </div>
+                <div class="modal-footer" style="border-top:none;">
+                    <div>
+                        <div class="modOne">
+                            <div class="panel-body-bow">
+                                <div class="table-responsive">
+                                    <table id="tdSuppliai" ondblclick="Dblclick()" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th w_num="total_line" style="width:50px;">序号</th>
+                                                <th w_index="SuppliersID" w_hidden="true"></th>
+                                                <th w_index="SuppliersFirm">供应商编码</th>
+                                                <th w_index="SuppliersName">供应商名称</th>
+                                                <th w_index="Address">地址</th>
+                                                <th w_index="TelePhone">电话</th>
+                                                <th w_index="Contacts">联系人</th>
+                                                <th w_index="MainBusiness">主营业务</th>
+                                                <th w_index="Facsimile">传真号</th>
+                                                <th w_index="MobilePhone">手机</th>
+                                                <th w_index="Url">网站</th>
+                                                <th w_index="Mailbox">邮箱</th>
+                                                <th w_index="Remark">备注</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modTow col-lg-12 col-md-12 col-sm-12">
+                            <form class="form-horizontal" role="form" id="formExaminee" action="/AccessoriessalesManagment/Purchaseorder/InsertSuppliers" method="post">
+                                <input id="KSuppliersID" type="text" name="SuppliersID" hidden />
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">供应商号:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" id="KSuppliersFirm" name="SuppliersFirm" class="form-control" style="padding:2px;" maxlength="25">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">供应商名称:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" id="KSuppliersName" name="SuppliersName" class="form-control" onKeyUp="query()">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">拼音码:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select id="KPinYinCode" name="PinYinCode" class="form-control" maxlength="15"></select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">应付款:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" id="KDeserveMoney" name="DeserveMoney" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">结算方式:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select type="text" id="KBalanceMode" name="BalanceMode" class="form-control">
+                                            <option>--请选择--</option>
+                                            <option value="1">按单结算</option>
+                                            <option value="2">流水月结</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">主要业务:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" id="KMainBusiness" name="MainBusiness" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">地址:</label>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-xs-12">
+                                        <input type="text" id="KAddress" name="Address" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">联系人:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" id="KContacts" name="Contacts" class="form-control">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">电话:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" id="KTelePhone" name="TelePhone" class="form-control" maxlength="15">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">手机:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" id="KMobilePhone" name="MobilePhone" class="form-control" maxlength="15">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">传真:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" id="KFacsimile" name="Facsimile" class="form-control" maxlength="15">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">邮箱:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" id="KMailbox" name="Mailbox" class="form-control" maxlength="15">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">网址:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" id="KUrl" name="Url" class="form-control" maxlength="15">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">开行户:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" id="KOpenBank" name="OpenBank" class="form-control">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">税号:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" id="KTaxNumber" name="TaxNumber" class="form-control" maxlength="15">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">录入人:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" id="KInputPerson" name="InputPerson" class="form-control">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">库房电话:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" id="KStorageTele" name="StorageTele" class="form-control" maxlength="15">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">库房地址:</label>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-xs-12">
+                                        <input type="text" id="KStorageAdd" name="StorageAdd" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">备注:</label>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-xs-12">
+                                        <input type="text" id="KRemark" name="Remark" class="form-control">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-bottom">
+                    <span class="Gonyin">&nbsp;<i class="en-paperplane"></i> 操作提示: 您可以选中左边的供应商资料后双击即可调出该供应商的资料，如果列表没有信息可以单击添加增加相关供应商资料即可。</span>
+                </div>
+            </div><!-- /.modal-content -->
+        </div>
+    </div>
+    @*选择单据模态框*@
+    <div class="modal fade col-lg-12" id="DanJuModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="Coloca" type="button" data-dismiss="modal" aria-hidden="true"><i class="en-cross"></i></button>
+                    <span class="Gonyin">&nbsp;<i class="en-location"></i> 记录定位</span>
+                </div>
+                <div class="modal-body">
+                    <div class="navsearch">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <form class="form-horizontal" id="ProBalaExminee" role="form" style="margin-top:2px;">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-1 col-md-1 col-sm-1 text-right">
+                                        <label class="control-label">单 号</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-12 reset">
+                                        <input type="text" name="Receipt" class="form-control" id="ReceiptId" onkeyup="" />
+                                    </div>
+                                    <div class="col-lg-1 col-md-1 col-sm-1 text-right">
+                                        <label class="control-label">审 核</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 reset">
+                                        <select class="form-control" id="DToAudit">
+                                            <option value="0">全部</option>
+                                            <option value="1">已审核</option>
+                                            <option value="2">未审核</option>
+                                        </select>
+                                    </div>
+                                    <button type="button" class="btn btn-search" onclick="ProBalaSearch()"><i class="im-search"></i>查 询</button>
+                                    <button type="button" class="btn btn-info" id="" style="margin-left:120px;"><i class="im-spinner5"></i>刷新</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btnClose"><i class="im-switch"></i>关 闭</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="border-top:none;">
+                    <div class="Shujuxuanzhe">
+                        <table id="tbDanJu" style="width:100%">
+                            <tr>
+                                <th w_num="total_line">序号</th>
+                                <th w_render="SetState">审核状态</th>
+                                <th w_index="ToAudit" w_hidden="true">审核</th>
+                                <th w_index="Receipt">单据号</th>
+                                <th w_index="SuppliersFirm">供应商编号</th>
+                                <th w_index="SuppliersName">供应商名称</th>
+                                <th w_index="Operator">操作人</th>
+                                <th w_index="ReceiptDates">单据日期</th>
+                                <th w_index="CurrentMany">本次金额</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    @*外部js引用*@
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/Main/tabnav/js/vue.min.js"></script>
+    <script src="~/Content/Main/tabnav/js/element.min.js"></script>
+    <script src="~/Content/Main/lib/layer/2.4/layer.js"></script>
+    <script src="~/Content/layui/laydate/laydate.js"></script>
+    <script src="~/Content/js/jquery.form.js"></script>
+    <script src="~/Content/js/combobox.js"></script>
+    <script src="~/Content/js/pinying.js"></script>@*拼音码*@
+    <script src="~/Content/js/customfunction.js"></script>
+    <script>
+        //初始化表格
+        var tdSuppliai, tbDanJu;
+        var Number = /^[0-9]+$/; //只能输入数字
+        var FUNum = /^\-((\d+(\.\d{0,2})?)|(\d*\.\d{1,2}))$/; //只能输入负数
+        var Numbers = /^[-\d.]+$/; //价格
+        $(function () {
+            SelectData(), Datetime();
+            createSelect("PaymentId", "/PublicManagment/CreateSelect/SelectPayment"); //付款方式下拉框绑定
+            tdSuppliai = $.fn.bsgrid.init('tdSuppliai', {
+                url: '/AccessoriessalesManagment/Purchaseorder/SelectSuppliers',
+                autoLoad: true,//自动加载
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                displayBlankRows: false,//是否显示空白行, 默认值true
+                pageIncorrectTurnAlert: false,
+                displayPagingToolbarOnlyMultiPages: true,
+                event: {
+                    customRowEvents: {
+                        click: function (record, rowIndex) {
+                            viewSuppliInfor(record);
+                            query();
+                        }
+                    }
+                }
+            })
+            tbDanJu = $.fn.bsgrid.init('tbDanJu', {
+                url: 'SelectProBalance',
+                autoLoad: true,//自动加载
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                displayBlankRows: false,//是否显示空白行, 默认值true
+                pageIncorrectTurnAlert: false,
+                displayPagingToolbarOnlyMultiPages: true,
+                event: {
+                    customRowEvents: {
+                        dblclick: function (record, rowIndex) {
+                            viewProcurInfor(record);
+                        }
+                    }
+                }
+            })
+            //ProBalaSearch();
+            searchTitles(), ProBalaSearch();
+        })
+        //自动生成单号
+        function SelectData() {
+            $.ajax({
+                type: "post",
+                url: "MaintenanceNum",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#ReceiptId").val(data);
+                }
+            });
+        }
+
+        //明细表合计&&表格计算
+        function ProDetailEvent(length) {
+            var Yingfu = $("#CF" + length).text();
+            var Yifu = $("#CH" + length).text();
+            var Yiyouhui = $("#CI" + length).text();
+            var Weifu = parseFloat(Yingfu) - (parseFloat(Yifu) + parseFloat(Yiyouhui));
+            $("#CJ" + length).text(Weifu + ".00");
+            myfunction(length);
+            //SelectLeastOne();
+            function myfunction(length) {
+                var CShuLiang = 0, CDanJia = 0, CYouHui = 0, CJinE = 0, BYouHui = 0, BJinE=0;
+                for (var i = 1; i < length + 1; i++) {
+                    if ($("#CF" + i).text() != "") {
+                        CShuLiang = parseFloat(CShuLiang) + parseFloat($("#CF" + i).text()) + ".00";
+                        $("#CShuLiang").text(CShuLiang);
+                    }
+                    if ($("#CH" + i).text() != "") {
+                        CDanJia = parseFloat(CDanJia) + parseFloat($("#CH" + i).text()) + ".00";
+                        $("#CDanJia").text(CDanJia);
+                    }
+                    if ($("#CI" + i).text() != "") {
+                        CYouHui = parseFloat(CYouHui) + parseFloat($("#CI" + i).text()) + ".00";
+                        $("#CYouHui").text(CYouHui);
+                    }
+                    if ($("#CJ" + i).text() != "") {
+                        CJinE = parseFloat(CJinE) + parseFloat($("#CJ" + i).text()) + ".00";
+                        $("#CJinE").text(CJinE);
+                    }
+                    if ($("#CM" + i).text() != "") {
+                        BYouHui = parseFloat(BYouHui) + parseFloat($("#CM" + i).text()) + ".00";
+                        $("#BYouHui").text(BYouHui);
+                    }
+                    if ($("#CV" + i).text() != "") {
+                        BJinE = parseFloat(BJinE) + parseFloat($("#CV" + i).text());
+                        $("#BJinE").text(BJinE);
+                    }
+                }
+            }
+            $("body").click(function () {
+                //var Quantity = $("#CF" + length).text();
+                //var SalesPrice = $("#CG" + length).text();
+                //var Discount = $("#CH" + length).text();
+                //var Cal = Quantity * SalesPrice * Discount / 100;
+                //$("#CI" + length).text(Cal + ".00");
+                //if (!Numbers.test(Quantity)) {
+                //    layer.tips('只能输入数字!', '#CF' + length);
+                //} else if (($("#CE" + length).text().length > 5)) {
+                //    layer.tips('数据超出有效长度!', '#CE' + length);
+                //} else if (!Numbers.test(SalesPrice)) {
+                //    layer.tips('只能输入数字!', '#CG' + length);
+                //} else if (!Numbers.test(Discount)) {
+                //    layer.tips('只能输入数字!', '#CH' + length);
+                //} else if (parseInt(Discount) > 100 || parseInt(Discount) < 0) {
+                //    layer.tips('数据超出有效长度!', '#CG' + length);
+                //} else if ($("#CI" + length).text().length > 20) {
+                //    layer.tips('数据超出有效长度!', '#CI' + length);
+                //}
+                var Wpaymoney = $("#CJ" + length).text();//未付金额
+                var Privmoney = $("#CM" + length).text();//本次优惠金额
+                var Bpaymoney = $("#CV" + length).text();//本次付款金额
+                if (document.getElementById("CA" + length).checked) {
+                    if ($("#CJ" + length).text() < 0) {
+                        var Cal = parseFloat(Wpaymoney)+parseFloat(Privmoney);
+                        $("#CV" + length).text(Cal + ".00");
+                    } else {
+                        if (parseFloat(Privmoney) > parseFloat(Wpaymoney)) {
+                            layer.msg('优惠金额大于未付金额，请输入正确优惠金额！', {
+                                time: 20000, //20s后自动关闭
+                                btn: ['知道了']
+                            });
+                            $("#CM" + length).text("0.00");
+                        } else {
+                            var Cal = parseFloat(Wpaymoney) - parseFloat(Privmoney);
+                            $("#CV" + length).text(Cal + ".00");
+                        }
+                    }
+                } else {//Math.abs绝对值
+                    if (Math.abs(Wpaymoney) < Math.abs(Privmoney) + Math.abs(Bpaymoney)) {
+                        layer.msg('优惠金额与付款金额相加大于未付金额，请输入正确金额！', {
+                            time: 20000, //20s后自动关闭
+                            btn: ['知道了']
+                        });
+                        $("#CM" + length).text("0.00");
+                        $("#CV" + length).text("0.00");
+                    } else {
+                        $("#CV" + length).attr("onclick", "tdclick(this)");
+                      }
+                 }
+                myfunction(length);
+            })
+        }
+        //全选
+        function CheckAll(length) {
+            $("#CheckId").click(function () {
+                var fruits = document.getElementsByName("fushu");
+                for (var i = 0; i < fruits.length; i++) {
+                    fruits[i].checked = true;
+                }
+            })
+        }
+        //全不选
+        function NoCheckAll(length) {
+            $("#NoCheckId").click(function () {
+                var fruits = document.getElementsByName("fushu");
+                for (var i = 0; i < fruits.length; i++) {
+                    fruits[i].checked = false;
+                }
+            })
+        }
+
+        //明细表合计初始化
+        function ClearDetail() {
+            $("#CShuLiang").text("0.00");
+            $("#CDanJia").text("0.00");
+            $("#CYouHui").text("0.00");
+            $("#CJinE").text("0.00");
+            $("#BYouHui").text("0.00");
+            $("#BJinE").text("0.00");
+        }
+
+        //同时绑定多个时间插件
+        function Datetime() {
+            lay('.Datetime').each(function () {
+                run();
+                laydate.render({
+                    elem: this
+                  , trigger: 'click',
+                    type: 'datetime'
+                });
+            });
+            lay('.Date').each(function () {
+                run();
+                laydate.render({
+                    elem: this
+                  , trigger: 'click',
+                    type: 'date'
+                });
+            });
+        }
+        //获取系统当前时间
+        function run() {
+            var time = new Date();//获取系统当前时间
+            var year = time.getFullYear();
+            var month = time.getMonth() + 1;
+            var date = time.getDate();//系统时间月份中的日
+            var dater = time.getDate() + 10;//系统时间月份中的日
+            var hour = time.getHours();
+            var minutes = time.getMinutes();
+            var seconds = time.getSeconds();
+            if (month < 10) {
+                month = "0" + month;
+            }
+            if (date < 10) {
+                date = "0" + date;
+            }
+            if (hour < 10) {
+                hour = "0" + hour;
+            }
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            var newDate = year + "-" + month + "-" + date + " " + hour + ":" + minutes + ":" + seconds;
+            $(".Datetime").each(function () {
+                $(this).val(newDate);
+            })
+            $(".Date").each(function () {
+                $(this).val("");
+            })
+        }
+
+        /*************主页面 开始 *****************/
+
+        //主页面新增保存
+        function SaveProcur(num) {
+
+            var ArrProBalance = [], ArrProBalancetDetail = [];
+            var Supp = $("#SuppliFirmId").val();
+            var Name = $("#SuppliNameId").val();
+            var Addr = $("#AddressId").val();
+            var Paym = $("#PaymentId").val();
+            var DingHuolength = $("#tbDingHuo tbody tr").length;
+            var AllMoney = parseFloat($("#BJinE").text());//总金额
+            $("#CurrentManyId").val(AllMoney);
+            var e = new ProBalance();//对应最后面的构造函数方法“function ProBalance(..)”
+            e.ProBalanceID = $("#ProBalanceID").val();
+            e.SuppliersID = $("#PSuppliersID").val();
+            e.Receipt = $("#ReceiptId").val();
+            e.AccountNumber = $("#AccountNumberId").val();
+            e.PaymentID = $("#PaymentId").val();
+            e.ReceiptDate = $("#ReceiptDateId").val();
+            e.CurrentMany = $("#CurrentManyId").val();
+            e.Operator = document.getElementById("OperatorId").value;
+            e.Auditor = $("#AuditorId").val();
+            e.AuditDate = $("#AuditDateId").val();
+            e.ToAudit = $("#PToAudit").val();
+            e.Remark = $("#RemarkId").val();
+            ArrProBalance.push(e);
+            for (var i = 1; i < DingHuolength; i++) {//产品材料构造函数
+                if ($("#CA" + i).checked) {
+                    $("#CA" + i).val(false);
+                } else {
+                    $("#CA" + i).val(true);
+                }
+                var e = new ProBalancetDetail();//对应最后面的构造函数方法“function ProBalancetDetail(..)”
+                e.ToCleared = $("#CA" + i).val();
+                e.DocumentsDate = $("#CE" + i).text();
+                e.SingleNumber = $("#CD" + i).text();
+                e.ShouldAmount = $("#CF" + i).text();
+                e.PaidAmount = $("#CH" + i).text();
+                e.SuperioAmountr = $("#CI" + i).text();
+                e.ThisSuperioAmountr = $("#CM" + i).text();
+                e.ThisShouldAmount = $("#CV" + i).text();
+                e.DocumentsTypeID = $("#CP" + i).text();
+                e.BalanceStateID = $("#CU" + i).text();
+                e.ProBalancetDetailID = $("#CL" + i).text();
+                ArrProBalancetDetail.push(e);
+            }
+            if (Supp == "") {
+                layer.tips('供应商不能为空!', '#SuppliFirmId');
+            } else if (Name == "") {
+                layer.tips('供应商名称不能为空!', '#SuppliNameId');
+            } else if (Paym == 0) {
+                layer.tips('请选择付款方式!', '#PaymentId');
+            } else if (AllMoney == "0") {
+                layer.tips('收款金额为0，不能保存!', '#CurrentManyId');
+            }
+            else {
+                    //方法请求
+                    layer.confirm('是否保存当前信息？', {
+                        btn: ['保存', '取消'] //按钮
+                    }, function () {
+                        var index = layer.load(0); //0代表加载的风格，支持0-2
+                        $.post("listProBalant", {
+                            listProBalance: ArrProBalance, listProBalancetDetail: ArrProBalancetDetail
+                        }, function (data) {
+                            $("#ProBalanceID").val(data);
+                            $("#CL" + length).val(data);
+                            layer.close(index);
+                            if (num == 1) {
+                                if (data != false) {
+                                    layer.confirm('保存成功！是否立即审核进货订单?', {
+                                        btn: ['是', '否'] //按钮
+                                    }, function () {
+                                        ToAuditPro();//审核方法
+                                    }, function () {
+                                        layer.msg('数 据 保 存 成 功 ！', {
+                                            time: 20000, //20s后自动关闭
+                                            btn: ['知道了']
+                                        });
+                                    });
+                                    tbDanJu.refreshPage();//选择单据表格刷新
+                                } else {
+                                    layer.msg('数 据 保 存 失 败！', {
+                                        time: 2000, //20s后自动关闭
+                                    });
+                                }
+                            }
+                            else {
+                                ToAuditPro();
+                            }
+
+                        });
+                    })
+                } 
+
+            }
+        
+        //主页面审核
+        function ToAuditPro() {
+            $("#PToAudit").val("false");
+            $.post("ToAuditProcur?ProcurementID=" + $("#ProcurementID").val(), function (data) {
+                if (data) {
+                    layer.alert('审核成功，数据不能调整！', {
+                        skin: 'layui-layer-molv' //样式类名
+                  , closeBtn: 0
+                    });
+                    //ToAuditView();
+                    tbDanJu.refreshPage();//选择单据表格刷新
+
+                    $("#PToAudits").attr("checked", true);//标志已审核
+                    $("#DelectDan").attr("disabled", true);//删除单禁用
+                    $("#SaveDan").attr("disabled", true);//保存禁用
+                    $("#AuditDan").attr("disabled", true);//审核禁用
+                    $("#NOAuditDan").attr("disabled", false);//反审核启用
+                    $("#Supplier").attr("disabled", true);//供应商禁选
+                    $("#IntoExaminee input[type='text']").attr("disabled", true);//主页面文本框禁用
+                    $("#IntoExaminee select").attr("disabled", true);//主页面下拉框禁用
+                    $("#myVue tbody td").attr("onclick", "");//明细表取消可编辑
+                    $.ajax({
+                        type: "post",
+                        url: "Datetime",
+                        dataType: "json",
+                        async: false,
+                        success: function (data) {
+                            $("#AuditerDate").val(data);
+                        }
+                    });
+                    $("#Auditer").attr("value", "@ViewBag.UserName");
+                    run();
+                    document.getElementById("DingHuoBox").onmouseup = function (e) {   //在body里点击触发事件
+                        if (e.button == 2) {    //如果button=1（鼠标左键），button=2（鼠标右键），button=0（鼠标中间键）
+                            return false;
+                        }
+                    }
+                }
+                else {
+                    layer.alert('审核失败，请重新审核！', {
+                        skin: 'layui-layer-lan' //样式类名
+                  , closeBtn: 0, anim: 4 //动画类型
+                    });
+                }
+            })
+        }
+        //审核状态
+        function ToAuditView() {
+            $("#DelectDan").attr("disabled", true);//删除单禁用
+            $("#SaveDan").attr("disabled", true);//保存禁用
+            $("#AuditDan").attr("disabled", true);//审核禁用
+            $("#NOAuditDan").attr("disabled", false);//反审核启用
+            $("#Supplier").attr("disabled", true);//供应商禁选
+            $("#IntoExaminee input[type='text']").attr("disabled", true);//主页面文本框禁用
+            $("#IntoExaminee select").attr("disabled", true);//主页面下拉框禁用
+            $("#myVue tbody td").attr("onclick", "");//明细表取消可编辑
+            $("#PToAudits").attr("checked", true);//标志已审核
+            $.ajax({
+                type: "post",
+                url: "Datetime",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#AuditerDate").val(data);
+                }
+            });
+            $("#Auditer").attr("value", "@ViewBag.UserName");
+            run();
+        }
+        //新增订单
+        function ProcurInsert(data) {
+            $("#myVue tbody tr td").parent("tr").remove();//清空明细表
+            ClearDetail();//初始化合计栏
+            $("#IntoExaminee").resetForm();//表单重置
+            $("#PToAudits").attr("checked", false);
+            $("#AuditDan").attr("disabled", true);//审核禁用
+            if (data == 0) {
+                SelectData(), TimeData(), Datetime();
+            }
+        }
+        //判断是审核否
+        function ToNO() {
+            var ss = $("#PToAudit").val();
+            if (ss == "false") {
+                //NOToAuditView();
+                $("#DelectDan").attr("disabled", false);//删除单启用
+                $("#SaveDan").attr("disabled", false);//保存启用
+                $("#Supplier").attr("disabled", false);//供应商可选
+                $("#AuditDan").attr("disabled", false);//审核启用
+                $("#NOAuditDan").attr("disabled", true);//反审核禁用
+                $("#IntoExaminee input").attr("disabled", false);//主页面文本框启用
+                $("#IntoExaminee select").attr("disabled", false);//主页面下拉框启用
+                $("#myVue tbody td").attr("onclick", "tdclick(this)");//明细表取消可编辑
+                $("#PToAudits").attr("checked", false);//标志已审核去掉
+                $(".Disabled").attr("disabled", true);//带有“Disabled”类的标签依然禁用
+            } else {
+                ToAuditView();
+            }
+        }
+        //删除订单
+        function ProcurDelete() {
+            var ProBalanceID = $("#ProBalanceID").val();
+            if (ProBalanceID != "") {
+                layer.confirm("真的要删除单据吗?", {
+                    btn: ['是', '否'] //按钮
+                }, function () {
+                    var index = layer.load(0);
+                    $.post("DeleteProBalance?ProBalanceID=" + ProBalanceID, function (data) {
+                        layer.close(index);
+                        if (data) {
+                            layer.msg(" 删 除 成 功 ！");
+                            ProcurInsert(0);
+                            tbDanJu.refreshPage();//选择单据表格刷新
+                        } else {
+                            layer.msg(" 删 除 失 败 ！");
+                        }
+                    });
+                })
+            }
+        }
+        /*************主页面 结束 *****************/
+
+        /*************供应商模态框 开始 *****************/
+
+        //弹出供应商模态框
+        $(function () {
+            $("#Supplier").click(function () {
+                $("#Suppliermodal").modal("toggle");
+            });
+        });
+        //查询供应商
+        function searchTitles() {
+            var SuppliersName = $("#SuppliersNameId").val();
+            if (SuppliersName == null || SuppliersName == undefined) {
+                SuppliersName = 0;
+            }
+            tdSuppliai.search("Suppliers=" + SuppliersName);
+        }
+        //拼音码
+        function query() {
+            var r = document.getElementById("KSuppliersName").value.trim();
+            if (r == "") return;
+            var arrRslt = makePy(r);
+            //循环将值到下拉框
+            var option = null;
+            document.getElementById("KPinYinCode").innerHTML = "";//清空下拉框
+            var first = document.getElementById("KPinYinCode");
+            for (var j = 0; j < arrRslt.length; j++) {
+                var obj = document.getElementById("KPinYinCode");
+                obj.add(new Option(arrRslt[j]));
+            }
+        }
+        //表格单击查看供应商信息
+        function viewSuppliInfor(record) {
+            $("#KSuppliersID").val(record.SuppliersID);
+            $("#KSuppliersFirm").val(record.SuppliersFirm);
+            $("#KSuppliersName").val(record.SuppliersName);
+            $("#KPinYinCode").val(record.PinYinCode);
+            $("#KMainBusiness").val(record.MainBusiness);
+            $("#KAddress").val(record.Address);
+            $("#KDeserveMoney").val(record.DeserveMoney);
+            $("#KBalanceMode").val(record.BalanceMode);
+            $("#KContacts").val(record.Contacts);
+            $("#KTelePhone").val(record.TelePhone);
+            $("#KMobilePhone").val(record.MobilePhone);
+            $("#KFacsimile").val(record.Facsimile);
+            $("#KMailbox").val(record.Mailbox);
+            $("#KUrl").val(record.Url);
+            $("#KOpenBank").val(record.OpenBank);
+            $("#KTaxNumber").val(record.TaxNumber);
+            $("#KInputPerson").val(record.InputPerson);
+            $("#KStorageTele").val(record.StorageTele);
+            $("#KStorageAdd").val(record.StorageAdd);
+            $("#KToDeactivate").val(record.ToDeactivate);
+            $("#KRemark").val(record.Remark);
+        };
+        //表格双击调出数据
+        function Dblclick() {
+            $("#myVue tbody tr td").parent("tr").remove();//清空明细表
+            ClearDetail();//清空合计
+            var rowIndex = tdSuppliai.getSelectedRowIndex();
+            var record = tdSuppliai.getRecord(rowIndex);
+            if (rowIndex > -1) {
+                $("#Suppliermodal").modal("hide");
+                $("#PSuppliersID").val(record.SuppliersID);
+                $("#SuppliFirmId").val(record.SuppliersFirm);
+                $("#SuppliNameId").val(record.SuppliersName);
+                $("#TaxNumberId").val(record.TaxNumber);
+                $("#OpenBankId").val(record.OpenBank);
+                $("#AddressId").val(record.Address);
+                $.post("SelectProBalancetDetail?SuppliersID=" + record.SuppliersID, function (data) {
+                    if (data != "") {
+                        for (var i = 0; i < data.length; i++) {
+                            var tbDingHuo = $("#tbDingHuo");
+                            var length = $("#tbDingHuo tbody tr").last().prevObject.length;
+                            var tr = $("<tr><td style='width:18px;height:18px;'>" + length + "</td>"
+                                         + "<td ><input id=CA" + length + " name='fushu' type='checkbox' style='width:18px;height:18px;margin-top:6px;' value='false'></td>"
+                                         + "<td id=CC" + length + ">" + data[i].DocumentsType + "</td>"//单据类型
+                                         + "<td id=CD" + length + ">" + data[i].SingleNumber + "</td>"//单号
+                                         + "<td id=CE" + length + ">" + data[i].DocumentsDate + "</td>"//单据日期
+                                         + "<td id=CF" + length + ">" + data[i].ShouldAmount + "</td>"//应付金额
+                                         + "<td id=CH" + length + ">0.00</td>"//已付金额
+                                         + "<td id=CI" + length + ">0.00</td>"//已优惠总金额
+                                         + "<td id=CJ" + length + ">0.00</td>"//未付金额
+                                         + "<td onclick='tdclick(this)' id=CM" + length + ">0.00</td>"//本次优惠金额
+                                         + "<td onclick='tdclick(this)' id=CV" + length + ">0.00</td>"//本次付款金额
+                                         + "<td onclick='tdclick(this)' id=CY" + length + "></td>"//备注
+                                         + "<td id=CX" + length + ">" + data[i].BalanceState + "</td>"//付款情况
+                                         + "<td hidden id=CP" + length + ">" + data[i].DocumentsTypeID + "</td>"
+                                         + "<td hidden id=CU" + length + ">" + data[i].BalanceStateID + "</td>"
+                                         + "<td hidden id=CL" + length + ">" + data[i].ProBalancetDetailID + "</td></tr>");
+                            tbDingHuo.append(tr);
+                            ProDetailEvent(length);
+                            CheckAll(length);
+                            NoCheckAll(length);
+                        }
+                    }
+                    else {
+                        layer.msg('您和此供应商没有账款信息，或你们往来账已平衡！', {
+                            time: 20000, //20s后自动关闭
+                            btn: ['知道了']
+                        });
+                    }
+                })
+            } else {
+                layer.msg("如果需要选择一行数据，请进行操作！");
+            }
+        };
+        //供应商新增&修改保存
+        function SuppliSave() {
+            var Firm = $("#KSuppliersFirm").val();
+            var Name = $("#KSuppliersName").val();
+            var Code = $("#KPinYinCode").val();
+            var Main = $("#KMainBusiness").val();
+            var Addr = $("#KAddress").val();
+            var Cont = $("#KContacts").val();
+            var Tele = $("#KTelePhone").val();
+            var Mobi = $("#KMobilePhone").val();
+            var Facs = $("#KFacsimile").val();
+            var Open = $("#KOpenBank").val();
+            var TaxN = $("#KTaxNumber").val();
+            var Inpu = $("#KInputPerson").val();
+            var Stot = $("#KStorageTele").val();
+            var Stoa = $("#KStorageAdd").val();
+            var Rema = $("#KRemark").val();
+            var Urll = $("#KUrl").val();
+            var Dese = $("#KDeserveMoney").val();
+            var Mail = $("#KMailbox").val();
+            var Bala = document.getElementById("KBalanceMode").value;
+            if (Name == "") {
+                layer.tips('供应商名称不能为空!', '#KSuppliersName');
+            } else if (Code == "") {
+                layer.tips('供应商拼音码不能为空!', '#KPinYinCode');
+            } else if (Main == "") {
+                layer.tips('主要业务不能为空!', '#KMainBusiness');
+            } else if (Addr == "") {
+                layer.tips('地址不能为空!', '#KAddress');
+            } else if (Cont == "") {
+                layer.tips('联系人不能为空!', '#KContacts');
+            } else if (Tele == "") {
+                layer.tips('电话号码不能为空!', '#KTelePhone');
+            } else if (!Numbers.test(Tele)) {
+                layer.tips('只能输入数字!', '#KTelePhone');
+            } else if (Mobi == "") {
+                layer.tips('手机号码不能为空!', '#KMobilePhone');
+            } else if (!Numbers.test(Mobi)) {
+                layer.tips('只能输入数字!', '#KMobilePhone');
+            } else if (Facs == "") {
+                layer.tips('传真不能为空!', '#KFacsimile');
+            } else if (Open == 0) {
+                layer.tips('请输入开行户!', '#KOpenBank');
+            } else if (TaxN == "") {
+                layer.tips('请输入税号!', '#KTaxNumber');
+            } else if (Inpu == 0) {
+                layer.tips('录入人不能为空!', '#KInputPerson');
+            } else if (Stot == 0) {
+                layer.tips('请输入库房电话!', '#KStorageTele');
+            } else if (Stoa == 0) {
+                layer.tips('请输入库房地址!', '#KStorageAdd');
+            }
+            else {
+                $("#formExaminee").ajaxSubmit(function (data) {
+                    if (data == true) {
+                        layer.closeAll('loading');
+                        layer.msg("✔ 保 存 成 功 ！");
+                        searchTitles();
+                        ClearValue();
+
+                    }
+                });
+            }
+        }
+        //刷新按钮
+        function SuppliReach() {
+            $("#formExaminee").resetForm();
+            document.getElementById("KPinYinCode").innerHTML = "";
+        }
+        //新增按钮
+        function ClearValue() {
+            SuppliReach();
+            $("#KInputPerson").attr("value", "@ViewBag.UserName");
+            $.ajax({
+                type: "post",
+                url: "/AccessoriessalesManagment/Purchaseorder/SuppliNum",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#KSuppliersFirm").val(data);
+                }
+            });
+        }
+
+        
+
+        /*************供应商模态框 结束 *****************/
+
+        /*************结算单回填 开始 *****************/
+        //选择选择单据按钮弹出模态框
+        function ShowDanJu() {
+            $("#DanJuModal").modal("show");
+        }
+        //选择单据自定义事件 创建是否审核
+        function SetState(record) {
+            var ToAudit = record.ToAudit;
+            if (ToAudit == true || ToAudit == "true") {
+                return "<span style='color:red;'>已审核</span>";
+            } else {
+                return "<span style='color:blue;'>未审核</span>";
+            }
+        }
+
+        //查询单据
+        function ProBalaSearch() {
+            var Danhaos = $("#ReceiptId").val();
+            var ToAudi = $("#DToAudit").val(); //审核
+            if (Danhaos == null) { Danhaos = "" }
+            if (ToAudi == null || ToAudi == undefined) { ToAudi = "0"; }
+            tbDanJu.search({
+                ReceiptNum: Danhaos, ToAudit: ToAudi
+            });
+        }
+        //双击单据回填主页面
+        function viewProcurInfor(record) {
+            var index = layer.load(0);
+            //ProcurInsert(1);
+            $("#myVue tbody tr td").parent("tr").remove();//清空明细表
+            ClearDetail();//初始化合计栏
+            $("#IntoExaminee").resetForm();//表单重置
+            $.post("SelectProBalanceDetail?ProBalanceID=" + record.ProBalanceID, function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    var tbDingHuo = $("#tbDingHuo");
+                    var length = $("#tbDingHuo tbody tr").last().prevObject.length;
+                    var tr = $("<tr><td style='width:18px;height:18px;'>" + length + "</td>"
+                                         + "<td ><input id=CA" + length + " name='ToCleared' type='checkbox' style='width:18px;height:18px;margin-top:6px;'></td>"
+                                         + "<td id=CC" + length + ">" + data[i].DocumentsType + "</td>"//单据类型
+                                         + "<td id=CD" + length + ">" + data[i].SingleNumber + "</td>"//单号
+                                         + "<td id=CE" + length + ">" + data[i].DocumentsDates + "</td>"//单据日期
+                                         + "<td id=CF" + length + ">" + data[i].ShouldAmount + "</td>"//应付金额
+                                         + "<td id=CH" + length + ">" + data[i].PaidAmount + "</td>"//已付金额
+                                         + "<td id=CI" + length + ">" + data[i].SuperioAmountr + "</td>"//已优惠总金额
+                                         + "<td id=CJ" + length + "></td>"//未付金额
+                                         + "<td onclick='tdclick(this)' id=CM" + length + ">" + data[i].ThisSuperioAmountr + "</td>"//本次优惠金额
+                                         + "<td onclick='tdclick(this)' id=CV" + length + ">" + data[i].ThisShouldAmount + "</td>"//本次付款金额
+                                         + "<td onclick='tdclick(this)' id=CY" + length + "></td>"//备注
+                                         + "<td id=CX" + length + ">" + data[i].BalanceState + "</td>"//付款情况
+                                         + "<td hidden id=CP" + length + ">" + data[i].DocumentsTypeID + "</td>"
+                                         + "<td hidden id=CU" + length + ">" + data[i].BalanceStateID + "</td>"
+                                         + "<td hidden id=CL" + length + ">" + data[i].ProBalancetDetailID + "</td></tr>");
+                    tbDingHuo.append(tr);
+                    ProDetailEvent(length);
+                }
+                $("#DanJuModal").modal("hide");
+                ToNO();//判断该单据是否审核
+                layer.close(index);
+            })
+            $("#ProBalanceID").val(record.ProBalanceID);
+            $("#PSuppliersID").val(record.SuppliersID);
+            $("#ReceiptId").val(record.Receipt);
+            $("#SuppliFirmId").val(record.SuppliersFirm);
+            $("#SuppliNameId").val(record.SuppliersName);
+            $("#AddressId").val(record.Address);
+            $("#TaxNumberId").val(record.TaxNumber);
+            $("#OpenBankId").val(record.OpenBank);
+            $("#ReceiptDateId").val(record.ReceiptDates);
+            $("#PaymentId").val(record.PaymentID);
+            $("#AccountNumberId").val(record.AccountNumber);
+            $("#OperatorId").val(record.Operator);
+            $("#AuditorId").val(record.Auditor);
+            $("#AuditDateId").val(record.AuditDates);
+            $("#CurrentManyId").val(record.CurrentMany + ".00");
+            $("#PToAudit").val(record.ToAudit);
+            $("#RemarkId").val(record.Remark);
+        }
+        /*************结算单回填 结束 *****************/
+        
+        //构造函数
+        function ProBalance(ProBalanceID, SuppliersID, Receipt, AccountNumber, PaymentID, ReceiptDate,
+            Operator, CurrentMany, Auditor, AuditDate, ToAudit, Remark) {
+            this.ProBalanceID = ProBalanceID;//结算单ID
+            this.SuppliersID = SuppliersID;//供应商ID
+            this.Receipt = Receipt;//单据号
+            this.AccountNumber = AccountNumber;//账号
+            this.PaymentID = PaymentID;//付款方式ID
+            this.ReceiptDate = ReceiptDate;//制单时间
+            this.Operator = Operator;//制单人
+            this.CurrentMany = CurrentMany;//本次总金额
+            this.Auditor = Auditor;//审核人
+            this.AuditDate = AuditDate;//审核日期
+            this.ToAudit = ToAudit;//审核状态
+            this.Remark = Remark;//备注
+        }
+        //结算明细构造函数
+        function ProBalancetDetail(ProBalancetDetailID, BalanceStateID, DocumentsTypeID, ToCleared, SingleNumber, DocumentsDate,
+            ShouldAmount, PaidAmount, SuperioAmountr, ThisSuperioAmountr, ThisShouldAmount, Remark) {
+            this.ProBalancetDetailID = ProBalancetDetailID;//结算明细ID
+            this.BalanceStateID = BalanceStateID;//结算状态ID
+            this.DocumentsTypeID = DocumentsTypeID;//单据类型ID
+            this.ToCleared = ToCleared;//是否已清
+            this.SingleNumber = SingleNumber;//单号
+            this.DocumentsDate = DocumentsDate;//单据日期
+            this.ShouldAmount = ShouldAmount;//应付金额
+            this.PaidAmount = PaidAmount;//实付金额
+            this.SuperioAmountr = SuperioAmountr;//优惠金额
+            this.ThisSuperioAmountr = ThisSuperioAmountr;//本次优惠金额
+            this.ThisShouldAmount = ThisShouldAmount;//本次付款金额
+            this.Remark = Remark;//备注
+        }
+    </script>
+</body>
+</html>

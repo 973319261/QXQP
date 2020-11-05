@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koi.mapper.UserDao">
+   <resultMap id="BaseResultMap" type="com.koi.po.PwUser">
+    <id column="UserID" jdbcType="INTEGER" property="userId" />
+    <result column="UserTypeID" jdbcType="INTEGER" property="userTypeId" />
+    <result column="DepartmentID" jdbcType="INTEGER" property="departmentId" />
+    <result column="UserNum" jdbcType="VARCHAR" property="userNum" />
+    <result column="UserName" jdbcType="NVARCHAR" property="userName" />
+    <result column="Password" jdbcType="VARCHAR" property="password" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="ToUse" jdbcType="BIT" property="toUse" />
+   </resultMap>
+     <!-- 通过用户名称查询用户信息 -->
+     <select id="findUserByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+       select * from PW_User where UserNum=#{name}
+	 </select>
+</mapper>

@@ -1,0 +1,1037 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QXQPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="PW_Balance">
+    <Key>
+      <PropertyRef Name="BalanceID" />
+    </Key>
+    <Property Name="BalanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaymentID" Type="Int32" Nullable="false" />
+    <Property Name="ReceptionID" Type="Int32" Nullable="false" />
+    <Property Name="DocumentsTypeID" Type="Int32" Nullable="false" />
+    <Property Name="ShouldAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="OptimalAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="CollectionAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="BalanceStateID" Type="Int32" Nullable="false" />
+    <Property Name="BusinessNum" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PW_Collage">
+    <Key>
+      <PropertyRef Name="CollageID" />
+    </Key>
+    <Property Name="CollageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ForeMan" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ReceptionID" Type="Int32" Nullable="false" />
+    <Property Name="CollageDate" Type="DateTime" Precision="0" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ToAudit" Type="Boolean" />
+    <Property Name="AuditDate" Type="DateTime" Precision="3" />
+    <Property Name="Auditor" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Operator" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PW_Incoming">
+    <Key>
+      <PropertyRef Name="IncomingID" />
+    </Key>
+    <Property Name="IncomingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="WarehouseID" Type="Int32" Nullable="false" />
+    <Property Name="SuppliersID" Type="Int32" Nullable="false" />
+    <Property Name="DocumentsTypeID" Type="Int32" />
+    <Property Name="BalanceStateID" Type="Int32" Nullable="false" />
+    <Property Name="IncomingNumber" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="ToAudit" Type="Boolean" />
+    <Property Name="BilDate" Type="DateTime" Precision="3" />
+    <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+    <Property Name="Operator" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Auditor" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="AuditDate" Type="DateTime" Precision="3" />
+    <Property Name="Aamount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Rmark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IndentNumber" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PW_Insurance">
+    <Key>
+      <PropertyRef Name="InsuranceID" />
+    </Key>
+    <Property Name="InsuranceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InsuranceDetailID" Type="Int32" />
+    <Property Name="InsuranceNum" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="OpenDate" Type="DateTime" Precision="3" />
+    <Property Name="BalanceDate" Type="DateTime" Precision="0" />
+    <Property Name="ClaimsStaff" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ToTicket" Type="Boolean" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ToAudit" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="PW_Jurisdiction">
+    <Key>
+      <PropertyRef Name="JdtionID" />
+    </Key>
+    <Property Name="JdtionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="ModularID" Type="Int32" Nullable="false" />
+    <Property Name="ToJdtion" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PW_Outbound">
+    <Key>
+      <PropertyRef Name="OutboundID" />
+    </Key>
+    <Property Name="OutboundID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocumentsTypeID" Type="Int32" />
+    <Property Name="SalesCustomerID" Type="Int32" Nullable="false" />
+    <Property Name="Stockremoval" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OpenDate" Type="DateTime" Precision="0" />
+    <Property Name="Tradeprice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Processingman" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Reviewwhet" Type="Boolean" />
+    <Property Name="Therevie" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Auditdates" Type="DateTime" Precision="3" />
+    <Property Name="SalesorderNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Theamount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DocuState" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="BalanceStateID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="PW_Predate">
+    <Key>
+      <PropertyRef Name="PredateID" />
+    </Key>
+    <Property Name="PredateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CarderID" Type="Int32" Nullable="false" />
+    <Property Name="VehicleType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RepairID" Type="Int32" Nullable="false" />
+    <Property Name="PredateNum" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="OpenDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MaintenanceNum" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+    <Property Name="CarNum" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Owner" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Contacts" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="CarMasterPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ToAudit" Type="Boolean" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Receivable" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Describe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ToTransferOrder" Type="Boolean" />
+    <Property Name="MaintainData" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DeserveMoney" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CustomerNum" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PW_ProBalance">
+    <Key>
+      <PropertyRef Name="ProBalanceID" />
+    </Key>
+    <Property Name="ProBalanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SuppliersID" Type="Int32" Nullable="false" />
+    <Property Name="Receipt" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AccountNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentMany" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Auditor" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ReceiptDate" Type="DateTime" Precision="3" />
+    <Property Name="Operator" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ToAudit" Type="Boolean" Nullable="false" />
+    <Property Name="AuditDate" Type="DateTime" Precision="3" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PW_Procurement">
+    <Key>
+      <PropertyRef Name="ProcurementID" />
+    </Key>
+    <Property Name="ProcurementID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SuppliersID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="WarehouseID" Type="Int32" Nullable="false" />
+    <Property Name="IndentNumber" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Maker" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MakerDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DeliveryDeadline" Type="DateTime" Precision="3" />
+    <Property Name="Handsel" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ToAudit" Type="Boolean" />
+    <Property Name="Auditer" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="AuditerDate" Type="DateTime" Precision="0" />
+    <Property Name="Remark" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Documents" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Aamount" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="PW_Reception">
+    <Key>
+      <PropertyRef Name="ReceptionID" />
+    </Key>
+    <Property Name="ReceptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocumentStateID" Type="Int32" />
+    <Property Name="BalanceStateID" Type="Int32" />
+    <Property Name="VehicleType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Carder" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="RepairID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerSouID" Type="Int32" />
+    <Property Name="CarNum" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Mileage" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Owner" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="OilQuantity" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerTele" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="EngineNum" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Repairman" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="SelfCoding" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="FrameNum" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="RepairmanTele" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="FactoryDate" Type="DateTime" Precision="3" />
+    <Property Name="BalanceDate" Type="DateTime" Precision="3" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="AmountPaid" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ToAudit" Type="Boolean" />
+    <Property Name="CompletionDate" Type="DateTime" Precision="0" />
+    <Property Name="Describe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaintenanceNum" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+    <Property Name="CollageState" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ToSendWork" Type="Boolean" />
+    <Property Name="OpenDate" Type="DateTime" Precision="3" />
+    <Property Name="MaintenAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ToCompletion" Type="Boolean" />
+    <Property Name="CustomerNum" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PW_Restock">
+    <Key>
+      <PropertyRef Name="RestockID" />
+    </Key>
+    <Property Name="RestockID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReceptionID" Type="Int32" />
+    <Property Name="RestockDate" Type="DateTime" Precision="0" />
+    <Property Name="Operator" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="RestockMan" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PW_ReturnForm">
+    <Key>
+      <PropertyRef Name="ReturnFormID" />
+    </Key>
+    <Property Name="ReturnFormID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SuppliersID" Type="Int32" Nullable="false" />
+    <Property Name="WarehouseID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="DocumentsTypeID" Type="Int32" />
+    <Property Name="BalanceStateID" Type="Int32" />
+    <Property Name="ReturnNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Maker" Type="String" MaxLength="6" FixedLength="true" Unicode="true" />
+    <Property Name="SingleDate" Type="DateTime" Precision="0" />
+    <Property Name="Auditor" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="AuditDate" Type="DateTime" Precision="3" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ToAudit" Type="Boolean" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+    <Property Name="SheetDate" Type="DateTime" Precision="0" />
+    <Property Name="IncomingNumber" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PW_SalBalance">
+    <Key>
+      <PropertyRef Name="SalBalanceID" />
+    </Key>
+    <Property Name="SalBalanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SalesCustomerID" Type="Int32" Nullable="false" />
+    <Property Name="PaymentID" Type="Int32" Nullable="false" />
+    <Property Name="Receipt" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AccountNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentMany" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Auditor" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ReceiptDate" Type="DateTime" Precision="3" />
+    <Property Name="Operator" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ToAudit" Type="Boolean" />
+    <Property Name="AuditDate" Type="DateTime" Precision="3" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PW_Salesorder">
+    <Key>
+      <PropertyRef Name="SalesordeID" />
+    </Key>
+    <Property Name="SalesordeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SalesCustomerID" Type="Int32" Nullable="false" />
+    <Property Name="SalesorderNum" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Invoicedatek" Type="DateTime" Precision="0" />
+    <Property Name="Invoicno" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Deliverydate" Type="DateTime" Precision="3" />
+    <Property Name="Operatorf" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Reviewwhether" Type="Boolean" />
+    <Property Name="Thereviewer" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Auditdate" Type="DateTime" Precision="3" />
+    <Property Name="Theamount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Remark" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Documents" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PW_SalesReturnl">
+    <Key>
+      <PropertyRef Name="SalesReturnlID" />
+    </Key>
+    <Property Name="SalesReturnlID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocumentsTypeID" Type="Int32" />
+    <Property Name="BalanceStateID" Type="Int32" />
+    <Property Name="SalesCustomerID" Type="Int32" Nullable="false" />
+    <Property Name="Oddseats" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OpenDate" Type="DateTime" Precision="0" />
+    <Property Name="Returnmode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Operator" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ToAudit" Type="Boolean" />
+    <Property Name="Auditor" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Theamount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Stockremoval" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="AuditDate" Type="DateTime" Precision="3" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PW_ThreePacks">
+    <Key>
+      <PropertyRef Name="ThreePacksID" />
+    </Key>
+    <Property Name="ThreePacksID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ThreePacksDetailID" Type="Int32" Nullable="false" />
+    <Property Name="InsuranceNum" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OpenDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BalanceDate" Type="DateTime" Precision="0" />
+    <Property Name="ClaimsStaff" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ToTicket" Type="Boolean" Nullable="false" />
+    <Property Name="SelfCoding" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ToAudit" Type="Boolean" />
+    <Property Name="Operator" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PW_User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserTypeID" Type="Int32" />
+    <Property Name="DepartmentID" Type="Int32" />
+    <Property Name="UserNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="ToUse" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SYS_BalanceState">
+    <Key>
+      <PropertyRef Name="BalanceStateID" />
+    </Key>
+    <Property Name="BalanceStateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BalanceState" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SYS_Carder">
+    <Key>
+      <PropertyRef Name="CarderID" />
+    </Key>
+    <Property Name="CarderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CarderName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ToDeactivate" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SYS_ClaimCom">
+    <Key>
+      <PropertyRef Name="ClaimComID" />
+    </Key>
+    <Property Name="ClaimComID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClaimComName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ToDeactivate" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_CollageDetai">
+    <Key>
+      <PropertyRef Name="CollageDetaiID" />
+    </Key>
+    <Property Name="CollageDetaiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaintainabilityID" Type="Int32" Nullable="false" />
+    <Property Name="WarehouseID" Type="Int32" Nullable="false" />
+    <Property Name="CollageID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Position" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="VehicleType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FittingsName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FittingsCode" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="FittingsSpec" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="SystemUnit" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SYS_CustomerLevel">
+    <Key>
+      <PropertyRef Name="CustomerLevelID" />
+    </Key>
+    <Property Name="CustomerLevelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerLevel" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SYS_CustomerSou">
+    <Key>
+      <PropertyRef Name="CustomerSouID" />
+    </Key>
+    <Property Name="CustomerSouID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerSou" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_CustomerType">
+    <Key>
+      <PropertyRef Name="CustomerTypeID" />
+    </Key>
+    <Property Name="CustomerTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerType" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SYS_Department">
+    <Key>
+      <PropertyRef Name="DepartmentID" />
+    </Key>
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="DepartmentNun" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SYS_Dispatch">
+    <Key>
+      <PropertyRef Name="DispatchID" />
+    </Key>
+    <Property Name="DispatchID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DispatchName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="SYS_DocumentState">
+    <Key>
+      <PropertyRef Name="DocumentStateID" />
+    </Key>
+    <Property Name="DocumentStateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocumentState" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SYS_DocumentsType">
+    <Key>
+      <PropertyRef Name="DocumentsTypeID" />
+    </Key>
+    <Property Name="DocumentsTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocumentsType" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SYS_Expenses">
+    <Key>
+      <PropertyRef Name="ExpensesID" />
+    </Key>
+    <Property Name="ExpensesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExpensesName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ToDeactivate" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SYS_FittingsInfo">
+    <Key>
+      <PropertyRef Name="FittingsInfoID" />
+    </Key>
+    <Property Name="FittingsInfoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FittingsTypeID" Type="Int32" Nullable="false" />
+    <Property Name="SystemUnitID" Type="Int32" Nullable="false" />
+    <Property Name="VehicleTypeID" Type="Int32" Nullable="false" />
+    <Property Name="SuppliersID" Type="Int32" Nullable="false" />
+    <Property Name="FittingsName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FittingsCode" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Barcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Specification" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Brand" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Intake" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="SalesPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="WholesalePrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="InventoryMax" Type="Int32" />
+    <Property Name="InventoryMin" Type="Int32" />
+    <Property Name="OpenPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="InvenQuan" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="SYS_FittingsType">
+    <Key>
+      <PropertyRef Name="FittingsTypeID" />
+    </Key>
+    <Property Name="FittingsTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FittingsTypeName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FittingsTypeNum" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SYS_ForeMan">
+    <Key>
+      <PropertyRef Name="ForeManID" />
+    </Key>
+    <Property Name="ForeManID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ForeManName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ToDeactivate" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SYS_InsuranceCom">
+    <Key>
+      <PropertyRef Name="InsuranceComID" />
+    </Key>
+    <Property Name="InsuranceComID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InsuranceComName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ToDeactivate" Type="Boolean" />
+    <Property Name="InsuranceComNum" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_InsuranceDetail">
+    <Key>
+      <PropertyRef Name="InsuranceDetailID" />
+    </Key>
+    <Property Name="InsuranceDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReceptionID" Type="Int32" Nullable="false" />
+    <Property Name="InsuranceComID" Type="Int32" />
+    <Property Name="ReportNum" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="PolicyNum" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="PolicyMoney" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="InsuranceMoney" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="SYS_InsuranceSpe">
+    <Key>
+      <PropertyRef Name="InsuranceSpeID" />
+    </Key>
+    <Property Name="InsuranceSpeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InsuranceSpeName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="InsuranceSpeNum" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ToDeactivate" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SYS_Inventory">
+    <Key>
+      <PropertyRef Name="InventoryID" />
+    </Key>
+    <Property Name="InventoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WarehouseID" Type="Int32" Nullable="false" />
+    <Property Name="FittingsCode" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="FittingsName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="VehicleType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="SystemUnit" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="InvenQuan" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="NewIntake" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="WholePrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="SalePrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="MinInventory" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Position" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="FittingsType" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_Maintainability">
+    <Key>
+      <PropertyRef Name="MaintainabilityID" />
+    </Key>
+    <Property Name="MaintainabilityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaintainabilityName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaintainabilityNum" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_Maintenance">
+    <Key>
+      <PropertyRef Name="MaintenanceID" />
+    </Key>
+    <Property Name="MaintenanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaintenanceName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ToDeactivate" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SYS_MaintenanceCrew">
+    <Key>
+      <PropertyRef Name="MaintenanceCrewID" />
+    </Key>
+    <Property Name="MaintenanceCrewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaintenanceCrewName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaintenanceCrewNum" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ToDeactivate" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SYS_MaintenanceCus">
+    <Key>
+      <PropertyRef Name="MaintenanceCusID" />
+    </Key>
+    <Property Name="MaintenanceCusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VehicleType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="InsuranceComID" Type="Int32" Nullable="false" />
+    <Property Name="InsuranceSpeID" Type="Int32" Nullable="false" />
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+    <Property Name="CarderID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerTypeID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerLevelID" Type="Int32" Nullable="false" />
+    <Property Name="RegionID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerSouID" Type="Int32" Nullable="false" />
+    <Property Name="Owner" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Birthday" Type="DateTime" Precision="0" />
+    <Property Name="MobilePhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="IdNumber" Type="String" MaxLength="19" FixedLength="true" Unicode="false" />
+    <Property Name="LicenseCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="EngineNum" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="FrameNum" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="RepairMan" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="RepairTele" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="InitialStartDate" Type="DateTime" Precision="0" />
+    <Property Name="InitialEndDate" Type="DateTime" Precision="0" />
+    <Property Name="Address" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerNum" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="DriveDate" Type="DateTime" Precision="0" />
+    <Property Name="DrivingDate" Type="DateTime" Precision="0" />
+    <Property Name="InputPerson" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SYS_Modular">
+    <Key>
+      <PropertyRef Name="ModularID" />
+    </Key>
+    <Property Name="ModularID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModularTypeID" Type="Int32" Nullable="false" />
+    <Property Name="ModularName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ModularCode" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_ModularType">
+    <Key>
+      <PropertyRef Name="ModularTypeID" />
+    </Key>
+    <Property Name="ModularTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModularTypeName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ModularTypeCode" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SYS_OutboundDetails">
+    <Key>
+      <PropertyRef Name="OutboundDetailsID" />
+    </Key>
+    <Property Name="OutboundDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OutboundID" Type="Int32" Nullable="false" />
+    <Property Name="FittingsInfoID" Type="Int32" />
+    <Property Name="WarehouseID" Type="Int32" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Unitcosts" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Discount" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Figure" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Comments" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SYS_Payment">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+    </Key>
+    <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaymentName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ToDeactivate" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SYS_PreOtherCostDetail">
+    <Key>
+      <PropertyRef Name="PreOtherCostDetailID" />
+    </Key>
+    <Property Name="PreOtherCostDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PredateID" Type="Int32" Nullable="false" />
+    <Property Name="ExpensesID" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Discount" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="AmountPaid" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SYS_PreProductDetail">
+    <Key>
+      <PropertyRef Name="PreProductDetailID" />
+    </Key>
+    <Property Name="PreProductDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PredateID" Type="Int32" Nullable="false" />
+    <Property Name="MaintainabilityID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Discount" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="FittingsCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FittingsName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SystemUnit" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="VehicleType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_PreRepairItemDetail">
+    <Key>
+      <PropertyRef Name="PreRepairItemDetailID" />
+    </Key>
+    <Property Name="PreRepairItemDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RepairItemID" Type="Int32" Nullable="false" />
+    <Property Name="PredateID" Type="Int32" Nullable="false" />
+    <Property Name="MaintainabilityID" Type="Int32" Nullable="false" />
+    <Property Name="RepairCharge" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Discount" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="AmountPaid" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SYS_ProBalancetDetail">
+    <Key>
+      <PropertyRef Name="ProBalancetDetailID" />
+    </Key>
+    <Property Name="ProBalancetDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BalanceStateID" Type="Int32" />
+    <Property Name="DocumentsTypeID" Type="Int32" />
+    <Property Name="ProBalanceID" Type="Int32" Nullable="false" />
+    <Property Name="ToCleared" Type="Boolean" />
+    <Property Name="SingleNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DocumentsDate" Type="DateTime" Precision="3" />
+    <Property Name="ShouldAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="PaidAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="SuperioAmountr" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ThisSuperioAmountr" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ThisShouldAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="PaymentID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_ProcurementDetail">
+    <Key>
+      <PropertyRef Name="ProcurementDetailID" />
+    </Key>
+    <Property Name="ProcurementDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProcurementID" Type="Int32" Nullable="false" />
+    <Property Name="FittingsInfoID" Type="Int32" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="FirmQuantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="FittingsType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SYS_RecOtherCostDetail">
+    <Key>
+      <PropertyRef Name="RecOtherCostDetailID" />
+    </Key>
+    <Property Name="ReceptionID" Type="Int32" Nullable="false" />
+    <Property Name="ExpensesID" Type="Int32" Nullable="false" />
+    <Property Name="RecOtherCostDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Discount" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="AmountPaid" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SYS_RecProductDetail">
+    <Key>
+      <PropertyRef Name="RecProductDetailID" />
+    </Key>
+    <Property Name="RecProductDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaintainabilityID" Type="Int32" Nullable="false" />
+    <Property Name="ReceptionID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Discount" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="FittingsCode" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="FittingsName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="VehicleType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="FittingsSpec" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="SystemUnit" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_RecRepairItemDetail">
+    <Key>
+      <PropertyRef Name="RecRepairItemDetailID" />
+    </Key>
+    <Property Name="RepairItemID" Type="Int32" Nullable="false" />
+    <Property Name="MaintainabilityID" Type="Int32" Nullable="false" />
+    <Property Name="ReceptionID" Type="Int32" Nullable="false" />
+    <Property Name="MaintenanceCrewID" Type="Int32" />
+    <Property Name="RepairManID" Type="Int32" />
+    <Property Name="RecRepairItemDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RepairCharge" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Discount" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="AmountPaid" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="JobHours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="JobAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CompletionDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="SYS_Region">
+    <Key>
+      <PropertyRef Name="RegionID" />
+    </Key>
+    <Property Name="RegionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SireID" Type="Int32" Nullable="false" />
+    <Property Name="ViscountID" Type="Int32" Nullable="false" />
+    <Property Name="RegionName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RegionNum" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ToDeactivate" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SYS_Repair">
+    <Key>
+      <PropertyRef Name="RepairID" />
+    </Key>
+    <Property Name="RepairID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RepairName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TrackingDays" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SYS_RepairClass">
+    <Key>
+      <PropertyRef Name="RepairClassID" />
+    </Key>
+    <Property Name="RepairClassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RepairClassNum" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RepairClassName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TimeUnit" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="SYS_RepairItem">
+    <Key>
+      <PropertyRef Name="RepairItemID" />
+    </Key>
+    <Property Name="RepairItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaintenanceID" Type="Int32" Nullable="false" />
+    <Property Name="RepairClassID" Type="Int32" Nullable="false" />
+    <Property Name="RepairItemNum" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RepairItemName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PinYinCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="RepairCharge" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="TimeUnit" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="WorkTime" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="ToDeactivate" Type="Boolean" />
+    <Property Name="Money" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="SYS_RepairMan">
+    <Key>
+      <PropertyRef Name="RepairManID" />
+    </Key>
+    <Property Name="RepairManID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RepairManName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RepairManNum" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SYS_RestockDetail">
+    <Key>
+      <PropertyRef Name="RestockDetaiID" />
+    </Key>
+    <Property Name="RestockDetaiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CollageDetaiID" Type="Int32" />
+    <Property Name="RestockID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SYS_ReturnFormDetail">
+    <Key>
+      <PropertyRef Name="ReturnFormDetailID" />
+    </Key>
+    <Property Name="ReturnFormDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReturnFormID" Type="Int32" Nullable="false" />
+    <Property Name="FittingsInfoID" Type="Int32" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SYS_SalBalancetDetail">
+    <Key>
+      <PropertyRef Name="SalBalancetDetailID" />
+    </Key>
+    <Property Name="SalBalancetDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SalBalanceID" Type="Int32" />
+    <Property Name="DocumentsTypeID" Type="Int32" />
+    <Property Name="BalanceStateID" Type="Int32" />
+    <Property Name="ToCleared" Type="Boolean" />
+    <Property Name="SingleNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="DocumentsDate" Type="DateTime" Precision="3" />
+    <Property Name="ShouldAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="PaidAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="SuperioAmountr" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ThisSuperioAmountr" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ThisShouldAmount" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="SYS_SalesCustomer">
+    <Key>
+      <PropertyRef Name="SalesCustomerID" />
+    </Key>
+    <Property Name="SalesCustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerLevelID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerTypeID" Type="Int32" Nullable="false" />
+    <Property Name="PaymentID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="RegionID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerSouID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerCode" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ZipCode" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="FullName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="PinYinCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="IdNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Contacts" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Facsimile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TelePhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="MobilePhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Emai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="InputPerson" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ToDeactivate" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SYS_SalesorderDetail">
+    <Key>
+      <PropertyRef Name="SalesorderDetailID" />
+    </Key>
+    <Property Name="SalesorderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SalesordeID" Type="Int32" Nullable="false" />
+    <Property Name="WarehouseID" Type="Int32" Nullable="false" />
+    <Property Name="FittingsInfoID" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Discount" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Money" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Atretail" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Unitcost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="FittingsType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SYS_SalesReturnDetails">
+    <Key>
+      <PropertyRef Name="SalesReturnDetailsID" />
+    </Key>
+    <Property Name="SalesReturnDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FittingsInfoID" Type="Int32" Nullable="false" />
+    <Property Name="WarehouseID" Type="Int32" Nullable="false" />
+    <Property Name="SalesReturnlID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Unitcoster" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Discounts" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Userdefined" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SYS_Subject">
+    <Key>
+      <PropertyRef Name="SubjectID" />
+    </Key>
+    <Property Name="SubjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubjectName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SubjectNum" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_Suppliers">
+    <Key>
+      <PropertyRef Name="SuppliersID" />
+    </Key>
+    <Property Name="SuppliersID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SuppliersFirm" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SuppliersName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PinYinCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MainBusiness" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Contacts" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="TelePhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="MobilePhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Facsimile" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="Mailbox" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="Url" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="OpenBank" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="TaxNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="InputPerson" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="StorageAdd" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="StorageTele" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ToDeactivate" Type="Boolean" />
+    <Property Name="BalanceMode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="DeserveMoney" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="SYS_SystemUnit">
+    <Key>
+      <PropertyRef Name="SystemUnitID" />
+    </Key>
+    <Property Name="SystemUnitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SystemUnit" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_ThreePacksDetail">
+    <Key>
+      <PropertyRef Name="ThreePacksDetailID" />
+    </Key>
+    <Property Name="ThreePacksDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReceptionID" Type="Int32" Nullable="false" />
+    <Property Name="ClaimComID" Type="Int32" />
+    <Property Name="ClaimMoney" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="SYS_UserType">
+    <Key>
+      <PropertyRef Name="UserTypeID" />
+    </Key>
+    <Property Name="UserTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_VehicleType">
+    <Key>
+      <PropertyRef Name="VehicleTypeID" />
+    </Key>
+    <Property Name="VehicleTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VehicleType" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ToDeactivate" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SYS_Warehouse">
+    <Key>
+      <PropertyRef Name="WarehouseID" />
+    </Key>
+    <Property Name="WarehouseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WarehouseName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WarehouseNum" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ToDeactivate" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SYS_WarehousingDetail">
+    <Key>
+      <PropertyRef Name="WarehousingDetailID" />
+    </Key>
+    <Property Name="WarehousingDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IncomingID" Type="Int32" Nullable="false" />
+    <Property Name="FittingsInfoID" Type="Int32" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Remark" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="QXQPEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="PW_Balance" EntityType="Self.PW_Balance" />
+    <EntitySet Name="PW_Collage" EntityType="Self.PW_Collage" />
+    <EntitySet Name="PW_Incoming" EntityType="Self.PW_Incoming" />
+    <EntitySet Name="PW_Insurance" EntityType="Self.PW_Insurance" />
+    <EntitySet Name="PW_Jurisdiction" EntityType="Self.PW_Jurisdiction" />
+    <EntitySet Name="PW_Outbound" EntityType="Self.PW_Outbound" />
+    <EntitySet Name="PW_Predate" EntityType="Self.PW_Predate" />
+    <EntitySet Name="PW_ProBalance" EntityType="Self.PW_ProBalance" />
+    <EntitySet Name="PW_Procurement" EntityType="Self.PW_Procurement" />
+    <EntitySet Name="PW_Reception" EntityType="Self.PW_Reception" />
+    <EntitySet Name="PW_Restock" EntityType="Self.PW_Restock" />
+    <EntitySet Name="PW_ReturnForm" EntityType="Self.PW_ReturnForm" />
+    <EntitySet Name="PW_SalBalance" EntityType="Self.PW_SalBalance" />
+    <EntitySet Name="PW_Salesorder" EntityType="Self.PW_Salesorder" />
+    <EntitySet Name="PW_SalesReturnl" EntityType="Self.PW_SalesReturnl" />
+    <EntitySet Name="PW_ThreePacks" EntityType="Self.PW_ThreePacks" />
+    <EntitySet Name="PW_User" EntityType="Self.PW_User" />
+    <EntitySet Name="SYS_BalanceState" EntityType="Self.SYS_BalanceState" />
+    <EntitySet Name="SYS_Carder" EntityType="Self.SYS_Carder" />
+    <EntitySet Name="SYS_ClaimCom" EntityType="Self.SYS_ClaimCom" />
+    <EntitySet Name="SYS_CollageDetai" EntityType="Self.SYS_CollageDetai" />
+    <EntitySet Name="SYS_CustomerLevel" EntityType="Self.SYS_CustomerLevel" />
+    <EntitySet Name="SYS_CustomerSou" EntityType="Self.SYS_CustomerSou" />
+    <EntitySet Name="SYS_CustomerType" EntityType="Self.SYS_CustomerType" />
+    <EntitySet Name="SYS_Department" EntityType="Self.SYS_Department" />
+    <EntitySet Name="SYS_Dispatch" EntityType="Self.SYS_Dispatch" />
+    <EntitySet Name="SYS_DocumentState" EntityType="Self.SYS_DocumentState" />
+    <EntitySet Name="SYS_DocumentsType" EntityType="Self.SYS_DocumentsType" />
+    <EntitySet Name="SYS_Expenses" EntityType="Self.SYS_Expenses" />
+    <EntitySet Name="SYS_FittingsInfo" EntityType="Self.SYS_FittingsInfo" />
+    <EntitySet Name="SYS_FittingsType" EntityType="Self.SYS_FittingsType" />
+    <EntitySet Name="SYS_ForeMan" EntityType="Self.SYS_ForeMan" />
+    <EntitySet Name="SYS_InsuranceCom" EntityType="Self.SYS_InsuranceCom" />
+    <EntitySet Name="SYS_InsuranceDetail" EntityType="Self.SYS_InsuranceDetail" />
+    <EntitySet Name="SYS_InsuranceSpe" EntityType="Self.SYS_InsuranceSpe" />
+    <EntitySet Name="SYS_Inventory" EntityType="Self.SYS_Inventory" />
+    <EntitySet Name="SYS_Maintainability" EntityType="Self.SYS_Maintainability" />
+    <EntitySet Name="SYS_Maintenance" EntityType="Self.SYS_Maintenance" />
+    <EntitySet Name="SYS_MaintenanceCrew" EntityType="Self.SYS_MaintenanceCrew" />
+    <EntitySet Name="SYS_MaintenanceCus" EntityType="Self.SYS_MaintenanceCus" />
+    <EntitySet Name="SYS_Modular" EntityType="Self.SYS_Modular" />
+    <EntitySet Name="SYS_ModularType" EntityType="Self.SYS_ModularType" />
+    <EntitySet Name="SYS_OutboundDetails" EntityType="Self.SYS_OutboundDetails" />
+    <EntitySet Name="SYS_Payment" EntityType="Self.SYS_Payment" />
+    <EntitySet Name="SYS_PreOtherCostDetail" EntityType="Self.SYS_PreOtherCostDetail" />
+    <EntitySet Name="SYS_PreProductDetail" EntityType="Self.SYS_PreProductDetail" />
+    <EntitySet Name="SYS_PreRepairItemDetail" EntityType="Self.SYS_PreRepairItemDetail" />
+    <EntitySet Name="SYS_ProBalancetDetail" EntityType="Self.SYS_ProBalancetDetail" />
+    <EntitySet Name="SYS_ProcurementDetail" EntityType="Self.SYS_ProcurementDetail" />
+    <EntitySet Name="SYS_RecOtherCostDetail" EntityType="Self.SYS_RecOtherCostDetail" />
+    <EntitySet Name="SYS_RecProductDetail" EntityType="Self.SYS_RecProductDetail" />
+    <EntitySet Name="SYS_RecRepairItemDetail" EntityType="Self.SYS_RecRepairItemDetail" />
+    <EntitySet Name="SYS_Region" EntityType="Self.SYS_Region" />
+    <EntitySet Name="SYS_Repair" EntityType="Self.SYS_Repair" />
+    <EntitySet Name="SYS_RepairClass" EntityType="Self.SYS_RepairClass" />
+    <EntitySet Name="SYS_RepairItem" EntityType="Self.SYS_RepairItem" />
+    <EntitySet Name="SYS_RepairMan" EntityType="Self.SYS_RepairMan" />
+    <EntitySet Name="SYS_RestockDetail" EntityType="Self.SYS_RestockDetail" />
+    <EntitySet Name="SYS_ReturnFormDetail" EntityType="Self.SYS_ReturnFormDetail" />
+    <EntitySet Name="SYS_SalBalancetDetail" EntityType="Self.SYS_SalBalancetDetail" />
+    <EntitySet Name="SYS_SalesCustomer" EntityType="Self.SYS_SalesCustomer" />
+    <EntitySet Name="SYS_SalesorderDetail" EntityType="Self.SYS_SalesorderDetail" />
+    <EntitySet Name="SYS_SalesReturnDetails" EntityType="Self.SYS_SalesReturnDetails" />
+    <EntitySet Name="SYS_Subject" EntityType="Self.SYS_Subject" />
+    <EntitySet Name="SYS_Suppliers" EntityType="Self.SYS_Suppliers" />
+    <EntitySet Name="SYS_SystemUnit" EntityType="Self.SYS_SystemUnit" />
+    <EntitySet Name="SYS_ThreePacksDetail" EntityType="Self.SYS_ThreePacksDetail" />
+    <EntitySet Name="SYS_UserType" EntityType="Self.SYS_UserType" />
+    <EntitySet Name="SYS_VehicleType" EntityType="Self.SYS_VehicleType" />
+    <EntitySet Name="SYS_Warehouse" EntityType="Self.SYS_Warehouse" />
+    <EntitySet Name="SYS_WarehousingDetail" EntityType="Self.SYS_WarehousingDetail" />
+  </EntityContainer>
+</Schema>

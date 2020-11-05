@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.koi.qxqp">
+    <!--允许程序打开网络套接字-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:screenOrientation="portrait"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:configChanges="orientation|keyboardHidden"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.OpeningActivity"><!--开屏动画-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.MainActivity"
+            android:windowSoftInputMode="adjustPan"><!--主页--><!--输入文本禁止顶起顶部导航栏-->
+        </activity>
+        <activity android:name=".ui.home.WeiXiuActivity"/><!--维修项目-->
+        <activity android:name=".ui.home.ChanPinActivity"/><!--产品材料-->
+        <activity android:name=".ui.home.ChanPinSaveActivity"/><!--产品材料新增修改页-->
+        <activity android:name=".ui.home.FeiYongActivity"/><!--其他费用-->
+        <activity android:name=".ui.home.HomeResultActivity"/><!--预约成功返回页面-->
+        <activity android:name=".ui.LoginActivity"/><!--登录-->
+        <activity android:name=".ui.user.ModifyActivity"/><!--修改资料-->
+        <activity android:name=".ui.user.PeiJianActivity"/><!--配件列表-->
+        <activity android:name=".ui.user.PeiJianInfoActivity"/><!--配件信息-->
+        <activity android:name=".ui.user.AboutActivity"/><!--关于-->
+        <activity android:name=".ui.order.OrderInfoActivity"/><!--订单明细信息-->
+    </application>
+</manifest>

@@ -1,0 +1,309 @@
+﻿
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Accessories</title>
+    <link href="~/Content/Main/css/icons.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/main.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrapal.css" rel="stylesheet" />
+    <style>
+        .breadcrumb > li + li:before {
+            color: #CCCCCC;
+            content: "> ";
+            padding: 0 5px;
+        }
+
+        .layui-elem-fielded legend {
+            font-size: 20px;
+        }
+
+        .layui-elem-fielded {
+            width: 98%;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        .modOne {
+            height: 485px;
+            float: left;
+            margin: 0px 20px;
+            padding: 5px;
+        }
+
+        .modTow {
+            height: 485px;
+            float: left;
+            padding: 10px;
+            border: 3px solid #f5f5f5;
+            box-shadow: 0 0 20px 1px #eee;
+        }
+
+        .modal-content {
+            box-shadow: none;
+            border: none;
+        }
+
+        .modal-header {
+            background: rgba(100, 109, 162, 0.73);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .close {
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 50%;
+        }
+
+        #FittingsTypeName {
+            padding: 0px;
+        }
+
+            #FittingsTypeName li {
+                text-align: left;
+                /*font-size:14px;*/
+                list-style-type: none;
+            }
+
+                #FittingsTypeName li:hover {
+                    background: #eee;
+                    cursor: alias;
+                }
+
+                #FittingsTypeName li i {
+                    display: inline-block;
+                    background: url('../../../../Content/Main/images/smiley_evil.png') no-repeat 0px 5px;
+                    width: 20px;
+                    height: 20px;
+                }
+
+                #FittingsTypeName li .diai {
+                    margin-left: 23px;
+                }
+
+        .active {
+            background: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    @*导航栏*@
+    <ol class="breadcrumb">
+        <li>首页</li>
+        <li>基础数据</li>
+        <li><a href="#">配件大类设置</a></li>
+    </ol>
+    @*按钮组*@
+    <div class="btn-groud">
+        <button class="btn btn-warning cancel " type="button" id="Update"><i class="en-plus3"></i>修改分类</button>
+        <button class="btn btn-primary " type="button" id="Delect"><i class="en-trash"></i>删除分类</button>
+        <button class="btn btn-primary " type="button" id="Save"><i class="en-upload"></i>保存分类</button>
+        <button class="btn btn-primary " type="button" id="Unfold"><i class="en-list"></i>展开分类</button>
+        <button class="btn btn-warning cancel " type="button" id="Set"><i class="en-cog"></i>设置</button>
+        <button class="btn btn-primary start"><i class="en-upload"></i>导出</button>
+        <button class="btn btn-danger delete"><i class="br-switch"></i> 关闭</button>
+    </div>
+    @*配件大类设置内容*@
+    <fieldset class="layui-elem-fielded">
+        <legend class=".layui-elem-fielded legend">配件大类设置</legend>
+        @*树形图 *@
+        <div class="modOne col-lg-4 col-md-4 col-sm-12">
+            <div class="panel panel-default" style="height:478px;">
+                <div class="panel-heading">
+                    配件大类
+                    <div class="col-md-6 pull-right">
+                        <a class="glyphicon glyphicon-plus" data-toggle="modal" href="javascript:;" onclick="Add()"></a>&emsp;
+                        <a class="glyphicon glyphicon-pencil" data-toggle="modal" href="javascript:;" onclick="Update()"></a>&emsp;
+                        <a class="glyphicon glyphicon-trash" onclick="Delete()"></a>&emsp;
+                        <a class="glyphicon glyphicon-refresh" onclick="Refresh()"></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    @*<div class="content_wrap">
+                            <div class="zTreeDemoBackground left">
+                                <form></form>
+                                <ul id="Tree" class="ztree"></ul>
+                            </div>
+                        </div>*@
+
+                    <div class="Tree" id="FittingsTypeName" style="text-align:left;">
+                        <ul>
+                            <li onlick="Chose()">
+                                <i style="background:url('../../../../Content/Main/images/smiley_evil.png')no-repeat 0px 5px;">
+
+                                </i>配件大类 &nbsp;共有<span></span>个大类
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*配件大类设置*@
+        <div class="modTow col-lg-7 col-md-7 col-sm-12">
+
+            <div class="modal-content" id="InsertType" style="margin-top:30px;">
+                @*内容*@
+                <div class="modal-body ">
+                    <form class="form-horizontal" role="form" id="FittingsType"
+                          action="InsertFittingsType" method="post">
+                        <div class="form-group">
+                            <div class="col-lg-4 col-md-4 col-sm-3 text-right">
+                                <label class="control-label">配件大类编号:</label>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-8 reset">
+                                <input type="text" class="form-control" name="FittingsTypeNum" id="FittingsTypeNum" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-4 col-md-4 col-sm-4 text-right">
+                                <label class="control-label">配件大类名称:</label>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-8 reset">
+                                <input type="text" class="form-control" name="FittingsTypeName" id="FFittingsTypeName" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-4 col-md-4 col-sm-4 text-right">
+                                <label class="control-label">备注:</label>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 reset">
+                                <input type="text" class="form-control" name="Remark" id="Remark" maxlength="25" />
+                            </div>
+                        </div>
+                        <p style="text-align:center;"><i class="en-paperplane"></i> 温馨提示：新增和删除分类信息后，要点击保存分类才有效。</p>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-content" id="UpdateType" style="margin-top:30px;">
+                @*内容*@
+                <div class="modal-body ">
+                    <form class="form-horizontal" role="form" id="EFittingsType"
+                          action="UpdateFittingsType" method="post">
+                        <div class="form-group">
+                            <input type="text" hidden id="FittingsTypeID" name="FittingsTypeID" />
+                            <div class="col-lg-4 col-md-4 col-sm-3 text-right">
+                                <label class="control-label">配件大类编号:</label>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-8 reset">
+                                <input type="text" class="form-control" name="FittingsTypeNum" id="EFittingsTypeNum" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-4 col-md-4 col-sm-4 text-right">
+                                <label class="control-label">配件大类名称:</label>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-8 reset">
+                                <input type="text" class="form-control" name="FittingsTypeName" id="EFittingsTypeName" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-4 col-md-4 col-sm-4 text-right">
+                                <label class="control-label">备注:</label>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 reset">
+                                <input type="text" class="form-control" name="Remark" id="ERemark" maxlength="25" />
+                            </div>
+                        </div>
+                        <p style="text-align:center;"><i class="en-paperplane"></i> 温馨提示：新增和删除分类信息后，要点击保存分类才有效。</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap-table.js"></script>
+    <script src="~/Content/js/customfunction.js"></script>
+    <script src="~/Content/js/jquery.form.js"></script>
+    <script src="~/Content/layui/layui.js"></script>
+
+    <script>
+        //根据数据库信息生成li标签
+        $(function () {
+            var FittingsTypeID = 0;
+            $.post("/BasicdataManagment/Categories/SelectAccessories", function (data) {
+                $("#FittingsTypeName span").html(data.length);//获取数据长度
+                $("#FittingsTypeName ul.listshow").html("");
+                $.each(data, function (i) {//生成li标签
+                    $("#FittingsTypeName ul").append('<li onclick="Chose('+data[i].FittingsTypeID+')" id=' + data[i].FittingsTypeID + ' class="lishow"><i class="diai"></i>' +
+                            data[i].FittingsTypeName + ' (' + data[i].FittingsTypeNum + ')</li>');
+                    FittingsTypeID = data[i].FittingsTypeID;
+                    $("#" + FittingsTypeID).click(function () {
+                        $("#FittingsTypeName li").removeClass("active");
+                        $(this).addClass("active");
+                        //tbMaintenance.search({//点击配件大类刷新表格
+                        //    RegionID: this.id
+                        //});
+                    })
+                })
+            })
+            //tbMaintenance.refreshPage();
+        })
+        //保存新增
+        $("#Save").click(function () {
+            //获取页面数据
+            var FFittingsTypeName = $("#FFittingsTypeName ").val();
+            var FittingsTypeNum = $("#FittingsTypeNum ").val();
+            var Remark = $("#Remark ").val();
+            if (FFittingsTypeName == "") {
+                layer.alert("大类名称不能为空！", { icon: 0, title: "【提示】" });
+            } else if (FittingsTypeNum == "") {
+                layer.alert("大类编号不能为空！", { icon: 0, title: "【提示】" });
+            }
+            else {
+                $("#FittingsType").ajaxSubmit(function (msg) {
+                    layer.msg("操作成功", { icon: 1, skin: "layui-layer-molv" });
+
+                    location.reload();
+                });
+            }
+        })
+        //回填数据
+        function Chose(id) {
+            $("#EFittingsType").attr("action", "/BasicdataManagment/Categories/UpdateFittingsType");//修改时表单提交的地址
+            $.getJSON("/BasicdataManagment/Categories/SelectFittingsTypeByID?FittingsTypeID=" + id, function (data) {
+                if (data != null) {
+                    console.log(data);
+                    $("#FittingsTypeID ").val(data[0].FittingsTypeID);//配件大类ID
+                    $("#EFittingsTypeNum ").val(data[0].FittingsTypeNum);//配件大类编号
+                    $("#EFittingsTypeName ").val(data[0].FittingsTypeName);//配件大类名称
+                    $("#ERemark ").val(data[0].Remark);//备注
+                } else {
+                    layer.alert("未查找到数据！", { icon: 2 });
+                }
+            });
+        }
+        //保存修改
+        $("#Update").click(function () {
+            var FittingsTypeNum = $('#EFittingsType [name="FittingsTypeNum"]').val();
+            var FittingsTypeName = $('#EFittingsType [name="FittingsTypeName"]').val();
+            var Remark = $('#EFittingsType [name="Remark"]').val();
+            if (FittingsTypeNum == "") {
+                layer.alert("配件编号不能为空！", { icon: 0, title: "【提示】" });
+            } else if (FittingsTypeName == "") {
+                layer.alert("配件名称不能为空！", { icon: 0, title: "【提示】" });
+            } else if (Remark == "") {
+                layer.alert("备注不能为空！", { icon: 0, title: "【提示】" });
+            }
+            else {
+                $("#EFittingsType").ajaxSubmit(function (msg) {
+                    layer.msg("操作成功", { icon: 1, skin: "layui-layer-molv" });
+                    //刷新页面
+                    location.reload();
+                });
+            }
+        })
+    </script>
+</body>
+</html>

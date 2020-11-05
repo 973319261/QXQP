@@ -1,0 +1,259 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Operating</title>
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/Content/Main/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/main.css" rel="stylesheet" />
+    <link href="~/Content/Main/static/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" />
+    <link href="~/Content/Main/tabnav/css/element.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrapal.css" rel="stylesheet" />
+    @*CSS样式(包含默认皮肤样式)*@
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    @*CSS皮肤(需引用于bsgrid.all.min.css之后)*@
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_gray.min.css" rel="stylesheet" />
+    <link href="~/Content/layui/css/modules/laydate/default/laydate.css" rel="stylesheet" />
+    <style>
+        a {
+            color: #808080;
+        }
+
+            a:hover {
+                text-decoration: none;
+                color: burlywood;
+            }
+
+        .modal .control-label {
+            width: 100px;
+            padding-top: 0px;
+        }
+
+        .form-group {
+            margin-bottom: 0px;
+        }
+
+      
+        table tr th,table tr td {
+            padding: 5px;
+            width: 300px;
+            text-align: center;
+            border: 1px solid #e2e2e2;
+            border-collapse: collapse;
+        }
+
+        table {
+            border: 1px;
+            width: 99.5%;
+            border:3px solid #e2e2e2;
+
+        }
+
+            table tr th {
+                background-color: #f5f5f5;
+            }
+            table input,table select {
+                width: 100px;
+                margin: 0px;
+                border: none;
+            }
+
+           table select {
+                width: 100%;
+            }
+
+        .active {
+           background-color:#e2e2e2;
+        }
+        #TableOne {
+        
+        }
+        #TableTow {
+            width:60%;
+            height:600px;
+            overflow:auto;
+            margin-left:50px;
+            box-shadow:0px 0px 10px 5px #e2e2e2;
+        }
+    </style>
+</head>
+<body>
+    @*导航栏*@
+    <nav class="breadcrumb" style="margin:0px">
+        <i class="Hui-iconfont"></i> <a href=""> 首 页 </a> <span class="c-gray en">&gt;</span> <a href=""> 系 统 设 置 </a>
+        <span class="c-gray en">&gt;</span><a href="">权 限 管 理</a>
+        <a class="btn btn-success radius r" style="line-height:1.6em;top:0px;position:absolute;right:20px" href="javascript:location.replace(location.href);" title="刷新">
+            <i class="Hui-iconfont"></i>
+        </a>
+    </nav>
+    @*按钮栏*@
+    <div class="cl pd-5 bg-1 bk-gray mt-20" style="padding:10px;margin:0px">
+        <button class="btn btn-primary" onclick="btnQuanXuan()"><i class="Hui-iconfont" >&#xe604;</i> 全选 </button>
+        <button class="btn btn-danger " onclick="btnNoQuanXuan()"><i class="Hui-iconfont">&#xe609;</i> 全不选</button>
+        <button class="btn btn-info " onclick="btnBave()"><i class="Hui-iconfont">&#xe632;</i> 保 存</button>
+    </div>
+    @*控件栏*@
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="col-lg-4 col-md-4 col-sm-4"id="TableOne">
+                <table id="tbUser">
+                    <thead>
+                        <tr>
+                            <th width='25%' height='20px'>序号</th>
+                            <th width='10%' height='20px'>操作员号</th>
+                            <th width='10%' height='20px'>操作员姓名</th>
+                            <th width='10%' height='20px'>使用电脑</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-7" id="TableTow">
+                <table id="tbJurisdiction">
+                    <thead style="table-layout: fixed">
+                        <tr>
+                            <th width='25%' height='20px'>序号</th>
+                            <th width='25%' height='20px'>模块名称</th>
+                            <th width='10%' height='20px'>模块类型</th>
+                            <th width='10%' height='20px'>模块编号</th>
+                            <th width='10%' height='20px'>模块类型编号</th>
+                            <th width='10%' height='20px'>拥有权限</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/Main/lib/layer/2.4/layer.js"></script>
+    <script src="~/Content/js/jquery.form.js"></script>
+    <script src="~/Content/js/combobox.js"></script>
+    <script src="~/Content/js/customfunction.js"></script>
+    <script>
+        $(function () {
+            SelectUser();
+            doclick();
+        })
+        //查询用户
+        function SelectUser()
+        {
+            $.post("SelectUser", function (data) {
+                $.each(data, function (i) {
+                    var tbUser = $("#tbUser");
+                    var length = $("#tbUser tr").last().prevObject.length;
+                    var tr = $("<tr id=User," + data[i].UserID + "  ><td>" + length + "</td><td>" + data[i].UserNum + "</td><td>" + data[i].UserName + "</td>"
+                        + "<td><select id=ToUse" + length + "><option value='true'>使用</option><option value='false'>禁用</option></select></td></tr>");
+                    tbUser.append(tr);
+                    $("#ToUse" + length).val(data[i].ToUse);
+                    SelectJurisdiction();
+                })
+            })
+        }
+        //查询权限
+        function SelectJurisdiction() {
+            var trs = $("#tbUser tr");
+            for (var i = 0; i < trs.length; i++)
+                trs[i].onclick = doclick;
+        }
+        //点击查询
+        function doclick() {
+            $("#tbJurisdiction tbody tr").remove();
+            $("#tbUser tbody tr").removeClass("active");
+            $("#tbUser tbody tr select").removeClass("active");
+            $(this).addClass("active");
+            $(this).find("select").addClass("active");
+            $.post("SelectJurisdiction?UserID=" + this.id, function (data) {
+                $.each(data, function (i) {
+                    var tbJurisdiction = $("#tbJurisdiction");
+                    var length = $("#tbJurisdiction tr").last().prevObject.length;
+                    var tr = $("<tr><td>" + length + "</td><td>" + data[i].ModularName + "</td><td>" + data[i].ModularTypeName + "</td>"
+                        + "<td>" + data[i].ModularCode + "</td><td>" + data[i].ModularTypeCode + "</td><td><input type='checkbox' id=" + data[i].JdtionID + " ></td></tr>");
+                    tbJurisdiction.append(tr);
+                    var JdtionID = $("#" + data[i].JdtionID);
+                    var ToJdtion = data[i].ToJdtion;
+                    if (ToJdtion == true) {
+                        JdtionID.prop("checked", true);
+                        JdtionID.val(true);
+                    } else {
+                        JdtionID.prop("checked", false);
+                        JdtionID.val(false);
+                    }
+                })
+            })
+        }
+        //全选
+        function btnQuanXuan()
+        {
+            if ($("#tbJurisdiction").find("input").is(":checked") == true) {
+                $("#tbJurisdiction").find("input").prop("checked", true);
+            } else {
+                $("#tbJurisdiction").find("input").prop("checked", true);
+            }
+        }
+        //全不选
+        function btnNoQuanXuan()
+        {
+            if ($("#tbJurisdiction").find("input").is(":checked") == false) {
+                $("#tbJurisdiction").find("input").prop("checked", false);
+            } else {
+                $("#tbJurisdiction").find("input").prop("checked", false);
+            }
+        }
+        //保存
+        function btnBave()
+        {
+            var ArrUser = [], ArrJuris = [];
+            var tbUser = $("#tbUser tbody tr");
+            var tbJuris = $("#tbJurisdiction tbody tr input");
+            for (var i = 0; i < tbUser.length; i++) {
+                var e = new User();
+                e.UserID = tbUser[i].id;
+                var len=i + 1;
+                e.ToUse = $("#ToUse" + len).val();
+                ArrUser.push(e);
+            }
+            for (var i = 0; i < tbJuris.length; i++)
+            {
+                if (tbJuris[i].checked == true) {
+                    tbJuris[i].value = true;
+                } else {
+                    tbJuris[i].value = false;
+                }
+                var e = new Jdtion();
+                e.JdtionID = tbJuris[i].id;
+                e.ToJdtion = tbJuris[i].value;
+                ArrJuris.push(e);
+            }
+            var index = layer.load(1, {
+                shade: [0.1, '#fff'] //0.1透明度的白色背景
+            });
+            $.post("BaveJurisdiction", { listUser: ArrUser, listJuris: ArrJuris }, function (data) {
+                layer.close(index);
+                if (data) {
+                    layer.msg("保 存 成 功 ！");
+                } else {
+                    layer.msg("保 存 失 败 ！")
+                }
+            })
+        }
+        function Jdtion(JdtionID, ToJdtion)
+        {
+            this.JdtionID = JdtionID;
+            this.ToJdtion = ToJdtion;
+        }
+        function User(UserID, ToUse)
+        {
+            this.UserID = UserID;
+            this.ToUse = ToUse;
+        }
+    </script>
+</body>
+</html>

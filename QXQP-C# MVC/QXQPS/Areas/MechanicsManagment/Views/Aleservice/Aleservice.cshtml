@@ -1,0 +1,388 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Aleservice</title>
+    <title>DraftBack</title>
+    <link href="~/Content/Main/static/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" />
+    <link href="~/Content/Main/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrapal.css" rel="stylesheet" />
+    @*CSS样式(包含默认皮肤样式)*@
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    @*CSS皮肤(需引用于bsgrid.all.min.css之后)*@
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_gray.min.css" rel="stylesheet" />
+    <style>
+        a {
+            color: #808080;
+        }
+
+            a:hover {
+                text-decoration: none;
+                color: burlywood;
+            }
+
+        ul li {
+            padding: 5px 20px;
+            text-align: center;
+        }
+
+            ul li:hover {
+                background: #5bc0de;
+            }
+
+        label {
+            width: 100%;
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .breadcrumb {
+            padding: 10px 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: #f5f5f5;
+        }
+
+        form-group input {
+        }
+
+        table tr th, table tr td:hover {
+            background: #ffffff;
+        }
+
+        table tr th, table tr td {
+            padding: 5px;
+            width: 300px;
+            text-align: center;
+            border: 1px solid burlywood;
+        }
+
+        table tr th {
+            background-color: #f5f5f5;
+            border-bottom: 1px solid gray;
+        }
+
+        table tr td {
+            background-color: #f5f5f5;
+        }
+
+        table input, table select {
+            width: 100px;
+            margin: 0px;
+            border: none;
+        }
+
+        table select {
+            width: 100%;
+            background-color: #f5f5f5;
+        }
+
+        .Box {
+            height: 350px;
+            overflow: auto;
+        }
+
+        .box {
+            border: solid 1px gray;
+            width: 100px;
+            display: none;
+            position: absolute;
+            background-color: ghostwhite;
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            box-shadow: #808080 2 px 2px;
+        }
+
+            .box > li {
+                border-bottom: dashed 1px gray;
+                cursor: pointer;
+                text-align: center;
+                padding: 3px;
+            }
+
+                .box > li:hover {
+                    background-color: #eee;
+                }
+
+        .el-tabs__content {
+            height: 350px;
+        }
+
+        .modal input, .modal select {
+            height: 26px;
+        }
+
+        .modal .control-label {
+            width: 100px;
+            padding-top: 0px;
+        }
+
+        .modal .form-group {
+            margin: 1px;
+        }
+
+        .modal .col-lg-3 {
+            width: 16%;
+        }
+
+        .modal-body {
+            padding-bottom: 0;
+        }
+
+        .modal .navsearch {
+            height: 50px;
+            width: 950px;
+            background: #f5f5f5;
+            padding: 5px 0;
+            border-radius: 3px;
+        }
+
+            .modal .navsearch select {
+                height: 30px;
+            }
+
+            .modal .navsearch input {
+                height: 30px;
+            }
+
+        .modal button {
+            width: 79px;
+        }
+
+            .modal button i {
+                margin-right: 5px;
+            }
+
+        .modal-content {
+            width: 985px;
+            height: 50%;
+            left: -200px;
+        }
+
+        .modOne {
+            width: 320px;
+            height: 423px;
+            float: left;
+            overflow: auto;
+            margin-right: 30px;
+            box-shadow: 0 0 20px 1px #eee;
+        }
+
+        .modTow {
+            width: 600px;
+            height: 50%;
+            float: left;
+            padding: 10px;
+            border: 3px solid #f5f5f5;
+            box-shadow: 0 0 20px 1px #eee;
+        }
+
+        table {
+            border: 1px;
+            width: 99.5%;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        @*导航条*@
+        <nav class="breadcrumb" style="margin:0px">
+            <i class="Hui-iconfont"></i> <a href=""> 首 页 </a> <span class="c-gray en">&gt;</span> <a href=""> 汽 修 管 理 </a>
+            <span class="c-gray en">&gt;</span><a href=""> 售 后 服 务 </a>
+        </nav>
+        @*按钮*@
+        @*按钮栏*@
+        <div class="cl pd-5 bg-1 bk-gray mt-20" style="padding:10px;margin:0px">
+            <button onclick="ShowIncrease()" style="margin-left:20px" class="btn btn-primary"><i class="Hui-iconfont">&#xe600; </i>增加</button>
+            <button id="" class="btn btn-danger"><i class="Hui-iconfont">&#xe6df; </i>修改</button>
+            <button id="" class="btn btn-info"><i class="Hui-iconfont">&#xe609; </i>删除</button>
+            <button id="" class="btn btn-success"><i class="Hui-iconfont">&#xe632; </i>保存</button>
+            <button id="" class="btn btn-success"><i class="Hui-iconfont">&#xe644; </i>导出</button>
+            <button id="" class="btn btn-primary"><i class="Hui-iconfont">&#xe675; </i>排序</button>
+            <button id="" class="btn btn-primary"><i class="Hui-iconfont">&#xe665; </i>查询</button>
+            <button id="" class="btn btn-primary"><i class="Hui-iconfont">&#xe6c5; </i>发送短信</button>
+        </div>
+        @*表格*@
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend style="margin-left:50px;text-shadow: 5px 5px 5px gray;font-weight:inherit">售 后 服 务</legend>
+            <div style="height:500px;margin:20px 1% 0px 1%;box-shadow:0 0 5px 5px #ddd;">
+                <table id="ss" style="width:100%;">
+                    <thead>
+                        <tr>
+                            <th w_check="true"></th>
+                            <th w_index="">序号</th>
+                            <th w_index="">结算单号</th>
+                            <th w_index="">车牌</th>
+                            <th w_index="">车主</th>
+                            <th w_index="">车型</th>
+                            <th w_index="">送修人</th>
+                            <th w_index="">送修人电话</th>
+                            <th w_index="">车主电话</th>
+                            <th w_index="">回访标志</th>
+                            <th w_index="">跟踪日期</th>
+                            <th w_index="">跟踪生效</th>
+                            <th w_index="">发动机号码</th>
+                            <th w_index="">车架号码</th>
+                            <th w_index="">财务状态</th>
+                            <th w_index="">回访情况</th>
+                            <th w_index="">季审日期</th>
+                            <th w_index="">修理类型</th>
+                            <th w_index="">备注</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </fieldset>
+        
+        @*x新增模态框*@
+        <div class="modal fade col-lg-12" id="IncreaseModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title">
+                            记录定位
+                        </h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="navsearch" style="height:100px">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <form class="form-horizontal" role="form">
+                                    <div class="col-lg-1 col-md-1 col-sm-1 text-right">
+                                        <label class="control-label">单号</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 reset" style="margin-top:3px">
+                                        <input type="text" class="form-control" id="" onkeyup="" />
+                                    </div>
+
+                                    <div class="col-lg-2 col-md-2 col-sm-2 text-right">
+                                        <label class="control-label">单据</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 reset" style="margin-top:3px">
+                                        <select class="form-control"></select>
+                                    </div>
+
+                                    <div class="col-lg-2 col-md-2 col-sm-2 text-right">
+                                        <label class="control-label">付款状态</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 reset" style="margin-top:3px">
+                                        <select class="form-control"></select>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:3px">
+                                        <div class="col-lg-1 col-md-1 col-sm-1 text-right">
+                                            <label class="control-label">审核</label>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-12 reset" style="margin-top:3px">
+                                            <select class="form-control"></select>
+                                        </div>
+
+                                        <div class="col-lg-2 col-md-2 col-sm-2 text-right">
+                                            <label class="control-label">过滤车牌号</label>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-12 reset" style="margin-top:3px">
+                                            <input class="form-control">
+                                        </div>
+
+                                        <div class="col-lg-2 col-md-2 col-sm-2 text-right" style="margin-left:20px">
+                                            <button type="submit" class="btn btn-search" id=""><i class="glyphicon glyphicon-search"></i>查 询</button>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                            <button type="button" class="btn btn-info" id="" style=""><i class="glyphicon glyphicon-ok-sign"></i>确认</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal" id="btnclose"><i class="glyphicon glyphicon-remove"></i>取消</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer" style="border-top:none;">
+                        <div style="height:500px;width:950px;overflow:auto; box-shadow: 0 0 20px 5px #ddd;">
+                            <table id="sss" style="width:100%">
+                                <tr>
+                                    <th w_index="">序号</th>
+                                    <th w_index="">审核</th>
+                                    <th w_index="">单据状态</th>
+                                    <th w_index="">结算状态</th>
+                                    <th w_index="">完工状态</th>
+                                    <th w_index="">单号</th>
+                                    <th w_index="">车牌</th>
+                                    <th w_index="">车型</th>
+                                    <th w_index="">车主</th>
+                                    <th w_index="">工作卡</th>
+                                    <th w_index="">总金额</th>
+                                    <th w_index="">开单日期</th>
+                                    <th w_index="">接车人</th>
+                                    <th w_index="">修理类型</th>
+                                    <th w_index="">油量</th>
+                                    <th w_index="">客户地址</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+    </div>
+
+    @*外部引用*@
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+
+    <script>
+
+        //初始化
+        var tbCostCategory;
+        $(function () {
+            //表格初始化
+            tbCostCategory = $.fn.bsgrid.init('ss', {
+                url: '',
+                autoLoad: false,  //自动加载 true是
+                stripeRows: false,//隔行变色
+                rowHoverColor: true,//划过行变色
+                pageSize: 15,   //行数
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                displayBlankRows: false,//是否显示空白行, 默认值true
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left",//分页工具条的显示位置
+            });
+        })
+
+        //初始化新增表格
+        var tbCostCategory;
+        $(function () {
+            //表格初始化
+            tbCostCategory = $.fn.bsgrid.init('sss', {
+                url: '',
+                autoLoad: false,  //自动加载 true是
+                stripeRows: false,//隔行变色
+                rowHoverColor: true,//划过行变色
+                pageSize: 15,   //行数
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                displayBlankRows: false,//是否显示空白行, 默认值true
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left",//分页工具条的显示位置
+            });
+        })
+
+        //新增模态窗
+        function ShowIncrease() {
+            $("#IncreaseModal").modal("show");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,704 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Supplierbasic</title>
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/icons.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/main.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrapal.css" rel="stylesheet" />
+    @*CSS样式(包含默认皮肤样式)*@
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    @*CSS皮肤(需引用于bsgrid.all.min.css之后)*@
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_gray.min.css" rel="stylesheet" />
+    <style>
+        .breadcrumb > li + li:before {
+            color: #CCCCCC;
+            content: "> ";
+            padding: 0 5px;
+        }
+
+        label {
+            width: 100%;
+            margin-top: 10px;
+            /*text-align: right;*/
+        }
+
+        .Coloca {
+            float: right;
+            background: none;
+            border: none;
+        }
+
+        .Gonyin {
+            line-height: 35px;
+            margin-left: 5px;
+        }
+
+        .modal-body-rel {
+            padding-left: 20px;
+            font-size: 14px;
+        }
+
+        .col-lg-10 {
+            width: 80.68333333%;
+        }
+
+        .col-lg-3 {
+            width: 14%;
+        }
+
+        .form-group {
+            margin-bottom: 5px;
+        }
+
+        .CEPER {
+            position: relative;
+            top: 7px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .panel-body-bow {
+            width: 110%;
+            padding: 5px;
+        }
+
+        .modal-footer {
+            margin-left: 10px;
+        }
+
+        .modal-bottom {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .List {
+            overflow: auto;
+            width: 95%;
+            border-top: none;
+        }
+
+        .layui-elem-fielded legend {
+            font-size: 23px;
+        }
+
+        .layui-elem-fielded {
+            width: 99%;
+            margin: 20px 10px 0px 10px;
+            padding: 20px 10px;
+        }
+    </style>
+</head>
+<body>
+    @*导航栏*@
+    <ol class="breadcrumb">
+        <li>首页</li>
+        <li>基础数据</li>
+        <li><a href="#">供应商资料</a></li>
+    </ol>
+    @*按钮组*@
+    <div class="btn-groud">
+        <button class="btn btn-warning cancel" type="button" id="Insert"><i class="en-plus3"></i>增加</button>
+        <button class="btn btn-primary cancel" type="button" id="Update"><i class="en-tools"></i>修改</button>
+        <button class="btn btn-danger delete" type="button" id="Delete"><i class="en-trash"></i>删除</button>
+        <button class="btn btn-warning cancel" type="button"><i class="en-upload"></i>导出</button>
+        <button class="btn btn-danger delete"><i class="br-switch"></i>关闭</button>
+    </div>
+    @*供应商资料管理内容 layui-field-title*@
+    <fieldset class="layui-elem-fielded ">
+        <legend>供应商资料管理</legend>
+        @*表格*@
+        <div class="List col-lg-12">
+            <div class="panel-body-bow">
+                @*<div class="table-responsive">*@
+                <table class="table table-bordered" id="Supplierbasic">
+                    <thead>
+                        <tr>
+                            <th w_num="total_line">序号</th>
+                            <th w_index="SuppliersID" w_check="true"><input type="checkbox" /></th>
+                            <th w_index="SuppliersFirm">供应商编号</th>
+                            <th w_index="SuppliersName">供应商名称</th>
+                            <th w_index="Address">地址</th>
+                            <th w_index="TelePhone">电话</th>
+                            <th w_index="Contacts">联系人</th>
+                            <th w_index="MainBusiness">主营业务</th>
+                            <th w_index="Facsimile">传真号</th>
+                            <th w_index="MobilePhone">手机</th>
+                            <th w_index="Url">网站</th>
+                            <th w_index="Mailbox">邮箱</th>
+                            <th w_index="Remark">备注</th>
+                        </tr>
+                    </thead>
+                </table>
+                @*</div>*@
+            </div>
+        </div>
+        @*新增模态框*@
+        <div class="modal  bs-example-modal-sm" id="modInsert">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width:110%;">
+
+                    <div class="modal-header">
+                        <button class="Coloca" type="button" data-dismiss="modal" aria-hidden="true"><i class="en-cross"></i></button>
+                        <span class="Gonyin">&nbsp;<i class="st-comment"></i> 供货商资料管理</span>
+                    </div>
+
+                    <div class="modal-body-rel">
+                        <form class="form-horizontal" role="form" id="formInsert" action="InsertSupplierbasic" method="post" autocomplete="off">
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>供应商号:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" @*disabled*@ id="FSuppliersFirm" name="SuppliersFirm">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>拼音码:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select type="text" class="form-control" id="FPinYinCode" name="PinYinCode"></select>
+                                        @*<input type="text" class="form-control" id="FPinYinCode" name="PinYinCode">*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>供应商名称:</label>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-xs-12">
+                                        <input type="text" class="form-control" id="FSuppliersName" name="SuppliersName" onKeyUp="query()">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>主要业务:</label>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-xs-12">
+                                        <input type="text" class="form-control" id="FMainBusiness" name="MainBusiness">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>联系人:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FContacts" name="Contacts">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>电话:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FTelePhone" name="TelePhone" onkeyup="value = value.replace(/[^0-9]/g, '')">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>手机:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FMobilePhone" name="MobilePhone" onkeyup="value = value.replace(/[^0-9]/g, '')">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>传真:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FFacsimile" name="Facsimile">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>邮箱:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FMailbox" name="Mailbox">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>网址:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FUrl" name="Url">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>开户行:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FOpenBank" name="OpenBank">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>税号:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FTaxNumber" name="TaxNumber">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>录入人:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FInputPerson" name="InputPerson">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>库房电话:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FStorageTele" name="StorageTele" onkeyup="value = value.replace(/[^0-9]/g, '')">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>地址:</label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7 col-xs-12">
+                                        <input type="text" class="form-control" id="FAddress" name="Address">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>停用标记:</label>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-xs-12">
+                                        <input class="CEPER" type="checkbox" id="FToDeactivate" name="ToDeactivate">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>备注:</label>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-xs-12">
+                                        <input type="text" class="form-control" id="FRemark" name="Remark">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="padding:10px;">
+                                <div class="col-lg-8 col-md-8 col-sm-8 pull-right">
+                                    <button class="btn btn-warning cancel" type="button" id="Save"><i class="en-upload"></i>保存</button>
+                                    <button class="btn btn-danger delete" data-dismiss="modal"><i class="br-switch"></i> 关闭</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*修改模态框*@
+        <div class="modal  bs-example-modal-sm" id="modUpdate">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width:110%;">
+                    @*模态框头部*@
+                    <div class="modal-header">
+                        <button class="Coloca" type="button" data-dismiss="modal" aria-hidden="true"><i class="en-cross"></i></button>
+                        <span class="Gonyin">&nbsp;<i class="st-comment"></i> 供货商资料管理</span>
+                    </div>
+                    @*模态框内容*@
+                    <div class="modal-body-rel">
+                        <form class="form-horizontal" role="form" id="formUpdate" action="UpdateSupplierbasic" method="post" autocomplete="off">
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <input type="text" hidden id="ESuppliersID" name="SuppliersID" />
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>供应商号:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" readonly id="ESuppliersFirm" name="SuppliersFirm">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>拼音码:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EPinYinCode" name="PinYinCode">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>供应商名称:</label>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-xs-12">
+                                        <input type="text" class="form-control" id="ESuppliersName" name="SuppliersName">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>主要业务:</label>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-xs-12">
+                                        <input type="text" class="form-control" id="EMainBusiness" name="MainBusiness">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>联系人:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EContacts" name="Contacts">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>电话:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="ETelePhone" name="TelePhone">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>手机:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EMobilePhone" name="MobilePhone">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>传真:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EFacsimile" name="Facsimile">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>邮箱:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EMailbox" name="Mailbox">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>网址:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EUrl" name="Url">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>开户行:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EOpenBank" name="OpenBank">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>税号:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="ETaxNumber" name="TaxNumber">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>录入人:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EInputPerson" name="InputPerson">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>库房电话:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EStorageTele" name="StorageTele">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>地址:</label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7 col-xs-12">
+                                        <input type="text" class="form-control" id="EAddress" name="Address" autocomplete="off">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>停用标记:</label>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-xs-12">
+                                        <input class="CEPER" type="checkbox" id="EToDeactivate" name="ToDeactivate">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label>备注:</label>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-xs-12">
+                                        <input type="text" class="form-control" id="ERemark" name="Remark">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="padding:10px;">
+                                <div class="col-lg-8 col-md-8 col-sm-8 pull-right">
+                                    <button class="btn btn-warning cancel" type="button" id="SaveUpdate"><i class="en-upload"></i>保存</button>
+                                    <button class="btn btn-danger delete" data-dismiss="modal"><i class="br-switch"></i> 关闭</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/js/pinying.js"></script>@*拼音码*@
+
+    <script src="~/Content/js/combobox.js"></script>
+    <script src="~/Content/js/jquery.form.js"></script>
+    <script src="~/Content/layer/mobile/layer.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/js/customfunction.js"></script> @*绑定下拉框*@
+    <script>
+        var Supplierbasic;
+        //初始化表格
+        $(function () {
+            Supplierbasic = $.fn.bsgrid.init('Supplierbasic', {
+                url: 'SelectSupplierbasic',
+                autoLoad: true,//自动加载
+                stripeRows: true,//隔行变色
+                rowHoverColor: false,//划过行变色
+                //displayBlankRows: false,//是否显示空白行, 默认值true
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//当前页行数
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                paddingToolbarAlign: "right",//分页工具条的显示位置
+                //行点击事件
+                event: {
+                    customRowEvents: {
+                        click: function (record, rowIndex, trObj, options) {
+                            Check("#Supplierbasic tr", rowIndex + 1);//复选框勾选
+
+                        }
+                    }
+                }
+            })
+        })
+
+        $(function(){
+            $('input[type="text"]').attr("value", "");
+        });
+
+        //弹出新增考生模态框
+        $("#Insert").click(function () {
+            //供应商号
+            $.ajax({
+                type: "post",
+                url: "Num",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#FSuppliersFirm").val(data);
+                }
+            });
+            $("#modInsert").modal("show"); //弹出模态框
+        })
+        //拼音码
+        function query() {
+            var str = document.getElementById("FSuppliersName").value.trim();
+            if (str == "") return;
+            var arrRslt = makePy(str);
+            //循环将值到下拉框
+            var option = null;
+            document.getElementById("FPinYinCode").innerHTML = "";//清空下拉框
+            var first = document.getElementById("FPinYinCode");
+            for (var j = 0; j < arrRslt.length; j++) {
+                var obj = document.getElementById("FPinYinCode");
+                obj.add(new Option(arrRslt[j]));
+            }
+        }
+
+        //保存新增
+        $("#Save").click(function () {
+
+            var SuppliersFirm = $('#formInsert [name="SuppliersFirm"]').val();
+            var PinYinCode = $('#formInsert [name="PinYinCode"]').val();
+            var SuppliersName = $('#formInsert [name="SuppliersName"]').val();
+            var MainBusiness = $('#formInsert [name="MainBusiness"]').val();
+            var Contacts = $('#formInsert [name="Contacts"]').val();
+            var TelePhone = $('#formInsert [name="TelePhone"]').val();
+            var MobilePhone = $('#formInsert [name="MobilePhone"]').val();
+            var Facsimile = $('#formInsert [name="Facsimile"]').val();
+            var Mailbox = $('#formInsert [name="Mailbox"]').val();
+            var Url = $('#formInsert [name="Url"]').val();
+            var OpenBank = $('#formInsert [name="OpenBank"]').val();
+            var TaxNumber = $('#formInsert [name="TaxNumber"]').val();
+            var InputPerson = $('#formInsert [name="InputPerson"]').val();
+            var StorageTele = $('#formInsert [name="StorageTele"]').val();
+            var Address = $('#formInsert [name="Address"]').val();
+            var Remark = $('#formInsert [name="Remark"]').val();
+            if (SuppliersName == "") {
+                layer.alert("供应商名称不能为空！", { icon: 0, title: "【提示】" });
+            } else if (MainBusiness == "") {
+                layer.alert("主要业务不能为空！", { icon: 0, title: "【提示】" });
+            } else if (SuppliersFirm == "") {
+                layer.alert("客户编号不能为空！", { icon: 0, title: "【提示】" });
+            } else if (PinYinCode == "") {
+                layer.alert("拼音码不能为空！", { icon: 0, title: "【提示】" });
+            }
+            else {
+                //提交表单
+                $("#formInsert").ajaxSubmit(function (msg) {
+                    $("#modInsert").modal("hide");
+                    //刷新页面
+                    location.reload();
+                    layer.msg("新增成功", { icon: 1, skin: "layui-layer-molv" });
+                });
+            }
+
+
+        });
+
+
+       //修改
+        $("#Update").click(function () {//修改点击事件
+            $("#formUpdate").attr("action", "/BasicdataManagment/Supplierbasic/UpdateSupplierbasic");//修改时表单的提交地址
+            var check = $("#Supplierbasic input:checked");//获取表格中checkbox被选中的个数
+            if (check.length == 0) {
+                layer.alert("请选择一条信息！", { icon: 6 });
+            } else if (check.length > 1) {
+                layer.alert("只能选择一条信息！", { icon: 2 });
+            } else if (check.length == 1) {
+                $.getJSON("/BasicdataManagment/Supplierbasic/UpdateSupplierbasicByID?SuppliersID=" + check[0].value, function (data) {
+                    if (data != null) {
+                        console.log(data);
+                        $("#ESuppliersID").val(data[0].SuppliersID)
+                        $("#ESuppliersFirm").val(data[0].SuppliersFirm);
+                        $("#EPinYinCode").val(data[0].PinYinCode);
+                        $("#ESuppliersName").val(data[0].SuppliersName);
+                        $("#EMainBusiness").val(data[0].MainBusiness);
+                        $("#EContacts").val(data[0].Contacts);
+                        $("#ETelePhone").val(data[0].TelePhone);
+                        $("#EMobilePhone").val(data[0].MobilePhone);
+                        $("#EFacsimile").val(data[0].Facsimile);
+                        $("#EMailbox").val(data[0].Mailbox);
+                        $("#EUrl").val(data[0].Url);
+                        $("#EOpenBank").val(data[0].OpenBank);
+                        $("#ETaxNumber").val(data[0].TaxNumber);
+                        $("#EInputPerson").val(data[0].InputPerson);
+                        $("#EStorageTele").val(data[0].StorageTele);
+                        $("#EAddress").val(data[0].Address);
+                        $("#ERemark").val(data[0].Remark);
+                        $("#modUpdate").modal("show");//弹出模态窗体
+                    } else {
+                        layer.alert("未查找到数据！", { icon: 2 });
+                    }
+                });
+            }
+        });
+
+        //保存新增
+        $("#SaveUpdate").click(function () {
+            //$("#ESuppliersFirm").attr("disabled", "false");
+
+            var SuppliersFirm = $('#formUpdate [name="SuppliersFirm"]').val();
+            var PinYinCode = $('#formUpdate [name="PinYinCode"]').val();
+            var SuppliersName = $('#formUpdate [name="SuppliersName"]').val();
+            var MainBusiness = $('#formUpdate [name="MainBusiness"]').val();
+            var Contacts = $('#formUpdate [name="Contacts"]').val();
+            var TelePhone = $('#formUpdate [name="TelePhone"]').val();
+            var MobilePhone = $('#formUpdate [name="MobilePhone"]').val();
+            var Facsimile = $('#formUpdate [name="Facsimile"]').val();
+            var Mailbox = $('#formUpdate [name="Mailbox"]').val();
+            var Url = $('#formUpdate [name="Url"]').val();
+            var OpenBank = $('#formUpdate [name="OpenBank"]').val();
+            var TaxNumber = $('#formUpdate [name="TaxNumber"]').val();
+            var InputPerson = $('#formUpdate [name="InputPerson"]').val();
+            var StorageTele = $('#formUpdate [name="StorageTele"]').val();
+            var Address = $('#formUpdate [name="Address"]').val();
+            var Remark = $('#formUpdate [name="Remark"]').val();
+            if (SuppliersName == "") {
+                layer.alert("供应商名称不能为空！", { icon: 0, title: "【提示】" });
+            } else if (MainBusiness == "") {
+                layer.alert("主要业务不能为空！", { icon: 0, title: "【提示】" });
+            } else if (SuppliersFirm == "") {
+                layer.alert("客户编号不能为空！", { icon: 0, title: "【提示】" });
+            } else if (PinYinCode == "") {
+                layer.alert("拼音码不能为空！", { icon: 0, title: "【提示】" });
+            }
+            else {
+                //提交表单
+                $("#formUpdate").ajaxSubmit(function (msg) {
+                    $("#modUpdate").modal("hide");
+                    //刷新页面
+                    location.reload();
+                    layer.msg("修改成功", { icon: 1, skin: "layui-layer-molv" });
+                });
+            }
+           // $("#ESuppliersFirm").attr("disabled", "true");
+
+        });
+
+        //删除
+        $("#Delete").click(function () {
+            var num = 0;
+            var check = $("#Supplierbasic input[type=checkbox]:checked");
+            if (check.length > 0) {
+                layer.confirm("确认需要删除当前选中的数据?", {
+                    icon: 3,
+                    btn: ['确定', '取消']
+                }, function (layerIndex) {
+                    layer.close(layerIndex);//关闭提示框
+                    for (var i = 0; i < check.length; i++) {
+                        $.ajax({
+                            type: "get",//请求方式
+                            async: false,//对否异步
+                            url: "DeleteSupplierbasic?SuppliersID=" + check[i].value,
+                            success: function (data) {
+                                //成功回调函数
+                                if (data) {
+                                    num++
+                                }
+                            }
+                        });
+                    }
+                    Supplierbasic.search();//表格刷新
+                    layer.alert(num + "条数据删除成功，"
+                        + (check.length - num) + "条数据删除失败",
+                        { icon: 1, skin: "layui-layer-molv" });
+                })
+            } else {//未选择需要删除的数据
+                layer.alert('请选择需要删除的数据！', { icon: 0, title: '提示' });
+
+            }
+        });
+    </script>
+</body>
+</html>

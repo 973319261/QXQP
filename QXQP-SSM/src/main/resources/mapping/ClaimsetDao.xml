@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koi.mapper.ClaimsetDao">
+<!-- 生成单号 -->
+ <select id="insuranceNum" parameterType="java.lang.String" resultType="int" >
+  select 
+	case when exists( SELECT * FROM PW_ThreePacks WHERE 
+	    InsuranceNum LIKE CONCAT('%',CONCAT(#{d},'%'))) 
+	then (SELECT TOP 1 SUBSTRING(InsuranceNum,11,4) from PW_ThreePacks WHERE 
+	    InsuranceNum LIKE CONCAT('%',CONCAT(#{d},'%'))  ORDER BY  InsuranceNum DESC)
+	else 0
+  end
+</select>
+<!-- 维修单号查询 -->
+<select id="selectDanHao" resultType="com.koi.vo.ThreePacksDetailVo">
+	SELECT * FROM(SELECT *,ROW_NUMBER()OVER(ORDER BY ReceptionID)Num FROM(SELECT p.*,ClaimMoney,ThreePacksDetailID,
+	SYS_ClaimCom.ClaimComID,RepairName,CustomerSou,DocumentState,BalanceState 
+	FROM  PW_Reception p,SYS_ThreePacksDetail,SYS_ClaimCom,SYS_Repair,SYS_DocumentState,
+	SYS_CustomerSou,SYS_BalanceState WHERE p.ReceptionID=SYS_ThreePacksDetail.ReceptionID AND SYS_ThreePacksDetail.
+	ClaimComID= SYS_ClaimCom.ClaimComID AND p.RepairID = SYS_Repair.RepairID AND p.DocumentStateID=
+	SYS_DocumentState.DocumentStateID AND p.BalanceStateID=SYS_BalanceState.BalanceStateID AND 
+	p.CustomerSouID=SYS_CustomerSou.CustomerSouID)AS tmp 
+	<where>
+		 <if test="toAudit != null and toAudit !='' ">
+		 AND ToAudit = #{toAudit} 
+		</if>
+		<if test="maintenanceNum != null and maintenanceNum !='' ">
+		 AND MaintenanceNum like CONCAT(CONCAT('%',#{maintenanceNum}),'%') 
+		</if>
+		<if test="carNum != null and carNum !='' ">
+		 AND CarNum like CONCAT(CONCAT('%',#{carNum}),'%') 
+		</if>
+		<if test="documentStateID != null and documentStateID > 0 ">
+		 AND DocumentStateID = #{documentStateID} 
+		</if>
+		<if test="balanceStateID != null and balanceStateID > 0 ">
+		 AND BalanceStateID = #{balanceStateID} 
+		</if>
+	</where>
+	) AS db WHERE db.Num BETWEEN #{startIndex} AND #{pageSize}
+</select>
+<!-- 维修单号总数-->
+<select id="selectDanHaoCount" resultType="java.lang.Long">
+	SELECT COUNT(*) as num FROM  PW_Reception p,SYS_ThreePacksDetail,SYS_ClaimCom,SYS_Repair,SYS_DocumentState,
+	SYS_CustomerSou,SYS_BalanceState WHERE p.ReceptionID=SYS_ThreePacksDetail.ReceptionID AND SYS_ThreePacksDetail.
+	ClaimComID= SYS_ClaimCom.ClaimComID AND p.RepairID = SYS_Repair.RepairID AND p.DocumentStateID=
+	SYS_DocumentState.DocumentStateID AND p.BalanceStateID=SYS_BalanceState.BalanceStateID AND 
+	p.CustomerSouID=SYS_CustomerSou.CustomerSouID 
+	<if test="toAudit != null and toAudit !='' ">
+     AND p.ToAudit = #{toAudit} 
+	</if>
+	<if test="maintenanceNum != null and maintenanceNum !='' ">
+	 AND p.MaintenanceNum like CONCAT(CONCAT('%',#{maintenanceNum}),'%') 
+	</if>
+	<if test="carNum != null and carNum !='' ">
+	 AND p.CarNum like CONCAT(CONCAT('%',#{carNum}),'%') 
+	</if>
+	<if test="documentStateID != null and documentStateID > 0 ">
+	 AND p.DocumentStateID = #{documentStateID} 
+	</if>
+	<if test="balanceStateID != null and balanceStateID > 0 ">
+	 AND p.BalanceStateID = #{balanceStateID} 
+	</if>
+</select>
+<!-- 三包单据查询 -->
+<select id="selectThreePacks" resultType="com.koi.vo.ThreePacksVo">
+	SELECT * FROM(SELECT *,ROW_NUMBER()OVER(ORDER BY ReceptionID)Num FROM(SELECT t.*,CustomerNum,p.ReceptionID,CarNum,VehicleType,MaintenanceNum,Owner,
+	SYS_ClaimCom.ClaimComID,RepairName,CustomerSou,DocumentState,p.DocumentStateID,BalanceState,p.BalanceStateID 
+	FROM  PW_Reception p,PW_ThreePacks t,SYS_ThreePacksDetail,SYS_ClaimCom,SYS_Repair,
+	SYS_DocumentState,SYS_CustomerSou,SYS_BalanceState WHERE p.ReceptionID=SYS_ThreePacksDetail.ReceptionID AND t.ThreePacksDetailID=
+	SYS_ThreePacksDetail.ThreePacksDetailID AND SYS_ThreePacksDetail.ClaimComID= SYS_ClaimCom.ClaimComID AND p.RepairID =
+	SYS_Repair.RepairID AND p.DocumentStateID=SYS_DocumentState.DocumentStateID AND p.BalanceStateID=SYS_BalanceState.BalanceStateID 
+	AND p.CustomerSouID=SYS_CustomerSou.CustomerSouID)AS tmp 
+	<where>
+		 <if test="toAudit != null and toAudit !='' ">
+		 AND tmp.ToAudit = #{toAudit} 
+		</if>
+		<if test="maintenanceNum != null and maintenanceNum !='' ">
+		 AND tmp.MaintenanceNum like CONCAT(CONCAT('%',#{maintenanceNum}),'%') 
+		</if>
+		<if test="carNum != null and carNum !='' ">
+		 AND tmp.CarNum like CONCAT(CONCAT('%',#{carNum}),'%') 
+		</if>
+		<if test="documentStateID != null and documentStateID > 0 ">
+		 AND tmp.DocumentStateID = #{documentStateID} 
+		</if>
+		<if test="balanceStateID != null and balanceStateID > 0 ">
+		 AND tmp.BalanceStateID = #{balanceStateID} 
+		</if>
+	</where>
+	) AS db WHERE db.Num BETWEEN #{startIndex} AND #{pageSize}
+</select>
+<!-- 单据查询总数-->
+<select id="selectThreePacksCount" resultType="java.lang.Long">
+	SELECT COUNT(*) as num FROM  PW_Reception p,PW_ThreePacks t,SYS_ThreePacksDetail,SYS_ClaimCom,SYS_Repair,
+	SYS_DocumentState,SYS_CustomerSou,SYS_BalanceState WHERE p.ReceptionID=SYS_ThreePacksDetail.ReceptionID AND t.ThreePacksDetailID=
+	SYS_ThreePacksDetail.ThreePacksDetailID AND SYS_ThreePacksDetail.ClaimComID= SYS_ClaimCom.ClaimComID AND p.RepairID =
+	SYS_Repair.RepairID AND p.DocumentStateID=SYS_DocumentState.DocumentStateID AND p.BalanceStateID=SYS_BalanceState.BalanceStateID 
+	AND p.CustomerSouID=SYS_CustomerSou.CustomerSouID 
+	<if test="toAudit != null and toAudit !='' ">
+	 AND p.ToAudit = #{toAudit} 
+	</if>
+	<if test="maintenanceNum != null and maintenanceNum !='' ">
+	 AND p.MaintenanceNum like CONCAT(CONCAT('%',#{maintenanceNum}),'%') 
+	</if>
+	<if test="carNum != null and carNum !='' ">
+	 AND p.CarNum like CONCAT(CONCAT('%',#{carNum}),'%') 
+	</if>
+	<if test="documentStateID != null and documentStateID > 0 ">
+	 AND p.DocumentStateID = #{documentStateID} 
+	</if>
+	<if test="balanceStateID != null and balanceStateID > 0 ">
+	 AND p.BalanceStateID = #{balanceStateID} 
+	</if>
+</select>
+<!-- 查询是否存在索赔单据 -->
+<select id="selectThreePacksData" resultType="com.koi.vo.ThreePacksVo">
+	SELECT t.*,CustomerNum,p.ReceptionID,CarNum,VehicleType,MaintenanceNum,Owner,
+	SYS_ClaimCom.ClaimComID,RepairName,CustomerSou,DocumentState,p.DocumentStateID,BalanceState,p.BalanceStateID 
+	FROM  PW_Reception p,PW_ThreePacks t,SYS_ThreePacksDetail,SYS_ClaimCom,SYS_Repair,
+	SYS_DocumentState,SYS_CustomerSou,SYS_BalanceState WHERE p.ReceptionID=SYS_ThreePacksDetail.ReceptionID AND t.ThreePacksDetailID=
+	SYS_ThreePacksDetail.ThreePacksDetailID AND SYS_ThreePacksDetail.ClaimComID= SYS_ClaimCom.ClaimComID AND p.RepairID =
+	SYS_Repair.RepairID AND p.DocumentStateID=SYS_DocumentState.DocumentStateID AND p.BalanceStateID=SYS_BalanceState.BalanceStateID 
+	AND p.CustomerSouID=SYS_CustomerSou.CustomerSouID AND t.ThreePacksDetailID = #{threePacksDetailID} 
+</select>
+<select id="selectThreePackss" resultType="com.koi.vo.ThreePacksDetailVo">
+	SELECT p.*,ClaimMoney,ThreePacksDetailID,
+	SYS_ClaimCom.ClaimComID,RepairName,CustomerSou,DocumentState,BalanceState 
+	FROM  PW_Reception p,SYS_ThreePacksDetail,SYS_ClaimCom,SYS_Repair,SYS_DocumentState,
+	SYS_CustomerSou,SYS_BalanceState WHERE p.ReceptionID=SYS_ThreePacksDetail.ReceptionID AND SYS_ThreePacksDetail.
+	ClaimComID= SYS_ClaimCom.ClaimComID AND p.RepairID = SYS_Repair.RepairID AND p.DocumentStateID=
+	SYS_DocumentState.DocumentStateID AND p.BalanceStateID=SYS_BalanceState.BalanceStateID AND 
+	p.CustomerSouID=SYS_CustomerSou.CustomerSouID AND p.ReceptionID = #{receptionID} 
+</select>
+<!-- 查询索赔明细信息 -->
+<select id="selectReceptionDetail" resultType="com.koi.po.SysRecRepairItemDetail">
+	SELECT * FROM SYS_RecRepairItemDetail WHERE ReceptionID = #{receptionID} AND (MaintainabilityID=3 or MaintainabilityID=4)
+</select>
+<select id="selectCollageDetai" resultType="com.koi.po.SysCollageDetai">
+	SELECT * FROM PW_Reception r,PW_Collage c,SYS_CollageDetai WHERE r.ReceptionID=c.ReceptionID AND 
+	c.CollageID=SYS_CollageDetai.CollageID AND r.ReceptionID=#{receptionID} AND (SYS_CollageDetai.MaintainabilityID=4 OR 
+	SYS_CollageDetai.MaintainabilityID=3)
+</select>
+<!-- 三包索赔表操作 -->
+<select id="selectThreePacksById" resultType="com.koi.po.PwThreePacks" >
+     select * from PW_ThreePacks where ThreePacksID=#{threePacksID}
+</select>
+<insert id="insertThreePacks" parameterType="com.koi.po.PwThreePacks" 
+   keyProperty="threePacksId" useGeneratedKeys="true">
+   insert into PW_ThreePacks (ThreePacksDetailID, 
+     InsuranceNum, OpenDate, BalanceDate, 
+     ClaimsStaff, ToTicket, SelfCoding, 
+     Remark, Amount, ToAudit, Operator)
+   values (#{threePacksDetailId,jdbcType=INTEGER}, 
+     #{insuranceNum,jdbcType=VARCHAR}, #{openDate,jdbcType=TIMESTAMP}, #{balanceDate,jdbcType=DATE}, 
+     #{claimsStaff,jdbcType=NVARCHAR}, #{toTicket,jdbcType=BIT}, #{selfCoding,jdbcType=VARCHAR}, 
+     #{remark,jdbcType=NVARCHAR}, #{amount,jdbcType=DECIMAL}, #{toAudit,jdbcType=BIT}, 
+     #{operator,jdbcType=NVARCHAR})
+</insert>
+<update id="updateThreePacks" parameterType="com.koi.po.PwThreePacks">
+  update PW_ThreePacks
+  set ThreePacksDetailID = #{threePacksDetailId,jdbcType=INTEGER},
+    InsuranceNum = #{insuranceNum,jdbcType=VARCHAR},
+    OpenDate = #{openDate,jdbcType=TIMESTAMP},
+    BalanceDate = #{balanceDate,jdbcType=DATE},
+    ClaimsStaff = #{claimsStaff,jdbcType=NVARCHAR},
+    ToTicket = #{toTicket,jdbcType=BIT},
+    SelfCoding = #{selfCoding,jdbcType=VARCHAR},
+    Remark = #{remark,jdbcType=NVARCHAR},
+    Amount = #{amount,jdbcType=DECIMAL},
+    ToAudit = #{toAudit,jdbcType=BIT},
+    Operator = #{operator,jdbcType=NVARCHAR}
+    where ThreePacksID = #{threePacksId,jdbcType=INTEGER}
+</update>
+<delete id="delectThreePacks">
+    delete from PW_ThreePacks where ThreePacksID = #{threePacksID}
+</delete>
+</mapper>

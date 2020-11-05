@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koi.mapper.InsuranceDao">
+<!-- 生成单号 -->
+ <select id="insuranceNum" parameterType="java.lang.String" resultType="int" >
+  select 
+	case when exists( SELECT * FROM PW_Insurance WHERE 
+	    InsuranceNum LIKE CONCAT('%',CONCAT(#{d},'%'))) 
+	then (SELECT TOP 1 SUBSTRING(InsuranceNum,11,4) from PW_Insurance WHERE 
+	    InsuranceNum LIKE CONCAT('%',CONCAT(#{d},'%'))  ORDER BY  InsuranceNum DESC)
+	else 0
+  end
+</select>
+<!-- 维修单号查询 -->
+<select id="selectDanHao" resultType="com.koi.vo.InsuranceDetailVo">
+	SELECT * FROM(SELECT *,ROW_NUMBER()OVER(ORDER BY ReceptionID)n FROM(SELECT p.*,InsuranceMoney,InsuranceDetailID,ReportNum,PolicyNum,PolicyMoney,
+	SYS_InsuranceCom.InsuranceComID,RepairName,CustomerSou,DocumentState,BalanceState 
+	FROM  PW_Reception p,SYS_InsuranceDetail,SYS_InsuranceCom,SYS_Repair,SYS_DocumentState,
+	SYS_CustomerSou,SYS_BalanceState WHERE p.ReceptionID=SYS_InsuranceDetail.ReceptionID AND SYS_InsuranceDetail.
+	InsuranceComID= SYS_InsuranceCom.InsuranceComID AND p.RepairID = SYS_Repair.RepairID AND p.DocumentStateID=
+	SYS_DocumentState.DocumentStateID AND p.BalanceStateID=SYS_BalanceState.BalanceStateID AND 
+	p.CustomerSouID=SYS_CustomerSou.CustomerSouID)AS tmp 
+	<where>
+		 <if test="toAudit != null and toAudit !='' ">
+		 AND ToAudit = #{toAudit} 
+		</if>
+		<if test="maintenanceNum != null and maintenanceNum !='' ">
+		 AND MaintenanceNum like CONCAT(CONCAT('%',#{maintenanceNum}),'%') 
+		</if>
+		<if test="carNum != null and carNum !='' ">
+		 AND CarNum like CONCAT(CONCAT('%',#{carNum}),'%') 
+		</if>
+		<if test="documentStateID != null and documentStateID > 0 ">
+		 AND DocumentStateID = #{documentStateID} 
+		</if>
+		<if test="balanceStateID != null and balanceStateID > 0 ">
+		 AND BalanceStateID = #{balanceStateID} 
+		</if>
+	</where>
+	) AS db WHERE db.n BETWEEN #{startIndex} AND #{pageSize}
+</select>
+<!-- 维修单号总数-->
+<select id="selectDanHaoCount" resultType="long">
+	SELECT COUNT(*) as num FROM  PW_Reception p,SYS_InsuranceDetail,SYS_InsuranceCom,SYS_Repair,SYS_DocumentState,
+	SYS_CustomerSou,SYS_BalanceState WHERE p.ReceptionID=SYS_InsuranceDetail.ReceptionID AND SYS_InsuranceDetail.
+	InsuranceComID= SYS_InsuranceCom.InsuranceComID AND p.RepairID = SYS_Repair.RepairID AND p.DocumentStateID=
+	SYS_DocumentState.DocumentStateID AND p.BalanceStateID=SYS_BalanceState.BalanceStateID AND 
+	p.CustomerSouID=SYS_CustomerSou.CustomerSouID 
+	<if test="toAudit != null and toAudit !='' ">
+		 AND ToAudit = #{toAudit} 
+		</if>
+		<if test="maintenanceNum != null and maintenanceNum !='' ">
+		 AND MaintenanceNum like CONCAT(CONCAT('%',#{maintenanceNum}),'%') 
+		</if>
+		<if test="carNum != null and carNum !='' ">
+		 AND CarNum like CONCAT(CONCAT('%',#{carNum}),'%') 
+		</if>
+		<if test="documentStateID != null and documentStateID > 0 ">
+		 AND DocumentStateID = #{documentStateID} 
+		</if>
+		<if test="balanceStateID != null and balanceStateID > 0 ">
+		 AND BalanceStateID = #{balanceStateID} 
+	</if>
+</select>
+<!-- 三包单据查询 -->
+<select id="selectInsurance" resultType="com.koi.vo.InsuranceVo">
+		SELECT * FROM(SELECT *,ROW_NUMBER()OVER(ORDER BY ReceptionID)n FROM(SELECT i.*,CustomerNum,p.ReceptionID,CarNum,VehicleType,MaintenanceNum,Owner,InsuranceMoney,ReportNum,
+	PolicyNum,PolicyMoney,SYS_InsuranceCom.InsuranceComID,RepairName,CustomerSou,DocumentState,p.DocumentStateID,BalanceState,p.BalanceStateID 
+	FROM PW_Reception p,PW_Insurance i,SYS_InsuranceDetail,SYS_InsuranceCom,SYS_Repair,
+	SYS_DocumentState,SYS_CustomerSou,SYS_BalanceState WHERE p.ReceptionID=SYS_InsuranceDetail.ReceptionID AND i.InsuranceDetailID=
+	SYS_InsuranceDetail.InsuranceDetailID AND SYS_InsuranceDetail.InsuranceComID= SYS_InsuranceCom.InsuranceComID AND p.RepairID =
+	SYS_Repair.RepairID AND p.DocumentStateID=SYS_DocumentState.DocumentStateID AND p.BalanceStateID=SYS_BalanceState.BalanceStateID 
+	AND p.CustomerSouID=SYS_CustomerSou.CustomerSouID)AS tmp 
+	<where>
+		 <if test="toAudit != null and toAudit !='' ">
+		 AND ToAudit = #{toAudit} 
+		</if>
+		<if test="maintenanceNum != null and maintenanceNum !='' ">
+		 AND MaintenanceNum like CONCAT(CONCAT('%',#{maintenanceNum}),'%') 
+		</if>
+		<if test="carNum != null and carNum !='' ">
+		 AND CarNum like CONCAT(CONCAT('%',#{carNum}),'%') 
+		</if>
+		<if test="documentStateID != null and documentStateID > 0 ">
+		 AND DocumentStateID = #{documentStateID} 
+		</if>
+		<if test="balanceStateID != null and balanceStateID > 0 ">
+		 AND BalanceStateID = #{balanceStateID} 
+		</if>
+	</where>
+	) AS db WHERE db.n BETWEEN #{startIndex} AND #{pageSize}
+</select>
+<!-- 单据查询总数-->
+<select id="selectInsuranceCount" resultType="long">
+	SELECT COUNT(*) as num FROM  PW_Reception p,PW_Insurance i,SYS_InsuranceDetail,SYS_InsuranceCom,SYS_Repair,
+	SYS_DocumentState,SYS_CustomerSou,SYS_BalanceState WHERE p.ReceptionID=SYS_InsuranceDetail.ReceptionID AND i.InsuranceDetailID=
+	SYS_InsuranceDetail.InsuranceDetailID AND SYS_InsuranceDetail.InsuranceComID= SYS_InsuranceCom.InsuranceComID AND p.RepairID =
+	SYS_Repair.RepairID AND p.DocumentStateID=SYS_DocumentState.DocumentStateID AND p.BalanceStateID=SYS_BalanceState.BalanceStateID 
+	AND p.CustomerSouID=SYS_CustomerSou.CustomerSouID 
+	<if test="toAudit != null and toAudit !='' ">
+		 AND ToAudit = #{toAudit} 
+		</if>
+		<if test="maintenanceNum != null and maintenanceNum !='' ">
+		 AND MaintenanceNum like CONCAT(CONCAT('%',#{maintenanceNum}),'%') 
+		</if>
+		<if test="carNum != null and carNum !='' ">
+		 AND CarNum like CONCAT(CONCAT('%',#{carNum}),'%') 
+		</if>
+		<if test="documentStateID != null and documentStateID > 0 ">
+		 AND DocumentStateID = #{documentStateID} 
+		</if>
+		<if test="balanceStateID != null and balanceStateID > 0 ">
+		 AND BalanceStateID = #{balanceStateID} 
+	</if>
+</select>
+<!-- 查询是否存在索赔单据 -->
+<select id="selectInsuranceData" resultType="com.koi.vo.InsuranceVo">
+	SELECT i.*,CustomerNum,p.ReceptionID,CarNum,VehicleType,MaintenanceNum,Owner,InsuranceMoney,ReportNum,
+	PolicyNum,PolicyMoney,SYS_InsuranceCom.InsuranceComID,RepairName,CustomerSou,DocumentState,p.DocumentStateID,BalanceState,p.BalanceStateID 
+	FROM PW_Reception p,PW_Insurance i,SYS_InsuranceDetail,SYS_InsuranceCom,SYS_Repair,
+	SYS_DocumentState,SYS_CustomerSou,SYS_BalanceState WHERE p.ReceptionID=SYS_InsuranceDetail.ReceptionID AND i.InsuranceDetailID=
+	SYS_InsuranceDetail.InsuranceDetailID AND SYS_InsuranceDetail.InsuranceComID= SYS_InsuranceCom.InsuranceComID AND p.RepairID =
+	SYS_Repair.RepairID AND p.DocumentStateID=SYS_DocumentState.DocumentStateID AND p.BalanceStateID=SYS_BalanceState.BalanceStateID 
+	AND p.CustomerSouID=SYS_CustomerSou.CustomerSouID AND i.InsuranceDetailID = #{insuranceDetailID}
+</select>
+<select id="selectInsurances" resultType="com.koi.vo.InsuranceDetailVo">
+	SELECT p.*,InsuranceMoney,InsuranceDetailID,ReportNum,PolicyNum,PolicyMoney,
+	SYS_InsuranceCom.InsuranceComID,RepairName,CustomerSou,DocumentState,BalanceState 
+	FROM  PW_Reception p,SYS_InsuranceDetail,SYS_InsuranceCom,SYS_Repair,SYS_DocumentState,
+	SYS_CustomerSou,SYS_BalanceState WHERE p.ReceptionID=SYS_InsuranceDetail.ReceptionID AND SYS_InsuranceDetail.
+	InsuranceComID= SYS_InsuranceCom.InsuranceComID AND p.RepairID = SYS_Repair.RepairID AND p.DocumentStateID=
+	SYS_DocumentState.DocumentStateID AND p.BalanceStateID=SYS_BalanceState.BalanceStateID AND 
+	p.CustomerSouID=SYS_CustomerSou.CustomerSouID AND p.ReceptionID = #{receptionID}
+</select>
+<!-- 查询索赔明细信息 -->
+<select id="selectReceptionDetail" resultType="com.koi.po.SysRecRepairItemDetail">
+	SELECT * FROM SYS_RecRepairItemDetail WHERE ReceptionID = #{receptionID} AND MaintainabilityID=6
+</select>
+<select id="selectCollageDetai" resultType="com.koi.po.SysCollageDetai">
+	SELECT * FROM PW_Reception r,PW_Collage c,SYS_CollageDetai WHERE r.ReceptionID=c.ReceptionID AND 
+    c.CollageID=SYS_CollageDetai.CollageID AND r.ReceptionID=#{receptionID} AND SYS_CollageDetai.MaintainabilityID=6
+</select>
+<!-- 三包索赔表操作 -->
+ <select id="selectInsuranceById" resultType="com.koi.po.PwInsurance" >
+     select * from PW_Insurance where InsuranceID=#{insuranceID}
+  </select>
+<insert id="insertInsurance" parameterType="com.koi.po.PwInsurance" 
+    keyProperty="insuranceId" useGeneratedKeys="true">
+    insert into PW_Insurance (InsuranceDetailID, InsuranceNum, 
+      OpenDate, BalanceDate, ClaimsStaff, 
+      ToTicket, Remark, Amount, 
+      ToAudit)
+    values (#{insuranceDetailId,jdbcType=INTEGER}, #{insuranceNum,jdbcType=VARCHAR}, 
+      #{openDate,jdbcType=TIMESTAMP}, #{balanceDate,jdbcType=DATE}, #{claimsStaff,jdbcType=NVARCHAR}, 
+      #{toTicket,jdbcType=BIT}, #{remark,jdbcType=NVARCHAR}, #{amount,jdbcType=DECIMAL}, 
+      #{toAudit,jdbcType=BIT})
+  </insert>
+  <update id="updateInsurance" parameterType="com.koi.po.PwInsurance">
+     update PW_Insurance
+    set InsuranceDetailID = #{insuranceDetailId,jdbcType=INTEGER},
+      InsuranceNum = #{insuranceNum,jdbcType=VARCHAR},
+      OpenDate = #{openDate,jdbcType=TIMESTAMP},
+      BalanceDate = #{balanceDate,jdbcType=DATE},
+      ClaimsStaff = #{claimsStaff,jdbcType=NVARCHAR},
+      ToTicket = #{toTicket,jdbcType=BIT},
+      Remark = #{remark,jdbcType=NVARCHAR},
+      Amount = #{amount,jdbcType=DECIMAL},
+      ToAudit = #{toAudit,jdbcType=BIT}
+    where InsuranceID = #{insuranceId,jdbcType=INTEGER}
+  </update>
+  <delete id="delectInsurance">
+      delete from PW_Insurance where InsuranceID = #{insuranceID}
+  </delete>
+</mapper>

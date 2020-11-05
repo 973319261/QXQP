@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koi.mapper.CollageDao">
+<!-- 查询客户接待单据信息 -->
+<select id="selectReception" resultType="com.koi.vo.ReceptionVo">
+	SELECT * FROM(SELECT p.*,RepairName,CustomerSou,DocumentState,BalanceState,
+	ROW_NUMBER()OVER(ORDER BY p.ReceptionID)Num FROM  PW_Reception p,SYS_Repair,SYS_DocumentState,
+	SYS_CustomerSou,SYS_BalanceState WHERE p.RepairID = SYS_Repair.RepairID AND p.DocumentStateID=
+	SYS_DocumentState.DocumentStateID AND p.BalanceStateID=SYS_BalanceState.BalanceStateID AND 
+	p.CustomerSouID=SYS_CustomerSou.CustomerSouID 
+	 <if test="startDate !='' and endDate !='' ">
+	  AND p.BalanceDate &gt;= #{startDate} AND p.BalanceDate &lt;= #{endDate} 
+	</if>
+	 <if test="startDate !='' and endDate =='' ">
+	  AND p.BalanceDate &gt;= #{startDate} 
+	</if>
+	 <if test="startDate =='' and endDate !='' ">
+	  AND p.BalanceDate &lt;= #{endDate} 
+	</if>
+	<if test="carNum != null and carNum !='' ">
+	 AND p.CarNum like CONCAT(CONCAT('%',#{carNum}),'%') 
+	</if>
+	<if test="collageState != null and collageState !='' ">
+	 AND p.CollageState like CONCAT(CONCAT('%',#{collageState}),'%') 
+	</if>
+	)AS tmp WHERE    
+	  tmp.Num BETWEEN #{startIndex} AND #{pageSize}
+</select>
+<!-- 查询客户接待单据信息总数 -->
+<select id="selectReceptionCount" resultType="java.lang.Long">
+	SELECT COUNT(*)  FROM  PW_Reception p,SYS_Repair,SYS_DocumentState,
+	SYS_CustomerSou,SYS_BalanceState WHERE p.RepairID = SYS_Repair.RepairID AND p.DocumentStateID=
+	SYS_DocumentState.DocumentStateID AND p.BalanceStateID=SYS_BalanceState.BalanceStateID AND 
+	p.CustomerSouID=SYS_CustomerSou.CustomerSouID 
+	 <if test="startDate !='' and endDate !='' ">
+	  AND p.BalanceDate &gt;= #{startDate} AND p.BalanceDate &lt;= #{endDate} 
+	</if>
+	 <if test="startDate !='' and endDate =='' ">
+	  AND p.BalanceDate &gt;= #{startDate} 
+	</if>
+	 <if test="startDate =='' and endDate !='' ">
+	  AND p.BalanceDate &lt;= #{endDate} 
+	</if>
+	<if test="carNum != null and carNum !='' ">
+	 AND p.CarNum like CONCAT(CONCAT('%',#{carNum}),'%') 
+	</if>
+	<if test="collageState != null and collageState !='' ">
+	 AND p.CollageState like CONCAT(CONCAT('%',#{collageState}),'%') 
+	</if>
+</select>
+<!-- 查询领料导入配件信息 -->
+<select id="selectDaoRuPeiJian" resultType="com.koi.vo.ProductVo">
+	SELECT * FROM(SELECT r.*,MaintainabilityName,ROW_NUMBER()OVER(ORDER BY r.ReceptionID)Num FROM 
+	SYS_RecProductDetail r,SYS_Maintainability WHERE r.MaintainabilityID=SYS_Maintainability.MaintainabilityID  AND r.ReceptionID=#{receptionID}) 
+	AS tmp WHERE tmp.Num BETWEEN #{startIndex} AND #{pageSize} 
+</select>
+ <!-- 查询领料导入配件信息总数 -->
+<select id="selectDaoRuPeiJianCount" resultType="java.lang.Long">
+	SELECT COUNT(*) FROM  SYS_RecProductDetail,SYS_Maintainability WHERE SYS_RecProductDetail.MaintainabilityID
+	=SYS_Maintainability.MaintainabilityID AND SYS_RecProductDetail.ReceptionID=#{receptionID}
+</select>
+<!-- 查询领料主信息-->
+<select id="selectCollageById" resultType="com.koi.po.PwCollage">
+  SELECT * FROM PW_Collage WHERE ReceptionID=#{receptionID}
+</select>
+<!-- 保存领料主页面 -->
+<insert id="insertCollage" parameterType="com.koi.po.PwCollage"
+useGeneratedKeys="true" keyProperty="collageId">
+   insert into PW_Collage (ForeMan, ReceptionID, 
+     CollageDate, Amount, ToAudit, 
+     AuditDate, Auditor, Remark, 
+     Operator)
+   values (#{foreMan,jdbcType=NVARCHAR}, #{receptionId,jdbcType=INTEGER}, 
+     #{collageDate,jdbcType=DATE}, #{amount,jdbcType=DECIMAL}, #{toAudit,jdbcType=BIT}, 
+     #{auditDate,jdbcType=TIMESTAMP}, #{auditor,jdbcType=NVARCHAR}, #{remark,jdbcType=NVARCHAR}, 
+     #{operator,jdbcType=NVARCHAR})
+ </insert>
+ <update id="updateCollage" parameterType="com.koi.po.PwCollage">
+   update PW_Collage
+   set ForeMan = #{foreMan,jdbcType=NVARCHAR},
+     ReceptionID = #{receptionId,jdbcType=INTEGER},
+     CollageDate = #{collageDate,jdbcType=DATE},
+     Amount = #{amount,jdbcType=DECIMAL},
+     ToAudit = #{toAudit,jdbcType=BIT},
+     AuditDate = #{auditDate,jdbcType=TIMESTAMP},
+     Auditor = #{auditor,jdbcType=NVARCHAR},
+     Remark = #{remark,jdbcType=NVARCHAR},
+     Operator = #{operator,jdbcType=NVARCHAR}
+   where CollageID = #{collageId,jdbcType=INTEGER}
+ </update>
+ <!-- 查询库存 -->
+ <select id="selectInventory" resultType="com.koi.po.SysInventory">
+    SELECT * FROM SYS_Inventory i WHERE i.FittingsCode=#{fittingsCode} AND i.WarehouseID=#{warehouseID}
+ </select>
+ <!-- 新增库存 -->
+<insert id="insertInventory" parameterType="com.koi.po.SysInventory"
+useGeneratedKeys="true" keyProperty="inventoryId">
+    insert into SYS_Inventory (WarehouseID, FittingsCode, 
+      FittingsName, VehicleType, SystemUnit, 
+      InvenQuan, NewIntake, WholePrice, 
+      SalePrice, MinInventory, Position, 
+      FittingsType)
+    values (#{warehouseId,jdbcType=INTEGER}, #{fittingsCode,jdbcType=CHAR}, 
+      #{fittingsName,jdbcType=NVARCHAR}, #{vehicleType,jdbcType=NVARCHAR}, #{systemUnit,jdbcType=NVARCHAR}, 
+      #{invenQuan,jdbcType=DECIMAL}, #{newIntake,jdbcType=DECIMAL}, #{wholePrice,jdbcType=DECIMAL}, 
+      #{salePrice,jdbcType=DECIMAL}, #{minInventory,jdbcType=DECIMAL}, #{position,jdbcType=NVARCHAR}, 
+      #{fittingsType,jdbcType=NVARCHAR})
+  </insert>
+  <!-- 修改库存 -->
+  <update id="updateInventory" parameterType="com.koi.po.SysInventory">
+    update SYS_Inventory
+    set WarehouseID = #{warehouseId,jdbcType=INTEGER},
+      FittingsCode = #{fittingsCode,jdbcType=CHAR},
+      FittingsName = #{fittingsName,jdbcType=NVARCHAR},
+      VehicleType = #{vehicleType,jdbcType=NVARCHAR},
+      SystemUnit = #{systemUnit,jdbcType=NVARCHAR},
+      InvenQuan = #{invenQuan,jdbcType=DECIMAL},
+      NewIntake = #{newIntake,jdbcType=DECIMAL},
+      WholePrice = #{wholePrice,jdbcType=DECIMAL},
+      SalePrice = #{salePrice,jdbcType=DECIMAL},
+      MinInventory = #{minInventory,jdbcType=DECIMAL},
+      Position = #{position,jdbcType=NVARCHAR},
+      FittingsType = #{fittingsType,jdbcType=NVARCHAR}
+    where InventoryID = #{inventoryId,jdbcType=INTEGER}
+  </update>
+ <select id="selectFittingsInfoVo" resultType="com.koi.vo.FittingsInfoVo">
+   SELECT f.*,FittingsTypeName,VehicleType,SystemUnit FROM SYS_FittingsInfo f,SYS_FittingsType,SYS_VehicleType,SYS_SystemUnit 
+   WHERE f.FittingsTypeID=SYS_FittingsType.FittingsTypeID AND f.VehicleTypeID=SYS_VehicleType.VehicleTypeID AND f.SystemUnitID=
+   SYS_SystemUnit.SystemUnitID AND f.FittingsCode=#{fittingsCode}
+ </select>
+  <!-- 查询领料明细信息 -->
+ <select id="selectCollageDetai" resultType="com.koi.po.SysCollageDetai">
+   SELECT * FROM SYS_CollageDetai WHERE CollageID=#{collageID}
+ </select>
+ <!--  查询领料单据信息 -->
+ <select id="selectCollage" resultType="com.koi.vo.CollageVo">
+   SELECT * FROM(SELECT c.*,Owner,CarNum,MaintenanceNum,CollageState,ROW_NUMBER()OVER(ORDER BY p.ReceptionID) 
+   Num FROM  PW_Collage c,PW_Reception p WHERE c.ReceptionID=p.ReceptionID)AS tmp  WHERE tmp.Num BETWEEN #{startIndex} AND #{pageSize}
+ </select>
+ <!-- 查询领料单据信息总数 -->
+ <select id="selectCollageCount" resultType="java.lang.Long">
+   SELECT COUNT(*)as num FROM  PW_Collage,PW_Reception WHERE PW_Collage.ReceptionID=PW_Reception.ReceptionID
+ </select>
+ <!-- 查询退料主信息 -->
+ <select id="selectRestock" resultType="com.koi.vo.RestockVo">
+   SELECT p.*,c.CollageID,c.ToAudit FROM PW_Reception p,PW_Collage c WHERE p.ReceptionID=c.ReceptionID AND p.ReceptionID=#{receptionID}
+ </select>
+ <!-- 查询可退料明细信息 -->
+ <select id="selectTableCollageDetai" resultType="com.koi.vo.CollageDetaiVo">
+	SELECT * FROM(SELECT c.*,WarehouseName,MaintainabilityName,MaintenanceNum,ROW_NUMBER()OVER(ORDER BY c.CollageDetaiID)Num FROM 
+	SYS_CollageDetai c,SYS_Maintainability,SYS_Warehouse,PW_Collage,dbo.PW_Reception WHERE c.MaintainabilityID=
+	SYS_Maintainability.MaintainabilityID AND c.WarehouseID=SYS_Warehouse.WarehouseID AND c.CollageID=
+	PW_Collage.CollageID AND dbo.PW_Collage.ReceptionID=dbo.PW_Reception.ReceptionID AND  c.CollageID=#{collageID})
+	AS tmp WHERE tmp.Num BETWEEN #{startIndex} AND #{pageSize} 
+ </select>
+  <!-- 查询可退料明细信息总数 -->
+  <select id="selectTableCollageDetaiCount" resultType="java.lang.Long">
+	SELECT COUNT(*)as num FROM SYS_CollageDetai c,SYS_Maintainability,
+	SYS_Warehouse,PW_Collage,dbo.PW_Reception WHERE c.MaintainabilityID=SYS_Maintainability.MaintainabilityID 
+	AND c.WarehouseID=SYS_Warehouse.WarehouseID AND c.CollageID=PW_Collage.CollageID AND dbo.PW_Collage.
+	ReceptionID=dbo.PW_Reception.ReceptionID AND  c.CollageID=#{collageID}
+ </select>
+</mapper>

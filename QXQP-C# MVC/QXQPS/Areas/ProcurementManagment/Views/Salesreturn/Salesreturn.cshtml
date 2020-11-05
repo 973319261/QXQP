@@ -1,0 +1,1947 @@
+﻿
+@{
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Salesreturn</title>
+    <link href="~/Content/Main/css/icons.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/main.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrapal.css" rel="stylesheet" />
+    <link href="~/Content/Main/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_gray.min.css" rel="stylesheet" />
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/Content/Main/lib/layer/2.4/skin/layer.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrapal.css" rel="stylesheet" />
+    <link href="~/Content/layui/css/modules/laydate/default/laydate.css" rel="stylesheet" />
+    <link href="~/Content/Main/static/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" />
+    <style>
+        .modal input[type="name"], .modal select {
+            height: 28px;
+        }
+        a {
+            color: #808080;
+        }
+        a:hover {
+                text-decoration: none;
+                color: burlywood;
+            }
+        ul li {
+            padding: 5px 20px;
+            text-align: center;
+        }
+        ul li:hover {
+                background: #5bc0de;
+            }
+        label {
+            width: 100%;
+            margin-top: 10px;
+            text-align: right;
+        }
+        .breadcrumb {
+            padding: 10px 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: #f5f5f5;
+        }
+        #Detailedmode tr th, #Detailedmode table tr td:hover {
+            /*background: #ffffff;*/
+        }
+        #Detailedmode table tr th, #Detailedmode table tr td {
+            padding: 5px;
+            width: 300px;
+            text-align: center;
+            border: 1px solid #e2e2e2;
+            border-collapse: collapse;
+        }
+        #Detailedmode table {
+            border: 1px;
+            width: 99.5%;
+        }
+        #Detailedmode table tr th {
+                background-color: #f5f5f5;
+                /*border-bottom: 1px solid gray;*/
+            }
+        #Detailedmode table input, #Detailedmode table select {
+                width: 100px;
+                margin: 0px;
+                border: none;
+            }
+        #Detailedmode table select {
+                width: 100%;
+            }
+        .Box {
+            height: 350px;
+            overflow: auto;
+        }
+        .box {
+            border: solid 1px gray;
+            width: 100px;
+            display: none;
+            position: absolute;
+            background-color: ghostwhite;
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            box-shadow: #808080 2px 2px;
+        }
+        .box > li {
+                border-bottom: dashed 1px gray;
+                cursor: pointer;
+                text-align: center;
+                padding: 3px;
+            }
+        .box > li:hover {
+                background-color: #eee;
+            }
+        .el-tabs__content {
+            height: 350px;
+        }
+        .modal input, .modal select {
+            height: 32px;
+        }
+        .modal .control-label {
+            width: 100px;
+            padding-top: 0px;
+        }
+        .modal .form-group {
+            margin: 1px;
+        }
+        .modal .col-lg-3 {
+            width: 16%;
+        }
+        .modal-body {
+            padding-bottom: 0;
+        }
+        .modal .navsearch {
+            height: 50px;
+            width: 950px;
+            background: #f5f5f5;
+            padding: 5px 0;
+            border-radius: 3px;
+        }
+        .modal .navsearch select {
+                height: 32px;
+            }
+        .modal .navsearch input {
+                height: 30px;
+            }
+        .modal button {
+            width: 79px;
+        }
+        .modal button i {
+                margin-right: 5px;
+            }
+        .modal-content {
+            width: 985px;
+            height: 50%;
+            left: -200px;
+        }
+        .modOne {
+            width: 320px;
+            height: 480px;
+            float: left;
+            overflow: auto;
+            margin-right: 20px;
+            box-shadow: 0 0 20px 1px #eee;
+        }
+        .modTow {
+            width: 580px;
+            height: 480px;
+            float: left;
+            padding: 5px;
+            border: 3px solid #f5f5f5;
+            box-shadow: 0 0 20px 1px #eee;
+            overflow: auto;
+        }
+        .modTows {
+            width: 648px;
+            height: 480px;
+            float: left;
+            padding: 5px 5px 5px 5px;
+            border: 3px solid #f5f5f5;
+            box-shadow: 0 0 20px 1px #eee;
+            overflow: auto;
+        }
+        table {
+            border: 1px;
+            width: 99.5%;
+        }
+        #imgCarPicture {
+            border-radius: 5px;
+            box-shadow: 0 0 20px 3px #eee;
+            width: 250px;
+            height: 295px;
+            display: block;
+        }
+        .Tfoot {
+            font-size: 15px;
+        }
+        .modTows input {
+            height: 20px;
+        }
+        #FittingsType {
+            padding: 15px;
+        }
+        #FittingsType li {
+                text-align: left;
+                font-size: 16px;
+                list-style-type: none;
+            }
+        #FittingsType li:hover {
+                background: #eee;
+                cursor: alias;
+            }
+        #FittingsType li i {
+                    display: inline-block;
+                    background: url('../../../../Content/Main/images/smiley_evil.png') no-repeat 0px 5px;
+                    width: 20px;
+                    height: 20px;
+                }
+        #FittingsType li .diai {
+                    margin-left: 23px;
+                }
+    </style>
+</head>
+<body>
+    <div>
+        @*导航栏*@
+        <nav class="breadcrumb" style="margin:0px">
+            <i class="Hui-iconfont"></i> <a href=""> 首 页 </a> <span class="c-gray en">&gt;</span> <a href=""> 配 件 销 售 </a>
+            <span class="c-gray en">&gt;</span><a href=""> 销 售 退 货 </a>
+        </nav>
+        @*按钮*@
+        <div style="background-color:beige;">
+            <button onclick="Insertbtn(0)" style="margin-left:20px" class="btn btn-primary"><i class="Hui-iconfont">&#xe604; </i>新增单</button>
+            <button id="ShangChu" onclick="Delectbtn()" class="btn btn-danger"><i class="Hui-iconfont">&#xe609; </i>删除单</button>
+            <button id="Savebtn" onclick="Btndsave()"  class="btn btn-info"><i class="Hui-iconfont">&#xe632; </i>保存</button>    
+            <button onclick="ShowDanJus()" class="btn btn-success"><i class="Hui-iconfont">&#xe6a7; </i>选择单据</button>
+            <button id="ShenHe" onclick="Audit()" class="btn btn-primary"><i class="Hui-iconfont">&#xe6e1; </i>审核</button>
+            <button id="FanShen" onclick="Counteraudit()" class="btn btn-danger"><i class="Hui-iconfont">&#xe6dd; </i>反审核</button>
+            <button class="btn btn-success"><i class="Hui-iconfont">&#xe652; </i>打印</button>
+        </div>
+        @*表单*@
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top:20px;padding-bottom:20px">
+            <legend style="margin-left:50px;text-shadow: 5px 5px 5px gray;font-weight:inherit">配件退货</legend>
+            <div class="layui-field-box">
+                <form class="form-horizontal" role="form" id="FormSalesorder">
+                    <div class="col-lg-12">
+                        <input type="text" id="SalesReturnlID" hidden>@*退货ID*@                       
+                        <input type="text" hidden id="ToAudit" value="false">@*审核*@
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>单号</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <input type="text" class="form-control Disable" disabled id="Oddseats" name="Oddseats">
+                            </div>
+
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>客户编码</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <div class="input-group">
+                                    <input style="color:red" type="text" class="form-control Disable" disabled id="CustomerCode" name="CustomerCode">
+                                    <span class="input-group-btn">
+                                        <button style="width:112%" class="btn btn-primary" type="button" id="Supplier" onclick="ShowclientID()"><i class="en-list2"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>客户名称</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <input type="text" class="form-control" id="CustomerName" name="CustomerName">
+                            </div>
+
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>日期</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <input type="text" class="form-control Dates Dated " id="OpenDate" name="OpenDate">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>退货方式</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <select type="text" class="form-control" id="Returnmode" name="Returnmode">
+                                    <option value="1">按零售单退</option>
+                                    <option value="2">按库存退</option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>原零售单号</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control Disable" disabled id="Stockremoval" name="Stockremoval">
+                                    <span class="input-group-btn">
+                                        <button style="width:112%" class="btn btn-primary" type="button" id="Showxiaoshou" onclick="ShowDanJu()"><i class="en-list2"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>操作人</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <input type="text" class="form-control Disable" disabled value="@ViewBag.UserName" id="Operator" name="Operator">
+                            </div>
+
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>审核人</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <input type="text" class="form-control Disable" disabled id="Auditor" name="Auditor">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>审核日期</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <input type="text" class="form-control Disable" disabled id="AuditDate" name="AuditDate">
+                            </div>
+
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>总金额</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <input type="text" hidden id="Theamounts" name="Theamount">
+                                <input type="text" class="form-control Disable" disabled id="Theamount" name="Theamount">
+                            </div>
+
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>已审核</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <label class="checkbox" style="text-align:left;">
+                                    <input type="checkbox" style="height:20px;width:20px;" class="Disable" disabled  id="ToAudits" name="ToAudit"/>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>备注</label>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-xs-12">
+                                <input type="text" class="form-control" id="Remark" name="Remark">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+        @*表格*@
+        <div class="col-lg-12" id="Detailedmode" style="margin:15px">
+            <el-tabs type="border-card">
+                <el-tab-pane label="配件订货明细">
+                    <div id="TuihuoBox" style="height:450px;margin:0px 1.5% 0px 0.5%;box-shadow:0 0 2px 2px #eee;">
+                        <table id="tbTuihuo" style="border:1px; width:100%">
+                            <tbody>
+                                <tr>
+                                    <th width='7%' height='20px'>序号</th>
+                                    <th width='8%' height='20px'>配件编码</th>
+                                    <th width='8%' height='20px'>配件名称</th>
+                                    <th width='7%' height='20px'>规格</th>
+                                    <th width='7%' height='20px'>仓库</th>
+                                    <th width='7%' height='20px'>车型</th>
+                                    <th width='8%' height='20px'>单位</th>
+                                    <th width='8%' height='20px'>数量（负数）</th>
+                                    <th width='8%' height='20px'>单价</th>
+                                    <th width='8%' height='20px'>折扣</th>
+                                    <th width='8%' height='20px'>金额</th>
+                                    <th width='8%' height='20px'>自定义</th>
+                                </tr>
+                            </tbody>
+                            <tfoot class="Tfoot">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><i class="en-feather"></i>合计：</td>
+                                    <td id="Quantity">0.00</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td id="Money">0.00</td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </el-tab-pane>
+            </el-tabs>
+        </div>
+        <ul id="menuOne" class="box">
+            <li onclick="ShowShangPin()"><i class="glyphicon glyphicon-plus"></i> 添 加</li>
+            <li onclick="deleteOne()"><i class="glyphicon glyphicon-trash"></i> 删 除</li>
+        </ul>
+        @*客户编码模态框*@
+        <div class="modal fade col-lg-12" id="clientID">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title">
+                            车辆选择
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="navsearch">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <form class="form-horizontal" role="form" style="margin-top:2px;">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 text-right">
+                                        <label class="control-label">名 字</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 reset" style="margin-top:3px">
+                                        <input type="text" class="form-control" id="Obscure" />
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 text-right" style="margin-left:20px">
+                                        <button onclick="Inquire()" type="button" class="btn btn-search"><i class="glyphicon glyphicon-search"></i>查 询</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <button onclick="Reset()" type="button" class="btn btn-success" style="margin-left:105px"><i class="glyphicon glyphicon-plus"></i>新 增</button>
+                                <button onclick="Btnsave()" type="button" class="btn btn-warning"><i class="glyphicon glyphicon-file"></i>保 存</button>
+                                <button onclick="Refresh()" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-refresh"></i>刷 新</button>
+                                <button onclick="" type="button" class="btn btn-danger" data-dismiss="modal"><i class="Hui-iconfont">&#xe6dd; </i>关 闭</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="border-top:none;">
+                        <div>
+                            <div class="modOne">
+                                <table id="tbKeHu" ondblclick="Shuangji()" style="width:700px;">
+                                    <tr>
+                                        <th w_num="total_line">序号</th>                                   
+                                        <th w_index="CustomerCode">客户编码</th>
+                                        <th w_index="CustomerName">客户</th>
+                                        <th w_index="TelePhone">电话</th>
+                                        <th w_index="MobilePhone">手机</th>
+                                        <th w_index="Contacts">联系人</th>
+                                        <th w_index="Address">地址</th>
+                                    </tr>
+                                </table>
+                            </div>
+                            @*表单*@
+                            <div class="modTow col-lg-12 col-md-12 col-sm-12">
+                                <form class="form-horizontal" method="post" role="form" id="KformMaintenance" action="/ProcurementManagment/Salesorder/Newmodification">  
+                                    <input type="text" id="KSalesCustomerID" name="SalesCustomerID" hidden/> @*客户ID*@
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">客户编码</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" hidden id="KCustomerCodes" name="CustomerCode">
+                                            <input type="text" class="form-control" disabled id="KCustomerCode" name="CustomerCode">
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">区域</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <select type="text" class="form-control" id="KRegionID" name="RegionID"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">客户名称</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KCustomerName" name="CustomerName">
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">客户来源</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <select type="text" class="form-control" id="KCustomerSouID" name="CustomerSouID"></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">地址</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KAddress" name="Address">
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">邮编</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KZipCode" name="ZipCode">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">全称</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KFullName" name="FullName" onKeyUp="query()">
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">拼音码</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <select type="text" class="form-control" id="KPinYinCode" name="PinYinCode"></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">身份证号</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KIdNumber" name="IdNumber">
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">联系人</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KContacts" name="Contacts">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">传真</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KFacsimile" name="Facsimile">
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">电话</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KTelePhone" name="TelePhone">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">手机</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KMobilePhone" name="MobilePhone">
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">Email</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KEmai" name="Emai">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">客户等级</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <select type="text" class="form-control" id="KCustomerLevelID" name="CustomerLevelID"></select>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">客户类别</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <select type="text" class="form-control" id="KCustomerTypeID" name="CustomerTypeID"></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">付款方式</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <select type="text" class="form-control" id="KPaymentID" name="PaymentID"></select>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">备注</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KRemark" name="Remark">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">业务员</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <select type="text" class="form-control" id="KUserID" name="UserID"></select>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">录入人</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" hidden id="KInputPersons" name="InputPerson" value="@ViewBag.UserName">
+                                            <input type="text" class="form-control" id="KInputPerson" name="InputPerson" value="@ViewBag.UserName" disabled>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*单据模态框*@
+        <div class="modal fade col-lg-12" id="DanJuModals">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title">
+                            记录定位
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="navsearch">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <form class="form-horizontal" role="form">
+                                    <div class="col-lg-1 col-md-1 col-sm-1 text-right" style="margin-left:-50px">
+                                        <label class="control-label">从</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <input type="text" class="form-control Dates" id="StarAudit">
+                                    </div>
+
+                                    <div class="col-lg-1 col-md-1 col-sm-1" style="width:38px;">
+                                        <label class="control-label">至</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <input type="text" class="form-control Dates" id="EndAudit">
+                                    </div>
+
+                                    <div class="col-lg-1 col-md-1 col-sm-1 text-right">
+                                        <label class="control-label">单号</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 reset" style="margin-top:3px">
+                                        <input type="text" class="form-control" id="Salesoredes" />
+                                    </div>
+
+                                    <div class="col-lg-2 col-md-2 col-sm-2 text-right" style="margin-left:-30px">
+                                        <label class="control-label">审核</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 reset" style="margin-top:3px">
+                                        <select class="form-control" id="">
+                                            <option value="0">全部</option>
+                                            <option value="1">已审核</option>
+                                            <option value="2">未审核</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-2 col-md-2 col-sm-2 text-right" style="margin-left:3px">
+                                        <button type="button" onclick="Returninquiry()" class="btn btn-search"><i class="glyphicon glyphicon-search"></i>查 询</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="border-top:none;">
+                        <div style="height:500px;width:950px;overflow:auto; box-shadow: 0 0 20px 5px #ddd;">
+                            <table id="tbTuihuodan" style="width:100%">
+                                <tr>
+                                    <th w_num="total_line">序号</th>
+                                    <th w_index="SalesReturnlID" w_hidden="true"></th>@*退货ID*@
+                                    <th w_index="SalesCustomerID" w_hidden="true"></th>@*客户ID*@
+                                    <th w_index="ToAudit" w_hidden="true">审核</th>
+                                    <th w_render="ToAudit">审核</th>@*自定义*@
+                                    <th w_index="Oddseats">退货单号</th>
+                                    <th w_index="AuditDates">审核日期</th>
+                                    <th w_index="CustomerName">客户名称</th>
+                                    <th w_index="Theamount">总金额</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*原零售单号模态框*@
+        <div class="modal fade col-lg-12" id="DanJuModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title">
+                            记录定位
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="navsearch">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <form class="form-horizontal" role="form">
+                                    <div class="col-lg-1 col-md-1 col-sm-1 text-right" style="margin-left:-50px">
+                                        <label class="control-label">从</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <input type="text" class="form-control Dates" id="StarAudited">
+                                    </div>
+
+                                    <div class="col-lg-1 col-md-1 col-sm-1" style="width:38px;">
+                                        <label class="control-label">至</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <input type="text" class="form-control Dates" id="EndAudited">
+                                    </div>
+
+                                    <div class="col-lg-1 col-md-1 col-sm-1 text-right">
+                                        <label class="control-label">单号</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 reset" style="margin-top:3px">
+                                        <input type="text" class="form-control" id="Salesored" />
+                                    </div>
+
+                                    <div class="col-lg-2 col-md-2 col-sm-2 text-right" style="margin-left:-30px">
+                                        <label class="control-label">审核</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 reset" style="margin-top:3px">
+                                        <select class="form-control" id="Reviewwhets">
+                                            <option value="0">全部</option>
+                                            <option value="1">已审核</option>
+                                            <option value="2">未审核</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-2 col-md-2 col-sm-2 text-right" style="margin-left:3px">
+                                        <button type="button" onclick="Receipteye()" class="btn btn-search"><i class="glyphicon glyphicon-search"></i>查 询</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer" style="border-top:none;">
+                        <div style="height:500px;width:950px;overflow:auto; box-shadow: 0 0 20px 5px #ddd;">
+                            <table id="tbXiaoshou" style="width:100%">
+                                <tr>
+                                    <th w_num="total_line">序号</th>
+                                    <th w_index="OutboundID" w_hidden="true"></th>
+                                    <th w_index="Reviewwhet" w_hidden="true">审核状态</th>
+                                    <th w_render="Reviewwhet">审核状态</th>@*自定义*@
+                                    <th w_index="Stockremoval">出库单号</th>
+                                    <th w_index="OpenDates">开单日期</th>
+                                    <th w_index="CustomerName">客户名称</th>
+                                    <th w_index="Theamount">总金额</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*新增商品模态框*@
+        <div class="modal fade col-lg-12" id="ShangPinModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title">
+                            商品类别查找(多选)
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="navsearch">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <form class="form-horizontal" role="form">
+                                    <div class="col-lg-1 col-md-1 col-sm-2 text-right">
+                                        <label class="control-label">快速查找 :</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 reset" style="margin-right:10px">
+                                        <select class="form-control" style="height:33px;" id="selectInfo">
+                                            <option>---请选择---</option>
+                                            <option value="1">商品类别</option>
+                                            <option value="2">商品编码</option>
+                                            <option value="3">商品名称</option>
+                                            <option value="4">所属车型</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 reset" style="margin-right:170px">
+                                        <input type="text" class="form-control" style="height:33px;" id="Info" />
+                                    </div>
+                                    <button onclick="SeleceFittingsInfo()" type="button" class="btn btn-search"><i class="glyphicon glyphicon-search"></i>查 询</button>
+                                    <button onclick="FittingSelect()" type="button" class="btn btn-info"><i class="glyphicon glyphicon-ok-sign"></i>选 中</button>
+                                    <button onclick="ShowAddPeiJian()" type="button" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>新 增</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btnClose"><i class="glyphicon glyphicon-remove"></i>关 闭</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer" style="border-top:none;padding:15px 0px 10px 20px">
+                        <div>
+                            <div class="modOne" id="FittingsType" style="width:280px">
+                                <ul>
+                                    <li onclick="SeleceFittingsInfo()">
+                                        <i style="background: url('../../../../Content/Main/images/smiley_sleep.png') no-repeat 0px 5px;">
+                                        </i> 货品分类 &nbsp;共有<span></span>个类别
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="modTows col-lg-12 col-md-12 col-sm-12">
+                                <table id="tbShangPin" style="width:1100px">
+                                    <tr>
+                                        <th w_index="FittingsInfoID" w_check="true"></th>
+                                        <th w_index="FittingsTypeName">商品类别</th>
+                                        <th w_index="FittingsCode">配件编码</th>
+                                        <th w_index="FittingsName">配件名称</th>
+                                        <th w_index="Specification">配件规格</th>
+                                        <th w_index="VehicleType">车型</th>
+                                        <th w_index="SystemUnit">单位</th>
+                                        <th w_index="Intake">进价</th>
+                                        <th w_index="SalesPrice">销售价格</th>
+                                        <th w_index="SuppliersName">供应商</th>
+                                        <th w_index="Remark">备注</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*配件基本资料添加模态框*@
+        <div class="modal fade col-lg-12" id="AddPeiJianModal">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width:850px;left:-133px;top:60px">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title">
+                            配件基本资料添加
+                        </h4>
+                    </div>
+                    <div class="modal-footer" style="border-top:none;">
+                        <div>
+                            <fieldset class="layui-elem-field layui-field-box" style="margin-top: 0px;">
+                                <legend style="font-size:16px;margin-left:35px;text-shadow: 5px 5px 5px gray;font-weight:inherit">双击框体，弹出路径，选择对应图片保存即可</legend>
+                                <div class="col-lg-12 col-md-12 col-sm-12" style="width:102%">
+                                    <form class="form-horizontal" role="form" id="formExamineed" action="/PublicManagment/MaintenanceCus/InsertFittingsInfo" method="post">
+                                        <div style="float:left;width:250px;height:300px;">
+                                            <div class="img-box text-center">
+                                                <img src="" alt="" width="250" height="295" id="imgCarPicture" />
+                                                <input type="file" class="hidden" style="margin-left:3px;margin-top:10px;font-size:10px" name="fileCarPicture" id="CarPicture" />
+                                            </div>
+
+                                        </div>
+                                        <div style="float:left;width:500px;height:300px;margin-left:30px">
+                                            <div class="form-group">
+                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    <label class="control-label">配件编码:</label>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                                    <input type="text" class="form-control" id="SFittingsCode" name="FittingsCode" maxlength="5">
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    <label class="control-label">商品类别:</label>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                                    <select class="form-control" id="SFittingsTypeID" name="FittingsTypeID"></select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    <label class="control-label">配件名称:</label>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                                    <input type="text" class="form-control" id="SFittingsName" name="FittingsName">
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    <label class="control-label">条码:</label>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                                    <input type="text" class="form-control" id="SBarcode" name="Barcode">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    <label class="control-label">配件规格:</label>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                                    <input type="text" class="form-control" id="SSpecification" name="Specification">
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    <label class="control-label">品牌:</label>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                                    <input type="text" class="form-control" id="SBrand" name="Brand">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    <label class="control-label">单位:</label>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                                    <select class="form-control" id="SSystemUnitID" name="SystemUnitID"></select>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    <label class="control-label">所属车型:</label>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                                    <select class="form-control" id="SVehicleTypeID" name="VehicleTypeID"></select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    <label class="control-label">进价:</label>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                                    <input type="text" class="form-control" id="SIntake" name="Intake">
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    <label class="control-label">销售价格:</label>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                                    <input type="text" class="form-control" id="SSalesPrice" name="SalesPrice">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    <label class="control-label">批发价:</label>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                                    <input type="text" class="form-control" id="SWholesalePrice" name="WholesalePrice">
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    <label class="control-label">库存上限:</label>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                                    <input type="text" class="form-control" id="SInventoryMax" name="InventoryMax">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    <label class="control-label">库存下限:</label>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                                    <input type="text" class="form-control" id="SInventoryMin" name="InventoryMin">
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-xs-12">
+                                                    <label class="control-label">开单价:</label>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                                    <input type="text" class="form-control" id="SOpenPrice" name="OpenPrice">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group" style="padding-top:30px">
+                                            <div class="col-lg-3 col-md-3 col-xs-12" style="width:60px">
+                                                <label class="control-label">供应商:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <select class="form-control" id="SSuppliersID" name="SuppliersID"></select>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-xs-12" style="width:140px">
+                                                <label class="control-label">备注:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" style="width:300px" id="SRemark" name="Remark">
+                                            </div>
+                                        </div>
+                                        <p style="text-align:left;line-height:26px;color:orangered;margin:0">说明：系统根据配件编码，名称和规格来确定产品</p>
+                                    </form>
+                                </div>
+                            </fieldset>
+                            <button onclick="btnFittingsSava()" class="btn btn-info "><i class="Hui-iconfont">&#xe632;</i> 保 存</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="btnClose"><i class="glyphicon glyphicon-remove"></i>关 闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*外部引用*@
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/js/jquery.form.js"></script>
+    <script src="~/Content/Main/lib/layer/2.4/layer.js"></script>
+    <script src="~/Content/layui/laydate/laydate.js"></script>
+    <script src="~/Content/js/customfunction.js"></script>
+    <script src="~/Content/Main/js/pinying.js"></script>@*拼音码*@
+    <script src="~/Content/Main/lib/layer/2.4/layer.js"></script>
+    <script src="~/Content/js/combobox.js"></script>
+    <script>   
+        var tbKeHu;
+        var tbXiaoshou;
+        var tbShangPin;
+        var tbTuihuodan;
+        var Chinese = /^[\u0391-\uFFE5]+$/;//只能输入中文
+        var Number = /^[0-9]+$/; //只能输入数字
+        var Identity = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;//18位身份证号码
+        var Phone = /^[1][0-9][0-9]{9}$/; //11位手机号码
+
+        //生成退货单号
+        function Tuihuo() {
+            $.post("/ProcurementManagment/Salesreturn/Oddseats", function (data) {
+                $("#Oddseats").val(data);
+            })
+        }
+        //生成客户编码
+        function Bianma() {
+            $.post("/PublicManagment/MaintenanceCus/CustomerNum", function (data) {
+                $("#KCustomerCode").val(data);
+                $("#KCustomerCodes").val(data);
+            })
+        }
+        //同时绑定多个时间
+        function Datetime() {
+            lay('.Datetime').each(function () {
+                run();
+                laydate.render({
+                    elem: this
+                  , trigger: 'click',
+                    type: 'datetime'
+                });
+            });
+            lay('.Dates').each(function () {
+                runs();
+                laydate.render({
+                    elem: this
+                  , trigger: 'click',
+                    type: 'date'
+                });
+            });
+        }
+        //获取系统当前时间
+        function run() {
+            var time = new Date();//获取系统当前时间
+            var year = time.getFullYear();
+            var month = time.getMonth() + 1;
+            var date = time.getDate();//系统时间月份中的日
+            var hour = time.getHours();
+            var minutes = time.getMinutes();
+            var seconds = time.getSeconds();
+            if (month < 10) {
+                month = "0" + month;
+            }
+            if (date < 10) {
+                date = "0" + date;
+            }
+            if (hour < 10) {
+                hour = "0" + hour;
+            }
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            var newDate = year + "-" + month + "-" + date + " " + hour + ":" + minutes + ":" + seconds;
+            $(".Datetime").each(function () {
+                $(this).val(newDate);
+            })
+        }
+        function runs() {
+            var time = new Date();//获取系统当前时间
+            var year = time.getFullYear();
+            var month = time.getMonth() + 1;
+            var date = time.getDate();//系统时间月份中的日
+            var newDates = year + "-" + month + "-" + date;
+            $(".Dated").each(function () {
+                $(this).val(newDates);
+            })
+        }     
+        //页面加载
+        $(function () {
+            Datetime(); Tuihuo(); Bianma();
+            //客户初始化
+            tbKeHu = $.fn.bsgrid.init('tbKeHu', {
+                url: '/Salesorder/Selectordergoods',
+                autoLoad: true,//自动加载
+                stripeRows: false,//隔行变色
+                rowHoverColor: true,//划过行变色
+                showPageToolbar: false,  //是否显示分页工具条，默认值true 
+                displayBlankRows: false,//是否显示空白行, 默认值true
+                pageSize: 10,//分页大小, 如果设置值小于1则不分页且展示全部数据(即自动将pageAll设置为true), 默认值20
+                pageSizeSelect: true,// 是否显示分页大小选择下拉框, 配合参数pageSizeForGrid, 默认值false
+                pagingLittleToolbar: true,//是否显示精简的图标按钮分页工具条, 默认值false       
+                event: {//事件
+                    customRowEvents: {//当前行事件
+                        click: function (record, rowIndex) {//点击事件
+                            Backfill(record);
+                            query();
+                        }
+                    }
+                }
+            })
+            Inquire(); XiaLaKuang();
+                 
+            //单据初始化
+            tbTuihuodan = $.fn.bsgrid.init('tbTuihuodan', {
+                url: 'SelectSalesReturnl',
+                autoLoad: true,//自动加载
+                stripeRows: false,//隔行变色
+                rowHoverColor: true,//划过行变色
+                displayBlankRows: false,//是否显示空白行, 默认值true
+                pageSize: 10,
+                showPageToolbar: false,  //是否显示分页工具条，默认值true 
+                pageSizeSelect: true,// 是否显示分页大小选择下拉框, 配合参数pageSizeForGrid, 默认值false
+                pagingLittleToolbar: true,//是否显示精简的图标按钮分页工具条, 默认值false           
+                event: {
+                    customRowEvents: {
+                        dblclick: function (record, rowIndex) {
+                            Receipts(record);
+                        }
+                    }
+                }
+            })
+            Returninquiry();
+
+            //商品类别初始化(多选)
+            tbShangPin = $.fn.bsgrid.init('tbShangPin', {
+                url: '/PublicManagment/MaintenanceCus/SeleceFittingsInfo',
+                autoLoad: true,//自动加载
+                stripeRows: false,//隔行变色
+                rowHoverColor: true,//划过行变色
+                displayBlankRows: false,//是否显示空白行, 默认值true
+                pageSize: 10,
+                showPageToolbar: false,  //是否显示分页工具条，默认值true 
+                pageSizeSelect: true,// 是否显示分页大小选择下拉框, 配合参数pageSizeForGrid, 默认值false
+                pagingLittleToolbar: true,//是否显示精简的图标按钮分页工具条, 默认值false 
+                event: {
+                    customRowEvents: {
+                        click: function (record, rowIndex) {
+                            Check("#tbShangPin tr", rowIndex + 1, record);//复选框勾选
+                        }
+                    }
+                }
+            })
+            SeleceFittingsInfo(); XiaLaKuang();
+         
+            //销售单初始化
+            tbXiaoshou = $.fn.bsgrid.init('tbXiaoshou', {
+                url: '/ProcurementManagment/warehousing/SelectOutbound',
+                autoLoad: true,
+                stripeRows: false,//隔行变色
+                rowHoverColor: true,//划过行变色
+                displayBlankRows: false,//是否显示空白行, 默认值true
+                pageSize: 10,
+                pageSizeSelect: true,// 是否显示分页大小选择下拉框, 配合参数pageSizeForGrid, 默认值false
+                pagingLittleToolbar: true,//是否显示精简的图标按钮分页工具条, 默认值false
+                showPageToolbar: false,  //是否显示分页工具条，默认值true 
+                pagingToolbarAlign: 'left', //分页工具条的显示位置, 默认值'right'居右, 其他值'left', 'center'  
+                event: {
+                    customRowEvents: {
+                        dblclick: function (record, rowIndex) {
+                            Documentreturn(record);
+                        }
+                    }
+                }
+            })           
+            Receipteye();
+        })
+        //下拉框绑定
+        function XiaLaKuang() {
+            //客户
+            createSelect("KRegionID", "/PublicManagment/CreateSelect/SelectRegion"); //客户区域
+            createSelect("KCustomerSouID", "/PublicManagment/CreateSelect/SelectCustomerSou"); //客户来源
+            createSelect("KCustomerLevelID", "/PublicManagment/CreateSelect/SelectCustomerLevel"); //客户等级   
+            createSelect("KCustomerTypeID", "/PublicManagment/CreateSelect/SelectCustomerType"); //客户类别
+            createSelect("KPaymentID", "/PublicManagment/CreateSelect/SelectPayment"); //付款方式   
+            createSelect("KUserID", "/PublicManagment/CreateSelect/SelectUser"); //业务员
+            //商品类别
+            createSelect("SFittingsTypeID", "/PublicManagment/CreateSelect/SelectFittingsType");//商品类别
+            createSelect("SSystemUnitID", "/PublicManagment/CreateSelect/SelectSystemUnit");//系统单位
+            createSelect("SVehicleTypeID", "/PublicManagment/CreateSelect/SelectVehicleType");//车型
+            createSelect("SSuppliersID", "/PublicManagment/CreateSelect/SelectSuppliers");//供应商
+
+        }
+        /********************客户编码模态框---开始*****************************/
+        //弹出客户模态框
+        function ShowclientID() {
+            $("#clientID").modal("show");
+        }
+        //条件查询
+        function Inquire() {
+            var Customer = $("#Obscure").val();
+            if (Customer == null || Customer == undefined) {
+                Customer = "";
+            }
+            tbKeHu.search({ CustomerName: Customer });
+        }
+        //回填表单
+        function Backfill(record) {      
+            var index = layer.load(0); //0代表加载的风格，支持0-2  
+            $("#KSalesCustomerID").val(record.SalesCustomerID);//客户ID
+            $("#KCustomerCode").val(record.CustomerCode);//客户编码
+            $("#KCustomerCodes").val(record.CustomerCode);//客户编码
+            $("#KRegionID").val(record.RegionID);//客户区域
+            $("#KCustomerName").val(record.CustomerName);//客户名称
+            $("#KCustomerSouID").val(record.CustomerSouID);//客户来源 
+            $("#KAddress").val(record.Address);//地址
+            $("#KZipCode").val(record.ZipCode);//邮编
+            $("#KFullName").val(record.FullName);//全称
+            $("#KPinYinCode").val(record.PinYinCode);//拼音码
+            $("#KIdNumber").val(record.IdNumber);//身份证号
+            $("#KContacts").val(record.Contacts);//联系人
+            $("#KFacsimile").val(record.Facsimile);//传真
+            $("#KTelePhone").val(record.TelePhone);//电话
+            $("#KMobilePhone").val(record.MobilePhone);//手机
+            $("#KEmai").val(record.Emai);//Emai
+            $("#KCustomerLevelID").val(record.CustomerLevelID);//客户等级
+            $("#KCustomerTypeID").val(record.CustomerTypeID);//客户类别
+            $("#KPaymentID").val(record.PaymentID);//付款方式
+            $("#KRemark").val(record.Remark);//备注
+            $("#KUserID").val(record.UserID);//业务员
+            $("#KInputPerson").val(record.InputPerson); //录入人           
+            layer.close(index);//关闭          
+        };
+        //拼音码
+        function query() {
+            var r = document.getElementById("KFullName").value.trim();
+            if (r == "") return;
+            var arrRslt = makePy(r);
+            //循环将值到下拉框
+            var option = null;
+            document.getElementById("KPinYinCode").innerHTML = "";//清空下拉框
+            var first = document.getElementById("KPinYinCode");
+            for (var j = 0; j < arrRslt.length; j++) {
+                var obj = document.getElementById("KPinYinCode");
+                obj.add(new Option(arrRslt[j]));
+            }
+        }
+        //新增保存
+        function Btnsave() {
+            var RegionID = $("#KRegionID").val();//客户区域
+            var CustomerName = $("#KCustomerName").val();//客户名称
+            var CustomerSouID = $("#KCustomerSouID").val();//客户来源
+            var Address = $("#KAddress").val();//地址 
+            var ZipCode = $("#KZipCode").val();//邮编
+            var FullName = $("#KFullName").val();//全称
+            var PinYinCode = $("#KPinYinCode").val();//拼音码
+            var IdNumber = $("#KIdNumber").val();//身份证号
+            var Contacts = $("#KContacts").val();//联系人
+            var Facsimile = $("#KFacsimile").val();//传真
+            var TelePhone = $("#KTelePhone").val();//电话
+            var MobilePhone = $("#KMobilePhone").val();//手机
+            var Emai = $("#KEmai").val();//Email
+            var CustomerLevelID = $("#KCustomerLevelID").val();//客户等级
+            var CustomerTypeID = $("#KCustomerTypeID").val();//客户类别
+            var PaymentID = $("#KPaymentID").val();//付款方式
+            var Remark = $("#KRemark").val();//备注
+            var UserID = $("#KUserID").val();//业务员
+            var InputPerson = $("#KInputPerson").val();//录入人     
+            var InputPerson = $("#KInputPersons").val();//录入人
+            if (RegionID == 0) {
+                layer.tips('请选择区域!', '#KRegionID');
+            } else if (CustomerName == "") {
+                layer.tips('请输入客户名称!', '#KCustomerName');
+            } else if (!Chinese.test(CustomerName)) {
+                layer.tips('只能输入中文', '#KCustomerName');
+            } else if (CustomerSouID == 0) {
+                layer.tips('请选择客户来源!', '#KCustomerSouID');
+            } else if (Address == "") {
+                layer.tips('请输入地址!', '#KAddress');
+            } else if (ZipCode == "") {
+                layer.tips('请输入邮编!', '#KZipCode');
+            } else if (FullName == "") {
+                layer.tips('请输入全称!', '#KFullName');
+            } else if (PinYinCode == "") {
+                layer.tips('请输入拼音码!', '#KPinYinCode');
+            } else if (IdNumber == "") {
+                layer.tips('请输入身份证号!', '#KIdNumber');
+            } else if (!Identity.test(IdNumber)) {
+                layer.tips('请输入有效证件号码', '#KIdNumber');
+            } else if (Contacts == "") {
+                layer.tips('请输入联系人!', '#KContacts');
+            } else if (!Chinese.test(Contacts)) {
+                layer.tips('只能输入中文', '#KContacts');
+            } else if (Facsimile == "") {
+                layer.tips('请输入传真!', '#KFacsimile');
+            } else if (TelePhone == "") {
+                layer.tips('请输入电话号码!', '#KTelePhone');
+            } else if (MobilePhone == "") {
+                layer.tips('请输入手机号码!', '#KMobilePhone');
+            } else if (!Phone.test(MobilePhone)) {
+                layer.tips('请输入有效手机号码', '#KMobilePhone');
+            } else if (Emai == "") {
+                layer.tips('请输入Email!', '#KEmai');
+            } else if (CustomerLevelID == 0) {
+                layer.tips('请选择客户等级!', '#KCustomerLevelID');
+            } else if (CustomerTypeID == 0) {
+                layer.tips('请选择客户类别!', '#KCustomerTypeID');
+            } else if (PaymentID == 0) {
+                layer.tips('请选择付款方式!', '#KPaymentID');
+            } else if (Remark == "") {
+                layer.tips('请输入备注!', '#KRemark');
+            } else if (UserID == 0) {
+                layer.tips('请选择业务员!', '#KUserID');
+            } else {
+                //提交
+                $("#KformMaintenance").ajaxSubmit(function (data) {
+                    if (data == true) {
+                        layer.closeAll('loading');
+                        layer.msg("保 存 成 功 ！");
+                        //刷新
+                        Inquire();
+                    }
+                })
+            }
+        }
+        //清空文本
+        function Reset() {
+            //重置表单
+            $("#KformMaintenance").resetForm();
+            $("#KPinYinCode").html(" ");
+            Bianma();
+        }
+        //刷新
+        function Refresh() {
+            //重置表单
+            $("#KformMaintenance").resetForm();
+            Bianma();
+            Inquire();
+
+        }
+        /********************客户编码模态框---结束******************************/
+
+        /*******************原零售单号模态框---结束*****************************/
+        //弹出原零售单号模态框      
+        function ShowDanJu() {
+            $("#DanJuModal").modal("show");
+        }
+        //多条件查询
+        function Receipteye() {
+            var Salesords = $("#Salesored").val(); //单号
+            var Review = $("#Reviewwhets").val(); //审核
+            var StarAuditdate = $("#StarAudited").val(); //时间
+            var EndAuditdate = $("#EndAudited").val();
+            if (Salesords == null) {
+                Salesords = "";
+            }
+            if (Review == null || Review == undefined) {
+                Review = "0";
+            }
+            if (StarAuditdate == null || StarAuditdate == undefined) {
+                StarAuditdate = "";
+            }
+            if (EndAuditdate == null || EndAuditdate == undefined) {
+                EndAuditdate = "";
+            }
+            tbXiaoshou.search({
+                Stockremoval: Salesords,
+                Reviewwhet: Review,
+                StarAuditdate: StarAuditdate,
+                EndAuditdate: EndAuditdate
+            });
+        }
+        //自定义事件 
+        function Reviewwhet(record) {
+            var Reviewwhet = record.Reviewwhet;
+            if (Reviewwhet == true || Reviewwhet == "true") {
+                return "<span style='color:red;'>已出货</span>";
+            } else {
+                return "<span style='color:blue;'>未出货</span>";
+            }
+        }
+        //单据回填
+        function Documentreturn(record) {
+            var index = layer.load(0); //0代表加载的风格，支持0-2
+            Insertbtn(0);
+            //订单明细    
+            $.post("/ProcurementManagment/warehousing/SelectOutboundDetails?OutboundID=" + record.OutboundID, function (data) {
+                $.each(data, function (i) {
+                    var tbTuihuo = $("#tbTuihuo");
+                    var length = $("#tbTuihuo tbody tr").last().prevObject.length;
+                    var tr = $("<tr><td>" + length + "</td>"//序号
+                            + "<td id=XB" + length + ">" + data[i].FittingsCode + "</td><td id=XC" + length + ">" + data[i].FittingsName + "</td>"
+                            + "<td id=XD" + length + ">" + data[i].Specification + "</td><td><select id=XE" + length + "></select></td>"
+                            + "<td id=XF" + length + ">" + data[i].VehicleType + "</td><td id=XG" + length + ">" + data[i].SystemUnit + "</td>"
+                            + "<td onclick='tdclick(this)'id=XH" + length + ">" + data[i].Quantity + "</td><td onclick='tdclick(this)' id=XI" + length + ">" + data[i].Unitcosts + "</td>"
+                            + "<td onclick='tdclick(this)'id=XJ" + length + ">" + data[i].Discount + "</td><td id=XK" + length + ">" + data[i].Figure + "</td>"
+                            + "<td onclick='tdclick(this)'id=XL" + length + "></tb>"//自定义
+                            + "<td hidden id=XM" + length + ">" + data[i].FittingsInfoID + "</td><td hidden id=XN" + length + ">" + data[i].SalesReturnDetailsID + "</td></tr>");
+                    tbTuihuo.append(tr);
+                    $.ajaxSettings.async = false;//取消异步提交   
+                    DetailEvent(length);//明细事件   
+                    createSelect("XE" + length, "/PublicManagment/CreateSelect/SelectWarehouse");
+                    $("#XE" + length).val(data[i].WarehouseID);
+                })
+            })
+            $("#DanJuModal").modal("hide");//关闭模态窗
+            $("#OutboundID").val(record.OutboundID);//出库ID
+            $("#KSalesCustomerID").val(record.SalesCustomerID);//销售客户ID
+            $("#Stockremoval").val(record.Stockremoval);//出库单号     
+            $("#CustomerCode").val(record.CustomerCode);//客户编码          
+            $("#CustomerName").val(record.CustomerName);//客户名称  
+            $("#Remark").val(record.Remark);//备注 
+            $("#Theamount").val(record.Theamount);//总计          
+            layer.close(index);
+        }
+        /*******************原零售单号模态框---结束*****************************/
+
+        /*************************明细表格---开始*******************************/
+        //明细事件
+        function DetailEvent(length) {
+            Money();
+            function Money() {
+                //计算金额
+                var Quantity = 0;
+                var Money = 0;
+                for (var i = 1; i < length + 1; i++) {//数量
+                    if ($("#XH" + i).text() != "") {
+                        Quantity = parseFloat(Quantity) + parseFloat($("#XH" + i).text()) + ".00";
+                        $("#Quantity").text(Quantity)
+                    }
+                    if ($("#XK" + i).text() != "") {//金额
+                        Money = parseFloat(Money) + parseFloat($("#XK" + i).text());
+                        $("#Money").text(Money)
+                    }
+                }
+            }
+            $("#Detailedmode").click(function () {
+                var shulisng = $("#XH" + length).text(); //数量
+                var Openprice = $("#XI" + length).text(); //开单价
+                //单价、百分比、数量
+                var calculate = $("#XI" + length).text() * $("#XJ" + length).text() / 100 * $("#XH" + length).text();
+                $("#XK" + length).text(calculate);
+                if ($("#XE" + length).val() == 0) {
+                    layer.tips('请选择仓库!', '#XE' + length);
+                }
+                Money();
+            })
+        }
+        //明细初始化
+        function Orderdetails() {
+            $("#Quantity").text("0.00");
+            $("#Money").text("0.00");
+        }
+        //右击事件
+        $(function () {
+            $("body").click(function () {
+                resOne.style.display = 'none';
+            })
+            //阻止浏览器默认右键点击事件
+            document.oncontextmenu = function () {
+                return false;
+            }
+            var resOne = document.getElementById('menuOne');   //找到id为box的div
+            document.getElementById("TuihuoBox").onmouseup = function (e) {   //在body里点击触发事件
+                if (e.button === 2) {    //如果button=1（鼠标左键），button=2（鼠标右键），button=0（鼠标中间键）
+                    resOne.style.top = e.clientY + 'px';   //鼠标点击时给div定位Y轴
+                    resOne.style.left = e.clientX + 'px';  //鼠标点击时给div定位X轴
+                    resOne.style.display = 'block';    //显示div盒子
+                } else {
+                    resOne.style.display = 'none';     //否则不显示div盒子
+                }
+            }
+        })
+        //删除配退货明细行
+        function deleteOne() {
+            var length = $("#tbTuihuo").find("tr").length;
+            if (length > 1) {
+                $("#tbTuihuo").find("tr").last().remove();//找到最后一个选项然后删除
+            }
+        }
+        /*************************明细表格---结束*******************************/
+
+        /***********************退货页面---开始*********************************/
+        //新增单
+        function Insertbtn(data) {
+            Orderdetails();
+            //重置明细表格
+            $("#Detailedmode tbody tr td").parent("tr").remove();
+            //重置表单
+            $("#FormSalesorder").resetForm();
+             Notauditevent();
+            if (data == 0) {
+                Tuihuo(); Datetime();
+            }
+        }
+        //删除单
+        function Delectbtn() {
+            var SalesReturnlID = $("#SalesReturnlID").val();
+            if (SalesReturnlID != "") {
+                $.post("DelectSalesReturnl?SalesReturnlID=" + SalesReturnlID, function (data) {
+                    if (data) {
+                        layer.msg("数 据 删 除 成 功 ！");
+                        Insertbtn(0);
+                    } else {
+                        layer.msg("数 据 删 除 失 败 ！")
+                    }
+                })
+            } else {
+                layer.alert('请选择数据再进行删除操作！', {
+                    skin: 'layui-layer-lan' //样式类名
+                      , closeBtn: 0, anim: 4 //动画类型
+                });
+            }
+        }
+        //客户回填
+        function Shuangji() {
+            var rowIndex = tbKeHu.getSelectedRowIndex();
+            var record = tbKeHu.getRecord(rowIndex);
+            if (rowIndex > -1) {
+                $("#clientID").modal("hide");//关闭模态窗
+                $("#KSalesCustomerID").val(record.SalesCustomerID);//销售客户ID
+                $("#CustomerCode").val(record.CustomerCode);  //客户编码
+                $("#CustomerCodes").val(record.CustomerCode); //客户编码
+                $("#CustomerName").val(record.CustomerName); //客户名称               
+            } else {
+                layer.msg("请选择一行数据，再进行操作");
+            }        
+        }
+        //退货保存
+        function Btndsave() {
+            var ArrSalesReturnl = [], ArrSalesReturnDetails = []//声明的数组
+            var Customer = $("#CustomerName").val();//客户名称
+            var Returnmode = $("#Returnmode").val();//退货方式
+            var Tuihuolength = $("#tbTuihuo tbody tr").length;//长度
+            var Theamount = parseFloat($("#Money").text());//明细金额
+            $("#Theamount").val(Theamount);//总计
+            $("#Theamounts").val(Theamount);//总计（隐藏）
+            for (var i = 1; i < Tuihuolength; i++) { //明细构造函数
+                var w = new SalesReturnDetails(); //构造函数
+                w.WarehouseID = $("#XE" + i).val(); //仓库ID
+                w.VehicleType = $("#XF" + i).text();//车型
+                w.Quantity = $("#XH" + i).text(); //数量
+                w.Unitcoster = $("#XI" + i).text(); //单价
+                w.Discounts = $("#XJ" + i).text(); //折扣
+                w.Amount = $("#XK" + i).text(); //金额
+                w.Userdefined = $("#XL" + i).text(); //自定义
+                w.FittingsInfoID = $("#XM" + i).text(); //配件信息ID                                  
+                w.SalesReturnDetailsID = $("#XN" + i).text(); //退货明细ID
+                ArrSalesReturnDetails.push(w);              
+            }      
+            var w = new SalesReturnl(); //退货构造函数
+            w.SalesReturnlID = $("#SalesReturnlID").val();//退货ID
+            w.Oddseats = $("#Oddseats").val();//退货单号
+            w.SalesCustomerID = $("#KSalesCustomerID").val();//销售客户ID
+            w.OpenDate = $("#OpenDate").val();//日期
+            w.Returnmode = $("#Returnmode").val();//退货方式
+            w.Stockremoval = $("#Stockremoval").val();//原零售单号
+            w.Operator = document.getElementById("Operator").value;//操作员
+            w.Auditor = $("#Auditor").val(); //审核人
+            w.AuditDate = $("#AuditDate").val(); //审核日期
+            w.ToAudit = $("#ToAudit").val();//审核否    
+            w.Theamount = $("#Theamount").val();//总计       
+            w.Remark = $("#Remark").val();//备注
+            w.Remark = $("#Remark").val();//备注
+            ArrSalesReturnl.push(w);     
+            if (Customer == "") {
+                layer.tips('客户名称不能为空!', '#CustomerName');
+            } else if (!Chinese.test(Customer)) {
+                layer.tips('只能输入中文', '#CustomerName');
+            } else if (Returnmode == "") {
+                layer.tips('按批发价不能为空!', '#Returnmode');
+            } else if (!Number.test(Returnmode)) {
+                layer.tips('只能输入数字', '#Returnmode');
+            } else {
+                layer.confirm('是否保存当前信息？', {  //提示窗
+                    btn: ['保存', '取消']
+                }, function () {
+                    var index = layer.load(0); //0代表加载的风格，支持0-2
+                    //保存提交
+                    $.post("InsertSalesReturnl", {
+                        ListSalesReturnl: ArrSalesReturnl,//退货单
+                        listSalesReturnDetails: ArrSalesReturnDetails, //退货明细
+                    }, function (data) {
+                        $("#SalesReturnlID").val(data);
+                        layer.close(index);
+                        if (data != false) {
+                            layer.confirm('保存成功！是否立即审核该订单？', {
+                                btn: ['是', '否']
+                            }, function () {
+                                Audit(); //审核
+                            }, function () {
+                                layer.msg('数 据 保 存 成 功 ！', {
+                                    time: 20000,//2s后自动关闭
+                                    btn: ['知道了']
+                                });
+                            });
+                        } else {
+                            layer.msg('数 据 保 存 失 败！', {
+                                time: 2000,
+                            });
+                        }
+                    });
+                })
+            }
+        }
+        //审核
+        function Audit() {
+            var SalesReturnlID = $("#SalesReturnlID").val();
+            var Stockremoval = $("#Stockremoval").val();
+            if (SalesReturnlID != "") {
+                $("#ToAudit").val("true");
+                $.post("ToReviewwhet?SalesReturnlID=" + SalesReturnlID + "&Stockremoval=" + Stockremoval,
+                    function (data) {
+                        if (data != false) {
+                            layer.alert('审核成功，数据不能调整！', {
+                                skin: 'layui-layer-molv'
+                          , closeBtn: 0
+                            });
+                            $("#Auditor").val(data[0]);
+                            $("#AuditDate").val(data[1]);
+                            tbTuihuodan.refreshPage(); //刷新订单号表格
+                            AuditEvent();//审核状态
+                        } else {
+                            layer.alert('审核失败，请重新审核！', {
+                                skin: 'layui-layer-lan'
+                          , closeBtn: 0, anim: 4
+                            });
+                        }
+                    })
+            } else {
+                layer.alert('请填写完整信息保存后再进行审核操作！', {
+                    skin: 'layui-layer-lan' //样式类名
+                      , closeBtn: 0, anim: 4 //动画类型
+                });
+            }
+        }
+        //反审核
+        function Counteraudit() {
+            $("#ToAudit").val("false");
+            var Stockremoval = $("#Stockremoval").val();
+            $.post("NoToReviewwhet?SalesReturnlID=" + $("#SalesReturnlID").val() + "&Stockremoval=" + Stockremoval,
+                function (data) {
+                    if (data = true) {
+                        layer.alert('已取消审核，可以进行数据修改啦！', {
+                            skin: 'layui-layer-molv'
+                      , closeBtn: 0
+                        });
+                        $("#Auditor").val("");
+                        $("#AuditDate").val("");
+                        tbTuihuodan.refreshPage(); //刷新订单号表格
+                         Notauditevent(); //反审核状态
+                    } else {
+                        layer.alert('取消审核失败，请重新操作！', {
+                            skin: 'layui-layer-lan' //样式类名
+                      , closeBtn: 0, anim: 4 //动画类型
+                        });
+                    }
+                })
+        }
+        //审核状态
+        function AuditEvent() {
+            $("#ShangChu").attr("disabled", true); //删除禁用
+            $("#Savebtn").attr("disabled", true); //保存禁用
+            $("#ShenHe").attr("disabled", true); //审核禁用
+            $("#FanShen").attr("disabled", false); //反审核启用
+            $("#FormSalesorder input").attr("disabled", true); //主页面文本框禁用
+            $("#FormSalesorder select").attr("disabled", true); //主页面下拉框禁用
+            $("#Detailedmode tbody td").attr("onclick", ""); //明细表禁用
+            $("#Detailedmode select").attr("disabled", true); //明细表下拉框禁用     
+            $("#Supplier").attr("disabled", true); //客户模态框禁用   
+            $("#Showxiaoshou").attr("disabled", true); //销售模态框禁用         
+            //$("#Reviewwhether").attr("checked", true); //标志已审核                        
+        }
+        //反审核状态
+        function Notauditevent() {
+            $("#ShangChu").attr("disabled", false);//删除启用
+            $("#Savebtn").attr("disabled", false);//保存启用
+            $("#ShenHe").attr("disabled", false);//审核启用
+            $("#FanShen").attr("disabled", true);//反审核禁用
+            $("#FormSalesorder input").attr("disabled", false);//主页面文本框启用
+            $("#FormSalesorder select").attr("disabled", false);//主页面下拉框启用
+            $("#Detailedmode tbody td").attr("onclick", "tdclick(this)");//明细表启用       
+            $("select").parent("td").attr("onclick", ""); //去除下拉框编辑
+            $("#Detailedmode select").attr("disabled", false); //明细表下拉框启用   
+            $("#Supplier").attr("disabled", false); //客户模态框启用 
+            $("#Showxiaoshou").attr("disabled", false); //销售模态框禁用     
+            $(".Disabl").attr("onclick", ""); //带有“Disable”类的标签依然禁用
+            $(".Disable").attr("disabled", true); //带有“Disable”类的标签依然禁用
+            //$("#reviewwhether").attr("checked", false);//标志已审核去掉        
+        }
+        //判断是审核否    
+        function Tofales() {
+            if ($("#ToAudit").val() == "false" || $("#ToAudit").val() == false) {          
+                Notauditevent();
+            } else {
+                AuditEvent();
+            }
+        }
+
+        /***********************退货页面---结束*********************************/
+
+        /********************商品类别模态框---开始*******************************/
+        //弹出商品类别模态框
+        function ShowShangPin() {
+            var InfoOne = "", InfoTow = "", InfoThree = "", InfoFour = "", FittingsTypeID = 0;
+            $.post("/PublicManagment/MaintenanceCus/SelectFittingsType", function (data) { //提交     
+                $("#FittingsType span").html(data.length); //获取长度            
+                $("#FittingsType ul .lishow").html("");//清空
+                $.each(data, function (i) {
+                    $("#FittingsType ul").append('<li id=' + data[i].FittingsTypeID + ' class="lishow"><i class="diai"></i>'
+                                                           + data[i].FittingsTypeName + ' (' + data[i].FittingsTypeNum + ')</li>');
+                    FittingsTypeID = data[i].FittingsTypeID;
+                    $("#" + FittingsTypeID).click(function () {
+                        $("#FittingsType li").removeClass("active"); //移除类
+                        $(this).addClass("active");
+                        tbShangPin.search({
+                            InfoOne: InfoOne,
+                            InfoTow: InfoTow,
+                            InfoThree: InfoThree,
+                            InfoFour: InfoFour,
+                            FittingsTypeID: this.id
+                        });
+                    })
+                })
+            })
+            //tbShangPin.refreshPage();//刷新
+            $("#ShangPinModal").modal("show");
+        }
+        //商品表格查询（条件查询）
+        function SeleceFittingsInfo() {
+            var InfoOne = "", InfoTow = "", InfoThree = "", InfoFour = "", FittingsTypeID = 0;
+            var Info = $("#Infoed").val();
+            var selectInfo = $("#selectInfoed").val();
+            if (selectInfo == "1") InfoOne = Info;
+            if (selectInfo == "2") InfoTow = Info;
+            if (selectInfo == "3") InfoThree = Info;
+            if (selectInfo == "4") InfoFour = Info;
+            tbShangPin.search({
+                InfoOne: InfoOne,
+                InfoTow: InfoTow,
+                InfoThree: InfoThree,
+                InfoFour: InfoFour,
+                FittingsTypeID: FittingsTypeID
+            });
+        }
+        //商品材料选中回填    
+        function FittingSelect() {
+            var tbTuihuo = $("#tbTuihuo");
+            var rowRecords = tbShangPin.getCheckedRowsRecords();
+            for (var i = 0; i < rowRecords.length; i++) {
+                var length = $("#tbTuihuo tbody tr").last().prevObject.length;
+                var tr = $("<tr><td>" + length + "</td>"//序号
+                             + "<td id=XB" + length + " class'Disabl'>" + rowRecords[i].FittingsCode + "</td>"//配件编码
+                             + "<td id=XC" + length + " class'Disabl'>" + rowRecords[i].FittingsName + "</td>"//配件名称	
+                             + "<td id=XD" + length + " class'Disabl'>" + rowRecords[i].Specification + "</td>"//配件规格
+                             + "<td><select id=XE" + length + "></select></td>"//仓库 
+                             + "<td id=XF" + length + " class'Disabl'>" + rowRecords[i].VehicleType + "</td>"//所属车型
+                             + "<td id=XG" + length + " class'Disabl'>" + rowRecords[i].SystemUnit + "</td>"//系统单位      
+                             + "<td onclick='tdclick(this)' id=XH" + length + ">1.00</td>"//数量
+                             + "<td onclick='tdclick(this)' id=XI" + length + ">" + rowRecords[i].SalesPrice + "</td>"//开单价(销售价格)
+                             + "<td onclick='tdclick(this)' id=XJ" + length + ">100</td>"//折扣(%)	
+                             + "<td id=XK" + length + " class'Disabl'></td>"//金额                        
+                             + "<td onclick='tdclick(this)' id=XL" + length + "></td>"//备注
+                             + "<td hidden id=XM" + length + ">" + rowRecords[i].FittingsInfoID + "</td>"////配件ID
+                             + "<td hidden id=XN" + length + "></td></tr>"); 
+                tbTuihuo.append(tr);
+                DetailEvent(length);
+                createSelect("XE" + length, "/PublicManagment/CreateSelect/SelectWarehouse");
+                $("#ShangPinModal").modal("hide");
+            }       
+        }
+        //弹出新增配件模态框
+        function ShowAddPeiJian() {
+            $("#AddPeiJianModal").modal("show");
+        }
+        //配件基本资料添加保存
+        function btnFittingsSava() {
+            var FittingsCode = $("#SFittingsCode").val(); //配件编码
+            var FittingsName = $("#SFittingsName").val(); //配件名称           
+            var FittingsTypeID = $("#SFittingsTypeID").val();//配件类型
+            var SystemUnitID = $("#SSystemUnitID").val(); //单位
+            var VehicleTypeID = $("#SVehicleTypeID").val(); //车型
+            var SuppliersID = $("SSuppliersID").val(); //供应商
+            if (FittingsCode == "") {
+                layer.tips('配件编码不能为空!', '#SFittingsCode');
+            } else if (FittingsTypeID == 0) {
+                layer.tips('请选择配件类型!', '#SFittingsTypeID');
+            } else if (FittingsName == "") {
+                layer.tips('配件名称不能为空!', '#SFittingsName');
+            } else if (SystemUnitID == 0) {
+                layer.tips('请选择单位!', '#SSystemUnitID');
+            } else if (VehicleTypeID == 0) {
+                layer.tips('请选择车型!', '#SVehicleTypeID');
+            } else if (SuppliersID == 0) {
+                layer.tips('请选择供应商!', '#SSuppliersID');
+            } else {
+                if (FittingsCode != "") {
+                    $.post("/PublicManagment/MaintenanceCus/JudgingFittingsCode?FittingsCode=" + FittingsCode, function (data) {
+                        if (data) {
+                            $("#formExamineed").ajaxSubmit(function (data) {
+                                if (data == true) {
+                                    layer.msg("保 存 成 功 ！");
+                                    $("#formExamineed").resetForm();
+                                    $("#imgCarPicture").attr('src', "");
+                                    SeleceFittingsInfo();
+                                } else {
+                                    layer.msg("保 存 失 败 ！");
+                                }
+                            })
+                        } else {
+                            layer.tips('配件编码已存在!', '#SFittingsCode');
+                        }
+                    })
+                }
+
+            }
+        }
+        //选择照片按钮
+        $("#imgCarPicture").dblclick(function () {
+            $("#CarPicture").click();
+        })
+        //读取照片
+        var imgReader = new FileReader();
+        regexImgeFilter = /^(?:image\/bmp|image\/png|image\/jpeg|image\/jpg)$/i;
+        imgReader.onload = function (evt) {
+            $("#imgCarPicture").attr('src', evt.target.result);
+        }
+        $("#CarPicture").change(function () {
+            var imgfFile = $("#CarPicture").prop('files')[0];
+            if (!regexImgeFilter.test(imgfFile.type)) {
+                layer.msg('选择的不是一张有效的图片文件', { icon: 0 });
+            }
+            imgReader.readAsDataURL(imgfFile);
+        });
+        /********************商品类别模态框---结束*******************************/
+
+        /********************选择单据模态框---开始******************************/
+        //弹出单据模态框
+        function ShowDanJus() {
+            Returninquiry();
+            $("#DanJuModals").modal("show");
+        }
+        //多条件查询
+        function Returninquiry() {
+            var Oddseats = $("#Salesoredes").val(); //单号
+            var ToAudit = $("#ToAudites").val(); //审核
+            var StarAuditdate = $("#StarAudit").val(); //时间
+            var EndAuditdate = $("#EndAudit").val();
+            if (Oddseats == null) {
+                Oddseats = "";
+            }
+            if (ToAudit == null || ToAudit == undefined) {
+                ToAudit = "0";
+            }
+            if (StarAuditdate == null || StarAuditdate == undefined) {
+                StarAuditdate = "";
+            }
+            if (EndAuditdate == null || EndAuditdate == undefined) {
+                EndAuditdate = "";
+            }
+            tbTuihuodan.search({
+                Oddseats: Oddseats,
+                ToAudit: ToAudit,
+                StarAuditdate: StarAuditdate,
+                EndAuditdate: EndAuditdate
+            });
+        }
+        //自定义事件
+        function ToAudit(record) {
+            var ToAudit = record.ToAudit;
+            if (ToAudit == true || ToAudit == "true") {
+                return "<span style='color:red;'>已审核</span>";
+            } else {
+                return "<span style='color:blue;'>未审核</span>";
+            }
+        }
+        //单据回填
+        function Receipts(record) {
+            var index = layer.load(0); //0代表加载的风格，支持0-2
+            Insertbtn(1);
+            //订单明细
+            $.post("SelectSalesReturnDetails?SalesReturnlID=" + record.SalesReturnlID, function (data) {
+                $.each(data, function (i) {
+                    var tbTuihuo = $("#tbTuihuo");
+                    var length = $("#tbTuihuo tbody tr").last().prevObject.length;
+                    var tr = $("<tr><td>" + length + "</td>"//序号
+                            + "<td id=XB" + length + " class='Disable'>" + data[i].FittingsCode + "</td><td id=XC" + length + " class='Disable'>" + data[i].FittingsName + "</td>"
+                            + "<td id=XD" + length + " class='Disable'>" + data[i].Specification + "</td><td><select id=XE" + length + "></select></td>"
+                            + "<td id=XF" + length + ">" + data[i].VehicleType + "</td><td id=XG" + length + " class='Disable'>" + data[i].SystemUnit + "</td>"
+                            + "<td onclick='tdclick(this)'id=XH" + length + ">" + data[i].Quantity + "</td><td onclick='tdclick(this)' id=XI" + length + ">" + data[i].Unitcoster + "</td>"
+                            + "<td onclick='tdclick(this)'id=XJ" + length + ">" + data[i].Discounts + "</td><td id=XK" + length + " class='Disable'>" + data[i].Amount + "</td>"
+                            + "<td onclick='tdclick(this)'id=XL" + length + ">" + data[i].Userdefined + "</tb>"//自定义
+                            + "<td hidden id=XM" + length + ">" + data[i].FittingsInfoID + "</td><td hidden id=XN" + length + ">" + data[i].SalesReturnDetailsID + "</td></tr>");
+                    tbTuihuo.append(tr);
+                    $.ajaxSettings.async = false;//取消异步提交
+                    DetailEvent(length);//明细事件
+                    createSelect("XE" + length, "/PublicManagment/CreateSelect/SelectWarehouse");
+                    $("#XE" + length).val(data[i].WarehouseID);
+                })
+            })
+            $("#DanJuModals").modal("hide");//关闭模态窗
+            $("#SalesReturnlID").val(record.SalesReturnlID);//退货ID
+            $("#KSalesCustomerID").val(record.SalesCustomerID);//销售客户ID
+            $("#CustomerCode").val(record.CustomerCode);//客户编码
+            $("#CustomerName").val(record.CustomerName);//客户名称
+            $("#Oddseats").val(record.Oddseats);//退货单号
+            $("#Stockremoval").val(record.Stockremoval);//原销售单号
+            $("#Operator").val(record.Operator);//操作员
+            $("#Auditor").val(record.Auditor);//审核人
+            $("#OpenDate").val(record.OpenDates);//开单日期
+            $("#Returnmode").val(record.Returnmode);//退货方式
+            $("#AuditDate").val(record.AuditDates);//审核日期
+            $("#Theamount").val(record.Theamount);//总计
+            $("#ToAudit").val(record.ToAudit);//审核否                    
+            $("#Remark").val(record.Remark);//备注
+            Tofales();
+            layer.close(index);
+        }        
+        /********************选择单据模态框---结束******************************/
+        //退货构造函数
+        function SalesReturnl(SalesReturnlID, SalesCustomerID, Oddseats, Oddseats, OpenDate, Returnmode, Operator, ToAudit,Auditor, Theamount, Stockremoval, AuditDate) {
+            this.SalesReturnlID = SalesReturnlID;//退货ID
+            this.SalesCustomerID = SalesCustomerID; //销售客户ID
+            this.Oddseats = Oddseats; //单号
+            this.OpenDate = OpenDate; //开单日期
+            this.Returnmode = Returnmode; //退货方式
+            this.Operator = Operator; //操作人
+            this.ToAudit = ToAudit; //审核否
+            this.Auditor = Auditor; //审核人
+            this.Theamount = Theamount; //总金额
+            this.Stockremoval = Stockremoval; //出库单号
+            this.AuditDate = AuditDate; //审核日期
+            this.Remark = Remark; //备注
+
+
+        }
+        //退货明细构造函数
+        function SalesReturnDetails(SalesReturnDetailsID, FittingsInfoID, WarehouseID, Quantity, Unitcoster, Discounts, Amount, Userdefined) {
+            this.SalesReturnDetailsID = SalesReturnDetailsID;//退货明细ID         
+            this.FittingsInfoID = FittingsInfoID;//配件ID
+            this.WarehouseID = WarehouseID;//仓库ID
+            this.Quantity = Quantity; //数量
+            this.Unitcoster = Unitcoster;//单价
+            this.Discounts = Discounts;//折扣
+            this.Amount = Amount;//金额
+            this.Userdefined = Userdefined;//自定义
+
+
+
+
+
+        }
+    </script>
+</body>
+</html>

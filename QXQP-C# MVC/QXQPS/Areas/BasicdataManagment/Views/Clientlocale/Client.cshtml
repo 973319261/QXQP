@@ -1,0 +1,225 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Client</title>
+    <link href="~/Content/Main/css/icons.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/main.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrapal.css" rel="stylesheet" />
+
+    @*<link href="~/Content/zTree_v3/css/demo.css" rel="stylesheet" />*@
+    <link href="~/Content/zTree_v3/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+    <style>
+        .breadcrumb > li + li:before {
+            color: #CCCCCC;
+            content: "> ";
+            padding: 0 5px;
+        }
+
+        .layui-elem-fielded legend {
+            font-size: 20px;
+        }
+
+        .layui-elem-fielded {
+            width: 98%;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        .modOne {
+            height: 485px;
+            float: left;
+            /*overflow: auto;*/
+            margin: 0px 20px;
+            padding: 5px;
+            /*border: 3px solid #f5f5f5;*/
+            /*box-shadow: 0 0 20px 1px #eee;*/
+        }
+
+        .modTow {
+            height: 485px;
+            float: left;
+            padding: 10px;
+            border: 3px solid #f5f5f5;
+            box-shadow: 0 0 20px 1px #eee;
+        }
+
+        .modal-content {
+            box-shadow: none;
+            border: none;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+        @*导航栏*@
+        <ol class="breadcrumb">
+            <li>首页</li>
+            <li>基础数据</li>
+            <li><a href="#">客户区域设置</a></li>
+        </ol>
+        @*按钮组*@
+        <div class="btn-groud">
+            <button class="btn btn-warning " type="button" id=""><i class="en-plus3"></i>增加</button>
+            <button class="btn btn-primary " type="button" id=""><i class="en-trash"></i>删除</button>
+            <button class="btn btn-warning " type="button" id="Save"><i class="en-cog"></i>保存</button>
+            <button class="btn btn-primary " type="button" id="Unfold"><i class="en-list"></i>展开分类</button>
+            <button class="btn btn-primary " type="button"><i class="en-upload"></i>导出</button>
+            <button class="btn btn-danger " type="button"><i class="br-switch"></i> 关闭</button>
+        </div>
+        @*客户区域设置*@
+        <fieldset class="layui-elem-fielded">
+            <legend class=".layui-elem-fielded legend">客户区域设置</legend>
+            @*树形图*@
+
+
+            <div class="modOne col-lg-4 col-md-4 col-sm-12">
+                <div class="panel panel-default" style="height:478px;">
+                    <div class="panel-heading">
+                        配件大类
+                        <div class="col-md-6 pull-right">
+                            <a class="glyphicon glyphicon-plus" data-toggle="modal" href="javascript:;" onclick="Add()"></a>&emsp;
+                            <a class="glyphicon glyphicon-pencil" data-toggle="modal" href="javascript:;" onclick="Update()"></a>&emsp;
+                            <a class="glyphicon glyphicon-trash" onclick="Delete()"></a>&emsp;
+                            <a class="glyphicon glyphicon-refresh" onclick="Refresh()"></a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class=" col-lg-4 col-md-4 col-sm-12">
+                            <div class="zTreeDemoBackground left">
+                                <ul id="treeDemo" class="ztree"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="modTow col-lg-7 col-md-7 col-sm-12">
+                <div class="modal-content" id="InsertType" style="margin-top:30px;">
+                    @*内容*@
+                    <div class="modal-body ">
+                        <form class="form-horizontal" role="form" id="formInsert" action="InsertClient" method="post">
+                            <div class="form-group">
+                                <input type="text" hidden id="RegionID" name="RegionID" />
+                                <div class="col-lg-4 col-md-4 col-sm-3 text-right">
+                                    <label class="control-label">区域编码:</label>
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-8 reset">
+                                    <input type="text" class="form-control" name="RegionNum" id="RegionNum" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-4 col-md-4 col-sm-4 text-right">
+                                    <label class="control-label">区域名称:</label>
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-8 reset">
+                                    <select class="form-control" id="ViscountID" name="ViscountID"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-4 col-md-4 col-sm-4 text-right">
+                                    <label class="control-label">区域名称:</label>
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-8 reset">
+                                    <input type="text" class="form-control" name="RegionName" id="RegionName" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-4 col-md-4 col-sm-4 text-right">
+                                    <label class="control-label">停用标志:</label>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 reset">
+                                    @*<input type="text" class="form-control" name="Comment" maxlength="25" />*@
+                                    <input type="checkbox" name="ToDeactivate" id="ToDeactivate" style="width:20px;height:25px;" />
+                                </div>
+                            </div>
+                            <p style="text-align:center;"><i class="en-paperplane"></i> 温馨提示：新增和删除分类信息后，要点击保存分类才有效。</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+
+    <script src="~/Content/js/customfunction.js"></script> @*绑定下拉框*@
+    <script src="~/Content/js/jquery.form.js"></script>
+    <script src="~/Content/layer/mobile/layer.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    @*<script src="~/Content/zTree_v3/js/jquery-1.4.4.min.js"></script>*@
+    <script src="~/Content/zTree_v3/js/jquery.ztree.core-3.5.js"></script>
+    <script src="~/Content/zTree_v3/js/jquery.ztree.excheck-3.5.js"></script>
+
+    <script>
+        //绑定下拉框
+        createSelect("ViscountID", "/PublicManagment/CreateSelect/SelectRegion ");//客户区域
+        //新增
+        $("#Save").click(function () {
+            var RegionNum = $('#formInsert [name="RegionNum"]').val();//编号
+            var SireID = $('#formInsert [name="SireID"]').val();//区域名称
+            var RegionName = $('#formInsert [name="RegionName"]').val();//编号名称
+            var ToDeactivate = $('#formInsert [name="ToDeactivate"]').val();//停用标志
+            if (RegionNum == "" || SireID == "" || RegionName == "" || ToDeactivate == "") {
+                layer.alert("请将信息填写完整！", { icon: 0, title: "【提示】" });
+            }
+            else {
+                $("#formInsert").ajaxSubmit(function (msg) {
+                    //刷新页面
+                    location.reload();
+                    layer.msg("操作成功", { icon: 1, skin: "layui-layer-molv" });
+                });
+            }
+        })
+
+        //树形
+        $(function () {
+            $.ajax({
+                type: "Get",
+                url: "/BasicdataManagment/Clientlocale/Get_TreeView",
+                success: function (data) {
+                    console.log(data);
+                    $.fn.zTree.init($("#treeDemo"), setting, data);
+                }
+            });
+        })
+        var setting = {
+            async: {
+                enable: true,
+
+               // chkStyle: "checkbox",
+               // chkboxType: { "Y": "ps", "N": "ps" },
+               // isSimpleData: true,              //数据是否采用简单 Array 格式，默认false
+               // treeNodeKey: "id",               //在isSimpleData格式下，当前节点id属性
+               // treeNodeParentKey: "pId",        //在isSimpleData格式下，当前节点的父节点id属性
+               // showLine: true,                  //是否显示节点间的连线
+               // checkable: true
+            },
+            data: {
+                simpleData: {
+                    enable: true,
+                    idKey:"id",
+                }
+            },
+            callback: {
+                onClick: zTreeOnClick
+            }
+        };
+        popZtree(setting);
+        function zTreeOnClick(event, treeId, treeNode) {
+            alert(treeNode.tId + " ," + treeNode.treeNode);
+        };
+    </script>
+</body>
+</html>

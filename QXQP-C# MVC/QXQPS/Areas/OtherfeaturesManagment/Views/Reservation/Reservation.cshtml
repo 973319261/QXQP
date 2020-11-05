@@ -1,0 +1,173 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Reservation</title>
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrapal.css" rel="stylesheet" />
+    <link href="~/Content/Main/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <style>
+             a {
+            color: #808080;
+        }
+         a:hover {
+                text-decoration: none;
+                color: burlywood;
+            }
+        label {
+            width: 100%;
+            margin-top: 10px;
+            text-align: right;
+        }
+        .breadcrumb {
+            padding: 10px 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: #f5f5f5;
+        }
+        .form-control {
+            height: 30px;
+        }
+        .btns {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: normal;
+            height: 30px;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        @*导航条*@
+        <nav class="breadcrumb" style="margin:0px">
+            <i class="Hui-iconfont"></i> <a href=""> 首 页 </a> <span class="c-gray en">&gt;</span> <a href=""> 其 他 功 能 </a>
+            <span class="c-gray en">&gt;</span><a href=""> 预 约 报 价 单 统 计 </a>
+        </nav>    
+        @*按钮*@
+        <div style="background-color:#f5fafe;">
+            <div style="background-color:#f5fafe;">
+                <button id="" style="margin-left:20px" class="btn btn-primary"><i class="Hui-iconfont">&#xe681; </i>过滤</button>
+                <button id="" class="btn btn-success"><i class="Hui-iconfont">&#xe644; </i>导出</button>
+                <button id="" class="btn btn-success"><i class="Hui-iconfont">&#xe685; </i>图像分析</button>
+                <button id="" class="btn btn-success"><i class="Hui-iconfont">&#xe671; </i>定位</button>
+                <button id="" class="btn btn-success"><i class="Hui-iconfont">&#xe61a; </i>统计</button>
+                <button id="" class="btn btn-primary"><i class="Hui-iconfont">&#xe635; </i>合计</button>
+                <button id="" class="btn btn-primary"><i class="Hui-iconfont">&#xe652; </i>自定义打印</button>
+                <button id="" class="btn btn-success"><i class="Hui-iconfont">&#xe652; </i>打印单据</button>
+                <button id="" class="btn btn-primary"><i class="Hui-iconfont">&#xe6c5; </i>发送短信</button>
+            </div>     
+        </div>
+        @*表单*@
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top:10px;padding-bottom:8px">
+            <div class="layui-field-box">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-xs-12">
+                            <label>预约日期</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12">
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 text-right" style="width:30px;margin:0px 5px 0px 5px">
+                            <label class="control-label">到</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12">
+                            <input type="text" class="form-control">
+                        </div>
+
+                        <div class="col-lg-1 col-md-1 col-xs-12" style="margin-left:-50px;">
+                            <label>单号</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12">
+                            <input type="text" class="form-control">
+                        </div>
+
+                        <div class="col-lg-1 col-md-1 col-xs-12" style="margin-left:-50px;">
+                            <label>车牌</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12">
+                            <input type="text" class="form-control">
+                        </div>
+                 
+                        <div class="col-lg-1 col-md-1 col-xs-12" style="height:30px;">
+                            <button id="" class="btns btn-success"><i class="Hui-iconfont">&#xe665; </i>搜索</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        @*表格*@
+        <div style="height:500px;margin:0px 1% 0px 1%;box-shadow:0 0 5px 5px #ddd;">
+            <table id="ss" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th w_check="true"></th>
+                        <th w_index="">行号</th>
+                        <th w_index="">审核</th>
+                        <th w_index="">单号</th>
+                        <th w_index="">对应维修单号</th>
+                        <th w_index="">开单日期</th>
+                        <th w_index="">预约进厂时间</th>
+                        <th w_index="">车牌</th>
+                        <th w_index="">车主</th>
+                        <th w_index="">车型</th>
+                        <th w_index="">联系人</th>
+                        <th w_index="">联系电话</th>
+                        <th w_index="">接待人</th>
+                        <th w_index="">工作卡</th>
+                        <th w_index="">修理类型</th>
+                        <th w_index="">客户地址</th>
+                        <th w_index="">总金额</th>
+                        <th w_index="">应收金额</th>
+                        <th w_index="">备注</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    @*外部引用*@
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+
+    <script>
+        var tbCostCategory;
+        //初始化
+        $(function () {
+            //表格初始化
+            tbCostCategory = $.fn.bsgrid.init('ss', {
+                url: '',
+                autoLoad: false,  //自动加载 true是
+                stripeRows: false,//隔行变色
+                rowHoverColor: true,//划过行变色
+                pageSize: 15,   //行数
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                displayBlankRows: false,//是否显示空白行, 默认值true
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left",//分页工具条的显示位置
+            });
+        })
+    </script>
+
+
+</body>
+</html>

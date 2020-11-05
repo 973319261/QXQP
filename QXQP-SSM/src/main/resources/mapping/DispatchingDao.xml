@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koi.mapper.DispatchingDao">
+  <!-- 查询派工金额 -->
+  <select id="selectDispatch" resultType="java.lang.Double">
+    SELECT Price FROM SYS_Dispatch WHERE DispatchID=#{dispatchID}
+  </select>
+ <!--  查询主页面信息 -->
+  <select id="selectReception" resultType="com.koi.vo.ReceptionVo">
+	SELECT p.*,RepairName,CustomerSou,DocumentState,BalanceState FROM 
+	PW_Reception p,SYS_Repair,SYS_DocumentState,SYS_CustomerSou,SYS_BalanceState WHERE 
+	p.RepairID = SYS_Repair.RepairID AND p.DocumentStateID=SYS_DocumentState.DocumentStateID AND 
+	p.BalanceStateID=SYS_BalanceState.BalanceStateID AND p.CustomerSouID=SYS_CustomerSou.CustomerSouID AND 
+	P.ReceptionID=#{receptionID}
+  </select>
+</mapper>

@@ -1,0 +1,1386 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Customersettle</title>
+    <link href="~/Content/Main/css/icons.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/main.css" rel="stylesheet" />
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/Content/Main/lib/layer/2.4/skin/layer.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrapal.css" rel="stylesheet" />
+    <link href="~/Content/Main/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_gray.min.css" rel="stylesheet" />
+    <link href="~/Content/layui/css/modules/laydate/default/laydate.css" rel="stylesheet" />
+    <style>
+        .modal input[type="name"], .modal select {
+            height: 28px;
+        }
+
+        a {
+            color: #808080;
+        }
+
+            a:hover {
+                text-decoration: none;
+                color: burlywood;
+            }
+
+        ul li {
+            padding: 5px 20px;
+            text-align: center;
+        }
+
+            ul li:hover {
+                background: #5bc0de;
+            }
+
+        label {
+            width: 100%;
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .breadcrumb {
+            padding: 10px 15px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: #f5f5f5;
+        }
+
+        #Detailedmode tr th, #Detailedmode table tr td:hover {
+            /*background: #ffffff;*/
+        }
+
+        #Detailedmode table tr th, #Detailedmode table tr td {
+            padding: 5px;
+            width: 300px;
+            text-align: center;
+            border: 1px solid #e2e2e2;
+            border-collapse: collapse;
+        }
+
+        #Detailedmode table {
+            border: 1px;
+            width: 100%;
+        }
+
+            #Detailedmode table tr th {
+                background-color: #f5f5f5;
+                /*border-bottom: 1px solid gray;*/
+            }
+
+            #Detailedmode table input, #Detailedmode table select {
+                width: 100px;
+                margin: 0px;
+                border: none;
+            }
+
+            #Detailedmode table select {
+                width: 100%;
+            }
+
+        .Box {
+            height: 350px;
+            overflow: auto;
+        }
+
+        .box {
+            border: solid 1px gray;
+            width: 100px;
+            display: none;
+            position: absolute;
+            background-color: ghostwhite;
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            box-shadow: #808080 2px 2px;
+        }
+
+            .box > li {
+                border-bottom: dashed 1px gray;
+                cursor: pointer;
+                text-align: center;
+                padding: 3px;
+            }
+
+                .box > li:hover {
+                    background-color: #eee;
+                }
+
+        .el-tabs__content {
+            height: 350px;
+        }
+
+        .modal input, .modal select {
+            height: 32px;
+        }
+
+        .modal .control-label {
+            width: 100px;
+            padding-top: 0px;
+        }
+
+        .modal .form-group {
+            margin: 1px;
+        }
+
+        .modal .col-lg-3 {
+            width: 16%;
+        }
+
+        .modal-body {
+            padding-bottom: 0;
+        }
+
+        .modal .navsearch {
+            height: 50px;
+            width: 950px;
+            background: #f5f5f5;
+            padding: 5px 0;
+            border-radius: 3px;
+        }
+
+            .modal .navsearch select {
+                height: 32px;
+            }
+
+            .modal .navsearch input {
+                height: 30px;
+            }
+
+        .modal button {
+            width: 79px;
+        }
+
+            .modal button i {
+                margin-right: 5px;
+            }
+
+        .modal-content {
+            width: 985px;
+            height: 50%;
+            left: -200px;
+        }
+
+        .modOne {
+            width: 320px;
+            height: 480px;
+            float: left;
+            overflow: auto;
+            margin-right: 20px;
+            box-shadow: 0 0 20px 1px #eee;
+        }
+
+        .modTow {
+            width: 580px;
+            height: 480px;
+            float: left;
+            padding: 5px;
+            border: 3px solid #f5f5f5;
+            box-shadow: 0 0 20px 1px #eee;
+            overflow: auto;
+        }
+
+        .modTows {
+            width: 648px;
+            height: 480px;
+            float: left;
+            padding: 5px 5px 5px 5px;
+            border: 3px solid #f5f5f5;
+            box-shadow: 0 0 20px 1px #eee;
+            overflow: auto;
+        }
+
+        table {
+            border: 1px;
+            width: 99.5%;
+        }
+
+        #imgCarPicture {
+            border-radius: 5px;
+            box-shadow: 0 0 20px 3px #eee;
+            width: 250px;
+            height: 295px;
+            display: block;
+        }
+
+        .Tfoot {
+            font-size: 15px;
+        }
+
+        .modTows input {
+            height: 20px;
+        }
+
+        #FittingsType {
+            padding: 15px;
+        }
+
+            #FittingsType li {
+                text-align: left;
+                font-size: 16px;
+                list-style-type: none;
+            }
+
+                #FittingsType li:hover {
+                    background: #eee;
+                    cursor: alias;
+                }
+
+                #FittingsType li i {
+                    display: inline-block;
+                    background: url('../../../../Content/Main/images/smiley_evil.png') no-repeat 0px 5px;
+                    width: 20px;
+                    height: 20px;
+                }
+
+                #FittingsType li .diai {
+                    margin-left: 23px;
+                }
+    </style>
+</head>
+<body>
+    <div>
+        @*导航栏*@
+        <nav class="breadcrumb" style="margin:0px">
+            <i class="Hui-iconfont"></i> <a href=""> 首 页 </a> <span class="c-gray en">&gt;</span> <a href=""> 配 件 销 售 </a>
+            <span class="c-gray en">&gt;</span><a href=""> 销 售 结 算 </a>
+        </nav>
+        @*按钮*@
+        <div style="background-color:beige;">
+            <button onclick="Newly(0)" style="margin-left:20px" class="btn btn-primary"><i class="Hui-iconfont">&#xe604; </i>新单</button>
+            <button onclick="Cancel(0)" class="btn btn-danger"><i class="Hui-iconfont">&#xe609; </i>删单</button>
+            <button onclick="Insertbtns()" class="btn btn-info"><i class="Hui-iconfont">&#xe632; </i>保存</button>
+            <button onclick="ShowDaKai()" class="btn btn-success"><i class="Hui-iconfont">&#xe6a7; </i>打开</button>
+            <button class="btn btn-primary"><i class="Hui-iconfont">&#xe6e1; </i>审核</button>
+            <button class="btn btn-danger"><i class="Hui-iconfont">&#xe6dd; </i>反审核</button>
+            <button class="btn btn-success"><i class="Hui-iconfont">&#xe652; </i>打印</button>
+        </div>
+        @*表单*@
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top:20px;padding-bottom:20px">
+            <legend style="margin-left:50px;text-shadow: 5px 5px 5px gray;font-weight:inherit"> 客 户 结 算 </legend>
+            <div class="layui-field-box">
+                <form class="form-horizontal" role="form" id="FormSalesorder" action="">
+                    <div class="col-lg-12">
+                        <div class="row" style="padding-bottom:10px;">
+                            <input type="text" id="SalBalanceID" hidden />@*结算ID*@                           
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>单据号</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <input type="text" id="Receipt" class="form-control" disabled>
+                            </div>
+
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>客户编号</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <div class="input-group">
+                                    <input type="text" id="CustomerCode" class="form-control" disabled>
+                                    <input type="text" id="CustomerCodes" hidden>
+                                    <span class="input-group-btn">
+                                        <button style="width:112%" class="btn btn-primary" type="button" id="Supplier" onclick="ShowclientID()"><i class="en-list2"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>客户名称</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <input type="text" id="CustomerName" class="form-control">
+                            </div>
+
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>单据日期</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <input type="text" id="ReceiptDate" class="form-control Datetime">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>操作人</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <input type="text" id="Operator" class="form-control" value="@ViewBag.UserName" disabled>
+                            </div>
+
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>付款方式</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <select type="text" id="PaymentID" name="PaymentID" class="form-control"></select>
+                            </div>
+
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>收款金额</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <input type="text" hidden id="CurrentManys" name="CurrentMany">
+                                <input type="text" id="CurrentMany" class="form-control" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>审核人</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <input type="text" id="Auditor" class="form-control" disabled>
+                            </div>
+
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>审核日期</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <input type="text" id="AuditDate" class="form-control" disabled>
+                            </div>
+
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>已审核</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                <label class="checkbox" style="text-align:left;">
+                                    <input type="checkbox" id="ToAudit" value="option1" style="height:20px;width:20px;" disabled />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>客户地址</label>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-xs-12">
+                                <input type="text" id="Address" class="form-control">
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-12" style="margin-left:50px">
+                                <button type="button" class="btn btn-info">全 选</button>
+                                <button type="button" class="btn btn-info">反 选</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                <label>备注</label>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-xs-12">
+                                <input type="text" id="Remark" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+        @*表格*@
+        <div class="col-lg-12" id="Detailedmode" style="margin: 10px 15px 15px 15px">
+            <el-tabs type="border-card">
+                <el-tab-pane label="配件订货明细">
+                    <div id="jiesuanBox" style="height:450px;margin:0px 1.5% 0px 0.5%;box-shadow:0 0 2px 2px #eee;">
+                        <table id="tbjiesuan" style="border:1px; width:100%">
+                            <tbody>
+                                <tr>
+                                    <th width='5%' height='20px'>行号</th>
+                                    <th width='5%' height='20px'>已清</th>
+                                    <th width='9%' height='20px'>单据类型</th>
+                                    <th width='9%' height='20px'>单据日期</th>
+                                    <th width='9%' height='20px'>单号</th>
+                                    <th width='9%' height='20px'>应收金额</th>
+                                    <th width='9%' height='20px'>已收金额</th>
+                                    <th width='9%' height='20px'>已优惠总金额</th>
+                                    <th width='9%' height='20px'>未收金额 </th>
+                                    <th width='9%' height='20px'>本次优惠金额</th>
+                                    <th width='9%' height='20px'>本次收款金额</th>
+                                    <th width='9%' height='20px'>付款状况</th>
+                                </tr>
+                            </tbody>
+                            <tfoot class="footing">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><i class="en-feather"></i>合计：</td>
+                                    <td id="Yingshou">0.00</td>
+                                    <td id="Yishou">0.00</td>
+                                    <td id="Yyouhui">0.00</td>
+                                    <td id="Weishou">0.00</td>
+                                    <td id="Byouhui">0.00</td>
+                                    <td id="Bshoukuang">0.00</td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </el-tab-pane>
+            </el-tabs>
+        </div>
+        @*客户模态框*@
+        <div class="modal fade col-lg-12" id="clientID">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title">
+                            车辆选择
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="navsearch">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <form class="form-horizontal" role="form" style="margin-top:2px;">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 text-right">
+                                        <label class="control-label">名 字</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 reset" style="margin-top:3px">
+                                        <input type="text" class="form-control" id="Obscure" />
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 text-right" style="margin-left:20px">
+                                        <button onclick="Inquire()" type="button" class="btn btn-search"><i class="glyphicon glyphicon-search"></i>查 询</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <button onclick="Reset()" type="button" class="btn btn-success" style="margin-left:105px"><i class="glyphicon glyphicon-plus"></i>新 增</button>
+                                <button onclick="Btnsave()" type="button" class="btn btn-warning"><i class="glyphicon glyphicon-file"></i>保 存</button>
+                                <button onclick="Refresh()" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-refresh"></i>刷 新</button>
+                                <button onclick="" type="button" class="btn btn-danger" data-dismiss="modal"><i class="Hui-iconfont">&#xe6dd; </i>关 闭</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="border-top:none;">
+                        <div>
+                            <div class="modOne">
+                                <table id="tbKeHu" ondblclick="Shuangji()" style="width:700px;">
+                                    <tr>
+                                        <th w_num="total_line">序号</th>
+                                        <th w_index="CustomerCode">客户编码</th>
+                                        <th w_index="CustomerName">客户</th>
+                                        <th w_index="TelePhone">电话</th>
+                                        <th w_index="MobilePhone">手机</th>
+                                        <th w_index="Contacts">联系人</th>
+                                        <th w_index="Address">地址</th>
+                                    </tr>
+                                </table>
+                            </div>
+                            @*表单*@
+                            <div class="modTow col-lg-12 col-md-12 col-sm-12">
+                                <form class="form-horizontal" method="post" role="form" id="KformMaintenance" action="/ProcurementManagment/Salesorder/Newmodification">
+                                    <input type="text" id="KSalesCustomerID" name="SalesCustomerID" hidden /> @*销售客户ID*@
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">客户编码</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" hidden id="KCustomerCodes" name="CustomerCode">
+                                            <input type="text" class="form-control" disabled id="KCustomerCode" name="CustomerCode">
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">区域</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <select type="text" class="form-control" id="KRegionID" name="RegionID"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">客户名称</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KCustomerName" name="CustomerName">
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">客户来源</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <select type="text" class="form-control" id="KCustomerSouID" name="CustomerSouID"></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">地址</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KAddress" name="Address">
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">邮编</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KZipCode" name="ZipCode">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">全称</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KFullName" name="FullName" onKeyUp="query()">
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">拼音码</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <select type="text" class="form-control" id="KPinYinCode" name="PinYinCode"></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">身份证号</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KIdNumber" name="IdNumber">
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">联系人</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KContacts" name="Contacts">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">传真</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KFacsimile" name="Facsimile">
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">电话</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KTelePhone" name="TelePhone">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">手机</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KMobilePhone" name="MobilePhone">
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">Email</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KEmai" name="Emai">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">客户等级</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <select type="text" class="form-control" id="KCustomerLevelID" name="CustomerLevelID"></select>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">客户类别</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <select type="text" class="form-control" id="KCustomerTypeID" name="CustomerTypeID"></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">付款方式</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <select type="text" class="form-control" id="KPaymentID" name="PaymentID"></select>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">备注</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" id="KRemark" name="Remark">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">业务员</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <select type="text" class="form-control" id="KUserID" name="UserID"></select>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-xs-12">
+                                            <label class="control-label">录入人</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" hidden id="KInputPersons" name="InputPerson" value="@ViewBag.UserName">
+                                            <input type="text" class="form-control" id="KInputPerson" name="InputPerson" value="@ViewBag.UserName" disabled>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*打开模态框*@
+        <div class="modal fade col-lg-12" id="DaKaiModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title">
+                            记录定位
+                        </h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="navsearch">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <form class="form-horizontal" role="form">
+                                    <div class="col-lg-1 col-md-1 col-sm-1 text-right">
+                                        <label class="control-label">单号</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 reset" style="margin-top:3px">
+                                        <input type="text" class="form-control" id="Receipts"/>
+                                    </div>
+
+                                    <div class="col-lg-2 col-md-2 col-sm-2 text-right">
+                                        <label class="control-label">单据状态</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 reset" style="margin-top:3px">                                  
+                                        <select class="form-control" id="ToAudits">
+                                            <option value="0">全部</option>
+                                            <option value="1">已审核</option>
+                                            <option value="2">未审核</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-2 col-md-2 col-sm-2 text-right" style="margin-left:10px">
+                                        <button type="button" class="btn btn-search" onclick="Condition()"><i class="glyphicon glyphicon-search"></i>查 询</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer" style="border-top:none;">
+                        <div style="height:500px;width:950px;overflow:auto; box-shadow: 0 0 20px 5px #ddd;">
+                            <table id="tbdakai" style="width:100%">
+                                <tr>
+                                    <th w_num="total_line">序号</th> 
+                                    <th w_index="SalBalanceID" w_hidden="true"></th>         
+                                    <th w_render="ToAudit">审核</th>
+                                    <th w_index="ToAudit" w_hidden="true">审核</th>
+                                    <th w_index="Receipt">单号</th>
+                                    <th w_index="CustomerCode">客户编码</th>
+                                    <th w_index="CustomerName">客户名称</th>
+                                    <th w_index="Operator">操作人</th>
+                                    <th w_index="ReceiptDates">单据日期</th>
+                                    <th w_index="CurrentMany">收款金额</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*外部引用*@
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/js/jquery.form.js"></script>
+    <script src="~/Content/Main/lib/layer/2.4/layer.js"></script>
+    <script src="~/Content/layui/laydate/laydate.js"></script>
+    <script src="~/Content/js/customfunction.js"></script>
+    <script src="~/Content/Main/js/pinying.js"></script>@*拼音码*@
+    <script src="~/Content/js/combobox.js"></script>
+    <script>
+        var tbKeHu;
+        var tbdakai;
+        var tbShangPin;
+        var Chinese = /^[\u0391-\uFFE5]+$/;//只能输入中文
+        var Number = /^[0-9]+$/; //只能输入数字
+        var Identity = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;//18位身份证号码
+        var Phone = /^[1][0-9][0-9]{9}$/; //11位手机号码
+
+        //生成结算单号
+        function JieSuan() {
+            $.post("/ProcurementManagment/Customersettle/Receipt", function (data) {
+                $("#Receipt").val(data);
+            })
+        }
+        //生成客户编码
+        function Bianma() {
+            $.post("/PublicManagment/MaintenanceCus/CustomerNum", function (data) {
+                $("#KCustomerCode").val(data);
+            })
+        }
+        //同时绑定多个时间
+        function Datetime() {
+            lay('.Datetime').each(function () {
+                run();
+                laydate.render({
+                    elem: this
+                  , trigger: 'click',
+                    type: 'datetime'
+                });
+            });
+            lay('.Dates').each(function () {
+                runs();
+                laydate.render({
+                    elem: this
+                  , trigger: 'click',
+                    type: 'date'
+                });
+            });
+        }
+        //获取系统当前时间
+        function run() {
+            var time = new Date();//获取系统当前时间
+            var year = time.getFullYear();
+            var month = time.getMonth() + 1;
+            var date = time.getDate();//系统时间月份中的日
+            var hour = time.getHours();
+            var minutes = time.getMinutes();
+            var seconds = time.getSeconds();
+            if (month < 10) {
+                month = "0" + month;
+            }
+            if (date < 10) {
+                date = "0" + date;
+            }
+            if (hour < 10) {
+                hour = "0" + hour;
+            }
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            var newDate = year + "-" + month + "-" + date + " " + hour + ":" + minutes + ":" + seconds;
+            $(".Datetime").each(function () {
+                $(this).val(newDate);
+            })
+        }
+        function runs() {
+            var time = new Date();//获取系统当前时间
+            var year = time.getFullYear();
+            var month = time.getMonth() + 1;
+            var date = time.getDate();//系统时间月份中的日
+            var newDates = year + "-" + month + "-" + date;
+            $(".Dated").each(function () {
+                $(this).val(newDates);
+            })
+        }
+        //拼音码
+        function query() {
+            var str = document.getElementById("MFullName").value.trim();
+            if (str == "") return;
+            var arrRslt = makePy(str);
+            //循环将值到下拉框
+            var option = null;
+            document.getElementById("MPinYinCode").innerHTML = "";//清空下拉框
+            var first = document.getElementById("MPinYinCode");
+            for (var j = 0; j < arrRslt.length; j++) {
+                var obj = document.getElementById("MPinYinCode");
+                obj.add(new Option(arrRslt[j], arrRslt[j]));
+            }
+        }
+        //页面加载
+        $(function () {
+            Datetime(); JieSuan(); Bianma();
+            //客户初始化
+            tbKeHu = $.fn.bsgrid.init('tbKeHu', {
+                url: '/Salesorder/Selectordergoods',
+                autoLoad: true,//自动加载
+                stripeRows: false,//隔行变色
+                rowHoverColor: true,//划过行变色
+                showPageToolbar: false,  //是否显示分页工具条，默认值true
+                displayBlankRows: false,//是否显示空白行, 默认值true
+                pageSize: 10,//分页大小, 如果设置值小于1则不分页且展示全部数据(即自动将pageAll设置为true), 默认值20
+                pageSizeSelect: true,// 是否显示分页大小选择下拉框, 配合参数pageSizeForGrid, 默认值false
+                pagingLittleToolbar: true,//是否显示精简的图标按钮分页工具条, 默认值false
+                event: {//事件
+                    customRowEvents: {//当前行事件
+                        click: function (record, rowIndex) {//点击事件
+                            Backfill(record);
+                            query();
+                        }
+                    }
+                }
+            })
+            Inquire(); XiaLaKuang();
+
+            //打开初始化
+            tbdakai = $.fn.bsgrid.init('tbdakai', {
+                url: '/ProcurementManagment/Customersettle/Selectenciphers',
+                autoLoad: true,
+                stripeRows: false,//隔行变色
+                rowHoverColor: true,//划过行变色
+                displayBlankRows: false,//是否显示空白行, 默认值true
+                pageSize: 15,
+                pageSizeSelect: true,// 是否显示分页大小选择下拉框, 配合参数pageSizeForGrid, 默认值false
+                pagingLittleToolbar: true,//是否显示精简的图标按钮分页工具条, 默认值false
+                showPageToolbar: false,  //是否显示分页工具条，默认值true 
+                pagingToolbarAlign: 'left', //分页工具条的显示位置, 默认值'right'居右, 其他值'left', 'center'  
+                event: {
+                    customRowEvents: {
+                        dblclick: function (record, rowIndex) {
+                            Documentreturn(record);
+                        }
+                    }
+                }
+            })
+            Condition();
+        })
+        //下拉框绑定
+        function XiaLaKuang() {
+            //客户
+            createSelect("KRegionID", "/PublicManagment/CreateSelect/SelectRegion"); //客户区域
+            createSelect("KCustomerSouID", "/PublicManagment/CreateSelect/SelectCustomerSou"); //客户来源
+            createSelect("KCustomerLevelID", "/PublicManagment/CreateSelect/SelectCustomerLevel"); //客户等级
+            createSelect("KCustomerTypeID", "/PublicManagment/CreateSelect/SelectCustomerType"); //客户类别
+            createSelect("KPaymentID", "/PublicManagment/CreateSelect/SelectPayment"); //付款方式
+            createSelect("PaymentID", "/PublicManagment/CreateSelect/SelectPayment"); //付款方式
+            createSelect("KUserID", "/PublicManagment/CreateSelect/SelectUser"); //业务员
+            //商品类别
+            createSelect("SFittingsTypeID", "/PublicManagment/CreateSelect/SelectFittingsType");//商品类别
+            createSelect("SSystemUnitID", "/PublicManagment/CreateSelect/SelectSystemUnit");//系统单位
+            createSelect("SVehicleTypeID", "/PublicManagment/CreateSelect/SelectVehicleType");//车型
+            createSelect("SSuppliersID", "/PublicManagment/CreateSelect/SelectSuppliers");//供应商
+
+        }
+        /********************客户编码模态框---开始*****************************/
+        //弹出客户模态框
+        function ShowclientID() {
+            $("#clientID").modal("show");
+        }
+        //条件查询
+        function Inquire() {
+            var Customer = $("#Obscure").val();
+            if (Customer == null || Customer == undefined) {
+                Customer = "";
+            }
+            tbKeHu.search({ CustomerName: Customer });
+        }
+        //回填表单
+        function Backfill(record) {
+            var index = layer.load(0); //0代表加载的风格，支持0-2
+            $("#KSalesCustomerID").val(record.SalesCustomerID);//客户ID
+            $("#KCustomerCode").val(record.CustomerCode);//客户编码
+            $("#KCustomerCodes").val(record.CustomerCode);//客户编码
+            $("#KRegionID").val(record.RegionID);//客户区域
+            $("#KCustomerName").val(record.CustomerName);//客户名称
+            $("#KCustomerSouID").val(record.CustomerSouID);//客户来源
+            $("#KAddress").val(record.Address);//地址
+            $("#KZipCode").val(record.ZipCode);//邮编
+            $("#KFullName").val(record.FullName);//全称
+            $("#KPinYinCode").val(record.PinYinCode);//拼音码
+            $("#KIdNumber").val(record.IdNumber);//身份证号
+            $("#KContacts").val(record.Contacts);//联系人
+            $("#KFacsimile").val(record.Facsimile);//传真
+            $("#KTelePhone").val(record.TelePhone);//电话
+            $("#KMobilePhone").val(record.MobilePhone);//手机
+            $("#KEmai").val(record.Emai);//Emai
+            $("#KCustomerLevelID").val(record.CustomerLevelID);//客户等级
+            $("#KCustomerTypeID").val(record.CustomerTypeID);//客户类别
+            $("#KPaymentID").val(record.PaymentID);//付款方式
+            $("#KRemark").val(record.Remark);//备注
+            $("#KUserID").val(record.UserID);//业务员
+            $("#KInputPerson").val(record.InputPerson); //录入人
+            layer.close(index);//关闭
+        };
+        //拼音码
+        function query() {
+            var r = document.getElementById("KFullName").value.trim();
+            if (r == "") return;
+            var arrRslt = makePy(r);
+            //循环将值到下拉框
+            var option = null;
+            document.getElementById("KPinYinCode").innerHTML = "";//清空下拉框
+            var first = document.getElementById("KPinYinCode");
+            for (var j = 0; j < arrRslt.length; j++) {
+                var obj = document.getElementById("KPinYinCode");
+                obj.add(new Option(arrRslt[j]));
+            }
+        }
+        //新增保存
+        function Btnsave() {
+            var RegionID = $("#KRegionID").val();//客户区域
+            var CustomerName = $("#KCustomerName").val();//客户名称
+            var CustomerSouID = $("#KCustomerSouID").val();//客户来源
+            var Address = $("#KAddress").val();//地址
+            var ZipCode = $("#KZipCode").val();//邮编
+            var FullName = $("#KFullName").val();//全称
+            var PinYinCode = $("#KPinYinCode").val();//拼音码
+            var IdNumber = $("#KIdNumber").val();//身份证号
+            var Contacts = $("#KContacts").val();//联系人
+            var Facsimile = $("#KFacsimile").val();//传真
+            var TelePhone = $("#KTelePhone").val();//电话
+            var MobilePhone = $("#KMobilePhone").val();//手机
+            var Emai = $("#KEmai").val();//Email
+            var CustomerLevelID = $("#KCustomerLevelID").val();//客户等级
+            var CustomerTypeID = $("#KCustomerTypeID").val();//客户类别
+            var PaymentID = $("#KPaymentID").val();//付款方式
+            var Remark = $("#KRemark").val();//备注
+            var UserID = $("#KUserID").val();//业务员
+            var InputPerson = $("#KInputPerson").val();//录入人
+            var InputPerson = $("#KInputPersons").val();//录入人
+            if (RegionID == 0) {
+                layer.tips('请选择区域!', '#KRegionID');
+            } else if (CustomerName == "") {
+                layer.tips('请输入客户名称!', '#KCustomerName');
+            } else if (!Chinese.test(CustomerName)) {
+                layer.tips('只能输入中文', '#KCustomerName');
+            } else if (CustomerSouID == 0) {
+                layer.tips('请选择客户来源!', '#KCustomerSouID');
+            } else if (Address == "") {
+                layer.tips('请输入地址!', '#KAddress');
+            } else if (ZipCode == "") {
+                layer.tips('请输入邮编!', '#KZipCode');
+            } else if (FullName == "") {
+                layer.tips('请输入全称!', '#KFullName');
+            } else if (PinYinCode == "") {
+                layer.tips('请输入拼音码!', '#KPinYinCode');
+            } else if (IdNumber == "") {
+                layer.tips('请输入身份证号!', '#KIdNumber');
+            } else if (!Identity.test(IdNumber)) {
+                layer.tips('请输入有效证件号码', '#KIdNumber');
+            } else if (Contacts == "") {
+                layer.tips('请输入联系人!', '#KContacts');
+            } else if (!Chinese.test(Contacts)) {
+                layer.tips('只能输入中文', '#KContacts');
+            } else if (Facsimile == "") {
+                layer.tips('请输入传真!', '#KFacsimile');
+            } else if (TelePhone == "") {
+                layer.tips('请输入电话号码!', '#KTelePhone');
+            } else if (MobilePhone == "") {
+                layer.tips('请输入手机号码!', '#KMobilePhone');
+            } else if (!Phone.test(MobilePhone)) {
+                layer.tips('请输入有效手机号码', '#KMobilePhone');
+            } else if (Emai == "") {
+                layer.tips('请输入Email!', '#KEmai');
+            } else if (CustomerLevelID == 0) {
+                layer.tips('请选择客户等级!', '#KCustomerLevelID');
+            } else if (CustomerTypeID == 0) {
+                layer.tips('请选择客户类别!', '#KCustomerTypeID');
+            } else if (PaymentID == 0) {
+                layer.tips('请选择付款方式!', '#KPaymentID');
+            } else if (Remark == "") {
+                layer.tips('请输入备注!', '#KRemark');
+            } else if (UserID == 0) {
+                layer.tips('请选择业务员!', '#KUserID');
+            } else {
+                //提交
+                $("#KformMaintenance").ajaxSubmit(function (data) {
+                    if (data == true) {
+                        layer.closeAll('loading');
+                        layer.msg("保 存 成 功 ！");
+                        //刷新
+                        Inquire();
+                    }
+                })
+            }
+        }
+        //清空文本
+        function Reset() {
+            //重置表单
+            $("#KformMaintenance").resetForm();
+            $("#KPinYinCode").html(" ");
+            Bianma();
+        }
+        //刷新
+        function Refresh() {
+            //重置表单
+            $("#KformMaintenanceCus").resetForm();
+            Bianma();
+            Inquire();
+
+        }
+        /********************客户编码模态框---结束******************************/
+
+        /********************结算页面---开始************************************/
+        //页面回填数据
+        function Shuangji() {
+            $("#Detailedmode tbody tr td").parent("tr").remove();//清空明细表{
+            BiaogeDetail();
+            var rowIndex = tbKeHu.getSelectedRowIndex();
+            var record = tbKeHu.getRecord(rowIndex);
+            if (rowIndex > -1) {
+                //客户回填
+                $("#clientID").modal("hide");
+                $("#KSalesCustomerID").val(record.SalesCustomerID);//销售客户ID
+                $("#CustomerCode").val(record.CustomerCode);  //客户编码
+                $("#CustomerCodes").val(record.CustomerCode); //客户编码
+                $("#CustomerName").val(record.CustomerName); //客户名称
+                $("#Address").val(record.Address); //客户地址
+               // $("#Remark").val(record.Remark); //备注
+                //明细回填
+                $.post("Selectencipher?SalesCustomerID=" + record.SalesCustomerID, function (data) {
+                    console.log(data);
+                    if (data != "") {
+                        for (var i = 0; i < data.length; i++) {
+                            //  console.log(data);
+                            var tbjiesuan = $("#tbjiesuan");
+                            var length = $("#tbjiesuan tbody tr").last().prevObject.length;
+                            var tr = $("<tr><td style='width:16px;height:16px;'>" + length + "</td>"
+                                         + "<td ><input id=AB" + length + " class='fushu' type='checkbox' style='width:16px;height:16px;margin-top:6px;'></td>"
+                                         + "<td id=AC" + length + ">" + data[i].ReceipstType + "</td>"//单据类型
+                                         + "<td id=AD" + length + ">" + data[i].ReceipstDate + "</td>"//单据日期
+                                         + "<td id=AE" + length + ">" + data[i].Oddnumbers + "</td>"//单号
+                                         + "<td id=AF" + length + ">" + data[i].Totalmoney + "</td>"//应收金额
+                                         + "<td id=AG" + length + ">" + "0.00" + "</td>"//已收金额
+                                         + "<td id=AH" + length + ">" + "0.00" + "</td>"//已优惠总金额
+                                         + "<td id=AI" + length + ">" + data[i].Totalmoney + "</td>"//未收金额
+                                         + "<td onclick='tdclick(this)' id=AJ" + length + ">" + "0.00" + "</td>"//本次优惠金额
+                                         + "<td onclick='tdclick(this)' id=AK" + length + ">" + "0.00" + "</td>"//本次收款金额
+                                         + "<td id=AL" + length + ">" + data[i].Paymentstate + "</td>"//付款状况
+                                         + "<td hidden id=AM" + length + ">" + data[i].BalanceStateID + "</td>"//付款状况ID
+                                         + "<td hidden id=AN" + length + ">" + data[i].SalBalancetDetailID + "</td></tr>"//结算明细ID
+                                         + "<td hidden id=AO" + length + ">" + data[i].DocumentsTypeID + "</td></tr>"//单据类型ID                                        
+                                         );//单据类型ID                                    
+                            tbjiesuan.append(tr);
+                            ProDetailEvent(length);
+                        }
+                    }
+                    else {
+                        layer.msg('您和此客户没有账款信息，或你们往来账已平衡！', {
+                            time: 20000,
+                            btn: ['知道了']
+                        });
+                    }
+                })
+                //console.log(record);
+            } else {
+                layer.msg("请选择一行数据，再进行操作");
+            }
+        }
+        //新增单
+        function Newly(data) {
+            $("#Detailedmode tbody tr td").parent("tr").remove()
+            BiaogeDetail();
+            $("#FormSalesorder").resetForm();
+            if (data == 0) {
+                JieSuan();
+                Datetime();             
+            }
+        }
+        //结算保存
+        function Insertbtns() {
+            var Weishou = 0;
+            var ArrSalBalance = [], ArrSalesorderDetai = []//声明数组
+            var tbjiesuan = $("#tbjiesuan tbody tr").length;
+            var CurrentMany = parseFloat($("#Weishou").text());//收款金额
+            $("#CurrentMany").val(CurrentMany);//收款金额
+            $("#CurrentManys").val(CurrentMany);//收款金额          
+            for (var i = 1; i < tbjiesuan; i++) { //明细构造函数
+                var D = new Accountdetail(); //构造函数 
+                D.ToCleared = $("#AB" + i).val(); //是否已清
+                D.DocumentsTypeID = $("#AC" + i).val(); //单据类型ID 
+                D.DocumentsDate = $("#AD" + i).text();//单据日期      
+                D.SingleNumber = $("#AE" + i).text(); //单号
+                D.ShouldAmount = $("#AF" + i).text(); //应收金额
+                D.PaidAmount = $("#AG" + i).text(); //已收金额        
+                D.SuperioAmountr = $("#AH" + i).text(); //已优惠总金额	              
+                D.ThisSuperioAmountr = $("#AJ" + i).text(); //本次优惠金额	
+                D.ThisShouldAmount = $("#AK" + i).text(); //本次收款金额
+                D.BalanceStateID = $("#AL" + i).text(); //付款状况
+                D.BalanceStateID = $("#AM" + i).text(); //付款状况ID  
+                D.SalBalancetDetailID = $("#AN" + i).text(); //结算明细ID  
+                D.DocumentsTypeID = $("#AO" + i).text(); //单据类型ID             
+                ArrSalesorderDetai.push(D);         
+            }
+            var D = new Account(); //构造函数据
+            D.SalBalanceID = $("#SalBalanceID").val();//结算单ID
+            D.Receipt = $("#Receipt").val();//单据号
+            D.SalesCustomerID = $("#KSalesCustomerID").val();//销售客户ID   
+            D.ReceiptDate = $("#ReceiptDate").val();//单据日期
+            D.Operator = document.getElementById("Operator").value;//操作人  
+            D.PaymentID = $("#PaymentID").val();//付款方式  
+            D.CurrentMany = $("#CurrentManys").val();//收款金额
+            D.Auditor = $("#Auditor").val();//审核人
+            D.AuditDate = $("#AuditDate").val();//审核日期                          
+            D.ToAudit = $("#ToAudit").val();//审核否   
+            D.Remark = $("#Remark").val();//备注   
+            ArrSalBalance.push(D);
+            //console.log(D);
+            layer.confirm('是否保存当前信息？', {
+                btn: ['保存', '取消']
+            }, function () {
+                var index = layer.load(0); //0代表加载的风格，支持0-2
+                $.post("/ProcurementManagment/Customersettle/Insertencipher", {
+                    ListSalBalance: ArrSalBalance,
+                    ListSalesorderDetai: ArrSalesorderDetai,
+                }, function (data) {
+                    console.log(data);
+                    $("#SalBalanceID").val(data);                 
+                    if (data != false) {
+                        layer.confirm('保存成功！是否立即审核该订单？', {
+                            btn: ['是', '否']
+                        }, function () {
+                            //  Audit(); //审核                               
+                        }, function () {
+                            layer.msg('数 据 保 存 成 功 ！', {
+                                time: 20000,  //2s后自动关闭
+                                btn: ['知道了']
+                            });
+                        });
+                    } else {
+                        layer.msg('数 据 保 存 失 败！', {
+                            time: 2000,
+                        });
+                    }
+                });
+            })
+        }
+        //删除单
+        function Cancel() {
+            var SalBalanceID = $("#SalBalanceID").val();
+            if (SalBalanceID != "") {
+                $.post("DelectSalesorder?SalBalanceID=" + SalBalanceID, function (data) {
+                    if (data) {
+                        layer.msg("数 据 删 除 成 功 ！");
+                        Newly(0);
+                    } else {
+                        layer.msg("数 据 删 除 失 败 ！")
+                    }
+                })
+            } else {
+                layer.alert('请选择数据再进行删除操作！', {
+                    skin: 'layui-layer-lan'
+                      , closeBtn: 0, anim: 4
+                });
+            }
+
+        }
+
+        //审核
+        function Audit() {
+
+        }
+
+        //反审核
+        function myfunction() {
+
+        }
+
+        /********************结算页面---结束************************************/
+
+        /********************明细表格---开始************************************/
+        //明细表合计初始化
+        function BiaogeDetail() {
+            $("#Yingshou").text("0.00");
+            $("#Yishou").text("0.00");
+            $("#Yyouhui").text("0.00");
+            $("#Weishou").text("0.00");
+            $("#Byouhui").text("0.00");
+            $("#Bshoukuang").text("0.00");
+        }
+        //明细表格计算&合计
+        function ProDetailEvent(length) {
+            calculate(length);
+            //计算金额
+            function calculate(length) {               
+                var Yingshou = 0, Yishou = 0, Yyouhui = 0, Weishou = 0, Byouhui = 0, Bshoukuang = 0;
+                for (var i = 1; i < length + 1; i++) {
+                    if ($("#A" + i).text() != "") {
+                        //应收金额
+                        Yingshou = parseFloat(Yingshou) + parseFloat($("#A" + i).text()) + ".00";
+                        $("#Yingshou").text(Yingshou);
+                    }//已收金额
+                    if ($("#A" + i).text() != "") {
+                        Yishou = parseFloat(Yishou) + parseFloat($("#A" + i).text()) + ".00";
+                        $("#Yishou").text(Yishou);
+                    }//已优惠总金额
+                    if ($("#A" + i).text() != "") {
+                        Yyouhui = parseFloat(Yyouhui) + parseFloat($("#A" + i).text()) + ".00";
+                        $("#Yyouhui").text(Yyouhui);
+                    }//未收金额
+                    if ($("#A" + i).text() != "") {
+                        Weishou = parseFloat(Weishou) + parseFloat($("#A" + i).text()) + ".00";
+                        $("#Weishou").text(Weishou);
+                    }//本次优惠金额
+                    if ($("#A" + i).text() != "") {
+                        BYouHui = parseFloat(BYouHui) + parseFloat($("#A" + i).text()) + ".00";
+                        $("#BYouHui").text(BYouHui);
+                    }//本次收款金额
+                    if ($("#A" + i).text() != "") {
+                        Bshoukuang = parseFloat(Bshoukuang) + parseFloat($("#A" + i).text()) + ".00";
+                        $("#Bshoukuang").text(Bshoukuang);
+                    }
+                }
+            }
+            $("body").click(function () {
+                calculate(length);
+            })
+
+        }
+        //优惠    
+        function Codedquery(length) {
+            var Wpaymoney = $("#AJ" + length).text();//未付金额
+            var Privmoney = $("#AM" + length).text();//本次优惠金额
+            var Bpaymoney = $("#AV" + length).text();//本次付款金额
+            if ($("#AM" + length).text() > $("#AJ" + length).text()) {
+                layer.msg('优惠金额大于未付金额，请输入正确优惠金额！', {
+                    time: 20000, //20s后自动关闭
+                    btn: ['知道了']
+                });
+                $("#AM" + length).text("0.00");
+            } else {
+                var Cal = Wpaymoney - Privmoney;
+                $("#AV" + length).text(Cal + ".00");
+            }
+        }
+
+
+        //全选&反选
+        function myfunction() {
+
+        }
+
+        /********************明细表格---结束************************************/
+
+        /************************打开模态框---开始******************************/
+        //弹出打开模态框
+        function ShowDaKai() {
+            $("#DaKaiModal").modal("show");
+            Condition();
+        }
+        //多条件查询
+        function Condition() {
+            var Receip = $("#Receipts").val(); //单号   
+            var ToAudi = $("#ToAudits").val(); //审核
+            if (Receip == null) {
+                Receip = "";
+            }
+            if (ToAudi == null || ToAudi == undefined) {
+                ToAudi = "0";
+            }
+            tbdakai.search({
+                Receipt: Receip,
+                ToAudit: ToAudi,
+            });
+
+        }
+        //自定义事件 
+        function ToAudit(record) {
+            var ToAudit = record.ToAudit;
+            //审核否
+            if (ToAudit == true || ToAudit == "true") {
+                return "<span style='color:red;'>已审核</span>";
+            } else {
+                return "<span style='color:blue;'>未审核</span>";
+            }
+        }
+        //单据数据回填
+        function Documentreturns() {
+            var index = layer.load(0); //0代表加载的风格，支持0-2
+            Newly(1);
+            //订单明细
+            //$.post("SelectOerderdetail?SalesordeID=" + record.SalesordeID, function (data) {
+            //    $.each(data, function (i) {
+            //        var tbDingHuo = $("#tbDingHuo");
+            //        var length = $("#tbDingHuo tbody tr").last().prevObject.length;
+            //        var tr = $("<tr><td>" + length + "</td>"//序号
+            //                + "<td id=WB" + length + "  class='Disable'>" + data[i].FittingsCode + "</td><td id=WC" + length + "  class='Disable'>" + data[i].FittingsName + "</td>"
+            //                + "<td id=WD" + length + "  class='Disable'>" + data[i].Specification + "</td><td><select id=WE" + length + "></select></td>"
+            //                + "<td id=WF" + length + "  class='Disable'>" + data[i].VehicleType + "</td><td id=WG" + length + "  class='Disable'>" + data[i].SystemUnit + "</td>"
+            //                + "<td onclick='tdclick(this)'id=WH" + length + ">" + data[i].Amount + "</td><td onclick='tdclick(this)' id=WI" + length + ">" + data[i].Unitcost + "</td>"
+            //                + "<td onclick='tdclick(this)'id=WJ" + length + ">" + data[i].Discount + "</td><td id=WK" + length + "  class='Disable'>" + data[i].Money + "</td>"
+            //                + "<td onclick='tdclick(this)'id=WL" + length + ">" + data[i].Atretail + "</tb><td onclick='tdclick(this)' id=WM" + length + ">" + data[i].Remark + "</tb>"
+            //                + "<td hidden id=WN" + length + ">" + data[i].SalesorderDetailID + "</td><td hidden id=WO" + length + ">" + data[i].FittingsInfoID + "</td></tr>");
+            //        tbDingHuo.append(tr);
+            //        $.ajaxSettings.async = false;//取消异步提交
+            //        DetailEvent(length);//明细事件   
+            //        createSelect("WE" + length, "/PublicManagment/CreateSelect/SelectWarehouse");
+            //        $("#WE" + length).val(data[i].WarehouseID);
+            //    })
+            //})
+            //$("#DanJuModal").modal("hide");//关闭模态窗
+            //$("#SalesordeID").val(record.SalesordeID);//订单ID
+            //$("#MSalesCustomerID").val(record.SalesCustomerID);//销售客户ID
+            //$("#Ordernumber").val(record.SalesorderNum);//订单号
+            //$("#Ordernumbers").val(record.SalesorderNum);//订单号          
+            //$("#CustomerCodes").val(record.CustomerCode);//客户编码
+            //$("#CustomerCode").val(record.CustomerCode);//客户编码
+            //$("#CustomerNames").val(record.CustomerName);//客户名称     
+            //$("#Invoicedatek").val(record.Invoicedateks);//开单日期
+            //$("#Invoicno").val(record.Invoicno);//发票号码
+            //$("#Deliverydate").val(record.Deliverydates);//交货日期
+            //$("#Operatorf").val(record.Operatorf);//操作人         
+            //$("#Reviewwhether").val(record.Reviewwhether);//审核否         
+            //$("#Thereviewer").val(record.Thereviewer);//审核人
+            //$("#Auditdate").val(record.Auditdates);//审核日期
+            //$("#Theamount").val(record.Theamount);//总金额
+            //$("#Theamounts").val(record.Theamount);//总金额
+            //$("#Remarks").val(record.Remark);//备注 
+            //Tofales();
+            ////$("#Reviewwhether").val(record.Reviewwhether)//审核                  
+            //layer.close(index);
+
+        }
+
+        /*************************打开模态框---结束*****************************/
+
+        //结算构造函数
+        function Account(SalBalanceID, SalesCustomerID, PaymentID, Receipt, AccountNumber, CurrentMany, Auditor, ReceiptDate, Operator, ToAudit, AuditDate, Remark)
+        {
+            this.SalBalanceID = SalBalanceID;//销售结算ID
+            this.SalesCustomerID = SalesCustomerID;//销售客户ID
+            this.PaymentID = PaymentID;//付款方式ID
+            this.Receipt = Receipt;//单据号
+            this.AccountNumber = AccountNumber;//账号
+            this.CurrentMany = CurrentMany;//本次金额
+            this.Auditor = Auditor;//审核人
+            this.ReceiptDate = ReceiptDate;//单据日期
+            this.Operator = Operator;//操作人
+            this.ToAudit = ToAudit;//审核否
+            this.AuditDate = AuditDate;//审核日期
+            this.Remark = Remark;//备注
+        }
+        //结算明细构造函数
+        function Accountdetail(SalBalancetDetailID, DocumentsTypeID, BalanceStateID, ToCleared, SingleNumber, DocumentsDate, ShouldAmount, PaidAmount, SuperioAmountr,ThisSuperioAmountr, ThisShouldAmount) {
+            this.SalBalancetDetailID = SalBalancetDetailID;//结算明细ID
+            this.DocumentsTypeID = DocumentsTypeID;//单据类型TD
+            this.BalanceStateID = BalanceStateID;//结算状态ID         
+            this.ToCleared = ToCleared;//是否已清
+            this.SingleNumber = SingleNumber;//单号
+            this.DocumentsDate = DocumentsDate;//单据日期
+            this.ShouldAmount = ShouldAmount;//应收金额
+            this.PaidAmount = PaidAmount;//已收金额
+            this.SuperioAmountr = SuperioAmountr;//优惠金额
+            this.ThisSuperioAmountr = ThisSuperioAmountr;//本次优惠金额
+            this.ThisShouldAmount = ThisShouldAmount;//本次付款金额
+        }
+
+    </script>
+</body>
+</html>

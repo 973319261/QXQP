@@ -1,0 +1,1031 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Spare</title>
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/icons.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/main.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrapal.css" rel="stylesheet" />
+    @*时间控件样式*@
+    <link href="~/Content/layui/css/modules/laydate/default/laydate.css" rel="stylesheet" />
+    @*CSS样式(包含默认皮肤样式)*@
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    @*CSS皮肤(需引用于bsgrid.all.min.css之后)*@
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_gray.min.css" rel="stylesheet" />
+    @* 树形插件 *@
+    <link href="~/Content/zTree_v3/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+    <style>
+        .breadcrumb > li + li:before {
+            color: #CCCCCC;
+            content: "> ";
+            padding: 0 5px;
+        }
+
+        label {
+            width: 100%;
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .btn-groud {
+            margin: 22px;
+        }
+
+        .img-box {
+            border: 1px solid #eee;
+            padding: 10px;
+        }
+
+        .One {
+            height: 380px;
+            overflow: scroll;
+            font-size: 18px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            background-color: #eee;
+            margin-bottom: 20px;
+        }
+
+        .Two {
+            text-align: center;
+            padding-top: 48%;
+            background: #CCCCCC;
+        }
+
+        .clear {
+            zoom: 1;
+        }
+
+            .clear:after {
+                content: '';
+                display: block;
+                clear: both;
+            }
+
+        .Tree {
+            width: 15%;
+            height: 485px;
+            margin: 0px 20px;
+            padding: 5px;
+            border: 3px solid #f5f5f5;
+            border-top: none;
+            box-shadow: 0 0 20px 1px #eee;
+        }
+
+        .List {
+            height: 485px;
+            float: right;
+            overflow: auto;
+            margin-right: 30px;
+            border: 3px solid #f5f5f5;
+            border-top: none;
+            box-shadow: 0 0 20px 1px #eee;
+            width: 80%;
+            position: absolute;
+            right: -5px;
+            top: 117px;
+        }
+
+        .panel-body-bow {
+            width: 210%;
+            padding: 5px;
+        }
+
+        h4 {
+            text-align: center;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        #modSet input {
+            width: 58px;
+            height: 18px;
+        }
+
+        #modSet label {
+            width: 25%;
+            text-align: left;
+        }
+
+        .modal-content {
+            width: 985px;
+            height: 50%;
+            padding-bottom: 10px;
+            left: -200px;
+        }
+
+        .modal-header {
+            padding: 0px;
+            font-size: 18px;
+            border-bottom: none;
+        }
+
+        .Coloca {
+            float: right;
+            background: none;
+            border: none;
+        }
+
+        .Gonyin {
+            line-height: 35px;
+            margin-left: 5px;
+        }
+
+        .layui-elem-fielded {
+            border-color: #e6e6e6;
+        }
+
+            .layui-elem-fielded legend {
+                margin-left: 18px;
+                font-size: 15px;
+            }
+
+        #imgCarPicture, #CimgCarPicture {
+            display: block;
+            width: 250px;
+            height: 295px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px 3px #eee;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .modal .form-group {
+            margin: 1px;
+        }
+
+        .modal .col-lg-3 {
+            width: 16%;
+        }
+
+        .modal .control-label {
+            width: 100px;
+            padding-top: 0px;
+        }
+
+        .modal input, .modal select {
+            height: 37px;
+        }
+
+        #FittingsTypeName {
+            padding: 0px;
+        }
+
+            #FittingsTypeName li {
+                text-align: left;
+                list-style-type: none;
+            }
+
+                #FittingsTypeName li:hover {
+                    background: #eee;
+                    cursor: alias;
+                }
+
+                #FittingsTypeName li i {
+                    display: inline-block;
+                    background: url('../../../../Content/Main/images/smiley_evil.png') no-repeat 0px 5px;
+                    width: 20px;
+                    height: 20px;
+                }
+
+                #FittingsTypeName li .diai {
+                    margin-left: 23px;
+                }
+
+        .active {
+            background: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        @*导航栏*@
+        <ol class="breadcrumb">
+            <li>首页</li>
+            <li>基础数据</li>
+            <li><a href="#">配件信息设置</a></li>
+        </ol>
+        @*按钮组*@
+        <div class="btn-groud">
+            <button class="btn btn-warning cancel " type="button" id="Insert"><i class="en-plus3"></i>增加配件信息</button>
+            <button class="btn btn-primary cancel" type="button" id="Update"><i class="en-tools"></i>修改配件信息</button>
+            <button class="btn btn-primary " type="button" id="Delect"><i class="en-trash"></i>删除配件信息</button>
+            <button class="btn btn-primary " type="button" id="Unfold"><i class="en-list"></i>展开分类</button>
+            <button class="btn btn-warning cancel " type="button" id="Set"><i class="en-cog"></i>设置</button>
+            <button class="btn btn-primary start"><i class="en-upload"></i>导出</button>
+            <button class="btn btn-danger delete"><i class="br-switch"></i> 关闭</button>
+        </div>
+        <div>
+            @*树形*@
+            <div class="Tree" id="FittingsTypeName" style="text-align:left;">
+                <ul style="padding-left:0px;">
+                    <li onclick="Chose()">
+                        <i style="background:url('../../../../Content/Main/images/smiley_evil.png')no-repeat 0px 5px;">
+
+                        </i>商品类别 &nbsp;共有<span></span>个类别
+                    </li>
+                </ul>
+            </div>
+            @* 表格 *@
+            <div class="List">
+                <div class="panel-body-bow">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="tbSpare">
+                            <thead>
+                                <tr>
+
+                                    <th w_num="total_line">序号</th>
+                                    <th w_index="FittingsInfoID" w_check="true"><input type="checkbox" /></th>
+                                    <th w_index="FittingsTypeName">商品类别</th>
+                                    <th w_index="Barcode">条码</th>
+                                    <th w_index="FittingsCode">邮件编码</th>
+                                    <th w_index="FittingsName">配件名称</th>
+                                    <th w_index="Specification">配件规格</th>
+                                    <th w_index="SystemUnit">单位</th>
+                                    <th w_index="VehicleType">车型</th>
+                                    <th w_index="Brand">品牌</th>
+                                    <th w_index="Intake">进价</th>
+                                    <th w_index="OpenPrice">开单价</th>
+                                    <th w_index="SalesPrice">销售价格</th>
+                                    <th w_index="WholesalePrice">批发价格</th>
+                                    <th w_index="InventoryMax">库存上限</th>
+                                    <th w_index="InventoryMin">库存下限</th>
+                                    <th w_index="SuppliersName">供应商</th>
+                                    <th w_index="Remark">备注</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* 设置模态框 *@
+    <div class="modal  bs-example-modal-sm" id="modSet">
+        <div class="modal-dialog">
+            <div class="modal-content clear" style="width:110%;">
+                @*模态框头部*@
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4>设置显示内容</h4>
+                </div>
+                @*模态框内容*@
+                <div class="modal-body" style="max-height:433px;">
+                    <div class="col-lg-12">
+                        <div class="One col-lg-8 ">
+                            <div>
+                                <input type="checkbox" value="false" onclick="cs(this)" />
+                                <input type="hidden" value="1" />
+                                <label>商品类别</label>
+                            </div>
+                            <br />
+                            <div>
+                                <input type="checkbox" value="false" onclick="cs(this)" />
+                                <input type="hidden" value="2" />
+                                <label>条码</label>
+                            </div>
+                            <br />
+                            <div>
+                                <input type="checkbox" value="false" onclick="cs(this)" />
+                                <input type="hidden" value="3" />
+                                <label>邮件编码</label>
+                            </div>
+                            <br />
+                            <div>
+                                <input type="checkbox" value="false" onclick="cs(this)" />
+                                <input type="hidden" value="4" />
+                                <label>配件名称</label>
+                            </div>
+                            <br />
+                            <div>
+                                <input type="checkbox" value="false" onclick="cs(this)" />
+                                <input type="hidden" value="5" />
+                                <label>配件规格</label>
+                            </div>
+                            <br />
+                            <div>
+                                <input type="checkbox" value="false" onclick="cs(this)" />
+                                <input type="hidden" value="6" />
+                                <label>单位</label>
+                            </div>
+                            <br />
+                            <div>
+                                <input type="checkbox" value="false" onclick="cs(this)" />
+                                <input type="hidden" value="7" />
+                                <label>车型</label>
+                            </div>
+                            <br />
+                            <div>
+                                <input type="checkbox" value="false" onclick="cs(this)" />
+                                <input type="hidden" value="8" />
+                                <label>品牌</label>
+                            </div>
+                            <br />
+                            <div>
+                                <input type="checkbox" value="false" onclick="cs(this)" />
+                                <input type="hidden" value="9" />
+                                <label>进价</label>
+                            </div>
+                            <br />
+                            <div>
+                                <input type="checkbox" value="false" onclick="cs(this)" />
+                                <input type="hidden" value="10" />
+                                <label>开单价</label>
+                            </div>
+                            <br />
+                            <div>
+                                <input type="checkbox" value="false" onclick="cs(this)" />
+                                <input type="hidden" value="11" />
+                                <label>销售价格</label>
+                            </div>
+                            <br />
+                            <div>
+                                <input type="checkbox" value="false" onclick="cs(this)" />
+                                <input type="hidden" value="12" />
+                                <label>批发价格</label>
+                            </div>
+                            <br />
+                            <div>
+                                <input type="checkbox" value="false" onclick="cs(this)" />
+                                <input type="hidden" value="13" />
+                                <label>库存上限</label>
+                            </div>
+                            <br />
+                            <div>
+                                <input type="checkbox" value="false" onclick="cs(this)" />
+                                <input type="hidden" value="14" />
+                                <label>库存下限</label>
+                            </div>
+                            <br />
+                            <div>
+                                <input type="checkbox" value="false" onclick="cs(this)" />
+                                <input type="hidden" value="15" />
+                                <label>供应商</label>
+                            </div>
+                            <br />
+                            <div>
+                                <input type="checkbox" value="false" onclick="cs(this)" />
+                                <input type="hidden" value="16" />
+                                <label>备注</label>
+                            </div>
+                        </div>
+                        <div class="Two col-lg-4">
+                            <button class="btn btn-danger btn" type="button" data-dismiss="modal"><i class="br-switch"></i>确定</button>
+                            <br />
+                            <button class="btn btn-primary" type="reset"><i class="en-upload"></i>全部显示</button>
+                        </div>
+                    </div>
+                    <p><i class="en-paperplane"></i> 温馨提示：勾选复选框隐藏相应的列。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* 增加配件信息模态框 *@
+    <div class="modal fade col-lg-12" id="modInsert">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width:850px;top:60px">
+                <div class="modal-header">
+                    <button class="Coloca" type="button" data-dismiss="modal" aria-hidden="true"><i class="en-cross"></i></button>
+                    <span class="Gonyin">&nbsp;<i class="en-paypal"></i> 配件基本资料添加</span>
+                </div>
+                <div class="modal-footer" style="border-top:none;">
+                    <div>
+                        <fieldset class="layui-elem-field layui-field-box" style="margin-top: 0px;">
+                            <legend style="font-size:16px;font-weight:inherit;">双击框体，弹出路径，选择对应图片保存即可</legend>
+                            <div class="col-lg-12 col-md-12 col-sm-12" style="width:102%">
+                                <form class="form-horizontal" role="form" id="InsertPeiJian"
+                                      action="InsertSpare" method="post" autocomplete="off">
+                                    <div style="float:left;width:270px;height:300px;">
+                                        <div class="img-box text-center">
+                                            <img src="" alt="" id="imgCarPicture" />
+                                            <input type="file" class="hidden" style="margin-left:3px;margin-top:10px;font-size:10px" name="Picture" id="CPicture" />
+                                        </div>
+                                    </div>
+                                    <div style="float:left;width:500px;margin-left:30px">
+                                        <div class="form-group">
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">配件编码:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="CFittingsCode" name="FittingsCode">
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">商品类别:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <select id="CFittingsTypeId" class="form-control" name="FittingsTypeID"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">配件名称:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="CFittingsName" name="FittingsName">
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">条码:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="CBarcode" name="Barcode">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">配件规格:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+
+                                                <input type="text" class="form-control" id="CSpecification" name="Specification">
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">品牌:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="CBrand" name="Brand">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">单位:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <select id="CSystemUnitID" name="SystemUnitID" class="form-control"></select>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">所属车型:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <select id="CVehicleTypeID" name="VehicleTypeID" class="form-control"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">进价:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="CIntake" name="Intake">
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">销售价格:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="CSalesPrice" name="SalesPrice">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">批发价:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="CWholesalePrice" name="WholesalePrice">
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">开单价:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="COpenPrice" name="OpenPrice">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">库存上限:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="CInventoryMax" name="InventoryMax" onkeyup="value = value.replace(/[^0-9]/g, '')">
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">库存下限:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="CInventoryMin" name="InventoryMin" onkeyup="value = value.replace(/[^0-9]/g, '')">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="padding-top:30px">
+                                        <div class="col-lg-3 col-md-3 col-xs-12" style="width:60px">
+                                            <label class="control-label">供应商:</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <select class="form-control" id="CSuppliersId" name="SuppliersID"></select>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-xs-12" style="width:140px">
+                                            <label class="control-label">备注:</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" style="width:300px" id="CRemark" name="Remark">
+                                        </div>
+                                    </div>
+                                    @*<div class="form-group">
+                                            <button class="btn btn-info " id="SaveInsert"><i class="Hui-iconfont">&#xe632;</i> 保 存</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>关 闭</button>
+                                        </div>*@
+                                    <div class="form-group">
+                                        <button class="btn btn-warning cancel" type="button" id="SaveInsert"><i class="en-upload"></i>保存</button>
+                                        <button class="btn btn-danger delete" data-dismiss="modal"><i class="br-switch"></i> 关闭</button>
+                                    </div>
+
+
+                                    <p style="text-align:left;line-height:26px;color:orangered;margin:0"><i class="en-smashing"></i>说明：系统根据配件编码，名称和规格来确定产品。</p>
+                                </form>
+                            </div>
+                        </fieldset>
+
+                        @*<button class="btn btn-info " id="SaveInsert" ><i class="Hui-iconfont">&#xe632;</i> 保 存</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>关 闭</button>*@
+
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    @* 修改配件信息模态框 *@
+    <div class="modal fade col-lg-12" id="modUpdate">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width:850px;top:60px">
+                <div class="modal-header">
+                    <button class="Coloca" type="button" data-dismiss="modal" aria-hidden="true"><i class="en-cross"></i></button>
+                    <span class="Gonyin">&nbsp;<i class="en-paypal"></i> 配件基本资料修改</span>
+                </div>
+                <div class="modal-footer" style="border-top:none;">
+                    <div>
+                        <fieldset class="layui-elem-field layui-field-box" style="margin-top: 0px;">
+                            <legend style="font-size:16px;font-weight:inherit;">双击框体，弹出路径，选择对应图片保存即可</legend>
+                            <div class="col-lg-12 col-md-12 col-sm-12" style="width:102%">
+                                <form class="form-horizontal" role="form" id="formUpdate"
+                                      action="UpdateSpare" method="post" autocomplete="off">
+                                    <div style="float:left;width:270px;height:300px;">
+                                        <div class="img-box text-center">
+                                            <img src="" alt="" id="CimgCarPicture" />
+                                            <input type="file" class="hidden" style="margin-left:3px;margin-top:10px;font-size:10px" name="Picture" id="EPicture" />
+                                        </div>
+                                    </div>
+                                    <div style="float:left;width:500px;margin-left:30px">
+                                        <div class="form-group">
+                                            <input type="text" hidden id="FittingsInfoID" name="FittingsInfoID" />
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">配件编码:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="EFittingsCode" name="FittingsCode">
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">商品类别:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <select class="form-control" id="EFittingsTypeId" name="FittingsTypeID"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">配件名称:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="EFittingsName" name="FittingsName">
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">条码:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="EBarcode" name="Barcode">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">配件规格:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="ESpecification" name="Specification">
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">品牌:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="EBrand" name="Brand">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">单位:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <select id="ESystemUnitID" name="SystemUnitID" class="form-control"></select>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">所属车型:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <select id="EVehicleTypeID" name="VehicleTypeID" class="form-control"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">进价:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="EIntake" name="Intake">
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">销售价格:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="ESalesPrice" name="SalesPrice">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">批发价:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="EWholesalePrice" name="WholesalePrice">
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">开单价:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="EOpenPrice" name="OpenPrice">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">库存上限:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="EInventoryMax" name="InventoryMax">
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-xs-12">
+                                                <label class="control-label">库存下限:</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                                <input type="text" class="form-control" id="EInventoryMin" name="InventoryMin">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="padding-top:30px">
+                                        <div class="col-lg-3 col-md-3 col-xs-12" style="width:60px">
+                                            <label class="control-label">供应商:</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <select class="form-control" id="ESuppliersId" name="SuppliersID"></select>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-xs-12" style="width:140px">
+                                            <label class="control-label">备注:</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-xs-12">
+                                            <input type="text" class="form-control" style="width:300px" id="ERemark" name="Remark">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-warning cancel" type="button" id="SaveUpdate"><i class="en-upload"></i>保存</button>
+                                        <button class="btn btn-danger delete" data-dismiss="modal"><i class="br-switch"></i> 关闭</button>
+                                    </div>
+                                    <p style="text-align:left;line-height:26px;color:orangered;margin:0"><i class="en-smashing"></i>说明：系统根据配件编码，名称和规格来确定产品。</p>
+                                </form>
+                            </div>
+                        </fieldset>
+
+                        @*<button type="button" class="btn btn-info "><i class="Hui-iconfont">&#xe632;</i> 保 存</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>关 闭</button>*@
+
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/js/combobox.js"></script>
+    <script src="~/Content/js/jquery.form.js"></script>
+    <script src="~/Content/layer/mobile/layer.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/js/customfunction.js"></script> @*绑定下拉框*@
+
+    <script>
+            //初始化表格
+            var tbSpare;
+            $(function () {
+                tbSpare = $.fn.bsgrid.init("tbSpare", {
+                    url: 'SelectSpare',
+                    autoLoad: true,//自动加载
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//当前页行数
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    paddingToolbarAlign: "left",//分页工具条的显示位置
+                    //行点击事件
+                    event: {
+                        customRowEvents: {
+                            click: function (record, rowIndex, trObj, options) {
+                                Check("#tbSpare tr", rowIndex + 1);
+                            }
+                        }
+                    }
+                })
+                Chose();
+            });
+            //条件查询销售客户
+            function Chose() {
+                var FittingsTypeID = 0;
+                tbSpare.search({
+                    FittingsTypeID: FittingsTypeID
+                });
+            }
+            //弹出增加配件信息模态框
+            $("#Insert").click(function () {
+                //弹出模态框
+                $("#modInsert").modal("show");
+            });
+            //选择照片按钮
+            $("#imgCarPicture").dblclick(function () {
+                $("#CPicture").click();
+            })
+            //读取照片
+            var imgReader = new FileReader();
+            regexImgeFilter = /^(?:image\/bmp|image\/png|image\/jpeg|image\/jpg)$/i;
+            imgReader.onload = function (evt) {
+                $("#imgCarPicture").attr('src', evt.target.result);
+            }
+            $("CPicture").change(function () {
+                var imgfFile = $("#CPicture").prop('files')[0];
+                if (!regexImgeFilter.test(imgfFile.type)) {
+                    layer.msg('选择的不是一张有效的图片文件', { icon: 0 });
+                }
+                imgReader.readAsDataURL(imgfFile);
+            })
+
+            //保存新增
+            $("#SaveInsert").click(function () {
+                //获取页面数据
+                var CPicture = $("#CPicture").val();//图片
+                var CFittingsCode = $("#CFittingsCode").val();//配件编码
+                var CFittingsTypeId = $("#CFittingsTypeId").val();//商品类别
+                var CFittingsName = $("#CFittingsName").val();//配件名称
+                var CBarcode = $("#CBarcode").val();// 条码
+                var CSpecification = $("#CSpecification").val();// 配件规格
+                var CBrand = $("#CBrand").val();//品牌
+                var CSystemUnitID = $("#CSystemUnitID").val();//单位
+                var CVehicleTypeID = $("#CVehicleTypeID").val(); //所属车型
+                var CIntake = $("#CIntake").val();//进价
+                var CSalesPrice = $("#CSalesPrice").val();//销售价格
+                var CWholesalePrice = $("#CWholesalePrice").val();//批发价
+                var COpenPrice = $("#COpenPrice").val();//开单价
+                var CInventoryMax = $("#CInventoryMax").val();//库存上限
+                var CInventoryMin = $("#CInventoryMin").val();//库存下限
+                var CSuppliersId = $("#CSuppliersId").val();//供应商
+                var CRemark = $("#CRemark").val();//备注
+                if (CFittingsTypeId == 0) {
+                    layer.alert("商品类别不能为空", { icon: 0, title: "【提示】" });
+                } else if (CSystemUnitID == 0) {
+                    layer.alert("单位不能为空", { icon: 0, title: "【提示】" });
+                } else if (CVehicleTypeID == 0) {
+                    layer.alert("所属车型不能为空", { icon: 0, title: "【提示】" });
+                } else if (CSuppliersId == 0) {
+                    layer.alert("供应商不能为空", { icon: 0, title: "【提示】" });
+                } else if (CBarcode == "") {
+                    layer.alert("条码不能为空", { icon: 0, title: "【提示】" });
+                } else if (CFittingsName == "") {
+                    layer.alert("配件名称不能为空", { icon: 0, title: "【提示】" });
+                } else if (CIntake == "") {
+                    layer.alert("进价不能为空", { icon: 0, title: "【提示】" });
+                } else if (CSalesPrice == "") {
+                    layer.alert("销售价格不能为空", { icon: 0, title: "【提示】" });
+                } else if (CWholesalePrice == "") {
+                    layer.alert("批发价不能为空", { icon: 0, title: "【提示】" });
+                }
+                else {
+                    $("#InsertPeiJian").ajaxSubmit(function (msg) {
+                        layer.msg("操作成功", { icon: 1, skin: "layui-layer-molv" });
+
+                        location.reload();
+                    //    if (msg == "success") { layer.alert("操作成功！") }
+
+                    //else{
+                    //        layer.alert("操作失败！");
+                    //    }
+
+                    });
+                }
+            });
+            //弹出修改配件信息模态框
+           // $("#Update").click(function () {
+                //$("#formUpdate").attr("action", "/BasicdataManagment/Information/UpdateSpare");//修改时表单的提交地址
+                //var check = $("#tbSpare input:checked");//获取表格中checkbox被选中的个数
+                //if (check.length == 0) {
+                //    layer.alert("请选择一条信息！", { icon: 6 });
+                //} else if (check.length > 1) {
+                //    layer.alert("只能选择一条信息！", { icon: 2 });
+                //} else if (check.length == 1) {
+                //    $("#modUpdate").modal("show");
+                $("#Update").click(function () {
+                    var checkboxs = $("#modUpdate input[type=checkbox]");
+                    var check = $("#tbSpare input[type=checkbox]:checked");
+                    if (check.length == 0) {
+                        layer.alert("请选择你需要修改的数据！");
+                    } else if (check.length > 1) {
+                        layer.alert("不能修改多条数据！");
+                    } else {
+                        $("#modUpdate").modal("show");
+                    $.post("SelectSpareByID?FittingsInfoID=" + check[0].value, function (data) {
+                        //if (data != null) {
+                        // console.log(data);
+                            $("#FittingsInfoID").val(data[0].FittingsInfoID);//图片
+                            $("#EPicture").val(data[0].Picture);//图片
+                            $("#EFittingsCode").val(data[0].FittingsCode);//配件编码
+                            $("#EFittingsTypeId").val(data[0].FittingsTypeID);//商品类别
+                            $("#EFittingsName").val(data[0].FittingsName);//配件名称
+                            $("#EBarcode").val(data[0].Barcode);// 条码
+                            $("#ESpecification").val(data[0].Specification);// 配件规格
+                            $("#EBrand").val(data[0].Brand);//品牌
+                            $("#ESystemUnitID").val(data[0].SystemUnitID);//单位
+                            $("#EVehicleTypeID").val(data[0].VehicleTypeID); //所属车型
+                            $("#EIntake").val(data[0].Intake);//进价
+                            $("#ESalesPrice").val(data[0].SalesPrice);//销售价格
+                            $("#EWholesalePrice").val(data[0].WholesalePrice);//批发价
+                            $("#EOpenPrice").val(data[0].OpenPrice);//开单价
+                            $("#EInventoryMax").val(data[0].InventoryMax);//库存上限
+                            $("#EInventoryMin").val(data[0].InventoryMin);//库存下限
+                            $("#ESuppliersId").val(data[0].SuppliersID);//供应商
+                            $("#ERemark").val(data[0].Remark);//备注
+                            $("#modUpdate").modal("show"); //弹出模态框
+                        //} else {
+                        //    layer.alert("未查找到数据！", { icon: 2 });
+                        //}
+                    })
+                }
+            })
+            //保存修改
+            $("#SaveUpdate").click(function () {
+                var EPicture = $("#EPicture").val();
+                var EFittingsCode = $("#EFittingsCode").val();
+                var EFittingsTypeId = $("#EFittingsTypeId").val();
+                var EFittingsName = $("#EFittingsName").val();
+                var EBarcode = $("#EBarcode").val();
+                var ESpecification = $("#ESpecification").val();
+                var EBrand = $("#EBrand").val();
+                var ESystemUnitID = $("#ESystemUnitID").val();
+                var EVehicleTypeID = $("#EVehicleTypeID").val();
+                var EIntake = $("#EIntake").val();
+                var ESalesPrice = $("#ESalesPrice").val();
+                var EWholesalePrice = $("#EWholesalePrice").val();
+                var EOpenPrice = $("#EOpenPrice").val();
+                var EInventoryMax = $("#EInventoryMax").val();
+                var EInventoryMin = $("#EInventoryMin").val();
+                var ESuppliersId = $("#ESuppliersId").val();
+                var ERemark = $("#ERemark").val();
+
+                if (EFittingsTypeId == 0) {
+                    layer.alert("商品类别不能为空", { icon: 0, title: "【提示】" });
+                } else if (ESystemUnitID == 0) {
+                    layer.alert("单位不能为空", { icon: 0, title: "【提示】" });
+                } else if (EVehicleTypeID == 0) {
+                    layer.alert("所属车型不能为空", { icon: 0, title: "【提示】" });
+                } else if (ESuppliersId == 0) {
+                    layer.alert("供应商不能为空", { icon: 0, title: "【提示】" });
+                } else if (EBarcode == "") {
+                    layer.alert("条码不能为空", { icon: 0, title: "【提示】" });
+                } else if (EFittingsName == "") {
+                    layer.alert("配件名称不能为空", { icon: 0, title: "【提示】" });
+                } else if (EIntake == "") {
+                    layer.alert("进价不能为空", { icon: 0, title: "【提示】" });
+                } else if (ESalesPrice == "") {
+                    layer.alert("销售价格不能为空", { icon: 0, title: "【提示】" });
+                } else if (EWholesalePrice == "") {
+                    layer.alert("批发价不能为空", { icon: 0, title: "【提示】" });
+                }
+                else {
+                    $("#formUpdate").ajaxSubmit(function (msg) {
+                        if (msg == "success") {
+                            //提示信息
+                            layer.msg("修改成功！");
+                            //刷新页面
+                            location.reload();
+                        } else {
+                            layer.alert(msg, { icon: 0, title: '提示' });
+                        }
+
+                    });
+                }
+            })
+            //删除
+            $("#Delect").click(function () {
+                var num = 0;//用于记录删除成功数据的条数
+                var check = $("#tbSpare input[type=checkbox]:checked");
+                if (check.length > 0) {
+                    layer.confirm("确认需要删除当前选中的数据吗?",
+                        {
+                            icon: 3,
+                            btn: ['确认', '取消']
+                        }, function (layerIndex) {
+                            layer.close(layerIndex);//关闭提示框
+                            for (var i = 0; i < check.length; i++) {
+                                $.ajax({
+                                    type: "get",//请求方式
+                                    async: false,//是否异步
+                                    url: "DeleteSpare?FittingsInfoID=" + check[i].value,
+                                    success: function (data) {//成功回调函数
+                                        if (data) {
+                                            num++;
+                                        }
+                                    }
+                                });
+                            }
+                            Chose();//表格刷新
+                            layer.alert(num + "条数据删除成功，")
+                            + (check.length - num) + "条数据删除失败",
+                            { icon: 1, skin: "layui-layer-molv" }
+                        });
+                } else {//未选择需要删除的数据
+                    layer.alert('请选择需要删除的数据！', { icon: 0, title: '提示' });
+                }
+            });
+            //弹出设置模态框
+            $("#Set").click(function () {
+                //弹出模态框
+                $("#modSet").modal("show");
+            });
+            //复选框勾选隐藏列
+            function cs(e) {
+                var label = $(e).parent("div").find("label").html();
+                var value = $(e).parent("div").find("input").eq(1).val();
+                var Length = $("#tbSpare thead tr th").length;
+                if ($(e).val() == false || $(e).val() == "false") {
+                    $(e).val(true); for (var i = 0; i < Length; i++) {
+                        var ss = $("#tbSpare thead tr th").eq(i).html();
+                        if (ss == label) {
+
+                            $("#tbSpare thead tr th").eq(i).attr("style", "display: none");
+                            var length = $("#tbSpare tbody tr").length;
+                            for (var j = 0; j < length; j++) {
+                                $("#tbSpare tbody tr").eq(j).find("td").eq(value).attr("style", "text-align: center; display: none");
+                            }
+                        }
+                    }
+                }
+                else {
+                    $(e).val(false); for (var i = 0; i < Length; i++) {
+                        var ss = $("#tbSpare thead tr th").eq(i).html();
+                        if (ss == label) {
+                            $("#tbSpare thead tr th").eq(i).attr("style", "");
+                            var length = $("#tbSpare tbody tr").length;
+                            for (var j = 0; j < length; j++) {
+                                $("#tbSpare tbody tr").eq(j).find("td").eq(value).attr("style", "text-align: center;");
+                            }
+
+                        }
+                    }
+                }
+
+            }
+            //根据数据库信息生成li标签
+            $(function () {
+                var FittingsTypeID = 0;
+                $.post("/BasicdataManagment/Information/SelectFittingsType", function (data) {
+                    $("#FittingsTypeName span").html(data.length);//获取数据长度
+                    $("#FittingsTypeName ul.listshow").html("");
+                    $.each(data, function (i) {//生成li标签
+                        $("#FittingsTypeName ul").append('<li onclick="Chose(' + data[i].FittingsTypeID + ')" id=' + data[i].FittingsTypeID + ' class="lishow"><i class="diai"></i>' +
+                                data[i].FittingsTypeName + ' (' + data[i].FittingsTypeNum + ')</li>');
+                        FittingsTypeID = data[i].FittingsTypeID;
+                        $("#" + FittingsTypeID).click(function () {
+                            $("#FittingsTypeName li").removeClass("active");
+                            $(this).addClass("active");
+                            tbSpare.search({//点击商品类别刷新表格
+                                FittingsTypeID: this.id
+                            });
+                        })
+                    })
+                })
+                tbSpare.refreshPage();
+            })
+            //修改下拉框绑定
+            createSelect("EFittingsTypeId", "/PublicManagment/CreateSelect/SelectFittingsType");//商品类别
+            createSelect("ESystemUnitID", "/PublicManagment/CreateSelect/SelectSystemUnit");//单位
+            createSelect("EVehicleTypeID", "/PublicManagment/CreateSelect/SelectVehicleType");//所属车型
+            createSelect("ESuppliersId", "/PublicManagment/CreateSelect/SelectSuppliers");//供应商
+            //新增下拉框绑定
+            createSelect("CFittingsTypeId", "/PublicManagment/CreateSelect/SelectFittingsType");//商品类别
+            createSelect("CSystemUnitID", "/PublicManagment/CreateSelect/SelectSystemUnit");//单位
+            createSelect("CVehicleTypeID", "/PublicManagment/CreateSelect/SelectVehicleType");//所属车型
+            createSelect("CSuppliersId", "/PublicManagment/CreateSelect/SelectSuppliers");//供应商
+
+    </script>
+</body>
+</html>

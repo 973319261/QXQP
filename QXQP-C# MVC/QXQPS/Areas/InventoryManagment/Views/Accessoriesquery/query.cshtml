@@ -1,0 +1,291 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>query</title>
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/icons.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/main.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrapal.css" rel="stylesheet" />
+    @*CSS样式(包含默认皮肤样式)*@
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    @*CSS皮肤(需引用于bsgrid.all.min.css之后)*@
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_gray.min.css" rel="stylesheet" />
+    <style>
+        .breadcrumb > li + li:before {
+            color: #CCCCCC;
+            content: "> ";
+            padding: 0 5px;
+        }
+
+        .layui-elem-fielded {
+            width: 99%;
+            margin: 20px 10px 0px 10px;
+            padding: 20px 10px;
+        }
+
+        label {
+            text-align: right;
+            line-height: 37px;
+            width: 100%;
+            font-size: 20px;
+            font-weight: 200;
+        }
+
+        .col-lg-1 {
+            width: 5%;
+            padding-left: 0px;
+        }
+
+        .col-lg-2 {
+            width: 15%;
+            padding-left: 0px;
+        }
+
+        .layui-elem-fielded {
+            margin: 10px;
+            width: 98%;
+            padding: 10px;
+        }
+
+        .modOne，.modTow {
+            overflow: auto;
+            width: 95%;
+            border-top: none;
+            text-align: center;
+        }
+        .modTow {
+            overflow: auto;
+            width: 95%;
+            border-top: none;
+            text-align: center;
+        }
+        .panel-body-bow {
+            width: 110%;
+        }
+
+        h6 {
+            line-height: 20px;
+            font-size: 14px;
+            font-weight: 300;
+        }
+    </style>
+
+
+</head>
+<body>
+    @*导航栏*@
+    <ol class="breadcrumb">
+        <li>首页</li>
+        <li>配件库存</li>
+        <li><a href="#">配件库存查询</a></li>
+    </ol>
+    <fieldset style="margin-bottom:10px;">
+        <legend class=".layui-elem-fielded legend" style="font-weight:300;">查询条件</legend>
+        <div class="col-lg-12">
+            <div class="layui-fielded-box">
+                <div class="col-lg-1 ">
+                    <label>编码</label>
+                </div>
+                <div class="col-lg-2 ">
+                    <input type="text" id="FittingsCode" class="form-control">
+                </div>
+                <div class="col-lg-1">
+                    <label>名称</label>
+                </div>
+                <div class="col-lg-2 ">
+                    <input type="text" id="FittingsName" class="form-control">
+                </div>
+                <div class="col-lg-1">
+                    <label>类别</label>
+                </div>
+                <div class="col-lg-2 ">
+                    <input type="text" id="FittingsType"class="form-control">
+                </div>
+                <div class="col-lg-1">
+                    <label>仓库</label>
+                </div>
+                <div class="col-lg-2">
+                    <select id="CWarehouseID"class="form-control" name="WarehouseID"></select>
+                </div>
+                <div>
+                    <button class="btn btn-primary " type="button" onclick="SearchQuery()" id="SelectCku" style="margin-left:30px;"><i class="en-plus3"></i>查询</button>
+                    <button class="btn btn-primary " type="button" onclick="SearchType()" id="SelectWu" style="margin-left:30px;display:none"><i class="en-plus3"></i>查询</button>
+                </div>
+               
+            </div>
+        </div>
+    </fieldset>
+    <div class="col-lg-12" style="margin-bottom:10px;">
+        <div  class="col-lg-3 col-md-3 col-xs-12">
+            <select class="form-control" id="SelectType">
+                <option value="0">按仓库统计</option>
+                <option value="1">按物料统计</option>  
+            </select>
+        </div>
+        <div class="col-lg-7 col-md-7 col-xs-12" style="text-align:center;">
+            <h6>说明：要查询目前仓库库存情况，请选择按照仓库统计，按物料统计是统计所有物料的库存，仓库没有的也会统计</h6>
+        </div>
+    </div>
+
+    @*表格*@
+    <div class="modOne col-lg-12"id="modOne">
+        <div class="panel-body-bow">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="Query">
+                    <thead>
+                        <tr>
+                            <th w_num="total_line">序号</th>
+                            <th w_index="InventoryID" w_hidden="true"></th>@*库存ID*@
+                            <th w_index="WarehouseName">仓库</th>
+                            <th w_index="FittingsTypeName">所属类型</th>
+                            <th w_index="FittingsCode">配件编码</th>
+                            <th w_index="FittingsName">配件名称</th>
+                            <th w_index="VehicleType">车型</th>
+                            <th w_index="SystemUnit">单位</th>
+                            <th w_index="InvenQuan">库存量</th>
+                            <th w_index="NewIntake">最新进价</th>
+                            <th w_index="WholePrice">批发价</th>
+                            <th w_index="SalePrice">销售价</th>
+                            <th w_index="MinInventory">最低库存</th>
+                            <th w_index="Position">仓位</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modTow col-lg-12" style="display:none"id="modTow">
+        <div class="panel-body-bow">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="Type">
+                    <thead>
+                        <tr>
+                            <th w_num="total_line">序号</th>
+                            <th w_index="FittingsInfoID" w_hidden="true"></th>
+                            <th w_index="FittingsTypeName">类别</th>
+                            <th w_index="FittingsCode">配件编码</th>
+                            <th w_index="FittingsName">配件名称</th>
+                            <th w_index="VehicleType">所属车型</th>
+                            <th w_index="SuppliersName">供应商</th>
+                            <th w_index="Brand">品牌</th>
+                            <th w_index="InvenQuan">库存量</th>
+                            <th w_index="InventoryMax">库存上限</th>
+                            <th w_index="InventoryMin">库存下限</th>
+                            <th w_index="SystemUnit">单位</th>
+                            <th w_index="Intake">进价</th>
+                            <th w_index="SalesPrice">销售价格</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/js/customfunction.js"></script>
+    <script>
+        //初始化表格
+        var Query;
+        $(function () {
+            Query = $.fn.bsgrid.init('Query', {
+                url: 'SelectQuery',
+                autoLoad: true,//自动加载
+                stripeRows: true,//隔行变色
+                rowHoverColor: false,//划过行变色
+                //displayBlankRows: false,//是否显示空白行, 默认值true
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//当前页行数
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                paddingToolbarAlign: "right",//分页工具条的显示位置
+            })
+            SearchQuery();
+            //配件库存表多条件查询
+            
+        })
+        var Type;
+        $(function () {
+            Type = $.fn.bsgrid.init('Type', {
+                url: 'SelectSpareQuery',
+                autoLoad: true,//自动加载
+                stripeRows: true,//隔行变色
+                rowHoverColor: false,//划过行变色
+                //displayBlankRows: false,//是否显示空白行, 默认值true
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//当前页行数
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                paddingToolbarAlign: "right",//分页工具条的显示位置
+            })
+        })
+        function SearchType() {
+            var FittingsCode = $("#FittingsCode").val();//配件编码
+            var FittingsName = $("#FittingsName").val();//配件名称
+            var FittingsType = $("#FittingsType").val();//配件类别
+        
+
+            if (FittingsCode == undefined) {
+                FittingsCode = "";
+            }
+            if (FittingsName == undefined) {
+                FittingsName = "";
+            }
+            if (FittingsType == undefined) {
+                FittingsType = "";
+            }
+            //(BsgridPage bsgridPage, string FittingsCode, string FittingsName, string FittingsType,int WarehouseID)
+            Type.search("FittingsCode=" + FittingsCode + "&FittingsName=" + FittingsName + "&FittingsType=" + FittingsType);
+        }
+        //配件库存表多条件查询
+        function SearchQuery() {
+            var FittingsCode = $("#FittingsCode").val();//配件编码
+            var FittingsName = $("#FittingsName").val();//配件名称
+            var FittingsType = $("#FittingsType").val();//配件类别
+            var CWarehouseID = $("#CWarehouseID").val();//仓库ID
+
+            if (FittingsCode == undefined) {
+                FittingsCode = "";
+            }
+            if (FittingsName == undefined) {
+                FittingsName = "";
+            }
+            if (FittingsType == undefined) {
+                FittingsType = "";
+            }
+            if (CWarehouseID == null || CWarehouseID == "") {
+                CWarehouseID = 0;
+            }
+            Query.search("FittingsCode=" + FittingsCode + "&FittingsName=" + FittingsName + "&FittingsType=" + FittingsType + "&WarehouseID=" + CWarehouseID);
+        }
+        //绑定下拉框
+        createSelect("CWarehouseID", "SelectWarehouse");//仓库
+        $("#SelectType").change(function () {
+            var vaule = $(this).val();
+            if (vaule == "0") {
+                //仓库
+                document.getElementById("modOne").style.display = 'block';
+                document.getElementById("modTow").style.display = "none";
+                document.getElementById("SelectCku").style.display = 'block';
+                document.getElementById("SelectWu").style.display = "none";
+            } else {
+                //物料
+                document.getElementById("modTow").style.display = "block";
+                document.getElementById("modOne").style.display = "none";
+                document.getElementById("SelectWu").style.display = 'block';
+                document.getElementById("SelectCku").style.display = "none";
+            }
+        })
+        $("#Insert")
+     
+    </script>
+</body>
+</html>

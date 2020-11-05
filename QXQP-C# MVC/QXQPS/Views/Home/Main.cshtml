@@ -1,0 +1,291 @@
+﻿  
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Main</title>
+    <link href="~/Content/Main/static/h-ui/css/H-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/Main/static/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" />
+    <link href="~/Content/Main/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/Main/static/h-ui.admin/skin/default/skin.css" rel="stylesheet" />
+    <link href="~/Content/Main/static/h-ui.admin/css/style.css" rel="stylesheet" />
+</head>
+<body class="">
+    <header class="navbar-wrapper">
+        <div class="navbar navbar-fixed-top">
+            <div class="container-fluid cl">
+                <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">智百盛汽修汽配管理系统</a>
+                <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">H-ui</a>
+                <span class="logo navbar-slogan f-l mr-10 hidden-xs">v7.5</span>
+                <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;"></a>      
+                <nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
+                    <ul class="cl">
+                        <li>@ViewBag.UserTypeName </li>
+                        <li class="dropDown dropDown_hover">
+                            <a href="#" class="dropDown_A"> @ViewBag.UserName <i class="Hui-iconfont"></i></a>
+                            <ul class="dropDown-menu menu radius box-shadow">
+                                <li class=""><a href="#">个人信息</a></li>
+                                <li class=""><a href="/Home/Login">切换账户</a></li>
+                                <li class=""><a href="/Home/Login">退出</a></li>
+                            </ul>
+                        </li>
+                        @*信息*@
+                        <li id="Hui-msg"> <a href="#" title="消息"><i class="Hui-iconfont" style="font-size:18px"></i></a> </li>
+                        @*皮肤*@
+                        <li id="Hui-skin" class="dropDown right dropDown_hover">
+                            <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px"></i></a>
+                            <ul class="dropDown-menu menu radius box-shadow">
+                                <li class=""><a href="javascript:;" data-val="default" title="默认（黑色）">默认（黑色）</a></li>
+                                <li class=""><a href="javascript:;" data-val="blue" title="蓝色">蓝色</a></li>
+                                <li class=""><a href="javascript:;" data-val="green" title="绿色">绿色</a></li>
+                                <li class=""><a href="javascript:;" data-val="red" title="红色">红色</a></li>
+                                <li class=""><a href="javascript:;" data-val="yellow" title="黄色">黄色</a></li>
+                                <li class=""><a href="javascript:;" data-val="orange" title="橙色">橙色</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <aside class="Hui-aside">
+        <div class="menu_dropdown bk_2">
+            @*系统首页*@
+            <dl id="menu-article">
+                <dt class=""><i class="Hui-iconfont">&#xe625;</i> 我的桌面</dt>
+            </dl>
+            @*基础数据*@
+            <dl id="menu-article">
+                <dt class=""><i class="Hui-iconfont">&#xe6bf;</i> 基础数据<i class="Hui-iconfont menu_dropdown-arrow"></i></dt>
+                <dd style="display: none;">
+                    <ul>                   
+                        <li><a data-href="/BasicdataManagment/Warehouse/Warehouse" data-title="仓库信息设置" href="javascript:void(0)">仓库信息设置</a></li>
+                        <li><a data-href="/BasicdataManagment/Supplierbasic/Supplierbasic" data-title="供应商基本资料" href="javascript:void(0)">供应商基本资料</a></li>
+                        <li><a data-href="/BasicdataManagment/Customerbasic/Maintenance" data-title="维修客户基本资料" href="javascript:void(0)">维修客户基本资料</a></li>
+                        <li><a data-href="/BasicdataManagment/Categories/Accessories" data-title="配件大类设置" href="javascript:void(0)">配件大类设置</a></li>
+                        <li><a data-href="/BasicdataManagment/Information/Spare" data-title="配件信息设置" href="javascript:void(0)">配件信息设置</a></li>
+                        <li><a data-href="/BasicdataManagment/Salescustomer/Sales" data-title="销售客户设置" href="javascript:void(0)">销售客户设置</a></li>
+                        <li><a data-href="/BasicdataManagment/Clientlocale/Client" data-title="客户区域设置" href="javascript:void(0)">客户区域设置</a></li>
+                        <li><a data-href="/BasicdataManagment/Maintenance/Projects" data-title="维修项目设置" href="javascript:void(0)">维修项目设置</a></li>          
+                    </ul>
+                </dd>   
+            </dl>
+            @*汽修管理*@
+            <dl id="menu-article">
+                <dt class=""><i class="Hui-iconfont">&#xe63c;</i> 汽修管理<i class="Hui-iconfont menu_dropdown-arrow"></i></dt>
+                <dd style="display: none;">
+                    <ul>
+                        <li><a data-href="/MechanicsManagment/Appointment/Appointment" data-title="预约安排" href="javascript:void(0)">预约安排</a></li>
+                        <li><a data-href="/MechanicsManagment/Customerreception/Customer" data-title="客户接待" href="javascript:void(0)">客户接待</a></li>
+                        <li><a data-href="/MechanicsManagment/Dispatching/Dispatching" data-title="维修派工" href="javascript:void(0)">维修派工</a></li>
+                        <li><a data-href="/MechanicsManagment/Collage/DraftBack" data-title="维修领料" href="javascript:void(0)">维修领料</a></li>
+                        <li><a data-href="/MechanicsManagment/Completion/Completion" data-title="完工确认" href="javascript:void(0)">完工确认</a></li>
+                        <li><a data-href="/MechanicsManagment/Settlementfactory/Settlement" data-title="结算出厂" href="javascript:void(0)">结算出厂</a></li>
+                        <li><a data-href="/MechanicsManagment/Claimsettlement/Claimset" data-title="三包索赔结算" href="javascript:void(0)">三包索赔结算</a></li>
+                        <li><a data-href="/MechanicsManagment/Insuranceclaims/Insurance" data-title="保险理赔结算" href="javascript:void(0)">保险理赔结算</a></li>
+                        <li><a data-href="/MechanicsManagment/Aleservice/Aleservice" data-title="售后服务" href="javascript:void(0)">售后服务</a></li>
+                        <li><a data-href="/MechanicsManagment/Rapidrepair/Rapidrepair" data-title="快速修车" href="javascript:void(0)">快速修车</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            @*汽修统计*@
+            <dl id="menu-article">
+                <dt class=""><i class="Hui-iconfont">&#xe6f3;</i> 汽修统计<i class="Hui-iconfont menu_dropdown-arrow"></i></dt>
+                <dd style="display: none;">
+                    <ul>
+                        <li><a data-href="/OtherfeaturesManagment/Reservation/Reservation" data-title="预约报价单统计" href="javascript:void(0)">预约报价单统计</a></li>
+                        <li><a data-href="/OtherfeaturesManagment/Maintenance/Maintenance" data-title="维修工艺统计" href="javascript:void(0)">维修工艺统计</a></li>
+                        <li><a data-href="/OtherfeaturesManagment/Workers/Workers" data-title="工人工资统计" href="javascript:void(0)">工人工资统计</a></li>
+                        <li><a data-href="/OtherfeaturesManagment/Mainteprojects/Mainteper" data-title="维修项目统计" href="javascript:void(0)">维修项目统计</a></li>
+                        <li><a data-href="/OtherfeaturesManagment/Pickone/Pickone" data-title="接车人统计" href="javascript:void(0)">接车人统计</a></li>
+                        <li><a data-href="/OtherfeaturesManagment/Incomeprofits/Incomeprofit" data-title="维修收入利润帐" href="javascript:void(0)">维修收入利润帐</a></li>
+                        <li><a data-href="/OtherfeaturesManagment/Archives/Archives" data-title="维修档案报表" href="javascript:void(0)">维修档案报表</a></li>
+                        <li><a data-href="/OtherfeaturesManagment/Picking/Picking" data-title="维修领料统计" href="javascript:void(0)">维修领料统计</a></li>
+                        <li><a data-href="/OtherfeaturesManagment/Insurance/Insurance" data-title="保险索赔明细表" href="javascript:void(0)">保险索赔明细表</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            @*配件采购*@
+            <dl id="menu-picture">
+                <dt class=""><i class="Hui-iconfont">&#xe654;</i> 配件采购<i class="Hui-iconfont menu_dropdown-arrow"></i></dt>
+                <dd style="display: none;">
+                    <ul>
+                        <li><a data-href="/AccessoriessalesManagment/Purchaseorder/Purchaseorder" data-title="采购订货" href="javascript:void(0)">采购订货</a></li>
+                        <li><a data-href="/AccessoriessalesManagment/Warehousing/Warehousing" data-title="采购入库" href="javascript:void(0)">采购入库</a></li>
+                        <li><a data-href="/AccessoriessalesManagment/Purchasereturn/Purchasereturn" data-title="采购退货" href="javascript:void(0)">采购退货</a></li>
+                        <li><a data-href="/AccessoriessalesManagment/Cargosettlement/Cargosettlement" data-title="货商结算" href="javascript:void(0)">货商结算</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            @*配件销售*@
+            <dl id="menu-product">
+                <dt class=""><i class="Hui-iconfont">&#xe66a;</i> 配件销售<i class="Hui-iconfont menu_dropdown-arrow"></i></dt>
+                <dd style="display: none;">
+                    <ul>
+                        <li><a data-href="/ProcurementManagment/Salesorder/Salesorder" data-title="销售订货" href="javascript:void(0)">销售订货</a></li>
+                        <li><a data-href="/ProcurementManagment/warehousing/warehousing" data-title="销售出库" href="javascript:void(0)">销售出库</a></li>
+                        <li><a data-href="/ProcurementManagment/Salesreturn/Salesreturn" data-title="销售退货" href="javascript:void(0)">销售退货</a></li>
+                        <li><a data-href="/ProcurementManagment/Customersettle/Customersettle" data-title="客户结算" href="javascript:void(0)">客户结算</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            @*配件库存*@
+            <dl id="menu-product">
+                <dt class=""><i class="Hui-iconfont">&#xe634;</i> 配件库存<i class="Hui-iconfont menu_dropdown-arrow"></i></dt>
+                <dd style="display: none;">
+                    <ul>
+                        <li><a data-href="/InventoryManagment/Accessoriesquery/query" data-title="库存配件查询" href="javascript:void(0)">库存配件查询</a></li>
+                        <li><a data-href="" data-title="申请盘点批号" href="javascript:void(0)">申请盘点批号</a></li>
+                        <li><a data-href="" data-title="开始盘点配件" href="javascript:void(0)">开始盘点配件</a></li>
+                        <li><a data-href="" data-title="盘点差异处理" href="javascript:void(0)">盘点差异处理</a></li>
+                        <li><a data-href="" data-title="盘点结束" href="javascript:void(0)">盘点结束</a></li>
+                        <li><a data-href="" data-title="货品进销明细账" href="javascript:void(0)">货品进销明细账</a></li>
+                        <li><a data-href="" data-title="库存损益" href="javascript:void(0)">库存损益</a></li>
+                        <li><a data-href="" data-title="库存损益报表" href="javascript:void(0)">库存损益报表</a></li>
+                        <li><a data-href="" data-title="库存调拨" href="javascript:void(0)">库存调拨</a></li>
+                        <li><a data-href="" data-title="库存调拨报表" href="javascript:void(0)">库存调拨报表</a></li>                
+                    </ul>
+                </dd>
+            </dl>
+            @*客户关系*@
+            <dl id="menu-member">
+                <dt class=""><i class="Hui-iconfont">&#xe62c;</i> 客户关系<i class="Hui-iconfont menu_dropdown-arrow"></i></dt>
+                <dd style="display: none;">
+                    <ul>
+                        <li><a data-href="" data-title="维修档案管理" href="javascript:void(0)">维修档案管理</a></li>
+                        <li><a data-href="" data-title="客户投诉管理" href="javascript:void(0)">客户投诉管理</a></li>
+                        <li><a data-href="" data-title="修车后三天跟踪" href="javascript:void(0)">修车后三天跟踪</a></li>
+                        <li><a data-href="" data-title="客户关管理" href="javascript:void(0)">客户关管理</a></li>
+                        <li><a data-href="" data-title="客户投诉接待" href="javascript:void(0)">客户投诉接待</a></li>
+                        <li><a data-href="" data-title="客户投诉处理及分析" href="javascript:void(0)">客户投诉处理及分析</a></li>
+                        <li><a data-href="" data-title="修后跟踪任务分配" href="javascript:void(0)">修后跟踪任务分配</a></li>
+                        <li><a data-href="" data-title="跟踪信息录入" href="javascript:void(0)">跟踪信息录入</a></li>
+                        <li><a data-href="" data-title="跟踪录入查询" href="javascript:void(0)">跟踪录入查询</a></li>
+                        <li><a data-href="" data-title="车主生日提醒" href="javascript:void(0)">车主生日提醒</a></li>
+                        <li><a data-href="" data-title="定期保养提醒" href="javascript:void(0)">定期保养提醒</a></li>
+                        <li><a data-href="" data-title="保险到期提醒" href="javascript:void(0)">保险到期提醒</a></li>
+                        <li><a data-href="" data-title="验车到期提醒" href="javascript:void(0)">验车到期提醒</a></li>
+                        <li><a data-href="" data-title="驾照到期提醒" href="javascript:void(0)">驾照到期提醒</a></li>
+                        <li><a data-href="" data-title="客户流失报警" href="javascript:void(0)">客户流失报警</a></li>
+                        <li><a data-href="" data-title="客户消费排行" href="javascript:void(0)">客户消费排行</a></li>
+                        <li><a data-href="" data-title="查询待预约客户" href="javascript:void(0)">查询待预约客户</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            @*财务管理*@
+            <dl id="menu-admin">
+                <dt class=""><i class="Hui-iconfont">&#xe6b7;</i> 财务管理<i class="Hui-iconfont menu_dropdown-arrow"></i></dt>
+                <dd style="display: none;">
+                    <ul>
+                        <li><a data-href="" data-title="客户预收款" href="javascript:void(0)">客户预收款</a></li>
+                        <li><a data-href="" data-title="客户费用" href="javascript:void(0)">客户费用</a></li>
+                        <li><a data-href="" data-title="客户结算" href="javascript:void(0)">客户结算</a></li>
+                        <li><a data-href="" data-title="客户来账" href="javascript:void(0)">客户来账</a></li>
+                        <li><a data-href="" data-title="供应商预收款" href="javascript:void(0)">供应商预收款</a></li>
+                        <li><a data-href="" data-title="供应商费用" href="javascript:void(0)">供应商费用</a></li>
+                        <li><a data-href="" data-title="供应商结算" href="javascript:void(0)">供应商结算</a></li>
+                        <li><a data-href="" data-title="供应商往来账" href="javascript:void(0)">供应商往来账</a></li>
+                        <li><a data-href="" data-title="凭证录入" href="javascript:void(0)">凭证录入</a></li>
+                        <li><a data-href="" data-title="凭证报表统计" href="javascript:void(0)">凭证报表统计</a></li>
+                        <li><a data-href="" data-title="财务日记账" href="javascript:void(0)">财务日记账</a></li>
+                        <li><a data-href="" data-title="应付明细账" href="javascript:void(0)">应付明细账</a></li>
+                        <li><a data-href="" data-title="应收明细账" href="javascript:void(0)">应收明细账</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            @*报表分析*@
+            <dl id="menu-tongji">
+                <dt><i class="Hui-iconfont">&#xe61e;</i> 报表分析<i class="Hui-iconfont menu_dropdown-arrow"></i></dt>
+                <dd style="">
+                    <ul>
+                        <li><a data-href="" data-title="采购订单状态监控" href="javascript:void(0)">采购订单状态监控</a></li>
+                        <li><a data-href="" data-title="销售订单监控" href="javascript:void(0)">销售订单监控</a></li>
+                        <li><a data-href="" data-title="车牌统计" href="javascript:void(0)">车牌统计</a></li>
+                        <li><a data-href="" data-title="新增客户统计" href="javascript:void(0)">新增客户统计</a></li>
+                        <li><a data-href="" data-title="维护月报表" href="javascript:void(0)">维护月报表</</a></li>
+                        <li><a data-href="" data-title="车主档案表" href="javascript:void(0)">车主档案表</</a></li>
+                        <li><a data-href="" data-title="结算状态报表" href="javascript:void(0)">结算状态报表</a></li>
+                        <li><a data-href="" data-title="丢失客户统计" href="javascript:void(0)">丢失客户统计</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            @*系统设置*@
+            <dl id="menu-system">
+                <dt class=""><i class="Hui-iconfont">&#xe6a2;</i> 系统设置<i class="Hui-iconfont menu_dropdown-arrow"></i></dt>
+                <dd style="display: none;">
+                    <ul>
+                        <li><a data-href="/SystemInstallManagment/Operatorage/Operatorage" data-title="操作员管理" href="javascript:void(0)">操作员管理</a></li>
+                        <li><a data-href="/SystemInstallManagment/Operating/Operating" data-title="操作权限" href="javascript:void(0)">操作权限</a></li>
+                        <li><a data-href="/SystemInstallManagment/Password/Password" data-title="修改密码" href="javascript:void(0)">修改密码</a></li>
+                        <li><a data-href="" data-title="清空数据" href="javascript:void(0)">清空数据</a></li>
+                        <li><a data-href="" data-title="备份数据库" href="javascript:void(0)">备份数据库</a></li>
+                        <li><a data-href="" data-title="数据库恢复" href="javascript:void(0)">数据库恢复</a></li>
+                        <li><a data-href="" data-title="短信账号" href="javascript:void(0)">短信账号</a></li>
+                        <li><a data-href="" data-title="公司信息" href="javascript:void(0)">公司信息</a></li>
+                        <li><a data-href="" data-title="在线升级" href="javascript:void(0)">在线升级</a></li>
+                        <li><a data-href="" data-title="信息展示" href="javascript:void(0)">信息展示</a></li>
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+    </aside>
+    @*菜单栏隐藏*@
+    <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
+    <section class="Hui-article-box">
+        <div id="Hui-tabNav" class="Hui-tabNav hidden-xs">
+            <div class="Hui-tabNav-wp">
+                <ul id="min_title_list" class="acrossTab cl">
+                    <li class="active">
+                        <span title="我的桌面" data-href="">我的桌面</span>
+                        <em></em>
+                    </li>
+                </ul>
+            </div>
+            <div class="Hui-tabNav-more btn-group"><a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d4;</i></a><a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i></a></div>
+        </div>
+        <div id="iframe_box" class="Hui-article">
+            <div class="show_iframe">
+                <div style="display:none" class="loading"></div>
+                <iframe scrolling="yes" frameborder="0" src="Welcome"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <div class="contextMenu" id="Huiadminmenu">
+        <ul>
+            <li id="closethis">关闭当前 </li>
+            <li id="closeall">关闭全部 </li>
+        </ul>
+    </div>
+    @*外部引用*@
+    <script src="~/Content/Main/lib/jquery/1.9.1/jquery.min.js"></script>
+    <script src="~/Content/Main/lib/layer/2.4/layer.js"></script>
+    <script src="~/Content/Main/static/h-ui/js/H-ui.min.js"></script>
+    <script src="~/Content/Main/static/h-ui.admin/js/H-ui.admin.js"></script>
+    <script>
+        $(function () {
+            var li = $(".Hui-aside li");
+            $.each(li, function (i) {
+                var num=i+1;
+                var Id = "Q"+ num;
+                $(this).attr("id", Id);
+            })
+            $.post("SelectJurisdiction?UserID=" + @ViewBag.UserID, function (data) {
+                $.each(data, function (i) {
+                    var Id=data[i].ModularID;
+                    var Bo=data[i].ToJdtion;
+                    if (Bo==false) {
+                        $("#Q"+Id).remove();;
+                    }
+                })
+            })
+        })
+    </script>
+   
+</body>
+</html>

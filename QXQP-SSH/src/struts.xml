@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 当struts.xml配置文件修改后，系统是否重新加载该文件，开发阶段打开此功能 -->
+	<constant name="struts.configuration.xml.reload" value="true"></constant>
+	<constant name="struts.devMode" value="true"></constant>
+	<package name="userAction" namespace="/" extends="json-default">
+		<!-- commonAction 公共-->
+		<action name="commonAction" class="com.koi.web.CommonAction">
+			<result name="result" type="json">
+				<param name="root">result</param>
+			</result>
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">104857600</param>
+				<param name="allowedExtensions">jpg,jpeg,png</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<!-- UserAction 用户管理-->
+		<action name="userAction" class="com.koi.web.UserAction">
+			<result name="validateCode" type="json">
+				<param name="root">validateCode</param>
+			</result>
+			<result name="result" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- AppointmentAction 预约安排-->
+		<action name="appointmentAction" class="com.koi.web.AppointmentAction">
+			<result name="result" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- CustomerAction 客户接待-->
+		<action name="customerAction" class="com.koi.web.CustomerAction">
+			<result name="result" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- DispatchingAction 维修派工-->
+		<action name="dispatchingAction" class="com.koi.web.DispatchingAction">
+			<result name="result" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- CollageAction 维修领料-->
+		<action name="collageAction" class="com.koi.web.CollageAction">
+			<result name="result" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- CompletionAction 完工确认-->
+		<action name="completionAction" class="com.koi.web.CompletionAction">
+			<result name="result" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- SettlementAction 结算出厂-->
+		<action name="settlementAction" class="com.koi.web.SettlementAction">
+			<result name="result" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- ClaimsetAction 结算出厂-->
+		<action name="claimsetAction" class="com.koi.web.ClaimsetAction">
+			<result name="result" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- InsuranceAction 结算出厂-->
+		<action name="insuranceAction" class="com.koi.web.InsuranceAction">
+			<result name="result" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- RapidrepairAction 快速修车-->
+		<action name="rapidrepairAction" class="com.koi.web.RapidrepairAction">
+			<result name="result" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+</struts>    

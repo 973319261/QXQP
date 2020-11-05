@@ -1,0 +1,897 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Sales</title>
+    <link href="~/Content/Main/css/icons.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/main.css" rel="stylesheet" />
+    <link href="~/Content/Main/static/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" />
+    <link href="~/Content/Main/tabnav/css/element.min.css" rel="stylesheet" />
+    <link href="~/Content/Main/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrapal.css" rel="stylesheet" />
+
+    @*CSS样式(包含默认皮肤样式)*@
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    @*CSS皮肤(需引用于bsgrid.all.min.css之后)*@
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_gray.min.css" rel="stylesheet" />
+    @*<link href="~/Content/zTree_v3/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />*@
+    <style>
+        .breadcrumb > li + li:before {
+            color: #CCCCCC;
+            content: "> ";
+            padding: 0 5px;
+        }
+
+        .layui-elem-fielded legend {
+            font-size: 23px;
+        }
+
+        .layui-elem-fielded {
+            width: 99%;
+            margin: 20px 10px 0px 10px;
+            padding: 20px 10px;
+        }
+
+        .Tree {
+            float: left;
+            height: 485px;
+            margin: 0px 20px;
+            padding: 5px;
+            border: 3px solid #f5f5f5;
+            border-top: none;
+            box-shadow: 0 0 20px 1px #eee;
+            width: 15%;
+        }
+
+        .List {
+            height: 485px;
+            float: left;
+            overflow: auto;
+            border: 3px solid #f5f5f5;
+            border-top: none;
+            box-shadow: 0 0 20px 1px #eee;
+            width: 80%;
+            position: absolute;
+            right: 40px;
+            top: 165px;
+        }
+
+
+
+        .modTow-body {
+            width: 800px;
+        }
+
+
+        .modal .control-label {
+            width: 100px;
+            padding-top: 0px;
+        }
+
+        .modal .form-group {
+            margin: 1px;
+        }
+
+
+        .modal-body {
+            padding-bottom: 0;
+        }
+
+        .modal button i {
+            margin-right: 5px;
+        }
+
+        .modal label {
+            width: 100%;
+            margin-top: 8px;
+            text-align: right;
+        }
+
+        .modTows {
+            width: 641px;
+            height: 50%;
+            float: left;
+            padding: 10px;
+        }
+
+        .Coloca {
+            float: right;
+            background: none;
+            border: none;
+        }
+
+        .Gonyin {
+            line-height: 35px;
+            margin-left: 5px;
+        }
+
+        .panel-body-bow {
+            width: 220%;
+            padding: 5px;
+        }
+
+        .modal-footer {
+            margin-left: 5px;
+        }
+
+        .modal-bottom {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        #RegionName {
+            padding: 15px;
+        }
+
+            #RegionName li {
+                text-align: left;
+                /*font-size:14px;*/
+                list-style-type: none;
+            }
+
+                #RegionName li:hover {
+                    background: #eee;
+                    cursor: alias;
+                }
+
+                #RegionName li i {
+                    display: inline-block;
+                    background: url('../../../../Content/Main/images/smiley_evil.png') no-repeat 0px 5px;
+                    width: 20px;
+                    height: 20px;
+                }
+
+                #RegionName li .diai {
+                    margin-left: 23px;
+                }
+
+        .active {
+            background: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    @*导航栏*@
+    <ol class="breadcrumb">
+        <li>首页</li>
+        <li>基础数据</li>
+        <li><a href="#">销售客户设置</a></li>
+    </ol>
+    @*按钮组 *@
+    <div class="btn-groud">
+        <button class="btn btn-warning " type="button" id="Insert"><i class="en-plus3"></i>增加</button>
+        <button class="btn btn-primary " type="button" id="Update"><i class="en-tools"></i>修改</button>
+        <button class="btn btn-primary " type="button" id="Delect"><i class="en-trash"></i>删除</button>
+        <button class="btn btn-warning " type="button"><i class="en-upload"></i>导出</button>
+        <button class="btn btn-danger " type="button" data-dismiss="modal"><i class="br-switch"></i> 关闭</button>
+    </div>
+    @*销售客户设置内容*@
+    <fieldset class="layui-elem-fielded">
+        <legend class=".layui-elem-fielded legend">销售客户基本资料</legend>
+        <div class="row">
+            @*树形图*@
+            <div class="Tree" id="RegionName" style="text-align:left;">
+                <ul style="padding:0;">
+                    <li onclick="Chose()">
+                        <i style="background:url('../../../../Content/Main/images/smiley_evil.png')no-repeat 0px 5px;">
+
+                        </i>客户区域 &nbsp;共有<span></span>个区域
+                    </li>
+                </ul>
+            </div>
+            @*销售客户设置*@
+            <div class="  List">
+                <div class="panel-body-bow">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="tbSales">
+                            <thead>
+                                <tr>
+                                    <th w_num="total_line"> 序号</th>
+                                    <th w_index="SalesCustomerID" w_check="true"><input type="checkbox" /></th>
+                                    <th w_index="CustomerCode">客户编号</th>
+                                    <th w_index="CustomerName">客户名称</th>
+                                    <th w_index="FullName">全称</th>
+                                    <th w_index="CustomerType">客户类别</th>
+                                    <th w_index="CustomerLevel">客户等级</th>
+                                    <th w_index="RegionName">区域</th>
+                                    <th w_index="CustomerSou">客户来源</th>
+                                    <th w_index="Contacts">联系人</th>
+                                    <th w_index="TelePhone">电话</th>
+                                    <th w_index="MobilePhone">手机</th>
+                                    <th w_index="IdNumber">身份证</th>
+                                    <th w_index="Address">地址</th>
+                                    <th w_index="ZipCode">邮编</th>
+                                    <th w_index="UserName">业务员</th>
+                                  
+                                    <th w_render="SetState">停用标志</th>
+                                    <th w_index="ToDeactivate" w_hidden="true"></th>
+
+                                    <th w_index="PaymentName">付款方式</th>
+                                    <th w_index="InputPerson"> 录入人</th>
+                                    <th w_index="Remark">备注</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*新增模态框*@
+        <div class="modal fade col-lg-12" id="modInsert">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="Coloca" type="button" data-dismiss="modal" aria-hidden="true"><i class="en-cross"></i></button>
+                        <span class="Gonyin">&nbsp;<i class="en-user"></i> 销售客户基本资料</span>
+                    </div>
+                    <div class="modal-footer" style="border-top:none;">
+                        <div class="modTows col-lg-12 col-md-12 col-sm-12">
+                            <form class="form-horizontal" role="form" id="formExaminee" action="InsertSales" method="post" autocomplete="off">
+                                <div class="form-group">
+                                    <input type="text" hidden id="FSalesCustomerID" name="SalesCustomerID" />
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">客户编号:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" readonly id="FCustomerCode" name="CustomerCode">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">区域:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+
+                                        <select class="form-control" id="FRegionID" name="RegionID"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">客户名称:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FCustomerName" name="CustomerName" onKeyUp="query()">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">客户来源:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+
+                                        <select class="form-control" id="FCustomerSouID" name="CustomerSouID"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">地址:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FAddress" name="Address">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">邮编:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FZipCode" name="ZipCode">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">全称:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FFullName" name="FullName">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">拼音码:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select type="text" class="form-control" id="FPinYinCode" name="PinYinCode"></select>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">身份证:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FIdNumber" name="IdNumber" maxlength="18">
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-xs-12">
+                                        <label class="control-label">联系人:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FContacts" name="Contacts">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">传真:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-3 col-xs-12">
+                                        <input type="text" class="form-control" id="FFacsimile" name="Facsimile">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">电话:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FTelePhone" name="TelePhone" onkeyup="value = value.replace(/[^0-9]/g, '')">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">手机:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FMobilePhone" name="MobilePhone" onkeyup="value = value.replace(/[^0-9]/g, '')">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">email:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FEmai" name="Emai">
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">客户等级:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4col-xs-12">
+
+                                        <select class="form-control" id="FCustomerLevelID" name="CustomerLevelID"></select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">客户类别:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+
+                                        <select class="form-control" id="FCustomerTypeID" name="CustomerTypeID"></select>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">付款方式:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+
+                                        <select class="form-control" id="FPaymentID" name="PaymentID"></select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">备注:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FRemark" name="Remark">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">业务员:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select class="form-control" id="FUserID" name="UserID"></select>
+
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">录入人:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="FInputPerson" name="InputPerson">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">停用</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12 reset">
+                                        <select id="FToDeactivate" name="ToDeactivate" class="form-control">
+                                            <option>--请选择--</option>
+                                            <option value="true">是</option>
+                                            <option value="false">否</option>
+                                        </select>
+                                       
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-warning cancel" type="button" id="Save"><i class="en-upload"></i>保存</button>
+                                    <button class="btn btn-danger delete" data-dismiss="modal"><i class="br-switch"></i>退出</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+        @*修改模态框 *@
+        <div class="modal fade col-lg-12" id="modUpdate">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="Coloca" type="button" data-dismiss="modal" aria-hidden="true"><i class="en-cross"></i></button>
+                        <span class="Gonyin">&nbsp;<i class="en-user"></i> 销售客户基本资料</span>
+                    </div>
+                    <div class="modal-footer" style="border-top:none;">
+                        <div class="modTows col-lg-12 col-md-12 col-sm-12">
+                            <form class="form-horizontal" role="form" id="formUpdate" action="UpdateSales" method="post" autocomplete="off">
+                                <div class="form-group">
+                                    <input type="text" hidden id="ESalesCustomerID" name="SalesCustomerID" />
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">客户编号:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" readonly id="ECustomerCode" name="CustomerCode">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">区域:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+
+                                        <select class="form-control" id="ERegionID" name="RegionID"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">客户名称:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="ECustomerName" name="CustomerName">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">客户来源:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+
+                                        <select class="form-control" id="ECustomerSouID" name="CustomerSouID"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">地址:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EAddress" name="Address">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">邮编:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EZipCode" name="ZipCode">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">全称:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EFullName" name="FullName">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">拼音码:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EPinYinCode" name="PinYinCode">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">身份证:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EIdNumber" name="IdNumber">
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-xs-12">
+                                        <label class="control-label">联系人:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EContacts" name="Contacts">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">传真:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-3 col-xs-12">
+                                        <input type="text" class="form-control" id="EFacsimile" name="Facsimile">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">电话:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="ETelePhone" name="TelePhone" onkeyup="value = value.replace(/[^0-9]/g, '')">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">手机:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EMobilePhone" name="MobilePhone" onkeyup="value = value.replace(/[^0-9]/g, '')">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">email:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EEmai" name="Emai">
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">客户等级:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4col-xs-12">
+
+                                        <select class="form-control" id="ECustomerLevelID" name="CustomerLevelID"></select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">客户类别:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+
+                                        <select class="form-control" id="ECustomerTypeID" name="CustomerTypeID"></select>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">付款方式:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+
+                                        <select class="form-control" id="EPaymentID" name="PaymentID"></select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">备注:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="ERemark" name="Remark">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">业务员:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <select class="form-control" id="EUserID" name="UserID"></select>
+
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">录入人:</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <input type="text" class="form-control" id="EInputPerson" name="InputPerson">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
+                                        <label class="control-label">停用</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12 reset">
+                                       
+                                        <select id="EToDeactivate" name="ToDeactivate" class="form-control">
+                                            <option>--请选择--</option>
+                                            <option value="true">是</option>
+                                            <option value="false">否</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-warning cancel" type="button" id="SaveUpdate"><i class="en-upload"></i>保存</button>
+                                    <button class="btn btn-danger delete" data-dismiss="modal"><i class="br-switch"></i>退出</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+    </fieldset>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+
+    <script src="~/Content/js/combobox.js"></script>
+    <script src="~/Content/js/jquery.form.js"></script>
+    @*<script src="~/Content/layer/mobile/layer.js"></script>*@
+
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/js/customfunction.js"></script> @*绑定下拉框*@
+    <script src="~/Content/js/pinying.js"></script>@*拼音码*@
+
+
+    <script>
+        //初始化表格
+        var tbSales;
+        $(function () {
+            tbSales = $.fn.bsgrid.init("tbSales", {
+                url: "SelectSales",
+                autoLoad: true,
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 8,
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left",//分页工具条的显示位置
+                //行点击事件
+                event: {
+                    customRowEvents: {
+                        click: function (record, rowIndex, trObj, options) {
+                            Check("#tbSales tr", rowIndex + 1);
+                        }
+                    }
+                }
+            })
+            Chose();
+        })
+        //自定义事件
+        function SetState(record) {
+            var FToDeactivate = record.ToDeactivate;
+            if (FToDeactivate == true || FToDeactivate == "true") {
+                return "<span style='color:red;'>是</span>";
+            } else {
+                return "<span style='color:blue;'>否</span>";
+            }
+        }
+        //选择增加弹出模态框
+        $("#Insert").click(function () {
+            $("#modInsert").modal("show"); //弹出模态框
+            $.ajax({
+                type: "post",
+                url: "Num",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#FCustomerCode").val(data);
+                }
+            });
+        });
+        //拼音码
+        function query(){
+            var str = document.getElementById("FCustomerName").value.trim();
+            if (str == "") return;
+            var arrRslt = makePy(str);
+            //循环将值到下拉框
+            var option = null;
+            document.getElementById("FPinYinCode").innerHTML = "";//清空下拉框
+            var first = document.getElementById("FPinYinCode");
+            for (var j = 0; j < arrRslt.length; j++) {
+                var obj = document.getElementById("FPinYinCode");
+                obj.add(new Option(arrRslt[j]));
+            }
+        }
+
+        ////设置checkbox为选中状态  
+        //$("#FToDeactivate").prop("checked", true);
+          
+        ////设置checkbox为不选中状态  
+        //$("#FToDeactivate").prop("checked", false);
+
+        //保存新增
+        $("#Save").click(function () {
+            var FCustomerCode = $("#FCustomerCode").val();//客户编号
+            var FRegionID = $("#FRegionID").val();//区域
+            var FCustomerName = $("#FCustomerName").val();//客户名称
+            var FCustomerSouID = $("#FCustomerSouID").val();//客户来源
+            var FAddress = $("#FAddress").val();//地址
+            var FZipCode = $("#FZipCode").val();//邮编
+            var FFullName = $("#FFullName").val();//全称
+            var FPinYinCode = $("#FPinYinCode").val();//拼音码
+            var FIdNumber = $("#FIdNumber").val(); //身份证
+            var FContacts = $("#FContacts").val();//联系人
+            var FFacsimile = $("#FFacsimile").val();//传真
+            var FTelePhone = $("#FTelePhone").val();//电话
+            var FMobilePhone = $("#FMobilePhone").val();//手机
+            var FEmai = $("#FEmai").val(); //email
+            var FCustomerLevelID = $("#FCustomerLevelID").val();//客户等级
+            var FCustomerTypeID = $("#FCustomerTypeID").val();//客户类别
+            var FPaymentID = $("#FPaymentID").val();//付款方式
+            var FRemark = $("#FRemark").val();//备注
+            var FUserID = $("#FUserID").val();//业务员
+            var FInputPerson = $("#FInputPerson").val(); //录入人
+            //区域 客户来源 客户等级 客户类别 付款方式 业务员
+            if (FRegionID > 0 && FCustomerSouID > 0 && FCustomerLevelID > 0 && FCustomerTypeID > 0 && FPaymentID > 0 && FUserID > 0) {
+                //显示加载层
+                var layerIndex = layer.load(0);
+                //提交表单
+                $("#formExaminee").ajaxSubmit(function (msg) {
+                    $("#FToDeactivate").is(":checked");//停用
+                    //关闭加载层
+                    layer.close(layerIndex);
+
+                    if (msg == "success") {
+                        //提示信息
+                        layer.msg("新增成功！");
+                        //刷新页面
+                        location.reload();
+                    } else {
+                        layer.alert(msg, { icon: 0, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.msg("请填写完整信息！");
+
+            }
+        });
+        //选择修改弹出模态框
+        $("#Update").click(function () {
+            var checkboxs = $("#modUpdate input[type=checkbox]");
+            var check = $("#tbSales input[type=checkbox]:checked");
+            if (check.length == 0) {
+                layer.alert("请选择你需要修改的数据！");
+            } else if (check.length > 1) {
+                layer.alert("不能修改多条数据！");
+            } else {
+                $("#modUpdate").modal("show");
+                $.post("SelectSale?SalesCustomerID=" + check[0].value, function (data) {
+                    $("#ESalesCustomerID").val(data[0].SalesCustomerID);
+                    $("#ECustomerCode").val(data[0].CustomerCode);
+                    $("#ERegionID").val(data[0].RegionID);
+                    $("#ECustomerName").val(data[0].CustomerName);
+                    $("#ECustomerSouID").val(data[0].CustomerSouID);
+                    $("#EAddress").val(data[0].Address);
+                    $("#EZipCode").val(data[0].ZipCode);
+                    $("#EFullName").val(data[0].FullName);
+                    $("#EPinYinCode").val(data[0].PinYinCode);
+                    $("#EIdNumber").val(data[0].IdNumber);
+                    $("#EContacts").val(data[0].Contacts);
+                    $("#EFacsimile").val(data[0].Facsimile);
+                    $("#ETelePhone").val(data[0].TelePhone);
+                    $("#EMobilePhone").val(data[0].MobilePhone);
+                    $("#EEmai").val(data[0].Emai);
+                    $("#ECustomerLevelID").val(data[0].CustomerLevelID);
+                    $("#ECustomerTypeID").val(data[0].CustomerTypeID);
+                    $("#EPaymentID").val(data[0].PaymentID);
+                    $("#ERemark").val(data[0].Remark);
+                    $("#EUserID").val(data[0].UserID);
+                    $("#EInputPerson").val(data[0].InputPerson);
+                    $("#EToDeactivate").val(data[0].ToDeactivate);
+                    YN();
+                })
+            }
+        })
+        function YN(){
+            var ss = $("#EToDeactivate").val();
+            if (ss == false) {
+                $("#EToDeactivate").val("false");
+            } else {
+                $("#EToDeactivate").val("true");
+            }
+        }
+        //保存修改
+        $("#SaveUpdate").click(function () {
+            var ECustomerCode = $("#ECustomerCode").val();//客户编号
+            var ERegionID = $("#ERegionID").val();//区域
+            var ECustomerName = $("#ECustomerName").val();//客户名称
+            var ECustomerSouID = $("#ECustomerSouID").val();//客户来源
+            var EAddress = $("#EAddress").val();//地址
+            var EZipCode = $("#EZipCode").val();//邮编
+            var EFullName = $("#EFullName").val();//全称
+            var EPinYinCode = $("#EPinYinCode").val();//拼音码
+            var EIdNumber = $("#EIdNumber").val(); //身份证
+            var EContacts = $("#EContacts").val();//联系人
+            var EFacsimile = $("#EFacsimile").val();//传真
+            var ETelePhone = $("#ETelePhone").val();//电话
+            var EMobilePhone = $("#EMobilePhone").val();//手机
+            var EEmai = $("#EEmai").val(); //email
+            var ECustomerLevelID = $("#ECustomerLevelID").val();//客户等级
+            var ECustomerTypeID = $("#ECustomerTypeID").val();//客户类别
+            var EPaymentID = $("#EPaymentID").val();//付款方式
+            var ERemark = $("#ERemark").val();//备注
+            var EUserID = $("#EUserID").val();//业务员
+            var EInputPerson = $("#EInputPerson").val(); //录入人
+            var EToDeactivate = $("#FToDeactivate").val();//停用
+            //区域 客户来源 客户等级 客户类别 付款方式 业务员
+            if (ERegionID > 0 && ECustomerSouID > 0 && ECustomerLevelID > 0 && ECustomerTypeID > 0 && EPaymentID > 0 && EUserID > 0) {
+                //显示加载层
+                var layerIndex = layer.load(0);
+                //提交表单
+                $("#formUpdate").ajaxSubmit(function (msg) {
+                    //关闭加载层
+                    layer.close(layerIndex);
+                    if (msg == "success") {
+                        //提示信息
+                        layer.msg("修改成功！");
+                        //刷新页面
+                        location.reload();
+                    } else {
+                        layer.alert(msg, { icon: 0, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.msg("请将信息填写完整！");
+
+            }
+        });
+        //删除
+        $("#Delect").click(function () {
+            var num = 0;//用于记录删除成功数据的条数
+            var check = $("#tbSales input[type=checkbox]:checked");
+            if (check.length > 0) {
+                layer.confirm("确认需要删除当前选中的数据吗?",
+                    {
+                        icon: 3,
+                        btn: ['确认', '取消']
+                    }, function (layerIndex) {
+                        layer.close(layerIndex);//关闭提示框
+                        for (var i = 0; i < check.length; i++) {
+                            $.ajax({
+                                type: "get",//请求方式
+                                async: false,//是否异步
+                                url: "DeleteSales?SalesCustomerID=" + check[i].value,
+                                success: function (data) {//成功回调函数
+                                    if (data) {
+                                        num++;
+                                    }
+                                }
+                            });
+                        }
+                        Chose();//表格刷新
+                        layer.alert(num + "条数据删除成功，")
+                        + (check.length - num) + "条数据删除失败",
+                        { icon: 1, skin: "layui-layer-molv" }
+                    });
+            } else {//未选择需要删除的数据
+                layer.alert('请选择需要删除的数据！', { icon: 0, title: '提示' });
+            }
+        });
+        //根据数据库信息生成li标签
+        $(function () {
+             var RegionID = 0;
+            $.post("/BasicdataManagment/Salescustomer/SelectRegion", function (data) {
+                $("#RegionName span").html(data.length);//获取数据长度
+                $("#RegionName ul.listshow").html("");
+                $.each(data, function (i) {//生成li标签
+                    $("#RegionName ul").append('<li id=' + data[i].RegionID + ' class="lishow"><i class="diai"></i>' +
+                            data[i].RegionName + ' (' + data[i].RegionNum + ')</li>');
+                    RegionID = data[i].RegionID;
+                    $("#" + RegionID).click(function () {
+                        $("#RegionName li").removeClass("active");
+                        $(this).addClass("active");
+                        tbSales.search({//点击商品类别刷新表格
+                            RegionID: this.id
+                        });
+                    })
+                })
+            })
+            tbSales.refreshPage();
+        })
+        //条件查询销售客户
+        function Chose() {
+            var RegionID = 0;
+            tbSales.search({
+                RegionID: RegionID
+            });
+        }
+
+
+
+
+
+        //新增绑定下拉框
+        createSelect("FRegionID", "/PublicManagment/CreateSelect/SelectRegion ");//客户区域
+        createSelect("FCustomerSouID", "/PublicManagment/CreateSelect/SelectCustomerSou ");//客户来源
+        createSelect("FCustomerTypeID", "/PublicManagment/CreateSelect/SelectCustomerType ");//客户类型
+        createSelect("FCustomerLevelID", "/PublicManagment/CreateSelect/SelectCustomerLevel ");//客户等级
+        createSelect("FPaymentID", "/PublicManagment/CreateSelect/SelectPayment ")//付款方式
+        createSelect("FUserID", "/PublicManagment/CreateSelect/SelectUser")//业务员
+
+        //修改绑定下拉框
+        createSelect("ERegionID", "/PublicManagment/CreateSelect/SelectRegion ");//客户区域
+        createSelect("ECustomerSouID", "/PublicManagment/CreateSelect/SelectCustomerSou ");//客户来源
+        createSelect("ECustomerTypeID", "/PublicManagment/CreateSelect/SelectCustomerType ");//客户类型
+        createSelect("ECustomerLevelID", "/PublicManagment/CreateSelect/SelectCustomerLevel ");//客户等级
+        createSelect("EPaymentID", "/PublicManagment/CreateSelect/SelectPayment ")//付款方式
+        createSelect("EUserID", "/PublicManagment/CreateSelect/SelectUser")//业务员
+
+    </script>
+</body>
+</html>

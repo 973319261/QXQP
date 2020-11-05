@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koi.mapper.ClientDao">
+<!-- 查询客户信息 -->
+<select id="selectMaintenanceCus" resultType="com.koi.vo.MaintenanceCusVo">
+  select m.*,InsuranceComName,InsuranceSpeName,DepartmentName,CarderName,CustomerType,CustomerLevel,RegionName,CustomerSou
+  from SYS_MaintenanceCus m,SYS_InsuranceCom,SYS_InsuranceSpe,SYS_Department,SYS_Carder,SYS_CustomerType,SYS_CustomerLevel,SYS_Region,SYS_CustomerSou
+  WHERE m.InsuranceComID=SYS_InsuranceCom.InsuranceComID AND m.InsuranceSpeID=SYS_InsuranceSpe.InsuranceSpeID
+  AND m.DepartmentID=SYS_Department.DepartmentID AND m.CarderID=SYS_Carder.CarderID AND m.CustomerTypeID=SYS_CustomerType.CustomerTypeID
+  AND m.CustomerLevelID=SYS_CustomerLevel.CustomerLevelID AND m.RegionID=SYS_Region.RegionID AND m.CustomerSouID=SYS_CustomerSou.CustomerSouID
+  AND MobilePhone = #{mobilePhone}
+</select>
+<!-- 查询订单总数 -->
+<select id="selectOrderCount" resultType="java.lang.Integer">
+  SELECT COUNT(*) FROM dbo.PW_Predate WHERE Telephone=#{phone} 
+  <if test="toAudit !=null and toAudit > -1 ">
+   AND ToAudit =#{toAudit}
+  </if>
+</select>
+<!-- 查询订单信息 -->
+<select id="selectOrder" resultType="com.koi.vo.PredateVo">
+  SELECT * FROM(SELECT *,ROW_NUMBER()OVER(ORDER BY Telephone)Num FROM(SELECT p.PredateID,p.CarderID,
+	p.RepairID,CarderName,DeserveMoney,VehicleType,CustomerNum,RepairName,PredateNum,OpenDate,MaintenanceNum,
+	MaintainData,CarNum,Owner,CarMasterPhone,Contacts,Telephone,p.Remark,ToAudit,Amount,Receivable,Describe,
+	ToTransferOrder FROM  PW_Predate p,SYS_Carder,SYS_Repair where p.CarderID = SYS_Carder.CarderID 
+	AND p.RepairID = SYS_Repair.RepairID)AS tmp 
+	<where>
+	<if test="phone != null and phone != '' ">
+	 AND Telephone = #{phone} 
+	</if>
+	<if test="toAudit !=null and toAudit > -1 ">
+     AND ToAudit =#{toAudit} 
+   </if>
+	</where>
+	)AS db WHERE db.Num BETWEEN #{startIndex} AND #{pageSize}
+</select>
+<!-- 查询订单明细信息 -->
+<select id="selectPredate" resultType="com.koi.vo.PredateVo">
+	SELECT p.PredateID,p.CarderID,p.RepairID,CarderName,DeserveMoney,VehicleType,CustomerNum,
+	RepairName,PredateNum,OpenDate,MaintenanceNum,MaintainData,CarNum,Owner,CarMasterPhone,
+	Contacts,Telephone,p.Remark,ToAudit,Amount,Receivable,Describe,ToTransferOrder FROM  
+	PW_Predate p,SYS_Carder,SYS_Repair where p.CarderID = SYS_Carder.CarderID AND p.RepairID = SYS_Repair.RepairID 
+	AND p.PredateID=#{predateID}
+</select>
+<select id="selectPreRepairItemDetail" resultType="com.koi.vo.PreRepairItemDetailVo">
+	SELECT p.*,MaintainabilityName,RepairItemName,MaintenanceName FROM SYS_PreRepairItemDetail p,SYS_Maintainability,
+	SYS_RepairItem,SYS_Maintenance WHERE p.MaintainabilityID=dbo.SYS_Maintainability.MaintainabilityID AND 
+	p.RepairItemID=SYS_RepairItem.RepairItemID AND SYS_RepairItem.MaintenanceID=SYS_Maintenance.MaintenanceID 
+	AND p.PredateID=#{predateID}
+</select>	
+<select id="selectPreProductDetail" resultType="com.koi.vo.PreProductDetailVo">
+	SELECT p.*,MaintainabilityName FROM SYS_PreProductDetail p,SYS_Maintainability 
+    WHERE p.MaintainabilityID=dbo.SYS_Maintainability.MaintainabilityID 
+	AND p.PredateID=#{predateID}
+</select>
+<select id="selectPreOtherCostDetail" resultType="com.koi.vo.PreOtherCostDetailVo">
+	SELECT p.*,ExpensesName FROM SYS_PreOtherCostDetail p,SYS_Expenses WHERE p.ExpensesID=SYS_Expenses.ExpensesID 
+	AND p.PredateID=#{predateID}
+</select>
+<!-- 查询配件总数 -->
+<select id="selectFittingsInfoCount" resultType="java.lang.Integer">
+  SELECT count(*) as num FROM SYS_FittingsInfo f,SYS_FittingsType,SYS_SystemUnit,SYS_VehicleType,
+  SYS_Suppliers WHERE f.FittingsTypeID=SYS_FittingsType.FittingsTypeID AND f.SystemUnitID=SYS_SystemUnit.SystemUnitID 
+  AND f.VehicleTypeID = SYS_VehicleType.VehicleTypeID AND f.SuppliersID=SYS_Suppliers.SuppliersID 
+  <if test="value != null and value !='' ">
+	 AND (FittingsTypeName like CONCAT(CONCAT('%',#{value}),'%')  OR 
+	 FittingsName like CONCAT(CONCAT('%',#{value}),'%')  OR 
+	 FittingsCode like CONCAT(CONCAT('%',#{value}),'%'))
+	</if>
+</select>
+<!-- 查询配件信息 -->
+<select id="selectFittingsInfo" resultType="com.koi.vo.FittingsInfoVo">
+  SELECT * FROM(SELECT FittingsInfoID,f.FittingsTypeID,FittingsTypeName,FittingsCode,FittingsName,
+	Specification,f.VehicleTypeID,VehicleType,f.SystemUnitID,SystemUnit,WholesalePrice,PictureName,Intake,SalesPrice,f.SuppliersID,SuppliersName,
+	f.Remark,ROW_NUMBER()OVER(ORDER BY f.FittingsInfoID)Num FROM SYS_FittingsInfo f,SYS_FittingsType,SYS_SystemUnit ,
+	SYS_VehicleType,dbo.SYS_Suppliers WHERE f.FittingsTypeID=SYS_FittingsType.FittingsTypeID AND f.SystemUnitID= 
+	SYS_SystemUnit.SystemUnitID AND f.VehicleTypeID = SYS_VehicleType.VehicleTypeID AND f.SuppliersID=SYS_Suppliers. 
+	SuppliersID) AS tmp WHERE Num BETWEEN #{startIndex} AND #{pageSize} 
+	<if test="value != null and value !='' ">
+	 AND (FittingsTypeName like CONCAT(CONCAT('%',#{value}),'%')  OR 
+	 FittingsName like CONCAT(CONCAT('%',#{value}),'%')  OR 
+	 FittingsCode like CONCAT(CONCAT('%',#{value}),'%'))
+	</if>
+</select>
+</mapper>
